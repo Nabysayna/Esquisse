@@ -8,13 +8,14 @@
 
             <div class="account-wall">
 
-                <form class="form-signin">
+                <form class="form-signin" (ngSubmit)="authentificate()" #heroForm="ngForm">
+                    <div [hidden]="fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
 
-                    <input type="text" class="form-control" placeholder="Email" required autofocus>
+                    <input type="text" [(ngModel)]="this.userName" name="login" id="userlogin"  class="form-control" placeholder="Login" required autofocus>
 
-                    <input type="password" class="form-control" placeholder="Password" required>
+                    <input type="password" [(ngModel)]="this.userPwd"   name="pwd" id="userpwd" class="form-control" placeholder="Mot de pass" required>
 
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!heroForm.form.valid" >
 
                         Login</button>
 
@@ -22,7 +23,6 @@
 
                         <input type="checkbox" value="remember-me">
 
-                        Se Souvenir
                     </label>
 
                 </form>

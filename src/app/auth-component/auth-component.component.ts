@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-auth-component',
   templateUrl: './auth-component.component.html',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponentComponent implements OnInit {
 
-  constructor() { }
+  userName = ''  ; 
+  userPwd  = '' ; 
+  fakevalues : boolean ;
+
+  constructor() { 
+  	this.fakevalues = true ;
+  }
 
   ngOnInit() {
+  }
+
+ authentificate() {
+  		if ( (this.userName =='gaayi') && (this.userPwd =='diarediale') ){
+  			this.fakevalues = true ;
+		    this.userName = ''  ; 
+  			this.userPwd  = '' ; 
+  		}
+  		else{
+  			this.fakevalues = false ;
+		    this.userName = ''  ; 
+  			this.userPwd  = '' ; 
+  		}
   }
 
 }
