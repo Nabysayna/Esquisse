@@ -5,16 +5,16 @@
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul id="haut" class="nav navbar-nav side-nav">
-                <li role="presentation"  ><a href="#"  >CRM</a></li>
-                <li role="presentation"  ><a href="#" >DASHBOARD</a></li>
-                <li role="presentation"  ><a href="#" >E-COMMERCE</a></li>
+                <li role="presentation"  ><a routerLink="/"  >CRM</a></li>
+                <li role="presentation"  ><a routerLink="/" >DASHBOARD</a></li>
+                <li role="presentation"  ><a routerLink="/" >E-COMMERCE</a></li>
             </ul>
         </div>
         <div class="navbar-inverse sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul id="gauche" class="nav in" id="side-menu">
                     <li *ngFor="let api of registredAPIs" >
-                        <a href="#">{{api}}</a>
+                        <a [routerLink]="['/accueil', api]">{{api}}</a>
                     </li>
 
                 </ul>
@@ -26,7 +26,7 @@
 
     <div id="page-wrapper" style="min-height: 292px;">
         <div class="row">
-
+            <router-outlet></router-outlet>
         </div>
 
     </div>
