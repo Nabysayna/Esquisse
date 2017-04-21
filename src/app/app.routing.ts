@@ -9,6 +9,9 @@ import { OrangeMoneyComponentComponent } from './orange-money-component/orange-m
 import { PostCashComponentComponent } from './post-cash-component/post-cash-component.component';
 import { TigoCashComponentComponent } from './tigo-cash-component/tigo-cash-component.component';
 import { WesternUnionComponentComponent } from './western-union-component/western-union-component.component';
+import { CrmComponent } from './crm/crm.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ECommerceComponent } from './e-commerce/e-commerce.component';
 
 const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
@@ -21,6 +24,9 @@ const appRoutes: Routes = [
     			{path: 'POSTECASH', component: PostCashComponentComponent},    			
     			{path: 'TIGO CASH', component: TigoCashComponentComponent},
     			{path: 'WESTERN UNION', component: WesternUnionComponentComponent},
+                {path: 'CRM', component: CrmComponent},
+                {path: 'DASHBOARD', component: DashboardComponent},
+                {path: 'E-COMMERCE', component: ECommerceComponent}
 
     		] 
     },

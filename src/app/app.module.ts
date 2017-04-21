@@ -15,6 +15,9 @@ import { TigoCashComponentComponent } from './tigo-cash-component/tigo-cash-comp
 import { WesternUnionComponentComponent } from './western-union-component/western-union-component.component';
 import { MoneyGramComponentComponent } from './money-gram-component/money-gram-component.component';
 import { RyaComponentComponent } from './rya-component/rya-component.component';
+import { CrmComponent } from './crm/crm.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ECommerceComponent } from './e-commerce/e-commerce.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { RyaComponentComponent } from './rya-component/rya-component.component';
     TigoCashComponentComponent,
     WesternUnionComponentComponent,
     MoneyGramComponentComponent,
-    RyaComponentComponent
+    RyaComponentComponent,
+      CrmComponent,
+      DashboardComponent,
+      ECommerceComponent
   ],
   imports: [
     BrowserModule,
