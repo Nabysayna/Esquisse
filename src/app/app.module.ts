@@ -12,6 +12,9 @@ import { PostCashComponentComponent } from './post-cash-component/post-cash-comp
 import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-component.component';
 import { OrangeMoneyComponentComponent } from './orange-money-component/orange-money-component.component';
 import { TigoCashComponentComponent } from './tigo-cash-component/tigo-cash-component.component';
+import { WesternUnionComponentComponent } from './western-union-component/western-union-component.component';
+import { MoneyGramComponentComponent } from './money-gram-component/money-gram-component.component';
+import { RyaComponentComponent } from './rya-component/rya-component.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { TigoCashComponentComponent } from './tigo-cash-component/tigo-cash-comp
     PostCashComponentComponent,
     JoniJoniComponentComponent,
     OrangeMoneyComponentComponent,
-    TigoCashComponentComponent
+    TigoCashComponentComponent,
+    WesternUnionComponentComponent,
+    MoneyGramComponentComponent,
+    RyaComponentComponent
   ],
   imports: [
     BrowserModule,
