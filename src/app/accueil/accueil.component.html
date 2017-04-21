@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div id="wrapper">
 
@@ -31,6 +32,27 @@
 
     </div>
     <!-- /#page-wrapper -->
+=======
+<div class="h">
+
+<ul class="nav nav-tabs nav-justified">
+    <li role="presentation"  ><button href="#" [disabled]="!this.authorisedToUseCRM">CRM</button></li>
+    <li role="presentation"  ><button href="#">DASHBOARD</button></li>
+    <li role="presentation"  ><button href="#">E-COMMERCE</button></li>
+</ul>
+</div>
+<div class="v">
+<ul class="nav nav-pills nav-stacked">
+    <li *ngFor="let api of registredAPIs">
+        <span>{{api}}</span>
+    </li>
+</ul>
+
+<div>
+<router-outlet>
+</router-outlet>
+</div>
+>>>>>>> 1765e00d671fbf4501ebcdf16e696b3d84ad558e
 
 </div>
 
