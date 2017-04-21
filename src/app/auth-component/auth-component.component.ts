@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -12,8 +14,9 @@ export class AuthComponentComponent implements OnInit {
   userPwd  = '' ; 
   fakevalues : boolean ;
 
-  constructor() { 
+  constructor(private router: Router) { 
   	this.fakevalues = true ;
+    
   }
 
   ngOnInit() {
@@ -21,9 +24,10 @@ export class AuthComponentComponent implements OnInit {
 
  authentificate() {
   		if ( (this.userName =='gaayi') && (this.userPwd =='diarediale') ){
-  			this.fakevalues = true ;
-		    this.userName = ''  ; 
-  			this.userPwd  = '' ; 
+  			// this.fakevalues = true ;
+		   //  this.userName = ''  ; 
+  			// this.userPwd  = '' ;
+        this.router.navigate(['/accueil']); 
   		}
   		else{
   			this.fakevalues = false ;
