@@ -1,4 +1,5 @@
 <div class="h">
+
 <ul class="nav nav-tabs nav-justified">
     <li role="presentation"  ><button href="#" [disabled]="!this.authorisedToUseCRM">CRM</button></li>
     <li role="presentation"  ><button href="#">DASHBOARD</button></li>
@@ -11,5 +12,11 @@
         <span>{{api}}</span>
     </li>
 </ul>
+
+<div>
+<router-outlet>
+</router-outlet>
+</div>
+
 </div>
 
