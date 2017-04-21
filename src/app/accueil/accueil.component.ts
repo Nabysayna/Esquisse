@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 	
-  registredAPIs : string [] = ['PosteCash','Joni Joni', 'Orange Money', 'Tigo Cash', 'Western Union', 'MoneyGram', 'RYA'] ;
+  registredAPIs : string [] = ['POSTECASH','JONI JONI', 'ORANGE MONEY', 'TIGO CASH', 'WESTERN UNION', 'MONEYGRAM', 'RYA'] ;
   authorisedToUseCRM = false ;
   
   constructor() { }
