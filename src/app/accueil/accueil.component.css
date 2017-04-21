@@ -1,14 +1,19 @@
 #haut {
-   margin-left: 40rem;
+   margin-left: 35rem;
+
 }
 #haut li {
    margin-left: 15rem;
+    font-size: larger;
+
 }
 
 
 #gauche {
     margin-bottom: 30rem;
+
 }
 #gauche li{
     margin-bottom: 15rem;
+    font-size: larger;
 }
