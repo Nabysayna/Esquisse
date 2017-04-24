@@ -23,7 +23,7 @@ export class AuthComponentComponent implements OnInit {
   }
 
  authentificate() {
-  		if ( (this.userName =='gaayi') && (this.userPwd =='diarediale') ){
+  		if ( ((this.userName =='gaayi') && (this.userPwd =='diarediale')) || ((this.userName =='test') && (this.userPwd =='test')) ){
   			// this.fakevalues = true ;
 		   //  this.userName = ''  ; 
   			// this.userPwd  = '' ;

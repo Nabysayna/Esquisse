@@ -8,6 +8,14 @@
 
 }
 
+#haut a{
+    min-width: 13rem ;
+    text-align: center ;
+}
+#haut a:hover{
+    background-color: #1087dd !important ;
+    color: white ;
+}
 
 #gauche {
     margin-bottom: 30rem;
@@ -16,4 +24,31 @@
 #gauche li{
     margin-bottom: 15rem;
     font-size: larger;
+}
+
+
+
+#wrapper{
+	background-color: white ;
+	height: 100%;
+}
+
+#page-wrapper{
+	height: 100%;
+}
+
+#navbHead{
+	background-color: white !important ;
+	width : 100%;
+}
+
+
+#side-menu a{
+    background-color: #1087dd !important ;
+    color: white ;
+}
+
+#side-menu a:hover{
+    background-color: white !important ;
+    color:  #1087dd ;
 }

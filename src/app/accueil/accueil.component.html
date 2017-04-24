@@ -3,7 +3,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
+        <div class="navbar-header" id="navbHead">
             <ul id="haut" class="nav navbar-nav side-nav">
                 <li role="presentation"  ><a [routerLink]="['/accueil', 'CRM']" >CRM</a></li>
                 <li role="presentation"  ><a [routerLink]="['/accueil', 'DASHBOARD']" >DASHBOARD</a></li>
@@ -24,7 +24,7 @@
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper" style="min-height: 292px;">
+    <div id="page-wrapper">
         <div class="row">
             <router-outlet></router-outlet>
         </div>
