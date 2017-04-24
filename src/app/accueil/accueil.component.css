@@ -13,7 +13,7 @@
     text-align: center ;
 }
 #haut a:hover{
-    background-color: #1087dd !important ;
+    background-color: #ed9f10!important ;
     color: white ;
 }
 
@@ -44,11 +44,11 @@
 
 
 #side-menu a{
-    background-color: #1087dd !important ;
+    background-color: #ed9f10!important ;
     color: white ;
 }
 
 #side-menu a:hover{
     background-color: white !important ;
-    color:  #1087dd ;
+    color:  #ed9f10 ;
 }
