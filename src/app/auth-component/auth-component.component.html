@@ -9,7 +9,7 @@
             <div class="account-wall">
 
                 <form class="form-signin" (ngSubmit)="authentificate()" #heroForm="ngForm">
-                    <div [hidden]="fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
+                    <div [hidden]="this.fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
 
                     <input type="text" [(ngModel)]="this.userName" name="login" id="userlogin"  class="form-control" placeholder="Login" required autofocus>
 
