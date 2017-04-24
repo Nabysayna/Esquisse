@@ -12,6 +12,7 @@ import { WesternUnionComponentComponent } from './western-union-component/wester
 import { CrmComponent } from './crm/crm.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
+import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-component.component';
 
 const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
@@ -25,12 +26,12 @@ const appRoutes: Routes = [
     			{path: 'WESTERN UNION', component: WesternUnionComponentComponent},
                 {path: 'CRM', component: CrmComponent},
                 {path: 'DASHBOARD', component: DashboardComponent},
-                {path: 'E-COMMERCE', component: ECommerceComponent}
+                {path: 'E-COMMERCE', component: ECommerceComponent},
+                {path: 'JONI JONI', component: JoniJoniComponentComponent}
 
     		] 
     },
 
-    { path: 'accueil', component: AccueilComponent },
     { path: 'accueil', component: AccueilComponent },
 
 

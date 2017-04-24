@@ -16,6 +16,7 @@ import { RyaComponentComponent } from './rya-component/rya-component.component';
 import { CrmComponent } from './crm/crm.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
+import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-component.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
     CrmComponent,
     DashboardComponent,
     ECommerceComponent,
+    JoniJoniComponentComponent,
   ],
   imports: [
     BrowserModule,
