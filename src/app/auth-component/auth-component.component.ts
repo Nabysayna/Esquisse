@@ -19,6 +19,7 @@ export class AuthComponentComponent implements OnInit {
     
   }
 
+
   ngOnInit() {
   }
 

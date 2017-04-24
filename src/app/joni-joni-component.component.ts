@@ -8,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class JoniJoniComponentComponent implements OnInit {
   formvisible = true ;
   pn : string ;
-  tel : string ;
+  tel : string ; 
   pnd : string ;
   teld : string ;
   mnt : number ;
+
   constructor() { }
   
   validform(){}
