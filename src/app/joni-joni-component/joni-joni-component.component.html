@@ -19,7 +19,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="home-pills">
                         <ul id="contcc" >
-                            <li ><a href="#envoiecash" data-toggle="tab">  Envoi Cash</a></li>
+                            <li ><a href="#envoiecash" (click)="formvisiblty=false" data-toggle="tab">  Envoi Cash</a></li>
                             <li ><a id="r" href="#paiementcash" data-toggle="tab">Paiement Cash</a></li>
                         </ul>
                 </div>
@@ -38,11 +38,11 @@
             <br>
             <br>
             <br>
-            <div class="tab-pane fade in active" id="envoiecash">
+            <div [hidden]="formvisiblty" class="tab-pane fade in active" id="envoiecash">
                 <fieldset>
                     <h4>FORMULAIRE D'ENVOIE CASH</h4>
                 </fieldset>
-                <form  (ngSubmit)="validform()" #cash="ngForm">
+                <form (ngSubmit)="validform()" #cash="ngForm">
 
                     <input type="text" [(ngModel)]="this.pn" name="pn" id="pn"  class="form-control" placeholder="prénom & nom expéditeur" required autofocus>
 
