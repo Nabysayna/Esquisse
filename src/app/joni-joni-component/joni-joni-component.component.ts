@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoniJoniComponentComponent implements OnInit {
   formvisible = true ;
+  pn : string ;
+  tle : string ; 
+  pnd : string ;
+  tled : string ;
+  mnt : number ;
   constructor() { }
   
   validform(){}
