@@ -14,9 +14,9 @@ export class JoniJoniComponentComponent implements OnInit {
 =======
   formvisible = true ;
   pn : string ;
-  tle : string ; 
+  tel : string ;
   pnd : string ;
-  tled : string ;
+  teld : string ;
   mnt : number ;
   constructor() { }
   
