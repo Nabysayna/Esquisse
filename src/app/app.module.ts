@@ -1,7 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { NgModule }      from '@angular/core' ;
+import { BrowserModule } from '@angular/platform-browser' ;
+import  { FormsModule} from '@angular/forms' ;
 
 import { Routing }        from './app.routing';
 
@@ -29,14 +28,13 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
     WesternUnionComponentComponent,
     MoneyGramComponentComponent,
     RyaComponentComponent,
-      CrmComponent,
-      DashboardComponent,
-      ECommerceComponent,
+    CrmComponent,
+    DashboardComponent,
+    ECommerceComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     Routing
   ],
   providers: [],
