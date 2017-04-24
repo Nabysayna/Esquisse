@@ -6,22 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./joni-joni-component.component.css']
 })
 export class JoniJoniComponentComponent implements OnInit {
-<<<<<<< HEAD
-    formvisiblty : boolean ;
-
-    constructor() {this.formvisiblty=true;}
-    validform(){}
-=======
   formvisible = true ;
   pn : string ;
-  tle : string ; 
+  tel : string ; 
   pnd : string ;
-  tled : string ;
+  teld : string ;
   mnt : number ;
+    constructor() {this.formvisible=true;}
+    validform(){}
+
   constructor() { }
   
   validform(){}
->>>>>>> 9ed5878ac52f0cf2c70dfd8426cbf18bb3b993ef
 
     ngOnInit() {
     }
