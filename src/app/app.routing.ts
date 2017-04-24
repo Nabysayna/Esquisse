@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
     { path: 'accueil', component: AccueilComponent, 
     children:[
-    			{path: 'RYA', component: RyaComponentComponent},
+    			{path: 'RIA', component: RyaComponentComponent},
     			{path: 'JONI JONI', component: JoniJoniComponentComponent},
     			{path: 'MONEYGRAM', component: MoneyGramComponentComponent},
     			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
