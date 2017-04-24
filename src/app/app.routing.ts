@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { AccueilComponent } from './accueil/accueil.component'; 
 import { RyaComponentComponent } from './rya-component/rya-component.component';
-import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-component.component';
 import { MoneyGramComponentComponent } from './money-gram-component/money-gram-component.component';
 import { OrangeMoneyComponentComponent } from './orange-money-component/orange-money-component.component';
 import { PostCashComponentComponent } from './post-cash-component/post-cash-component.component';
@@ -18,7 +17,6 @@ const appRoutes: Routes = [
     { path: 'accueil', component: AccueilComponent, 
     children:[
     			{path: 'RIA', component: RyaComponentComponent},
-    			{path: 'JONI JONI', component: JoniJoniComponentComponent},
     			{path: 'MONEYGRAM', component: MoneyGramComponentComponent},
     			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
     			{path: 'POSTECASH', component: PostCashComponentComponent},    			
