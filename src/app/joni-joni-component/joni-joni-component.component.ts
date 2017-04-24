@@ -12,8 +12,7 @@ export class JoniJoniComponentComponent implements OnInit {
   pnd : string ;
   teld : string ;
   mnt : number ;
-    constructor() {this.formvisible=true;}
-    validform(){}
+  validform(){}
 
   constructor() { }
   
