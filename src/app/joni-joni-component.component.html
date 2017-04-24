@@ -1,0 +1,85 @@
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            JONI JONI
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#home-pills" data-toggle="tab">Cash to Cash</a>
+                </li>
+                <li><a id="elec" href="#profile-pills" data-toggle="tab">Electronique Wallet VITFE</a>
+                </li>
+                <li><a href="#messages-pills" data-toggle="tab">Monetique</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="home-pills">
+                        <ul id="contcc" >
+<<<<<<< HEAD
+                            <li ><a href="#envoiecash" (click)="formvisible=false" data-toggle="tab">  Envoi Cash</a></li>
+=======
+                            <li ><a href="#envoiecash" data-toggle="tab" (click)="formvisible=false">  Envoi Cash</a></li>
+>>>>>>> 9ed5878ac52f0cf2c70dfd8426cbf18bb3b993ef
+                            <li ><a id="r" href="#paiementcash" data-toggle="tab">Paiement Cash</a></li>
+                        </ul>
+                </div>
+                <div class="tab-pane fade" id="profile-pills">
+                    <ul id="contewv" >
+                        <li ><a href="rvitfe" data-toggle="tab">Rechargement VITFE</a></li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="messages-pills">
+                    <ul id="contm" >
+                        <li ><a href="rcartejj" data-toggle="tab">Rechargement de carte Joni Joni</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+<<<<<<< HEAD
+            <div [hidden]="formvisiblty" class="tab-pane fade in active" id="envoiecash">
+=======
+            <div class="tab-pane fade in active" id="envoiecash" [hidden]="formvisible">
+>>>>>>> 9ed5878ac52f0cf2c70dfd8426cbf18bb3b993ef
+                <fieldset>
+                    <h4>FORMULAIRE D'ENVOIE CASH</h4>
+                </fieldset>
+                <form (ngSubmit)="validform()" #cash="ngForm">
+
+                    <input type="text" [(ngModel)]="this.pn" name="pn" id="pn"  class="form-control" placeholder="prénom & nom expéditeur" required autofocus>
+
+                    <input type="number" [(ngModel)]="this.tel"   name="tel" id="tel" class="form-control" placeholder="téléphone expéditeur" required>
+
+                    <input type="text" [(ngModel)]="this.pnd" name="pn" id="pnd"  class="form-control" placeholder="prénom & nom destinataire" required autofocus>
+
+                    <input type="number" [(ngModel)]="this.teld"   name="teld" id="teld" class="form-control" placeholder="téléphone destinataire" required>
+
+                    <input type="number" [(ngModel)]="this.mnt"   name="mnt" id="mnt" class="form-control" placeholder="montant à envoyer" required>
+
+                    <br><button class="btn btn-success" type="submit" [disabled]="!cash.form.valid" >
+                    Envoyer</button>
+                    <button class="btn btn-danger" [disabled]="!cash.form.valid" type="reset">
+                        Annuler</button>
+
+
+                </form>
+            </div>
+
+        </div>
+
+
+        <!-- /.panel-body -->
+    </div>
+
+    <!-- /.panel -->
+
+</div>
+
+
+

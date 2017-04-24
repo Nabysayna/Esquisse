@@ -1,0 +1,21 @@
+.nav-pills
+{
+    font-weight : bolder;
+    font-size: larger;
+    text-transform: uppercase;
+    padding-bottom: 30px;
+    margin-left: 200px;
+}
+.tab-content
+{
+
+    border-right: 2px dotted #ccc;
+    font-weight : bolder;
+    font-size: larger;
+    
+}
+#elec{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
