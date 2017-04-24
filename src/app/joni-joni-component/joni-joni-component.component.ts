@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class JoniJoniComponentComponent implements OnInit {
 
   constructor() { }
+    validform(){}
 
   ngOnInit() {
   }
