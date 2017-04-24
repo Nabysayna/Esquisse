@@ -12,7 +12,6 @@ export class JoniJoniComponentComponent implements OnInit {
   pnd : string ;
   teld : string ;
   mnt : number ;
-  validform(){}
 
   constructor() { }
   
