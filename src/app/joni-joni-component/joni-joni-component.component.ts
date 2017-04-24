@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./joni-joni-component.component.css']
 })
 export class JoniJoniComponentComponent implements OnInit {
-
+  formvisible = true ;
   constructor() { }
-    validform(){}
+  
+  validform(){}
 
   ngOnInit() {
   }
