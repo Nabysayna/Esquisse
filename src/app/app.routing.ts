@@ -1,3 +1,4 @@
+import { NgModule }      from '@angular/core' ;
 
 import  { RouterModule, Routes} from '@angular/router' ;
 
@@ -19,7 +20,7 @@ import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-comp
 const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
     { path: 'accueil', component: AccueilComponent, 
-    children:[
+           children:[
     			{path: 'RIA', component: RyaComponentComponent},
     			{path: 'MONEYGRAM', component: MoneyGramComponentComponent},
     			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
@@ -34,7 +35,6 @@ const appRoutes: Routes = [
     		] 
     },
 
-    { path: 'accueil', component: AccueilComponent },
     { path: 'accueiladmpdv', component: AccueiladminpdvComponent },
     { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent },
 
