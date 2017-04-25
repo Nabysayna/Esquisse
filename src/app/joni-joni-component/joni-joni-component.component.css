@@ -1,3 +1,6 @@
+input{
+  margin-top : 1rem !important;
+}
 .nav-pills
 {
     font-weight : bolder;
