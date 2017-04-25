@@ -24,12 +24,15 @@ export class AuthComponentComponent implements OnInit {
   }
 
  authentificate() {
-  		if ( ((this.userName =='gaayi') && (this.userPwd =='diarediale')) || ((this.userName =='test') && (this.userPwd =='test')) ){
-  			// this.fakevalues = true ;
-		   //  this.userName = ''  ; 
-  			// this.userPwd  = '' ;
-        this.router.navigate(['/accueil']); 
-  		}
+  		if ( ((this.userName =='gaayi') && (this.userPwd =='diarediale'))){
+          this.router.navigate(['/accueil']); 
+  		}else
+        if ( ((this.userName =='adminpdv') && (this.userPwd =='diarediale'))){
+          this.router.navigate(['/accueiladmpdv']);  
+          }else 
+            if ( ((this.userName =='adminmpdv') && (this.userPwd =='diarediale'))){
+               this.router.navigate(['/accueiladmmpdv']);              
+            }
   		else{
   			this.fakevalues = false ;
 		    this.userName = ''  ; 

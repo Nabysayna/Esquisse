@@ -3,6 +3,8 @@ import  { RouterModule, Routes} from '@angular/router' ;
 
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { AccueilComponent } from './accueil/accueil.component'; 
+import { AccueiladminpdvComponent } from './accueiladminpdv/accueiladminpdv.component';
+import { AccueilAdminMultiPdvComponent } from './accueil-admin-multi-pdv/accueil-admin-multi-pdv.component';
 import { RyaComponentComponent } from './rya-component/rya-component.component';
 import { MoneyGramComponentComponent } from './money-gram-component/money-gram-component.component';
 import { OrangeMoneyComponentComponent } from './orange-money-component/orange-money-component.component';
@@ -33,6 +35,8 @@ const appRoutes: Routes = [
     },
 
     { path: 'accueil', component: AccueilComponent },
+    { path: 'accueiladmpdv', component: AccueiladminpdvComponent },
+    { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent },
 
 
     // otherwise redirect to home

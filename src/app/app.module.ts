@@ -17,6 +17,8 @@ import { CrmComponent } from './crm/crm.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-component.component';
+import { AccueiladminpdvComponent } from './accueiladminpdv/accueiladminpdv.component';
+import { AccueilAdminMultiPdvComponent } from './accueil-admin-multi-pdv/accueil-admin-multi-pdv.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-comp
     DashboardComponent,
     ECommerceComponent,
     JoniJoniComponentComponent,
+    AccueiladminpdvComponent,
+    AccueilAdminMultiPdvComponent,
   ],
   imports: [
     BrowserModule,
