@@ -1,3 +1,150 @@
-<p>
-  post-cash-component works!
-</p>
+<div class="row" style="width: 100%; height: 100%; padding-bottom: 10rem; padding-top: 2rem;">
+	<div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                POSTE-CASH
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="#rechargementespece-pills" data-toggle="tab">Rechargement Espece</a>
+                    </li>
+                    <li><a href="#retraitespece-pills" data-toggle="tab">Retrait Espece</a>
+                    </li>
+                    <li><a href="#achatjula-pills" data-toggle="tab">Achat Jula</a>
+                    </li>
+                    <li><a href="#reglementsenelec-pills" data-toggle="tab">Reglement Senelec</a>
+                    </li>
+                    <li><a href="#achatcodewoyofal-pills" data-toggle="tab">Achat Code Woyofal</a>
+                    </li>
+                    <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Telephone</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content"  style="margin-top: 5rem; padding-bottom: 5rem;">
+
+                    <div class="tab-pane fade in active" id="rechargementespece-pills">
+                        <h4>Rechargement Espece</h4>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div [hidden]="errorvalue" class="alert alert-danger">Donnees invalides !</div>
+                                <div [hidden]="validervalue" class="alert alert-success">Rechargement effectue avec succes !</div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="telephone">Teleponne du client</label>
+                                    <input type="text" class="form-control" id="telephone" [(ngModel)]="telephone" placeholder="Teleponne du client" required autofocus>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="montant">Montant</label>
+                                    <input type="text" class="form-control" id="montant" [(ngModel)]="montant" placeholder="Montant du client" required autofocus>
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="validateRechargementEspece()">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="retraitespece-pills">
+                        <h4>Retrait Espece</h4>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div [hidden]="errorvalue" class="alert alert-danger">Donnees invalides !</div>
+                                <div [hidden]="validervalue" class="alert alert-success">Retrait effectue avec succes !</div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="codeValidation">Code de validation</label>
+                                    <input type="text" class="form-control" id="codeValidation" [(ngModel)]="codeValidation" placeholder="Code de validation" required autofocus>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="telephone">Teleponne du client</label>
+                                    <input type="text" class="form-control" id="telephone" [(ngModel)]="telephone" placeholder="Teleponne du client" required autofocus>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="montant">Montant</label>
+                                    <input type="text" class="form-control" id="montant" [(ngModel)]="montant" placeholder="Montant du client" required autofocus>
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="validateRetraitEspece()">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="achatjula-pills">
+                        <h4>Achat Jula</h4>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div [hidden]="errorvalue" class="alert alert-danger">Donnees invalides !</div>
+                                <div [hidden]="validervalue" class="alert alert-success">Achat Jula effectue avec succes !</div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="typeCarte">Type de carte (montant)</label>
+                                    <input type="text" class="form-control" id="typeCarte" [(ngModel)]="typeCarte" placeholder="Type de carte (montant)" required autofocus>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="nombreCarte">Nombre de carte</label>
+                                    <input type="text" class="form-control" id="nombreCarte" [(ngModel)]="nombreCarte" placeholder="Nombre de carte" required autofocus>
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="validateAchatJula()">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="reglementsenelec-pills">
+                        <h4>Reglement Senelec</h4>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div [hidden]="errorvalue" class="alert alert-danger">Donnees invalides !</div>
+                                <div [hidden]="validervalue" class="alert alert-success">Reglement Senelec effectue avec succes !</div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="police">Police</label>
+                                    <input type="text" class="form-control" id="police" [(ngModel)]="police" placeholder="Police" required autofocus>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="numeroDeFacture">Numero de facture</label>
+                                    <input type="text" class="form-control" id="numeroDeFacture" [(ngModel)]="numeroDeFacture" placeholder="Numero de facture" required autofocus>
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="validateReglementSenelec()">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="achatcodewoyofal-pills">
+                        <h4>Achat Code Woyofal</h4>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div [hidden]="errorvalue" class="alert alert-danger">Donnees invalides !</div>
+                                <div [hidden]="validervalue" class="alert alert-success">Rechargement effectue avec succes !</div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="montant">Montant</label>
+                                    <input type="text" class="form-control" id="montant" [(ngModel)]="montant" placeholder="Montant du client" required autofocus>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="compteur">Compteur</label>
+                                    <input type="text" class="form-control" id="compteur" [(ngModel)]="compteur" placeholder="Compteur" required autofocus>
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="validateAchatCodeWoyofal()">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="achatcredittelephone-pills">
+                        <h4>Achat Credit Telephone</h4>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div [hidden]="errorvalue" class="alert alert-danger">Donnees invalides !</div>
+                                <div [hidden]="validervalue" class="alert alert-success">Achat credit telephone effectue avec succes !</div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="telephone">Teleponne du client</label>
+                                    <input type="text" class="form-control" id="telephone" [(ngModel)]="telephone" placeholder="Teleponne du client" required autofocus>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="control-label" for="montant">Montant du credit</label>
+                                    <input type="text" class="form-control" id="montant" [(ngModel)]="montant" placeholder="Montant du credit" required autofocus>
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="validateAchatCreditTelephone()">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+</div>

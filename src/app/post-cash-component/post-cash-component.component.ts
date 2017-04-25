@@ -7,9 +7,90 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostCashComponentComponent implements OnInit {
 
-  constructor() { }
+	telephone = '';
+  	montant = '';
+  	codeValidation = '';
+  	typeCarte = '';
+  	nombreCarte = '';
+  	police = '';
+  	numeroDeFacture = '';
+  	compteur = '';
 
-  ngOnInit() {
-  }
+  	errorvalue : boolean ;
+  	validervalue : boolean ;
+  	
+  	constructor() { 
+  		this.errorvalue = true;
+  		this.validervalue = true;
+
+  	}
+
+  	ngOnInit() { }
+
+  	validateRechargementEspece(){
+  		if (this.telephone != '1234'){
+  			this.errorvalue = false;
+  			this.validervalue = true;
+  		}
+  		else{
+  			this.errorvalue = true;
+  			this.validervalue = false;
+  		}
+  	}
+
+  	validateRetraitEspece(){
+  		if (this.codeValidation != '1234'){
+  			this.errorvalue = false;
+  			this.validervalue = true;
+  		}
+  		else{
+  			this.errorvalue = true;
+  			this.validervalue = false;
+  		}
+  	}
+
+  	validateAchatJula(){
+  		if (this.typeCarte != '1234'){
+  			this.errorvalue = false;
+  			this.validervalue = true;
+  		}
+  		else{
+  			this.errorvalue = true;
+  			this.validervalue = false;
+  		}
+  	}
+
+  	validateReglementSenelec(){
+  		if (this.police != '1234'){
+  			this.errorvalue = false;
+  			this.validervalue = true;
+  		}
+  		else{
+  			this.errorvalue = true;
+  			this.validervalue = false;
+  		}
+  	}
+
+  	validateAchatCodeWoyofal(){
+  		if (this.montant != '1234'){
+  			this.errorvalue = false;
+  			this.validervalue = true;
+  		}
+  		else{
+  			this.errorvalue = true;
+  			this.validervalue = false;
+  		}
+  	}
+
+  	validateAchatCreditTelephone(){
+  		if (this.telephone != '1234'){
+  			this.errorvalue = false;
+  			this.validervalue = true;
+  		}
+  		else{
+  			this.errorvalue = true;
+  			this.validervalue = false;
+  		}
+  	}
 
 }
