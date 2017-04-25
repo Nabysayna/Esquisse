@@ -27,46 +27,112 @@
                 </div>
                 <div class="tab-pane fade" id="profile-pills">
                     <ul id="contewv" >
-                        <li ><a href="rvitfe" data-toggle="tab">Rechargement VITFE</a></li>
+                        <li ><a href="#rvitfe" data-toggle="tab">Rechargement VITFE</a></li>
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="messages-pills">
                     <ul id="contm" >
-                        <li ><a href="rcartejj" data-toggle="tab">Rechargement de carte Joni Joni</a></li>
+                        <li ><a href="#rcartejj" data-toggle="tab">Rechargement de carte Joni Joni</a></li>
                     </ul>
                 </div>
             </div>
             <br>
             <br>
-            <br>
-            <br>
-
-            <div class="tab-pane fade in active" id="envoiecash" [hidden]="formvisible">
-                <fieldset>
-                    <h4>FORMULAIRE D'ENVOIE CASH</h4>
-                </fieldset>
-                <form (ngSubmit)="validform()" #cash="ngForm">
-
-                    <input type="text" [(ngModel)]="this.pn" name="pn" id="pn"  class="form-control" placeholder="prénom & nom expéditeur" required autofocus>
-
-                    <input type="number" [(ngModel)]="this.tel"   name="tel" id="tel" class="form-control" placeholder="téléphone expéditeur" required>
-
-                    <input type="text" [(ngModel)]="this.pnd" name="pn" id="pnd"  class="form-control" placeholder="prénom & nom destinataire" required autofocus>
-
-                    <input type="number" [(ngModel)]="this.teld"   name="teld" id="teld" class="form-control" placeholder="téléphone destinataire" required>
-
-                    <input type="number" [(ngModel)]="this.mnt"   name="mnt" id="mnt" class="form-control" placeholder="montant à envoyer" required>
-
-                    <br><button class="btn btn-success" type="submit" [disabled]="!cash.form.valid" >
-                    Envoyer</button>
-                    <button class="btn btn-danger" [disabled]="!cash.form.valid" type="reset">
-                        Annuler</button>
-
-
-                </form>
-            </div>
 
         </div>
+        <div class="col-lg-6 tab-pane fade in active" id="envoiecash" [hidden]="formvisible">
+            <fieldset>
+                <h4>FORMULAIRE D'ENVOIE CASH</h4>
+            </fieldset>
+            <form (ngSubmit)="validform()" #cash="ngForm">
+
+                <input type="text" [(ngModel)]="this.nome" name="nome" id="nome"  class="form-control" placeholder="nom expéditeur" required autofocus>
+
+                <input type="text" [(ngModel)]="this.prenome" name="prenome" id="prenome"  class="form-control" placeholder="prénom expéditeur" required >
+
+                <input type="number" [(ngModel)]="this.tele"   name="tele" id="tele" class="form-control" placeholder="téléphone expéditeur" required>
+
+                <input type="text" [(ngModel)]="this.nomd" name="nomd" id="nomd"  class="form-control" placeholder="nom destinataire" required >
+
+                <input type="text" [(ngModel)]="this.prenomd" name="prenomd" id="prenomd"  class="form-control" placeholder="prénom expéditeur" required autofocus>
+
+                <input type="number" [(ngModel)]="this.teld"   name="teld" id="teld" class="form-control" placeholder="téléphone destinataire" required>
+
+                <input type="number" [(ngModel)]="this.mnt"   name="mnt" id="mnt" class="form-control" placeholder="montant à envoyer" required>
+
+                <br><button class="btn btn-success" type="submit" [disabled]="!cash.form.valid" >
+                Envoyer</button>
+                <button class="btn btn-danger" [disabled]="!cash.form.valid" type="reset">
+                    Annuler</button>
+
+
+            </form>
+        </div>
+
+
+        <div class="col-lg-6 tab-pane fade in active" id="paiementcash" [hidden]="formvisible">
+            <fieldset>
+                <h4>FORMULAIRE PAIEMENT CASH</h4>
+            </fieldset>
+            <form (ngSubmit)="paiementform()" #paiement="ngForm">
+
+                <input type="text" [(ngModel)]="this.ref" name="ref" id="ref"  class="form-control" placeholder="référence de la facture " required autofocus>
+
+                <input type="number" [(ngModel)]="this.mntf"   name="mntf" id="mntf" class="form-control" placeholder="montant à payer" required>
+
+                <input type="text" [(ngModel)]="this.nomp"   name="nomp" id="nomp" class="form-control" placeholder="nom & prénom " required>
+
+                <input type="number" [(ngModel)]="this.tel"   name="tel" id="tel" class="form-control" placeholder="téléphone " required>
+
+
+
+                <br><button class="btn btn-success" type="submit" [disabled]="!paiement.form.valid" >
+                Envoyer</button>
+                <button class="btn btn-danger" [disabled]="!paiement.form.valid" type="reset">
+                    Annuler</button>
+
+
+            </form>
+        </div>
+
+        <div class="col-lg-6 tab-pane fade in active" id="rvitfe" [hidden]="formvisible">
+            <fieldset>
+                <h4>RECHARGEMENT VITFE</h4>
+            </fieldset>
+            <form (ngSubmit)="rechargevtfform()" #rechargevtf="ngForm">
+
+                <input type="number" [(ngModel)]="this.mntr"   name="mntr" id="mntr" class="form-control" placeholder="montant rechargement" required autofocus>
+
+                <input type="number" [(ngModel)]="this.telr"   name="telr" id="telr" class="form-control" placeholder="numéro téléphone " required >
+
+                <br><button class="btn btn-success" type="submit" [disabled]="!rechargevtf.form.valid" >
+                Envoyer</button>
+                <button class="btn btn-danger" [disabled]="!rechargevtf.form.valid" type="reset">
+                    Annuler</button>
+
+
+            </form>
+        </div>
+
+        <div class="col-lg-6 tab-pane fade in active" id="rcartejj" [hidden]="formvisible">
+            <fieldset>
+                <h4>RECHARGEMENT CARTE JONI JONI</h4>
+            </fieldset>
+            <form (ngSubmit)="rechargecjjform()" #rechargecjj="ngForm">
+
+                <input type="number" [(ngModel)]="this.numc"   name="numc" id="numc" class="form-control" placeholder="numéro carte joni joni " required autofocus>
+
+                <input type="number" [(ngModel)]="this.mntrc"   name="mntrc" id="mntrc" class="form-control" placeholder="montant rechargement" required >
+
+                <br><button class="btn btn-success" type="submit" [disabled]="!rechargecjj.form.valid" >
+                Envoyer</button>
+                <button class="btn btn-danger" [disabled]="!rechargecjj.form.valid" type="reset">
+                    Annuler</button>
+
+
+            </form>
+        </div>
+
 
 
         <!-- /.panel-body -->
