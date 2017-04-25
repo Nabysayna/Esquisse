@@ -2,3 +2,7 @@
 {
     background:  url(assets/bga.png)   ;
 }
+
+input{	 
+	margin: 1rem !important;
+}

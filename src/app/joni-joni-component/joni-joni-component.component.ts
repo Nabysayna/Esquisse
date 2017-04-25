@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoniJoniComponentComponent implements OnInit {
 
- formvisible = true ;
+ formvisible = '' ;
     nome : string ;
     prenome : string ;
     tele : string ;
