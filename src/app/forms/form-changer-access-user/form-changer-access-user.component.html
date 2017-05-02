@@ -1,0 +1,28 @@
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="page-header">{{ title }} de {{ userPdv.prenom}} {{ userPdv.nom}} </h1>
+    </div>
+  </div>
+  <div class="row">
+	 <div class="col-sm-6">
+      <form (ngSubmit)="validate()"  #formUpdateAccess="ngForm">
+        <span [hidden]="!submitted" class="text-success">Cool !</span>
+        <div class="form-group">
+          <label for="Password">Nouveau mot de passe</label>
+          <input id="Password" name="Password" type="password" placeholder="Nouveau mot de passe" class="form-control" required [(ngModel)]="userPdv.password" #Password="ngModel">
+          <div [hidden]="Password.valid || Password.pristine" class="alert alert-danger">Vous devez entrer un numero de Password valide !</div>
+        </div>
+        <div class="form-group">
+          <label for="confirm">Confirmer mot de passe</label>
+          <input id="confirm" name="confirm" type="password" placeholder="Confirmer mot de passe" class="form-control" required [(ngModel)]="confirmPassword" #confirm="ngModel">
+          <div [hidden]="confirm.valid || confirm.pristine" class="alert alert-danger">Vous devez entrer un numero de confirm valide !</div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!formUpdateAccess.form.valid">Valider</button>
+          <button type="button" class="btn btn-primary" style="margin-left: 2rem;" (click)="goBack()">Retour</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="row" style="margin-top: 2rem">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Liste des comptes access</h3> 
+            </div>
+            <div class="table-responsive">
+                <div class="dataTable_wrapper">
+                    <table class="table table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+	                            <th>#</th>
+	                            <th>Prénom et Nom</th>
+	                            <th>Email</th>
+                                <th>Téléphone</th>
+	                            <th>Adresse</th>
+	                            <th>Action</th>
+	                        </tr>
+	                    </thead>
+
+                        <tbody>
+                       		<tr *ngFor="let userPdv of userPdvList">
+                                <td>{{ userPdv.id  }}</td>
+                                <td>{{ userPdv.prenom  }} {{ userPdv.nom  }}</td>
+                                <td>{{ userPdv.email  }}</td>
+                                <td>{{ userPdv.adresse  }}</td>
+                                <td>{{ userPdv.telephone  }}</td>
+                                <td><a [routerLink]="['/accueiladmpdv', 'changer-acces-pdv', userPdv.id]" ><button type="button" class="btn btn-outline btn-warning">modifier password</button></a></td>
+                            </tr>
+                        </tbody>
+                	</table>
+                </div>
+            </div>
+        </div>
+ 	</div>
+</div>

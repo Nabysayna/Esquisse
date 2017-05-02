@@ -4,6 +4,24 @@ import  { FormsModule} from '@angular/forms' ;
 
 import { Routing }        from './app.routing';
 
+import { AuthGuard } from './_guards/auth.guard';
+
+import { AuthenticationService }    from './services/authentification.service';
+import { UserPdvService }    from './services/userPdv.service';
+import { PostCashService }    from './services/postCash.service';
+import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
+
+import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
+
+import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/adminpdv-aidedecision.component';
+import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/adminpdv-parametrage.component';
+import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
+import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
+
+import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
+import { TableCompteAccessComponent } from './tables/table-compte-access/table-compte-access.component';
+import { AdminpdvDashbaordMorrisComponent } from './graphs/adminpdv-dashbaord-morris/adminpdv-dashbaord-morris.component';
+
 import { AppComponent } from './app.component';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -45,13 +63,28 @@ import { PostcashComponent } from './postcash/postcash.component';
     SoldecompteComponent,
     RecusComponent,
     PostcashComponent,
+
+    NavbarTopComponent,
+    AdminpdvAidedecisionComponent,
+    AdminpdvParametrageComponent,
+    AdminpdvDashboardComponent,
+    AdminpdvMonitoringComponent,
+    FormChangerAccessUserComponent,
+    TableCompteAccessComponent,
+    AdminpdvDashbaordMorrisComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     Routing
   ],
-  providers: [],
+  providers: [
+      AuthGuard,
+      AuthenticationService, 
+      UserPdvService, 
+      PostCashService, 
+      AdminpdvDashboardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

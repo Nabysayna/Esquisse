@@ -2,6 +2,15 @@ import { NgModule }      from '@angular/core' ;
 
 import  { RouterModule, Routes} from '@angular/router' ;
 
+import { AuthGuard } from './_guards/auth.guard';
+
+import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/adminpdv-aidedecision.component';
+import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/adminpdv-parametrage.component';
+import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
+import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
+
+import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
+
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { AccueilComponent } from './accueil/accueil.component'; 
 import { AccueiladminpdvComponent } from './accueiladminpdv/accueiladminpdv.component';
@@ -20,9 +29,12 @@ import { DemandepretComponent } from './demandepret/demandepret.component';
 import { GestionreportingComponent } from './gestionreporting/gestionreporting.component';
 import { SoldecompteComponent } from './soldecompte/soldecompte.component';
 import { RecusComponent } from './recus/recus.component';
+
+
+
 const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
-    { path: 'accueil', component: AccueilComponent, 
+    { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuard], 
            children:[
     			{path: 'RIA', component: RyaComponentComponent},
     			{path: 'MONEYGRAM', component: MoneyGramComponentComponent},
@@ -42,7 +54,21 @@ const appRoutes: Routes = [
 
     		] 
     },
-    { path: 'accueiladmpdv', component: AccueiladminpdvComponent },
+    { path: 'accueiladmpdv', component: AccueiladminpdvComponent, canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                children: [
+                    { path: 'dashboard', component: AdminpdvDashboardComponent },
+                    { path: 'monitoring', component: AdminpdvMonitoringComponent },
+                    { path: 'parametrage', component: AdminpdvParametrageComponent },
+                    { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
+                    { path: 'changer-acces-pdv/:id', component: FormChangerAccessUserComponent },
+                    { path: '', component: AdminpdvDashboardComponent }
+                ]
+            }
+        ]
+    },
     { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent },
 
 
