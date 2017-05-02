@@ -8,10 +8,10 @@ export class EnvoiCash {
     public prenomd: string,
     public teld: number,
     public montant: number,
-   /* public refi:string,
+   public refi:string,
     public montantf:number,
     public nomp:string,
-    public telf:number*/
+    public telf:number
 
 
   ) {  }

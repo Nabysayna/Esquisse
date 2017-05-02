@@ -1,6 +1,8 @@
 import { NgModule }      from '@angular/core' ;
 import { BrowserModule } from '@angular/platform-browser' ; 
 import  { FormsModule} from '@angular/forms' ;
+import { EnvoicashService } from './joni-joni-component/joniservices';
+
 
 import { Routing }        from './app.routing';
 
@@ -79,6 +81,7 @@ import { PostcashComponent } from './postcash/postcash.component';
     Routing
   ],
   providers: [
+      EnvoicashService,
       AuthGuard,
       AuthenticationService, 
       UserPdvService, 
