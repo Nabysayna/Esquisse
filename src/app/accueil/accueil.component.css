@@ -1,13 +1,23 @@
+.icon-bar{
+    background-color : white !important;
+    width: 100% ;
+}
+
 #haut {
    margin-left: 35rem;
 
 }
+<<<<<<< HEAD
 #haut li {
    margin-left: 10rem;
+=======
+/*#haut li {
+   margin-left: 15rem;
+>>>>>>> e91fda4d559b69fad0c8c2bbac8ca9b479646535
     font-size: larger;
     text-transform: uppercase;
 
-}
+}*/
 
 #haut a{
     min-width: 13rem ;
@@ -52,4 +62,20 @@
 #side-menu a:hover{
     background-color: white !important ;
     color:  #337ab7 ;
+}
+
+@media screen and (max-width:480px) {
+    
+    #haut {
+       margin-left: 0px;
+    }
+    .navbar-header{
+        background-color: #337ab7 ;
+        color : white ;
+    }
+
+    .navbar-header button{
+        margin-right: 4rem ;
+        border : 0px ;
+    }
 }
