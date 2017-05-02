@@ -7,23 +7,17 @@
    margin-left: 35rem;
 
 }
-<<<<<<< HEAD
+
 body {
     padding-top: 3rem !important;
 }
-=======
-<<<<<<< HEAD
->>>>>>> 9165243fc8e2fddbc4a74af325aa4309619ad319
+
 #haut li {
    margin-left: 10rem;
-=======
-/*#haut li {
-   margin-left: 15rem;
->>>>>>> e91fda4d559b69fad0c8c2bbac8ca9b479646535
     font-size: larger;
     text-transform: uppercase;
 
-}*/
+}
 
 #haut a{
     min-width: 13rem ;
