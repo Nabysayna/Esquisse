@@ -1,6 +1,14 @@
+.icon-bar{
+    background-color : white !important;
+    width: 100% ;
+}
+
 #haut {
    margin-left: 35rem;
 
+}
+body {
+    padding-top: 3rem !important;
 }
 #haut li {
    margin-left: 10rem;
@@ -52,4 +60,20 @@
 #side-menu a:hover{
     background-color: white !important ;
     color:  #337ab7 ;
+}
+
+@media screen and (max-width:480px) {
+    
+    #haut {
+       margin-left: 0px;
+    }
+    .navbar-header{
+        background-color: #337ab7 ;
+        color : white ;
+    }
+
+    .navbar-header button{
+        margin-right: 4rem ;
+        border : 0px ;
+    }
 }
