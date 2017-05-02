@@ -7,7 +7,6 @@ import { Routing }        from './app.routing';
 import { AppComponent } from './app.component';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { PostCashComponentComponent } from './post-cash-component/post-cash-component.component';
 import { OrangeMoneyComponentComponent } from './orange-money-component/orange-money-component.component';
 import { TigoCashComponentComponent } from './tigo-cash-component/tigo-cash-component.component';
 import { WesternUnionComponentComponent } from './western-union-component/western-union-component.component';
@@ -19,13 +18,17 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-component.component';
 import { AccueiladminpdvComponent } from './accueiladminpdv/accueiladminpdv.component';
 import { AccueilAdminMultiPdvComponent } from './accueil-admin-multi-pdv/accueil-admin-multi-pdv.component';
+import { DemandepretComponent } from './demandepret/demandepret.component';
+import { GestionreportingComponent } from './gestionreporting/gestionreporting.component';
+import { SoldecompteComponent } from './soldecompte/soldecompte.component';
+import { RecusComponent } from './recus/recus.component';
+import { PostcashComponent } from './postcash/postcash.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponentComponent,
     AccueilComponent,
-    PostCashComponentComponent,
     OrangeMoneyComponentComponent,
     TigoCashComponentComponent,
     WesternUnionComponentComponent,
@@ -37,6 +40,11 @@ import { AccueilAdminMultiPdvComponent } from './accueil-admin-multi-pdv/accueil
     JoniJoniComponentComponent,
     AccueiladminpdvComponent,
     AccueilAdminMultiPdvComponent,
+    DemandepretComponent,
+    GestionreportingComponent,
+    SoldecompteComponent,
+    RecusComponent,
+    PostcashComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            DEMANDE DE PRÊT
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <!-- Nav tabs -->
+            <form (ngSubmit)="demandeprt()" #dpret="ngForm">
+
+                <label class=" control-label">Le montant demandé doit être compris entre ........FCFA & ..........FCFA  </label>
+
+            <input type="number" [(ngModel)]="this.mntp"   name="mntp" id="mntp" class="form-control" placeholder="montant demandé" required>
+
+            <br><button class="btn btn-success" type="submit" [disabled]="!dpret.form.valid" >
+            Envoyer</button>
+            <button class="btn btn-danger" [disabled]="!dpret.form.valid" type="reset">
+                Annuler</button>
+
+                </form>
+        </div>
+
+    </div>
+</div>

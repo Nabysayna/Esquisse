@@ -3,9 +3,6 @@ input{
 }
 .nav-pills
 {
-    font-weight : bolder;
-    font-size: larger;
-    text-transform: uppercase;
     padding-bottom: 30px;
     margin-left: 200px;
 }
@@ -13,24 +10,9 @@ input{
 {
 
     border-right: 2px dotted #ccc;
-    font-weight : bolder;
-    font-size: larger;
     
 }
 #elec{
     margin-left: 40px;
     margin-right: 40px;
 }
-/*#envoiecash{
-    position: fixed;
-}
-#paiementcash{
-    position: fixed;
-}
-#rvitfe{
-    position: fixed;
-}
-#rcartejj{
-    position: fixed;
-}
-*/

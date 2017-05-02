@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-joni-joni-component',
@@ -7,28 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoniJoniComponentComponent implements OnInit {
 
- formvisible = '' ;
+    formvisible = '' ;
     nome : string ;
     prenome : string ;
-    tele : string ;
+    tele : number ;
     nomd : string ;
     prenomd : string ;
-    teld : string ;
+    teld : number ;
     mnt : number ;
     nomp : string ;
-    tel : string;
-    ref : string;
-    mntf: string;
-    mntr: string;
-    telr : string;
-    mntrc:string;
-    numc:string;
+    teli : number;
+    refi : string;
+    mntf: number;
+    mntr: number;
+    telr : number;
+    mntrc:number;
+    numc:number;
 
-    constructor() { }
+    constructor(private router: Router) { }
   
-    validform(){}
+    validform(){
+        this.router.navigate(['accueil/RECUS','ec']);
+    }
 
-    paiementform(){}
+    paiementform(){this.router.navigate(['accueil/RECUS','pc']);}
 
     rechargevtfform(){}
 
