@@ -17,7 +17,7 @@ export class HistoriqueOperationsService {
     return HistoriqueOperationsList.find(historiqueOperations => historiqueOperations.id === id);
   }
 
-} 
+}
 
 @Injectable()
 export class ArretCaisseService {

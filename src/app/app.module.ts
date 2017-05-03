@@ -10,6 +10,7 @@ import { ArretCaisseService} from './gestionreporting/gestionservice';
 
 
 
+
 import { Routing }        from './app.routing';
 
 import { AuthGuard } from './_guards/auth.guard';
@@ -87,6 +88,7 @@ import { PostcashComponent } from './postcash/postcash.component';
     Routing
   ],
   providers: [
+      ArretCaisseService,
       HistoriqueOperationsService,
       AchatCodeWoyofalService,
       ReglSenelecService,

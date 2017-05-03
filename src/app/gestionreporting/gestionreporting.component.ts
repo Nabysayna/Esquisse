@@ -22,7 +22,7 @@ export class GestionreportingComponent implements OnInit {
   	 private historiqueOperationsService:HistoriqueOperationsService,
      private location: Location,
   	 private route:ActivatedRoute
-  	) { }
+  	) {}
 
   ngOnInit():void {
 
