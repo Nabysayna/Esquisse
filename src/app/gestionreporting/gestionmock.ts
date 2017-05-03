@@ -6,7 +6,7 @@ export const HistoriqueOperationsList:HistoriqueOperations[] = [
 ];
 
 export const ArretCaisseList:ArretCaisse[] = [
-  { id: 5, date: '07/04/2107', operateur: 'joni joni', Solde:100000, montantc: 50000, debiteur:50000, crediteur:0}
+  { id: 5, date: '07/04/2107', operateur: 'joni joni', solde:100000, montantc: 50000, debiteur:50000, crediteur:0}
  
 ];
 
