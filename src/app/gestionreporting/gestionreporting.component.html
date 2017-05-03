@@ -31,10 +31,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>test</td>
-                                    <td>test</td>
-                                    <td>test</td>
-                                    <td>test</td>
+                                    <td>{{historiqueOperations.date}}</td>
+                                    <td>{{historiqueOperations.operateur}}</td>
+                                    <td>{{historiqueOperations.traitement}}</td>
+                                    <td>{{historiqueOperations.montant}}</td>
                                 </tr></tbody>
                             </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
                             <!-- /.table-responsive -->
@@ -42,7 +42,7 @@
                         <!-- /.panel-body -->
                     </div>
                 </div>
-                <div class="tab-pane fade" id="profile-pills">
+                <div class="tab-pane fade" id="profile-pills" onLoad="window.print();">
 
                         <div class="panel panel-default">
                             <div id="acj" class="panel-heading" >
@@ -64,12 +64,12 @@
                                         </thead>
                                         <tbody >
                                         <tr>
-                                            <td>test</td>
-                                            <td>test</td>
-                                            <td>test</td>
-                                            <td>test</td>
-                                            <td>test</td>
-                                            <td>test</td>
+                                            <td>{{arretCaisse.date}}</td>
+                                            <td>{{arretCaisse.operateur}}</td>
+                                            <td>{{arretCaisse.solde}}</td>
+                                            <td>{{arretCaisse.montantc}}</td>
+                                            <td>{{arretCaisse.debiteur}}</td>
+                                            <td>{{arretCaisse.crediteur}}</td>
                                         </tr>
                                         <button id="imp" class="btn btn-success"  onclick="javascript:window.print()"  >Impression</button>
                                         </tbody>

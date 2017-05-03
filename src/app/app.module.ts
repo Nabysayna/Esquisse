@@ -1,7 +1,13 @@
 import { NgModule }      from '@angular/core' ;
 import { BrowserModule } from '@angular/platform-browser' ; 
 import  { FormsModule} from '@angular/forms' ;
-import { EnvoicashService } from './joni-joni-component/joniservices';
+import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
+import { AchatJulaService} from './postcash/postservices';
+import { ReglSenelecService} from './postcash/postservices';
+import { AchatCodeWoyofalService} from './postcash/postservices';
+import { HistoriqueOperationsService} from './gestionreporting/gestionservice';
+import { ArretCaisseService} from './gestionreporting/gestionservice';
+
 
 
 import { Routing }        from './app.routing';
@@ -81,7 +87,12 @@ import { PostcashComponent } from './postcash/postcash.component';
     Routing
   ],
   providers: [
+      HistoriqueOperationsService,
+      AchatCodeWoyofalService,
+      ReglSenelecService,
+      AchatJulaService,
       EnvoicashService,
+      PaiecashService,
       AuthGuard,
       AuthenticationService, 
       UserPdvService, 
