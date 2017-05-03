@@ -14,7 +14,7 @@ export class ArretCaisse {
     public id:number,
     public date: string,
     public operateur: string,
-    public Solde: number,
+    public solde: number,
      public montantc: number,
      public debiteur:number,
      public crediteur:number
