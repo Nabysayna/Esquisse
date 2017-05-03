@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import 'morris.js';
 // import "assets/vendor/morrisjs/morris.css";
 // import "assets/vendor/raphael/raphael.min.js";
 // import { Morris } from "assets/vendor/morrisjs/morris.min.js";

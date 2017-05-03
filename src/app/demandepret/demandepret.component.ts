@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demandepret.component.css']
 })
 export class DemandepretComponent implements OnInit {
-
+  mntp : number ;
   constructor() { }
 
   ngOnInit() {
