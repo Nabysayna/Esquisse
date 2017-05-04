@@ -53,12 +53,12 @@ import { PostcashComponent } from './postcash/postcash.component';
 
 import { TabsModule, CollapseModule} from 'ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
-// import { LineChartComponent } from './graphs/line-chart/line-chart.component';
+import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { BarChartComponent } from './graphs/bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './graphs/doughnut-chart/doughnut-chart.component';
-// import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component';
-// import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
-// import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
+import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component';
+import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
+import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +90,10 @@ import { DoughnutChartComponent } from './graphs/doughnut-chart/doughnut-chart.c
     FormChangerAccessUserComponent,
     TableCompteAccessComponent,
     BarChartComponent,
+    LineChartComponent,
+    RadarChartComponent,
+    PieChartComponent,
+    PolarAreaChartComponent,
     DoughnutChartComponent
   ],
   imports: [
