@@ -58,17 +58,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Post-Cash</td>
-                                    <td>100000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Joni-Joni</td>
-                                    <td>200000</td>
-                                    <td>20000</td>
+                                <tr *ngFor="let consommationdepositparservicetype of consommationdepositparservicetypeList">
+                                    <td>{{ consommationdepositparservicetype.id  }}</td>
+                                    <td>{{ consommationdepositparservicetype.service  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantConsomme  }}</td>
+                                    <td>{{ consommationdepositparservicetype.commission  }}</td>
                                 </tr>
                                 <tr>
                                     <td>Fin</td>
@@ -99,17 +93,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Naby NDIAYE</td>
-                                    <td>100000</td>
-                                    <td>10000</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Bamaba GNING</td>
-                                    <td>200000</td>
-                                    <td>20000</td>
+                                <tr *ngFor="let consommationdepositparpdv of consommationdepositparpdvList">
+                                    <td>{{ consommationdepositparpdv.id  }}</td>
+                                    <td>{{ consommationdepositparpdv.pdv  }}</td>
+                                    <td>{{ consommationdepositparpdv.montantConsomme  }}</td>
+                                    <td>{{ consommationdepositparpdv.commission  }}</td>
                                 </tr>
                                 <tr>
                                     <td>Fin</td>
@@ -145,23 +133,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2017-05-30</td>
-                                    <td>Naby NDIAYE</td>
-                                    <td>100000</td>
-                                    <td>10000</td>
-                                    <td>90000</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>2017-05-30</td>
-                                    <td>Bamaba GNING</td>
-                                    <td>100000</td>
-                                    <td>10000</td>
-                                    <td>90000</td>
-                                    <td>0</td>
+                                <tr *ngFor="let recouvrementadminpdv of recouvrementadminpdvList">
+                                    <td>{{ recouvrementadminpdv.id  }}</td>
+                                    <td>{{ recouvrementadminpdv.date  }}</td>
+                                    <td>{{ recouvrementadminpdv.pdv  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantConsomme  }}</td>
+                                    <td>{{ recouvrementadminpdv.commission  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantRecouvre  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantRestant  }}</td>
                                 </tr>
                             </tbody>
                         </table>

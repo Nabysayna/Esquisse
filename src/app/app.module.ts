@@ -20,6 +20,9 @@ import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
 import { MonitoringDepositAdminpdvService }    from './services/monitoringdepositadminpdv.service';
+import { RecouvrementadminpdvService }    from './services/recouvrementadminpdv.service';
+import { ConsommationDepositParServiceTypeService }    from './services/consommationdepositparservicetype.service';
+import { ConsommationDepositParPdvService }    from './services/consommationdepositparpdv.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
@@ -117,7 +120,10 @@ import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-ch
       UserPdvService, 
       PostCashService, 
       AdminpdvDashboardService,
-      MonitoringDepositAdminpdvService
+      MonitoringDepositAdminpdvService,
+      RecouvrementadminpdvService,
+      ConsommationDepositParServiceTypeService,
+      ConsommationDepositParPdvService
   ],
   bootstrap: [AppComponent]
 })
