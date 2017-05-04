@@ -19,6 +19,7 @@ import { AuthenticationService }    from './services/authentification.service';
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
+import { MonitoringDepositAdminpdvService }    from './services/monitoringdepositadminpdv.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
@@ -29,7 +30,6 @@ import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/admi
 
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
 import { TableCompteAccessComponent } from './tables/table-compte-access/table-compte-access.component';
-import { AdminpdvDashbaordMorrisComponent } from './graphs/adminpdv-dashbaord-morris/adminpdv-dashbaord-morris.component';
 
 import { AppComponent } from './app.component';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
@@ -50,6 +50,15 @@ import { GestionreportingComponent } from './gestionreporting/gestionreporting.c
 import { SoldecompteComponent } from './soldecompte/soldecompte.component';
 import { RecusComponent } from './recus/recus.component';
 import { PostcashComponent } from './postcash/postcash.component';
+
+import { TabsModule, CollapseModule} from 'ng2-bootstrap';
+import { ChartsModule } from 'ng2-charts';
+// import { LineChartComponent } from './graphs/line-chart/line-chart.component';
+// import { BarChartComponent } from './graphs/bar-chart/bar-chart.component';
+import { DoughnutChartComponent } from './graphs/doughnut-chart/doughnut-chart.component';
+// import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component';
+// import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
+// import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 
 @NgModule({
   declarations: [
@@ -80,12 +89,16 @@ import { PostcashComponent } from './postcash/postcash.component';
     AdminpdvMonitoringComponent,
     FormChangerAccessUserComponent,
     TableCompteAccessComponent,
-    AdminpdvDashbaordMorrisComponent
+
+    DoughnutChartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    Routing
+    Routing,
+    ChartsModule,
+    TabsModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   providers: [
       ArretCaisseService,
@@ -99,7 +112,8 @@ import { PostcashComponent } from './postcash/postcash.component';
       AuthenticationService, 
       UserPdvService, 
       PostCashService, 
-      AdminpdvDashboardService
+      AdminpdvDashboardService,
+      MonitoringDepositAdminpdvService
   ],
   bootstrap: [AppComponent]
 })
