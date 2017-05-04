@@ -7,6 +7,7 @@ import { ReglSenelecService} from './postcash/postservices';
 import { AchatCodeWoyofalService} from './postcash/postservices';
 import { HistoriqueOperationsService} from './gestionreporting/gestionservice';
 import { ArretCaisseService} from './gestionreporting/gestionservice';
+import { DemandePretService} from './demandepret/demandeservice';
 
 
 
@@ -88,6 +89,7 @@ import { PostcashComponent } from './postcash/postcash.component';
     Routing
   ],
   providers: [
+      DemandePretService,
       ArretCaisseService,
       HistoriqueOperationsService,
       AchatCodeWoyofalService,

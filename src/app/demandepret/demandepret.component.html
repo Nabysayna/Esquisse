@@ -8,7 +8,7 @@
             <!-- Nav tabs -->
             <form (ngSubmit)="demandeprt()" #dpret="ngForm">
 
-                <label class=" control-label">Le montant demandé doit être compris entre ........FCFA & ..........FCFA  </label>
+                <label class=" control-label">Le montant demandé doit être compris entre {{demandePret.montantd}}.FCFA &  {{demandePret.montantf}}.FCFA  </label>
 
             <input type="number" [(ngModel)]="this.mntp"   name="mntp" id="mntp" class="form-control" placeholder="montant demandé" required>
 
