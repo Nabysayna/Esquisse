@@ -89,7 +89,7 @@ import { DoughnutChartComponent } from './graphs/doughnut-chart/doughnut-chart.c
     AdminpdvMonitoringComponent,
     FormChangerAccessUserComponent,
     TableCompteAccessComponent,
-
+    BarChartComponent,
     DoughnutChartComponent
   ],
   imports: [
@@ -97,7 +97,6 @@ import { DoughnutChartComponent } from './graphs/doughnut-chart/doughnut-chart.c
     FormsModule,
     Routing,
     ChartsModule,
-    BarChartComponent,
     TabsModule.forRoot(),
     CollapseModule.forRoot()
   ],
