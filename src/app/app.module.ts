@@ -8,6 +8,11 @@ import { AchatCodeWoyofalService} from './postcash/postservices';
 import { HistoriqueOperationsService} from './gestionreporting/gestionservice';
 import { ArretCaisseService} from './gestionreporting/gestionservice';
 import { DemandePretService} from './demandepret/demandeservice';
+import { RechargeVitfeService} from './joni-joni-component/joniservices';
+import { RechargeCarteService} from './joni-joni-component/joniservices';
+import { RechargeEspeceService} from './postcash/postservices';
+import { AchatCreditTelService} from './postcash/postservices';
+import { RetraitEspeceService} from './postcash/postservices';
 
 
 
@@ -102,6 +107,11 @@ import { DoughnutChartComponent } from './graphs/doughnut-chart/doughnut-chart.c
     CollapseModule.forRoot()
   ],
   providers: [
+      RetraitEspeceService,
+      AchatCreditTelService,
+      RechargeCarteService,
+      RechargeEspeceService,
+      RechargeVitfeService,
       DemandePretService,
       ArretCaisseService,
       HistoriqueOperationsService,

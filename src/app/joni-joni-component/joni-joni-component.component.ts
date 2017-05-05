@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
+import { Location }               from '@angular/common';
+import {RechargeVitfeService} from '../joni-joni-component/joniservices';
+import {RechargeVitfe} from '../joni-joni-component/jonimodels';
+import {RechargeCarteService} from '../joni-joni-component/joniservices';
+import {RechargeCarte} from '../joni-joni-component/jonimodels';
 
 @Component({
   selector: 'app-joni-joni-component',
@@ -22,10 +28,21 @@ export class JoniJoniComponentComponent implements OnInit {
     mntf: number;
     mntr: number;
     telr : number;
-    mntrc:number;
     numc:number;
+    tels:number;
 
-    constructor(private router: Router) { }
+
+    
+    rechargeCarte :RechargeCarte;
+    rechargeVitfe :RechargeVitfe;
+
+
+    constructor(
+         private rechargeCarteService: RechargeCarteService,
+         private rechargeVitfeService: RechargeVitfeService,
+         private location: Location,
+         private route:ActivatedRoute,
+         private router: Router) { }
   
     validform(){
         this.router.navigate(['accueil/RECUS','ec']);
@@ -37,7 +54,15 @@ export class JoniJoniComponentComponent implements OnInit {
 
     rechargecjjform(){}
 
-    ngOnInit() {
-  }
+    ngOnInit():void {
+    this.route.params.subscribe( (params : Params) => { 
+      this.rechargeVitfe = this.rechargeVitfeService.getRechargeVitfe(5);
+    });
+
+
+     this.route.params.subscribe( (params : Params) => { 
+      this.rechargeCarte = this.rechargeCarteService.getRechargeCarte(5);
+    });}
+
 
 }

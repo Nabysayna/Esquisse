@@ -36,3 +36,34 @@ export class AchatCodeWoyofal {
    
   ) {  }
 }
+
+export class RechargeEspece{
+  constructor(
+    public id:number,
+    public montant: number,
+    public tel: number,
+   
+  ) {  }
+}
+
+export class AchatCreditTel{
+  constructor(
+    public id:number,
+    public tel: number,
+    public mnt: number,
+   
+  ) {  }
+}
+
+export class RetraitEspece{
+  constructor(
+    public id:number,
+    public tel: number,
+    public mnt: number,
+   
+  ) {  }
+}
+
+
+
+

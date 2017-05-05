@@ -24,6 +24,26 @@ export class PaieCash{
 }
 
 
+export class RechargeVitfe {
+  constructor(
+    public id:number,
+    public montant: number,
+    public telephone: number
+   
+  ) {  }
+}
+
+
+
+export class RechargeCarte {
+  constructor(
+    public id:number,
+    public numerocarte: number,
+    public telephone: number
+   
+  ) {  }
+}
+
 
 
   

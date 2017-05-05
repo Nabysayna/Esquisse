@@ -13,11 +13,11 @@
                 </li>
                 <li><a href="#achatjula-pills" data-toggle="tab">Achat Jula</a>
                 </li>
-                <li><a href="#reglementsenelec-pills" data-toggle="tab">Reglement Senelec</a>
+                <li><a href="#reglementsenelec-pills" data-toggle="tab">Réglement Senelec</a>
                 </li>
                 <li><a href="#achatcodewoyofal-pills" data-toggle="tab">Achat Code Woyofal</a>
                 </li>
-                <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Telephone</a>
+                <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Téléphonique</a>
                 </li>
             </ul>
             <!-- Tab panes -->
@@ -35,7 +35,7 @@
                         <button type="submit" class="btn btn-success" [disabled]="!rechargementespece.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!rechargementespece.form.valid" >Annuler</button>
 
-
+                         <h5>Le montant de {{rechargeEspece.montant}} FCFA a été rechargé sur le {{rechargeEspece.tel}} avec succés. Merci!!!</h5>
 
                     </form>
                     </div>
@@ -53,6 +53,7 @@
                         <button type="reset" class="btn btn-danger" [disabled]="!retraitespece.form.valid" >Annuler</button>
 
 
+                         <h5> La montant de {{retraitEspece.mnt}} FCFA vient d'être retiré sur le {{retraitEspece.tel}} avec succés. Merci!!!</h5>
 
                     </form>
                 </div>
@@ -135,6 +136,9 @@
 
                         <button type="submit" class="btn btn-success" [disabled]="!achatcredittelephoniq.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatcredittelephoniq.form.valid" >Annuler</button>
+
+
+                         <h5>Le montant de {{achatCreditTel.mnt}} FCFA a été rechargé sur le {{achatCreditTel.tel}} avec succés. Merci!!!</h5>
 
 
 

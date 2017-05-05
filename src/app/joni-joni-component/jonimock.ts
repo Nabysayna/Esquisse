@@ -1,5 +1,4 @@
-import { EnvoiCash } from './jonimodels';
-import { PaieCash } from './jonimodels';
+import { PaieCash, RechargeVitfe,EnvoiCash, RechargeCarte } from './jonimodels';
 
 
 export const EnvoicashList: EnvoiCash[] = [
@@ -13,5 +12,16 @@ export const PaiecashList: PaieCash[] = [
  
 ];
 
+
+export const RechargeVitfeList:RechargeVitfe[] = [
+  { id: 5,montant:2500, telephone: 778888888}
+ 
+];
+
+
+export const RechargeCarteList:RechargeCarte[] = [
+  { id: 5,numerocarte:234567908567, telephone: 778888888}
+ 
+];
 
 

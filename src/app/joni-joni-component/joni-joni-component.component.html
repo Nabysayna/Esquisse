@@ -100,9 +100,13 @@
                                 Annuler</button>
 
 
+                            <h5>Le montant de {{rechargeVitfe.montant}} FCFA a été rechargé sur le {{rechargeVitfe.telephone}} avec succés. Merci!!!</h5>
                         </form>
+                        
                     </div>
                 </div>
+
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="messages-pills">
                     <ul id="contm" >
                         <li ><a href="#rcartejj" (click)="formvisible='rechargvjnjn'" data-toggle="tab">Rechargement de carte Joni Joni</a></li>
@@ -115,14 +119,15 @@
 
                             <input type="number" [(ngModel)]="this.numc"   name="numc" id="numc" class="form-control" placeholder="numéro carte joni joni " required autofocus>
 
-                            <input type="number" [(ngModel)]="this.mntrc"   name="mntrc" id="mntrc" class="form-control" placeholder="montant rechargement" required >
+                             <input type="number" [(ngModel)]="this.tels"   name="tels" id="tels" class="form-control" placeholder="numéro téléphone " required >
+
 
                             <br><button class="btn btn-success" type="submit" [disabled]="!rechargecjj.form.valid" >
                             Envoyer</button>
                             <button class="btn btn-danger" [disabled]="!rechargecjj.form.valid" type="reset">
                                 Annuler</button>
 
-
+                                 <h5>Le numéro {{rechargeCarte.numerocarte}} a été attribué au {{rechargeCarte.telephone}} avec succés. Merci!!!</h5>
                         </form>
                     </div>
                 </div>

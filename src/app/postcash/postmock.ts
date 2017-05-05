@@ -1,4 +1,4 @@
-import { AchatJula, ReglSenelec, AchatCodeWoyofal } from './postmodels';
+import { AchatJula, ReglSenelec, AchatCodeWoyofal, RechargeEspece, AchatCreditTel, RetraitEspece  } from './postmodels';
 
 
 export const AchatJulaList:AchatJula[] = [
@@ -17,6 +17,24 @@ export const AchatCodeWoyofalList:AchatCodeWoyofal[] = [
   { id: 5, nomc: 'Barry', prenomc: 'Abda', telc:771111111, monts: 30000, compteur: 'CDV188EDKR'}
  
 ];
+
+
+export const RechargeEspeceList:RechargeEspece[] = [
+  { id: 5, montant:30000, tel: 777777777}
+ 
+];
+
+export const AchatCreditTelList:AchatCreditTel[] = [
+  { id: 5, tel:772222222, mnt: 1000}
+ 
+];
+
+export const RetraitEspeceList:RetraitEspece[] = [
+  { id: 5, tel:781222222, mnt: 25000}
+ 
+];
+
+
 
 
 

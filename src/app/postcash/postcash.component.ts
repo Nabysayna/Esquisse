@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
+import { Location }               from '@angular/common';
+import {RechargeEspeceService} from '../postcash/postservices';
+import {RechargeEspece} from '../postcash/postmodels';
+import {AchatCreditTelService} from '../postcash/postservices';
+import {AchatCreditTel} from '../postcash/postmodels';
+import {RetraitEspeceService} from '../postcash/postservices';
+import {RetraitEspece} from '../postcash/postmodels';
+
 
 @Component({
   selector: 'app-postcash',
@@ -31,11 +40,32 @@ export class PostcashComponent implements OnInit {
     montantt:number;
     tels:number;
 
+    rechargeEspece:RechargeEspece;
+    achatCreditTel:AchatCreditTel;
+    retraitEspece:RetraitEspece;
 
 
-    constructor(private router: Router) { }
+    constructor( 
+         private retraitEspeceService:RetraitEspeceService,
+         private achatCreditTelService:AchatCreditTelService,
+         private rechargeEspeceService: RechargeEspeceService,
+         private location: Location,
+         private route:ActivatedRoute,
+         private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit():void {
+    this.route.params.subscribe( (params : Params) => { 
+      this.rechargeEspece = this.rechargeEspeceService.getRechargeEspece(5);
+    });
+
+    this.route.params.subscribe( (params : Params) => { 
+      this.achatCreditTel = this.achatCreditTelService.getAchatCreditTel(5);
+    });
+
+    this.route.params.subscribe( (params : Params) => { 
+      this.retraitEspece = this.retraitEspeceService.getRetraitEspece(5);
+    });
+}
 
     validrechargementespece(){}
 

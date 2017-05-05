@@ -8,6 +8,14 @@ import { PaieCash } from './jonimodels';
 import { PaiecashList } from './jonimock';
 
 
+import { RechargeVitfe } from './jonimodels';
+import { RechargeVitfeList } from './jonimock';
+
+
+import { RechargeCarte } from './jonimodels';
+import { RechargeCarteList } from './jonimock';
+
+
 @Injectable()
 export class EnvoicashService {
 
@@ -33,6 +41,32 @@ export class PaiecashService {
   }
 
 }
+
+@Injectable()
+export class RechargeVitfeService {
+
+  getRechargeVitfeList(): Promise<RechargeVitfe[]> {
+    return Promise.resolve(RechargeVitfeList);
+  }
+  
+  getRechargeVitfe(id: number): RechargeVitfe {
+    return RechargeVitfeList.find(rechargeVitfe => rechargeVitfe.id === id);
+  }
+
+} 
+
+@Injectable()
+export class RechargeCarteService {
+
+  getRechargeCarteList(): Promise<RechargeCarte[]> {
+    return Promise.resolve(RechargeCarteList);
+  }
+  
+  getRechargeCarte(id: number): RechargeCarte {
+    return RechargeCarteList.find(rechargeCarte => rechargeCarte.id === id);
+  }
+
+} 
 
 
 

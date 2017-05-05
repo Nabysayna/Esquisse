@@ -9,6 +9,19 @@ import { ReglSenelecList } from './postmock';
 import { AchatCodeWoyofal } from './postmodels';
 import { AchatCodeWoyofalList } from './postmock';
 
+
+import { RechargeEspece } from './postmodels';
+import { RechargeEspeceList } from './postmock';
+
+
+import { AchatCreditTel } from './postmodels';
+import { AchatCreditTelList } from './postmock';
+
+
+import { RetraitEspece } from './postmodels';
+import { RetraitEspeceList } from './postmock';
+
+
 @Injectable()
 export class AchatJulaService {
 
@@ -49,3 +62,46 @@ export class AchatCodeWoyofalService {
   }
 
 } 
+
+
+@Injectable()
+export class RechargeEspeceService {
+
+  getRechargeEspeceList(): Promise<RechargeEspece[]> {
+    return Promise.resolve(RechargeEspeceList);
+  }
+  
+  getRechargeEspece(id: number): RechargeEspece {
+    return RechargeEspeceList.find(rechargeEspece => rechargeEspece.id === id);
+  }
+
+} 
+
+@Injectable()
+export class AchatCreditTelService {
+
+  getAchatCreditTelList(): Promise<AchatCreditTel[]> {
+    return Promise.resolve(AchatCreditTelList);
+  }
+  
+  getAchatCreditTel(id: number): AchatCreditTel{
+    return AchatCreditTelList.find(achatCreditTel => achatCreditTel.id === id);
+  }
+
+} 
+
+@Injectable()
+export class RetraitEspeceService {
+
+  getRetraitEspeceList(): Promise<RetraitEspece[]> {
+    return Promise.resolve(RetraitEspeceList);
+  }
+  
+  getRetraitEspece(id: number): RetraitEspece {
+    return RetraitEspeceList.find(retraitEspece => retraitEspece.id === id);
+  }
+
+} 
+
+
+
