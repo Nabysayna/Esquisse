@@ -59,8 +59,8 @@
                                     <td>{{ consommationdepositparservicetype.commission  }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Fin</td>
-                                    <td>Total</td>
+                                    <td>-</td>
+                                    <td>{{ "Total" | uppercase }}</td>
                                     <td>2000000</td>
                                     <td>200000</td>
                                 </tr>
@@ -89,13 +89,13 @@
                             <tbody>
                                 <tr *ngFor="let consommationdepositparpdv of consommationdepositparpdvList; let i = index ">
                                     <td>{{i + 1}}</td>
-                                    <td>{{ consommationdepositparpdv.pdv  }}</td>
+                                    <td>{{ consommationdepositparpdv.pdv | uppercase }}</td>
                                     <td>{{ consommationdepositparpdv.montantConsomme  }}</td>
                                     <td>{{ consommationdepositparpdv.commission  }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Fin</td>
-                                    <td>Total</td>
+                                    <td>-</td>
+                                    <td>{{ "Total" | uppercase }}</td>
                                     <td>2000000</td>
                                     <td>200000</td>
                                 </tr>
@@ -130,7 +130,7 @@
                                 <tr *ngFor="let recouvrementadminpdv of recouvrementadminpdvList; let i = index ">
                                     <td>{{i + 1}}</td>
                                     <td>{{ recouvrementadminpdv.date  }}</td>
-                                    <td>{{ recouvrementadminpdv.pdv  }}</td>
+                                    <td>{{ recouvrementadminpdv.pdv | uppercase }}</td>
                                     <td>{{ recouvrementadminpdv.montantConsomme  }}</td>
                                     <td>{{ recouvrementadminpdv.commission  }}</td>
                                     <td>{{ recouvrementadminpdv.montantRecouvre  }}</td>
