@@ -25,10 +25,7 @@ import { AuthenticationService }    from './services/authentification.service';
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
-import { MonitoringDepositAdminpdvService }    from './services/monitoringdepositadminpdv.service';
-import { RecouvrementadminpdvService }    from './services/recouvrementadminpdv.service';
-import { ConsommationDepositParServiceTypeService }    from './services/consommationdepositparservicetype.service';
-import { ConsommationDepositParPdvService }    from './services/consommationdepositparpdv.service';
+import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
@@ -60,7 +57,7 @@ import { SoldecompteComponent } from './soldecompte/soldecompte.component';
 import { RecusComponent } from './recus/recus.component';
 import { PostcashComponent } from './postcash/postcash.component';
 
-import { TabsModule, CollapseModule} from 'ng2-bootstrap';
+import { TabsModule, CollapseModule, ProgressbarModule} from 'ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { BarChartComponent } from './graphs/bar-chart/bar-chart.component';
@@ -111,7 +108,8 @@ import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-ch
     Routing,
     ChartsModule,
     TabsModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    ProgressbarModule.forRoot()
   ],
   providers: [
       RetraitEspeceService,
@@ -132,10 +130,7 @@ import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-ch
       UserPdvService, 
       PostCashService, 
       AdminpdvDashboardService,
-      MonitoringDepositAdminpdvService,
-      RecouvrementadminpdvService,
-      ConsommationDepositParServiceTypeService,
-      ConsommationDepositParPdvService
+      AdminpdvMonitoringService
   ],
   bootstrap: [AppComponent]
 })

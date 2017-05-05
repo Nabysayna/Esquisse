@@ -14,16 +14,13 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <p><strong>Deposit initial</strong></p>
-                            <p><strong>{{monitoringDepositAdminpdv.depositInitial}}</strong>FCFA</p>
+                            <p><strong>{{max}}</strong>FCFA</p>
                         </div>
                         <div class="col-sm-4">       
-                            <strong>Consomme {{monitoringDepositAdminpdv.depositConsomme}}</strong>FCFA soit 
-                            <span class="pull-right text-muted">{{ ( (monitoringDepositAdminpdv.depositConsomme * 100) / monitoringDepositAdminpdv.depositInitial ) }}%</span>
-                            <div class="progress progress-striped active">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                    <span class="sr-only">{{ ( (monitoringDepositAdminpdv.depositConsomme * 100) / monitoringDepositAdminpdv.depositInitial ) }}% Complete (success)</span>
-                                </div>
-                            </div>
+                            <p><strong>Consomme {{ dynamic }}FCFA</strong></p>
+                            <progressbar class="progress-striped active" [max]="max" [value]="dynamic" [type]="type">
+                                <i>{{ ( (dynamic * 100) / max ) }}%</i>
+                            </progressbar>
                         </div>
                         <div class="col-sm-3">
                             <p><strong>Deposit restant</strong></p>
@@ -34,9 +31,6 @@
                             <p><strong>{{monitoringDepositAdminpdv.commission}}</strong>FCFA</p>
                         </div>
                 </div>
-                <!-- <div class="panel-footer">
-                    Panel Footer
-                </div> -->
             </div>
         </div>
     </div>
@@ -58,8 +52,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let consommationdepositparservicetype of consommationdepositparservicetypeList">
-                                    <td>{{ consommationdepositparservicetype.id  }}</td>
+                                <tr *ngFor=" let consommationdepositparservicetype of consommationdepositparservicetypeList; let i = index ">
+                                    <td>{{i + 1}}</td>
                                     <td>{{ consommationdepositparservicetype.service  }}</td>
                                     <td>{{ consommationdepositparservicetype.montantConsomme  }}</td>
                                     <td>{{ consommationdepositparservicetype.commission  }}</td>
@@ -93,8 +87,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let consommationdepositparpdv of consommationdepositparpdvList">
-                                    <td>{{ consommationdepositparpdv.id  }}</td>
+                                <tr *ngFor="let consommationdepositparpdv of consommationdepositparpdvList; let i = index ">
+                                    <td>{{i + 1}}</td>
                                     <td>{{ consommationdepositparpdv.pdv  }}</td>
                                     <td>{{ consommationdepositparpdv.montantConsomme  }}</td>
                                     <td>{{ consommationdepositparpdv.commission  }}</td>
@@ -133,8 +127,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let recouvrementadminpdv of recouvrementadminpdvList">
-                                    <td>{{ recouvrementadminpdv.id  }}</td>
+                                <tr *ngFor="let recouvrementadminpdv of recouvrementadminpdvList; let i = index ">
+                                    <td>{{i + 1}}</td>
                                     <td>{{ recouvrementadminpdv.date  }}</td>
                                     <td>{{ recouvrementadminpdv.pdv  }}</td>
                                     <td>{{ recouvrementadminpdv.montantConsomme  }}</td>

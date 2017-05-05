@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MonitoringDepositAdminpdvService }    from '../../services/monitoringdepositadminpdv.service';
+import { AdminpdvMonitoringService }    from '../../services/adminpdv-monitoring.service';
+
 import { MonitoringDepositAdminpdv }    from '../../models/monitoringdepositadminpdv';
-
-import { RecouvrementadminpdvService } from '../../services/recouvrementadminpdv.service';
 import { Recouvrementadminpdv } from '../../models/recouvrementadminpdv';
-
-import { ConsommationDepositParServiceTypeService } from '../../services/consommationdepositparservicetype.service';
 import { ConsommationDepositParServiceType } from '../../models/consommationdepositparservicetype';
-
-import { ConsommationDepositParPdvService } from '../../services/consommationdepositparpdv.service';
 import { ConsommationDepositParPdv } from '../../models/consommationdepositparpdv';
+
 
 @Component({
   selector: 'app-adminpdv-monitoring',
@@ -19,37 +15,43 @@ import { ConsommationDepositParPdv } from '../../models/consommationdepositparpd
 })
 export class AdminpdvMonitoringComponent implements OnInit {
 
-	id: number;
+  id: number;
   public recouvrementadminpdvList: Recouvrementadminpdv[];
   public consommationdepositparservicetypeList: ConsommationDepositParServiceType[];
   public consommationdepositparpdvList: ConsommationDepositParPdv[];
 
   public monitoringDepositAdminpdv: MonitoringDepositAdminpdv;
+
+  // For progreesbar
+  public max: number = 100;
+  public showWarning: boolean;
+  public dynamic: number = 40;
+  public type: string;
   
-  constructor(
-    private monitoringDepositAdminpdvService: MonitoringDepositAdminpdvService,
-    private consommationdepositparservicetypeService: ConsommationDepositParServiceTypeService,
-    private consommationdepositparpdvService: ConsommationDepositParPdvService,
-    private recouvrementadminpdvService: RecouvrementadminpdvService
-   ) { }
+  constructor(private adminpdvMonitoringService: AdminpdvMonitoringService) { }
 
   ngOnInit() {
     this.id =1;
     
-    this.monitoringDepositAdminpdv = this.monitoringDepositAdminpdvService.getMonitoringDepositAdminpdv(this.id);
+    this.monitoringDepositAdminpdv = this.adminpdvMonitoringService.getMonitoringDepositAdminpdv(this.id);
+    this.max = this.monitoringDepositAdminpdv.depositInitial;
+    this.dynamic = this.monitoringDepositAdminpdv.depositConsomme;
+    if ( this.dynamic <= (this.max*0.5) ){ this.type = 'success'; }
+    else if ( (this.dynamic > (this.max*0.5)) && (this.dynamic <= (this.max*0.75)) ){ this.type = 'warning'; }
+    else if ( this.dynamic > (this.max*0.75) ){ this.type = 'danger'; }
 
-    this.recouvrementadminpdvService.getRecouvrementadminpdvMock()
+    this.adminpdvMonitoringService.getRecouvrementadminpdvMock()
       .then(recouvrementadminpdvList => this.recouvrementadminpdvList = recouvrementadminpdvList);
     
-    this.consommationdepositparservicetypeService.getConsommationDepositParServiceTypeMock()
+    this.adminpdvMonitoringService.getConsommationDepositParServiceTypeMock()
       .then(consommationdepositparservicetypeList => this.consommationdepositparservicetypeList = consommationdepositparservicetypeList);
     
-    this.consommationdepositparpdvService.getConsommationDepositParPdvMock()
+    this.adminpdvMonitoringService.getConsommationDepositParPdvMock()
       .then(consommationdepositparpdvList => this.consommationdepositparpdvList = consommationdepositparpdvList);
     
+
 
   }
 
 
 }
-
