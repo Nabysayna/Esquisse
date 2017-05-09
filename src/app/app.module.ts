@@ -1,6 +1,8 @@
 import { NgModule }      from '@angular/core' ;
 import { BrowserModule } from '@angular/platform-browser' ; 
 import  { FormsModule} from '@angular/forms' ;
+import { HttpModule }    from '@angular/http';
+
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
 import { ReglSenelecService} from './postcash/postservices';
@@ -105,6 +107,7 @@ import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-ch
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     Routing,
     ChartsModule,
     TabsModule.forRoot(),
