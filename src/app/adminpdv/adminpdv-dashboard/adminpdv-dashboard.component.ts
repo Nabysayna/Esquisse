@@ -10,6 +10,9 @@ import { AdminpdvDashboardService }    from '../../services/adminpdv-dashboard.s
 })
 export class AdminpdvDashboardComponent implements OnInit {
 
+	public doughnutChartLabels:string[] = ['Post-Cash', 'TNT', 'Joni-Joni', 'Expresso-Cash'];
+  	public doughnutChartData:number[] = [350000, 550000, 100000, 200000];
+
   adminpdvDashboardList: AdminpdvDashboard[] = [];
 
   constructor(private adminpdvDashboardService: AdminpdvDashboardService) { }

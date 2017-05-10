@@ -65,42 +65,13 @@
                     <h4><i class="fa fa-bar-chart-o fa-fw"></i> Montant total des transferts par service</h4>
                 </div>
                 <div class="panel-body">
-                    <!-- <h4>Team</h4> -->
-                    <app-doughnut-chart></app-doughnut-chart>
+                    <app-doughnut-chart 
+                        [doughnutChartLabels]="doughnutChartLabels" 
+                        [doughnutChartData]="doughnutChartData" 
+                    ></app-doughnut-chart>
                     <a href="#" class="btn btn-default btn-block"> Details</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="row">
-        <div class="col-sm-12">
-            <app-doughnut-chart></app-doughnut-chart>
-        </div>
-    </div>
-    <div class="row" >
-        <div class="col-lg-4 col-md-6" *ngFor="let adminpdvDashboard of adminpdvDashboardList">
-            <div class="panel panel-primary">
-                <h3>{{ adminpdvDashboard.typeService }}</h3>
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div>Opérations effectuées :  {{ adminpdvDashboard.nombreOperation }}</div>
-                            <div>Montant recu :  {{ adminpdvDashboard.montantRecu }}FCFA</div>
-                            <div>Montant consommé :  {{ adminpdvDashboard.montantDonne }}FCFA</div>
-                            <div>Montant total :  {{ adminpdvDashboard.montantTotal }}FCFA</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div> -->
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-doughnut-chart',
@@ -7,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoughnutChartComponent implements OnInit {
 
+  @Input() doughnutChartLabels: string[];
+  @Input() doughnutChartData: number[];
+  
+  
   constructor() { }
 
   ngOnInit() {
   }
 
-  public doughnutChartLabels:string[] = ['Post-Cash', 'TNT', 'Joni-Joni', 'Expresso-Cash'];
-  public doughnutChartData:number[] = [350000, 450000, 100000, 200000];
+  
   public doughnutChartType:string = 'doughnut';
 
   // events

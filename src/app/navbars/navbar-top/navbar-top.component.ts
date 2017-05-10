@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarTopComponent implements OnInit {
 
-	currentUser = JSON.parse(localStorage.getItem('currentUser'));
+	currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   constructor() { }
 
   ngOnInit() {

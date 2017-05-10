@@ -8,7 +8,7 @@ import { CompteAccessMock } from '../mocks/compte-access.mock';
 export class AuthenticationService {
     public token: string;
     constructor() {
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
     }
 
@@ -17,8 +17,8 @@ export class AuthenticationService {
         let token = access  && access.token;
         if (access) {
             this.token = token;
-            localStorage.setItem('currentUser', JSON.stringify({ username: email, token: token }));
-            console.log(JSON.parse(localStorage.getItem('currentUser')));
+            sessionStorage.setItem('currentUser', JSON.stringify({ username: email, token: token }));
+            console.log(JSON.parse(sessionStorage.getItem('currentUser')));
             console.log(token);
             return access.role;
         } else {
@@ -28,6 +28,6 @@ export class AuthenticationService {
 
     logout(): void {
         this.token = null;
-        localStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUser');
     }
 }
