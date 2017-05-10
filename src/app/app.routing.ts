@@ -29,6 +29,7 @@ import { DemandepretComponent } from './demandepret/demandepret.component';
 import { GestionreportingComponent } from './gestionreporting/gestionreporting.component';
 import { SoldecompteComponent } from './soldecompte/soldecompte.component';
 import { RecusComponent } from './recus/recus.component';
+import { ExpressoComponent } from './expresso/expresso.component';
 
 
 
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
                {path: 'DEMANDEPRET', component: DemandepretComponent},
                {path: 'GESTIONREPORTING', component: GestionreportingComponent},
                {path: 'SOLDE DU COMPTE', component: SoldecompteComponent},
+                {path: 'EXPRESSO', component: ExpressoComponent},
                {path: 'RECUS/:id', component: RecusComponent}
 
 

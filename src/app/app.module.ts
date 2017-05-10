@@ -68,6 +68,7 @@ import { DoughnutChartComponent } from './graphs/doughnut-chart/doughnut-chart.c
 import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component';
 import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
 import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
+import { ExpressoComponent } from './expresso/expresso.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-ch
     RadarChartComponent,
     PieChartComponent,
     PolarAreaChartComponent,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    ExpressoComponent
   ],
   imports: [
     BrowserModule,
