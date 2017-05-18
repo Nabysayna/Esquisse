@@ -28,6 +28,8 @@ import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
 import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
+import { SoapService } from './soap.service';
+import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
@@ -68,6 +70,7 @@ import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component'
 import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
 import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 import { ExpressoComponent } from './expresso/expresso.component';
+import { SoapserverComponent } from './expresso/expresso.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +107,8 @@ import { ExpressoComponent } from './expresso/expresso.component';
     PieChartComponent,
     PolarAreaChartComponent,
     DoughnutChartComponent,
-    ExpressoComponent
+    ExpressoComponent,
+    SoapserverComponent
   ],
   imports: [
     BrowserModule,
@@ -135,7 +139,9 @@ import { ExpressoComponent } from './expresso/expresso.component';
       UserPdvService, 
       PostCashService, 
       AdminpdvDashboardService,
-      AdminpdvMonitoringService
+      AdminpdvMonitoringService,
+      SoapService,
+      AuthentificationServiceWeb
   ],
   bootstrap: [AppComponent]
 })
