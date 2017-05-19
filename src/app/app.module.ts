@@ -15,16 +15,10 @@ import { RechargeCarteService} from './joni-joni-component/joniservices';
 import { RechargeEspeceService} from './postcash/postservices';
 import { AchatCreditTelService} from './postcash/postservices';
 import { RetraitEspeceService} from './postcash/postservices';
-import { SoapService } from './soap.service';
-import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
-
-
-
 
 import { Routing }        from './app.routing';
 
 import { AuthGuard } from './_guards/auth.guard';
-
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
@@ -142,12 +136,8 @@ import { SoapserverComponent } from './soapserver/soapserver.component';
       AdminpdvDashboardService,
       AdminpdvMonitoringService,
       SoapService,
-<<<<<<< HEAD
-      AuthentificationServiceWeb
-=======
       AuthentificationServiceWeb,
       AuthenticationService
->>>>>>> ca97109342ad0dc999814e22e89a89db7a89174e
   ],
   bootstrap: [AppComponent]
 })
