@@ -76,12 +76,8 @@ import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component'
 import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
 import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 import { ExpressoComponent } from './expresso/expresso.component';
-<<<<<<< HEAD
 import { TntComponent } from './tnt/tnt.component';
-
-=======
 import { SoapserverComponent } from './soapserver/soapserver.component';
->>>>>>> afd0147c474c16e911554fcf46b2e57c3c695a2c
 
 @NgModule({
   declarations: [
@@ -119,11 +115,8 @@ import { SoapserverComponent } from './soapserver/soapserver.component';
     PolarAreaChartComponent,
     DoughnutChartComponent,
     ExpressoComponent,
-<<<<<<< HEAD
-    TntComponent
-=======
+    TntComponent,
     SoapserverComponent
->>>>>>> afd0147c474c16e911554fcf46b2e57c3c695a2c
   ],
   imports: [
     BrowserModule,
