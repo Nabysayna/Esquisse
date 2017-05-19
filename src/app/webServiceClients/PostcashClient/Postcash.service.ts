@@ -2,18 +2,18 @@
 import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 
-export class AuthResponse{
+export class PostCashResponse{
   prenom:string;
   token:string;
   reponse:boolean ;
 }
 
 @Injectable()
-export class AuthentificationServiceWeb {
+export class PostCashServiceWeb {
 
-  private servicePort:string = 'http://localhost' ;  
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
-  private targetNamespace:string = 'urn:authwsdl' ;
+  private servicePort:string = 'http://localhost' ; 
+  private servicePath:string = 'esquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
+  private targetNamespace:string = 'urn:postcashwsdl' ;
 
   public responseJso : any ;
   public resp : string ;  
@@ -27,27 +27,27 @@ export class AuthentificationServiceWeb {
         this.soapService.localNameMode = true;
   }
 
-  public authentifier(login : string, password: string) : Promise<AuthResponse>  {
-      var method:string = 'authentification';
-      var parameters:{}[] = [];
+  public rechargerEspece(api : number, token : string, tel_destinataire : number, montant : string) : Promise<{}>  {
+      var method:string = 'rechargementespece';
+      var parameters:{}[] = []; 
 
-      let tryLogin = login ;
-      let tryPwd = password ;
       return new Promise( (resolve, reject) => {
-        parameters['authentification xmlns="urn:authwsdl#"'] = this.setParameters(tryLogin, tryPwd) ;
-        this.soapService.post(method, parameters, 'authentificationResponse').then(response=>{
-        var authResponse:AuthResponse = {prenom:response["authentificationResponse"]["return"].prenom.$, token:response["authentificationResponse"]["return"].token.$, reponse:response["authentificationResponse"]["return"].reponse.$} ;
-        resolve(authResponse)
+        parameters['rechargementespece xmlns="urn:postcashwsdl#"'] = this.setParameters(api, token, tel_destinataire, montant) ;
+
+        this.soapService.post(method, parameters, 'rechargementespeceResponse').then(response=>{
+        //var postCashResponse:PostCashResponse = {prenom:response["rechargementespeceResponse"]["return"].prenom.$, token:response["authentificationResponse"]["return"].token.$, reponse:response["authentificationResponse"]["return"].reponse.$} ;
+        console.log("Postcash a répondu : "+JSON.stringify(response) ) ;
+        resolve(response) ;
         }) ;
       });
       
   }
 
-  public setParameters( tryLogin: string, tryPwd: string):{}[] {
+  public setParameters( api : number, token : string, tel_destinataire : number, montant : string ):{}[] {
       var parameters:{}[] = [] ;
-      var user = {login:tryLogin, pwd:tryPwd} ;
-      console.log("Utilisateur "+user.login+" Mot de pass "+user.pwd);
-      parameters["user"] = user ;
+      var reEspParams = {api:api, token:token, tel_destinataire:tel_destinataire, montant:montant} ;
+      console.log("Recharge infos "+reEspParams.tel_destinataire+" Mot de pass "+reEspParams.montant);
+      parameters["params"] = reEspParams ;
 
       return parameters ;
   }

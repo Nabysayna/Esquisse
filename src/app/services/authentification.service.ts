@@ -21,11 +21,12 @@ export class AuthenticationService {
       return new Promise( (resolve, reject)=> {
             this.authentiService.authentifier(email, password).then( response => { 
                 var resp:AuthResponse=response ;
-                if(resp.reponse){
+                console.log("Reponse du serveur : "+resp.reponse) ;
+                if( resp.reponse.toString()== "true" ){
                     this.token = resp.token;
                     this.email = resp.prenom;
                     sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, token: this.token }));
-                    console.log(JSON.parse(sessionStorage.getItem('currentUser')));
+                    console.log("Current user is : "+sessionStorage.getItem('currentUser'));
                     console.log(this.token);
                     resolve("pdv");
                 } else {

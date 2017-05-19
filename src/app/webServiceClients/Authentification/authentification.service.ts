@@ -3,9 +3,9 @@ import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 
 export class AuthResponse{
-  prenom:string;
-  token:string;
-  reponse:boolean ;
+  public prenom:string;
+  public token:string;
+  public reponse:boolean ;
 }
 
 @Injectable()

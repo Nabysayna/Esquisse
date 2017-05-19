@@ -27,7 +27,6 @@ export class AuthComponentComponent implements OnInit {
   ngOnInit() {
     this.authenticationService.logout();
   }
-
     
   authentificate() {
     this.authenticationService.login(this.userName, this.userPwd).then(access=>

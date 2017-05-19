@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthentificationServiceWeb, AuthResponse } from '../webServiceClients/Authentification/authentification.service';
+import { PostCashServiceWeb } from '../webServiceClients/PostcashClient/Postcash.service';
 
 
 @Component({
@@ -11,18 +11,15 @@ import { AuthentificationServiceWeb, AuthResponse } from '../webServiceClients/A
 export class SoapserverComponent implements OnInit {
 
   public resp : string  ;
-  public authentiService: AuthentificationServiceWeb;
+  public postcashcaller: PostCashServiceWeb;
   public retourAuthentif:{} = {"return":{"_":{"type":"ns1:Resultat"},"prenom":{"_":{"type":"xsd:string"},"$":"Azou"},"token":{"_":{"type":"xsd:string"},"$":"someTokenNotReallySecured"},"reponse":{"_":{"type":"xsd:boolean"},"$":"true"}}} ;
 
   constructor() {
-        this.authentiService = new AuthentificationServiceWeb();
+        this.postcashcaller = new PostCashServiceWeb();
    }
 
    ngOnInit() {
-      this.authentiService.authentifier("assane.ka@bbstvnet.com", "assane").then( response => { var resp:AuthResponse=response ;
-      	if(resp.reponse)
-      			console.log("Resp valait "+resp.reponse) ;  
-      } ) ; 
+      this.postcashcaller.rechargerEspece( 1, 'assaneka', 12, 'assaneka').then( response => {} ) ; 
    }
 
 }

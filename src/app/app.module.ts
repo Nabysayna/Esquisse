@@ -35,6 +35,7 @@ import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.servi
 import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
 import { SoapService } from './soap.service';
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
+import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
 import { AuthenticationService }    from './services/authentification.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
@@ -157,6 +158,7 @@ import { SoapserverComponent } from './soapserver/soapserver.component';
       AdminpdvMonitoringService,
       SoapService,
       AuthentificationServiceWeb,
+      PostCashServiceWeb,
       AuthenticationService
   ],
   bootstrap: [AppComponent]
