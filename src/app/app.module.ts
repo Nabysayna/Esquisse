@@ -25,11 +25,13 @@ import { Routing }        from './app.routing';
 
 import { AuthGuard } from './_guards/auth.guard';
 
-import { AuthenticationService }    from './services/authentification.service';
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
 import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
+import { SoapService } from './soap.service';
+import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
+import { AuthenticationService }    from './services/authentification.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
@@ -70,6 +72,7 @@ import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component'
 import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
 import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 import { ExpressoComponent } from './expresso/expresso.component';
+import { SoapserverComponent } from './soapserver/soapserver.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +109,8 @@ import { ExpressoComponent } from './expresso/expresso.component';
     PieChartComponent,
     PolarAreaChartComponent,
     DoughnutChartComponent,
-    ExpressoComponent
+    ExpressoComponent,
+    SoapserverComponent
   ],
   imports: [
     BrowserModule,
@@ -133,13 +137,17 @@ import { ExpressoComponent } from './expresso/expresso.component';
       EnvoicashService,
       PaiecashService,
       AuthGuard,
-      AuthenticationService, 
       UserPdvService, 
       PostCashService, 
       AdminpdvDashboardService,
       AdminpdvMonitoringService,
       SoapService,
+<<<<<<< HEAD
       AuthentificationServiceWeb
+=======
+      AuthentificationServiceWeb,
+      AuthenticationService
+>>>>>>> ca97109342ad0dc999814e22e89a89db7a89174e
   ],
   bootstrap: [AppComponent]
 })

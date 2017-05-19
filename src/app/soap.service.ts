@@ -12,7 +12,7 @@ export class SoapService {
     private serviceUrl:string = '';
 
     private nodeTypes : any ;
-    nodeTypeNames: string[] ;
+    private nodeTypeNames: string[] ;
     private targetNamespace:string = '';
 
     private envelopeBuilder_:(requestBody:string) => string = null;
