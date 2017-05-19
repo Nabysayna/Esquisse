@@ -12,14 +12,14 @@ export class SoapService {
     private serviceUrl:string = '';
 
     private nodeTypes : any ;
-    nodeTypeNames: string[] ;
+    private nodeTypeNames: string[] ;
     private targetNamespace:string = '';
 
     private envelopeBuilder_:(requestBody:string) => string = null;
     private xmlResponseHandler_:(response:NodeListOf<Element>) => void = null;
     private jsoResponseHandler_:(response:{}) => void = null;
 
-    constructor(servicePort:string, servicePath:string, targetNamespace:string) {
+    constructor(servicePort:string, servicePath:string, targetNamespace?:string) {
         this.servicePort = servicePort;
         this.servicePath = servicePath;
         this.serviceUrl = servicePort + servicePath;
