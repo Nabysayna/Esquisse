@@ -26,18 +26,16 @@ import { EFinancierService} from './tnt/tntservices';
 
 
 
-
-
-
 import { Routing }        from './app.routing';
 
 import { AuthGuard } from './_guards/auth.guard';
-
-import { AuthenticationService }    from './services/authentification.service';
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
 import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
+import { SoapService } from './soap.service';
+import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
+import { AuthenticationService }    from './services/authentification.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
@@ -78,8 +76,12 @@ import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component'
 import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
 import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 import { ExpressoComponent } from './expresso/expresso.component';
+<<<<<<< HEAD
 import { TntComponent } from './tnt/tnt.component';
 
+=======
+import { SoapserverComponent } from './soapserver/soapserver.component';
+>>>>>>> afd0147c474c16e911554fcf46b2e57c3c695a2c
 
 @NgModule({
   declarations: [
@@ -117,7 +119,11 @@ import { TntComponent } from './tnt/tnt.component';
     PolarAreaChartComponent,
     DoughnutChartComponent,
     ExpressoComponent,
+<<<<<<< HEAD
     TntComponent
+=======
+    SoapserverComponent
+>>>>>>> afd0147c474c16e911554fcf46b2e57c3c695a2c
   ],
   imports: [
     BrowserModule,
@@ -152,11 +158,13 @@ import { TntComponent } from './tnt/tnt.component';
       EnvoicashService,
       PaiecashService,
       AuthGuard,
-      AuthenticationService, 
       UserPdvService, 
       PostCashService, 
       AdminpdvDashboardService,
-      AdminpdvMonitoringService
+      AdminpdvMonitoringService,
+      SoapService,
+      AuthentificationServiceWeb,
+      AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
