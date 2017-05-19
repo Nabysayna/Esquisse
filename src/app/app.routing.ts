@@ -30,6 +30,7 @@ import { GestionreportingComponent } from './gestionreporting/gestionreporting.c
 import { SoldecompteComponent } from './soldecompte/soldecompte.component';
 import { RecusComponent } from './recus/recus.component';
 import { ExpressoComponent } from './expresso/expresso.component';
+import { TntComponent } from './tnt/tnt.component';
 
 
 
@@ -49,8 +50,9 @@ const appRoutes: Routes = [
                 {path: 'JONI JONI', component: JoniJoniComponentComponent},
                {path: 'DEMANDEPRET', component: DemandepretComponent},
                {path: 'GESTIONREPORTING', component: GestionreportingComponent},
-               {path: 'SOLDE DU COMPTE', component: SoldecompteComponent},
                 {path: 'EXPRESSO', component: ExpressoComponent},
+                 {path: 'TNT BY BBS INVEST', component: TntComponent},
+                 {path: 'SOLDE DU COMPTE', component: SoldecompteComponent},
                {path: 'RECUS/:id', component: RecusComponent}
 
 

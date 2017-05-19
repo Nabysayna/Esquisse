@@ -15,6 +15,16 @@ import { RechargeCarteService} from './joni-joni-component/joniservices';
 import { RechargeEspeceService} from './postcash/postservices';
 import { AchatCreditTelService} from './postcash/postservices';
 import { RetraitEspeceService} from './postcash/postservices';
+import { SoldeService} from './soldecompte/soldeservice';
+import { CashInService} from './expresso/expressoservices';
+import { CashOutService} from './expresso/expressoservices';
+import { AgentTopUpService} from './expresso/expressoservices';
+import { MyAccountService} from './expresso/expressoservices';
+import { NAbonnementService} from './tnt/tntservices';
+import { LAbonnementService} from './tnt/tntservices';
+import { EFinancierService} from './tnt/tntservices';
+
+
 
 
 
@@ -68,6 +78,8 @@ import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component'
 import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
 import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 import { ExpressoComponent } from './expresso/expresso.component';
+import { TntComponent } from './tnt/tnt.component';
+
 
 @NgModule({
   declarations: [
@@ -104,7 +116,8 @@ import { ExpressoComponent } from './expresso/expresso.component';
     PieChartComponent,
     PolarAreaChartComponent,
     DoughnutChartComponent,
-    ExpressoComponent
+    ExpressoComponent,
+    TntComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +130,14 @@ import { ExpressoComponent } from './expresso/expresso.component';
     ProgressbarModule.forRoot()
   ],
   providers: [
+      EFinancierService,
+      LAbonnementService,
+      NAbonnementService,
+      MyAccountService,
+      AgentTopUpService,
+      CashOutService,
+      CashInService,
+      SoldeService,
       RetraitEspeceService,
       AchatCreditTelService,
       RechargeCarteService,

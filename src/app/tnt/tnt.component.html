@@ -1,0 +1,129 @@
+
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            TNT BY BBS INVEST
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <!-- Nav tabs -->  
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#home-pills" data-toggle="tab">Nouvel Abonnement</a>
+                </li>
+                <li><a id="elec" href="#profile-pills" data-toggle="tab">Liste Abonnement </a>
+                </li>
+                <li><a href="#messages-pills" data-toggle="tab">Etat Financier</a>
+                </li>
+                
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane fade col-sm-6 col-xs-12 in active" id="home-pills">
+                <fieldset>
+                        <h4>FORMULAIRE NOUVEL ABONNEMENT</h4>
+                    </fieldset>
+                    <form (ngSubmit)="validnabon()" #nabon="ngForm" autocomplete="on">
+
+                        <input type="text" [(ngModel)]="this.noma" name="noma" id="noma"  class="form-control" placeholder="nom client" required autofocus>
+
+                        <input type="text" [(ngModel)]="this.prenoma" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom client" required >
+
+                        <input type="number" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
+
+                        <input type="number" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte ou numéro chip" required>
+
+                 
+                        <input type="number" [(ngModel)]="this.nbm"   name="nbm" id="nbm" class="form-control" placeholder="nombre de mois" required>
+
+
+                        <input type="text" [(ngModel)]="this.tbouquet"   name="tbouquet" id="tbouquet" class="form-control" placeholder="type de bouquet" required>
+
+                        <button type="submit" class="btn btn-success" [disabled]="!nabon.form.valid">Abonner</button>
+                        <button type="reset" class="btn btn-danger" [disabled]="!nabon.form.valid" >Annuler</button>
+
+                    </form>
+              
+                   
+                </div>
+                <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
+
+                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <select name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="dataTables-example_filter"><label>Search:<input class="form-control input-sm" aria-controls="dataTables-example" type="search" placeholder=""></label></div></div></div><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>Téléphone</th>
+                                    <th>Cin</th>
+                                    <th>N_Chip</th>
+                                    <th>N_Carte</th>
+                                    <th>Date Abonnement</th>
+                                    <th>Durée</th>
+                                    <th>Type Bouquet</th>
+                                    <th>Montant</th>
+                                    <th>Etat Activation</th>
+                                   <th>Date Activation</th>
+                                   
+                              </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{lAbonnement.nom}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr></tbody>
+                            </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
+                     
+                
+                
+                </div>
+
+
+                <div class="tab-pane fade col-sm-12 col-xs-12" id="messages-pills">
+                           
+                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <select name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="dataTables-example_filter"><label>Search:<input class="form-control input-sm" aria-controls="dataTables-example" type="search" placeholder=""></label></div></div></div><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th>Caution Débutée</th>
+                                    <th>Montant Consommée</th>
+                                    <th>Caution Restante</th>
+                                    <th>Montant Hors Caution</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{eFinancier.cautiond}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr></tbody>
+                            </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
+                     
+                
+                   
+                </div>
+
+                      </div>
+
+        </div>
+
+
+
+        <!-- /.panel-body -->
+    </div>
+
+    <!-- /.panel -->
+
+</div>
+
+
+
