@@ -23,13 +23,13 @@ import { Routing }        from './app.routing';
 
 import { AuthGuard } from './_guards/auth.guard';
 
-import { AuthenticationService }    from './services/authentification.service';
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
 import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
 import { SoapService } from './soap.service';
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
+import { AuthenticationService }    from './services/authentification.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
@@ -135,13 +135,13 @@ import { SoapserverComponent } from './soapserver/soapserver.component';
       EnvoicashService,
       PaiecashService,
       AuthGuard,
-      AuthenticationService, 
       UserPdvService, 
       PostCashService, 
       AdminpdvDashboardService,
       AdminpdvMonitoringService,
       SoapService,
-      AuthentificationServiceWeb
+      AuthentificationServiceWeb,
+      AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
