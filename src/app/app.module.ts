@@ -15,6 +15,8 @@ import { RechargeCarteService} from './joni-joni-component/joniservices';
 import { RechargeEspeceService} from './postcash/postservices';
 import { AchatCreditTelService} from './postcash/postservices';
 import { RetraitEspeceService} from './postcash/postservices';
+import { SoapService } from './soap.service';
+import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 
 
 
@@ -135,7 +137,9 @@ import { ExpressoComponent } from './expresso/expresso.component';
       UserPdvService, 
       PostCashService, 
       AdminpdvDashboardService,
-      AdminpdvMonitoringService
+      AdminpdvMonitoringService,
+      SoapService,
+      AuthentificationServiceWeb
   ],
   bootstrap: [AppComponent]
 })
