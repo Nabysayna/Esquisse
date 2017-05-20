@@ -31,6 +31,7 @@ import { SoldecompteComponent } from './soldecompte/soldecompte.component';
 import { RecusComponent } from './recus/recus.component';
 import { ExpressoComponent } from './expresso/expresso.component';
 import { TntComponent } from './tnt/tnt.component';
+import { SoapserverComponent } from './soapserver/soapserver.component';
 
 
 
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
     { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuard], 
            children:[
-    			{path: 'RIA', component: RyaComponentComponent},
+    			{path: 'RIA', component: SoapserverComponent},
     			{path: 'MONEYGRAM', component: MoneyGramComponentComponent},
     			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
     			{path: 'POSTECASH', component: PostcashComponent},

@@ -30,7 +30,7 @@ export class AuthenticationService {
                     console.log(this.token);
                     resolve("pdv");
                 } else {
-                return '';
+                resolve('');
                 }
             });
         });

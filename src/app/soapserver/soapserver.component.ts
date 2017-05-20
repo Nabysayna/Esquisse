@@ -19,7 +19,7 @@ export class SoapserverComponent implements OnInit {
    }
 
    ngOnInit() {
-      this.postcashcaller.rechargerEspece( 1, 'assaneka', 12, 'assaneka').then( response => {} ) ; 
+      this.postcashcaller.achatcredittelephonique(1, "gdth", "someNumber", "2220") ; 
    }
 
 }

@@ -33,16 +33,19 @@ export class AuthComponentComponent implements OnInit {
       {
       	if ( access === "pdv" ){
           this.router.navigate(['/accueil']); 
-      	}else if ( access === "admin-pdv" ){
-          this.router.navigate(['/accueiladmpdv']);  
-        }else if ( access === "admin-mult-pdv" ){
-          this.router.navigate(['/accueiladmmpdv']);              
-        }
-      	else{
-      			this.fakevalues = false ;
-    		    this.userName = ''  ; 
-      			this.userPwd  = '' ; 
-      		}
+      	}else 
+          if ( access === "admin-pdv" ){
+            this.router.navigate(['/accueiladmpdv']);  
+          }else 
+            if ( access === "admin-mult-pdv" ){
+              this.router.navigate(['/accueiladmmpdv']);              
+            }
+      	     else{
+                console.log("One the else statement") ;
+      	     		this.fakevalues = false ;
+    		        this.userName = ''  ; 
+      			    this.userPwd  = '' ; 
+      		  }
       });
   }
 

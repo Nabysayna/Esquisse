@@ -3,16 +3,21 @@ import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 
 export class PostCashResponse{
-  prenom:string;
-  token:string;
-  reponse:boolean ;
+  errorCode: number ;
+  errorMessage: string ;
+  result: number ;
+  commission: number ;
+  montant_facture: number ;
+  transaction: string ;
+  montant_facial: number ;
+  montant_reel: number ;
 }
 
 @Injectable()
 export class PostCashServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = 'esquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
+  private servicePath:string = '/esquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
   private targetNamespace:string = 'urn:postcashwsdl' ;
 
   public responseJso : any ;
@@ -27,24 +32,177 @@ export class PostCashServiceWeb {
         this.soapService.localNameMode = true;
   }
 
-  public rechargerEspece(api : number, token : string, tel_destinataire : number, montant : string) : Promise<{}>  {
-      var method:string = 'rechargementespece';
+  public rechargerEspece(api : number, token : string, tel_destinataire : number, montant : string) : Promise<PostCashResponse> {
+
+      var method:string = 'rechargementespece'; 
       var parameters:{}[] = []; 
 
+      var reEspParams = {api:api, token:token, tel_destinataire:tel_destinataire, montant:montant} ;
+      var params:{}[] = [] ; params["params"] = reEspParams ;
+
       return new Promise( (resolve, reject) => {
-        parameters['rechargementespece xmlns="urn:postcashwsdl#"'] = this.setParameters(api, token, tel_destinataire, montant) ;
+        parameters['rechargementespece xmlns="urn:postcashwsdl#"'] = params ;
 
         this.soapService.post(method, parameters, 'rechargementespeceResponse').then(response=>{
-        //var postCashResponse:PostCashResponse = {prenom:response["rechargementespeceResponse"]["return"].prenom.$, token:response["authentificationResponse"]["return"].token.$, reponse:response["authentificationResponse"]["return"].reponse.$} ;
-        console.log("Postcash a répondu : "+JSON.stringify(response) ) ;
-        resolve(response) ;
+        var postCashResponse:PostCashResponse = {
+            errorCode:JSON.parse(response["rechargementespeceResponse"]["return"].$).errorCode,
+            errorMessage:JSON.parse(response["rechargementespeceResponse"]["return"].$).errorMessage,
+            result:JSON.parse(response["rechargementespeceResponse"]["return"].$).result,
+            commission:JSON.parse(response["rechargementespeceResponse"]["return"].$).commission,
+            montant_facture:JSON.parse(response["rechargementespeceResponse"]["return"].$).montant_facture,
+            transaction:JSON.parse(response["rechargementespeceResponse"]["return"].$).transaction,
+            montant_facial:JSON.parse(response["rechargementespeceResponse"]["return"].$).montant_facial,
+            montant_reel:JSON.parse(response["rechargementespeceResponse"]["return"].$).montant_reel
+        } ;
+
+        console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
+        resolve(postCashResponse) ;
         }) ;
-      });
-      
+      });      
   }
 
+  public retraitespece(api : number, token : string, code_validation : number, tel_destinataire : number, montant : string) : Promise<PostCashResponse> {
+  
+      var method:string = 'retraitespece'; 
+      var parameters:{}[] = []; 
+      var reEspParams = {api:api, token:token, code_validation:code_validation, tel_destinataire:tel_destinataire , montant:montant} ;
+      var params:{}[] = [] ; params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['retraitespece xmlns="urn:postcashwsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'retraitespeceResponse').then(response=>{
+        var postCashResponse:PostCashResponse = {
+            errorCode:JSON.parse(response["retraitespeceResponse"]["return"].$).errorCode,
+            errorMessage:JSON.parse(response["retraitespeceResponse"]["return"].$).errorMessage,
+            result:JSON.parse(response["retraitespeceResponse"]["return"].$).result,
+            commission:JSON.parse(response["retraitespeceResponse"]["return"].$).commission,
+            montant_facture:JSON.parse(response["retraitespeceResponse"]["return"].$).montant_facture,
+            transaction:JSON.parse(response["retraitespeceResponse"]["return"].$).transaction,
+            montant_facial:JSON.parse(response["retraitespeceResponse"]["return"].$).montant_facial,
+            montant_reel:JSON.parse(response["retraitespeceResponse"]["return"].$).montant_reel
+        } ;
+
+        console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
+        resolve(postCashResponse) ;
+        }) ;
+      });      
+  }
+
+  public achatcodewoyofal(api : number, token : string, montant : number, compteur : string) : Promise<PostCashResponse> {
+  
+      var method:string = 'achatcodewoyofal'; 
+      var parameters:{}[] = []; 
+      var reEspParams = {api:api, token:token, montant:montant, compteur:compteur} ;
+      var params:{}[] = [] ; params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['achatcodewoyofal xmlns="urn:postcashwsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'achatcodewoyofalResponse').then(response=>{
+        var postCashResponse:PostCashResponse = {
+            errorCode:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).errorCode,
+            errorMessage:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).errorMessage,
+            result:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).result,
+            commission:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).commission,
+            montant_facture:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).montant_facture,
+            transaction:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).transaction,
+            montant_facial:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).montant_facial,
+            montant_reel:JSON.parse(response["achatcodewoyofalResponse"]["return"].$).montant_reel
+        } ;
+
+        console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
+        resolve(postCashResponse) ;
+        }) ;
+      });     
+  }
+
+  public reglementsenelec(api : number, token : string, police : string, num_facture : string) : Promise<PostCashResponse> {
+  
+      var method:string = 'reglementsenelec'; 
+      var parameters:{}[] = []; 
+      var reEspParams = {api:api, token:token, police:police, num_facture:num_facture} ;
+      var params:{}[] = [] ; params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['reglementsenelec xmlns="urn:postcashwsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'reglementsenelecResponse').then(response=>{
+        var postCashResponse:PostCashResponse = {
+            errorCode:JSON.parse(response["reglementsenelecResponse"]["return"].$).errorCode,
+            errorMessage:JSON.parse(response["reglementsenelecResponse"]["return"].$).errorMessage,
+            result:JSON.parse(response["reglementsenelecResponse"]["return"].$).result,
+            commission:JSON.parse(response["reglementsenelecResponse"]["return"].$).commission,
+            montant_facture:JSON.parse(response["reglementsenelecResponse"]["return"].$).montant_facture,
+            transaction:JSON.parse(response["reglementsenelecResponse"]["return"].$).transaction,
+            montant_facial:JSON.parse(response["reglementsenelecResponse"]["return"].$).montant_facial,
+            montant_reel:JSON.parse(response["reglementsenelecResponse"]["return"].$).montant_reel
+        } ;
+
+        console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
+        resolve(postCashResponse) ;
+        }) ;
+      });     
+  }
+
+  public achatjula(api : number, token : string, mt_carte : string, nb_carte : string) : Promise<PostCashResponse> {
+  
+      var method:string = 'achatjula'; 
+      var parameters:{}[] = []; 
+      var reEspParams = {api:api, token:token, mt_carte:mt_carte, nb_carte:nb_carte} ;
+      var params:{}[] = [] ; params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['achatjula xmlns="urn:postcashwsdl#"'] = params;
+
+        this.soapService.post(method, parameters, 'achatjulaResponse').then(response=>{
+        var postCashResponse:PostCashResponse = {
+            errorCode:JSON.parse(response["achatjulaResponse"]["return"].$).errorCode,
+            errorMessage:JSON.parse(response["achatjulaResponse"]["return"].$).errorMessage,
+            result:JSON.parse(response["achatjulaResponse"]["return"].$).result,
+            commission:JSON.parse(response["achatjulaResponse"]["return"].$).commission,
+            montant_facture:JSON.parse(response["achatjulaResponse"]["return"].$).montant_facture,
+            transaction:JSON.parse(response["achatjulaResponse"]["return"].$).transaction,
+            montant_facial:JSON.parse(response["achatjulaResponse"]["return"].$).montant_facial,
+            montant_reel:JSON.parse(response["achatjulaResponse"]["return"].$).montant_reel
+        } ;
+
+        console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
+        resolve(postCashResponse) ;
+        }) ;
+      });     
+  }
+
+  public achatcredittelephonique(api : number, token : string, numero_a_recharger : string, montant : string) : Promise<PostCashResponse> {  
+      var method:string = 'achatcredittelephonique'; 
+      var parameters:{}[] = []; 
+      var reEspParams = { api:api, token:token, numero_a_recharger:numero_a_recharger, montant:montant } ;
+      var params:{}[] = [] ; params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['achatcredittelephonique xmlns="urn:postcashwsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'achatcredittelephoniqueResponse').then(response=>{
+        var postCashResponse:PostCashResponse = {
+            errorCode:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).errorCode,
+            errorMessage:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).errorMessage,
+            result:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).result,
+            commission:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).commission,
+            montant_facture:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).montant_facture,
+            transaction:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).transaction,
+            montant_facial:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).montant_facial,
+            montant_reel:JSON.parse(response["achatcredittelephoniqueResponse"]["return"].$).montant_reel
+        } ;
+
+        console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
+        resolve(postCashResponse) ;
+        }) ;
+      });      
+  }
+
+
   public setParameters( api : number, token : string, tel_destinataire : number, montant : string ):{}[] {
-      var parameters:{}[] = [] ;
+      var parameters:{}[] = [] ; 
       var reEspParams = {api:api, token:token, tel_destinataire:tel_destinataire, montant:montant} ;
       console.log("Recharge infos "+reEspParams.tel_destinataire+" Mot de pass "+reEspParams.montant);
       parameters["params"] = reEspParams ;
