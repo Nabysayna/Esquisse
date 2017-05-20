@@ -8,6 +8,7 @@ import {AchatCreditTelService} from '../postcash/postservices';
 import {AchatCreditTel} from '../postcash/postmodels';
 import {RetraitEspeceService} from '../postcash/postservices';
 import {RetraitEspece} from '../postcash/postmodels';
+import { PostCashServiceWeb } from '../webServiceClients/PostcashClient/Postcash.service';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class PostcashComponent implements OnInit {
     montantt:number;
     tels:number;
 
+    
     rechargeEspece:RechargeEspece;
     achatCreditTel:AchatCreditTel;
     retraitEspece:RetraitEspece;
@@ -51,7 +53,8 @@ export class PostcashComponent implements OnInit {
          private rechargeEspeceService: RechargeEspeceService,
          private location: Location,
          private route:ActivatedRoute,
-         private router: Router) { }
+         private router: Router,
+         private postcashcaller: PostCashServiceWeb) { }
 
   ngOnInit():void {
     this.route.params.subscribe( (params : Params) => { 
@@ -65,26 +68,24 @@ export class PostcashComponent implements OnInit {
     this.route.params.subscribe( (params : Params) => { 
       this.retraitEspece = this.retraitEspeceService.getRetraitEspece(5);
     });
-}
+  }
 
-    validrechargementespece(){}
+    validrechargementespece(){
+
+    }
 
     validateRetraitEspece(){}
 
     validAchatJula(){
         this.router.navigate(['accueil/RECUS','aj']);
-
-
     }
 
     validateReglementSenelec(){
         this.router.navigate(['accueil/RECUS','rgs']);
     }
 
-
     validachatcodewoyofal(){this.router.navigate(['accueil/RECUS','acw']);}
 
     validachatcredittelephonique(){}
-
 
 }

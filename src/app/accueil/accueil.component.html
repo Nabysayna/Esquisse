@@ -5,15 +5,15 @@
 
      <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <app-navbar-top></app-navbar-top>
+
         <div class="navbar-collapse" id="navbHead">
+                <app-navbar-top></app-navbar-top> 
             <ul id="haut" class="nav navbar-nav navbar-center  top-nav in">
-                <li role="presentation"  ><a [routerLink]="['/accueil', 'GESTIONREPORTING']" >GESTION REPORTING</a></li>
+                 <li role="presentation"  ><a [routerLink]="['/accueil', 'GESTIONREPORTING']" >GESTION REPORTING</a></li>
                 <li id="med" role="presentation"  ><a [routerLink]="['/accueil', 'DEMANDEPRET']" >DEMANDE DE PRET</a></li>
                 <li role="presentation"  ><a [routerLink]="['/accueil', 'E-COMMERCE']" >E-COMMERCE</a></li>
             </ul>
-        </div>
-        
+        </div>        
         <div class="navbar-inverse sidebar" role="navigation" id="leftsidemenu">
 
             <div class="sidebar-nav navbar-collapse">
@@ -30,7 +30,7 @@
     </nav>
 
     <div id="page-wrapper"  style="padding-top: 3rem; margin-top:25px;">
-        <div class="row">
+        <div class="row" id="routeContainDisplayer">
             <router-outlet></router-outlet>
         </div>
 
