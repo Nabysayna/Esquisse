@@ -1,3 +1,28 @@
-<p>
-  e-commerce works!
-</p>
+<div class="row" id="ecomhome">
+  <div class="col-sm-4 extremite">
+  	<a class="btn ecomBtn" href="#ecomcatalogue" data-toggle="tab">Catalogue</a>
+  </div> 
+
+  <div class="col-sm-4" >
+  	<div id="dataTables-example_filter" class="dataTables_filter">
+  	 <input type="search" class="form-control input-sm" placeholder="Rechercher" aria-controls="dataTables-example">
+  	</div>
+  </div>
+
+  <div class="col-sm-4 extremite">
+  	<a class="btn ecomBtn" href="#ecomespaceperso" data-toggle="tab" >Espace Perso</a>
+  </div>
+
+    <div class="row tab-content">
+
+    	<div class="row tab-pane fade col-sm-12 col-xs-12 in active" id="ecomcatalogue">
+        	<app-catalogue></app-catalogue>
+    	</div>
+
+	    <div class="row tab-pane fade col-sm-6 col-xs-12" id="ecomespaceperso">
+        	<app-espace-perso></app-espace-perso>
+	    </div>
+
+    </div>
+
+</div>

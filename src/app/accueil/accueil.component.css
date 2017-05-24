@@ -8,6 +8,11 @@ body {
     width: 100% ;
 }
 
+#page-wrapper{
+    padding-top: 3rem; 
+    margin-top:25px;
+}
+
 #haut {
    padding-left: 35rem;
    background-color: #f8f8f8;

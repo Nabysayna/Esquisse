@@ -24,8 +24,6 @@ import { NAbonnementService} from './tnt/tntservices';
 import { LAbonnementService} from './tnt/tntservices';
 import { EFinancierService} from './tnt/tntservices';
 
-
-
 import { Routing }        from './app.routing';
 
 import { AuthGuard } from './_guards/auth.guard';
@@ -36,6 +34,7 @@ import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.ser
 import { SoapService } from './soap.service';
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
+import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AuthenticationService }    from './services/authentification.service';
 
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
@@ -77,11 +76,14 @@ import { RadarChartComponent } from './graphs/radar-chart/radar-chart.component'
 import { PieChartComponent } from './graphs/pie-chart/pie-chart.component';
 import { PolarAreaChartComponent } from './graphs/polar-area-chart/polar-area-chart.component';
 import { ExpressoComponent } from './expresso/expresso.component';
-import { TntComponent } from './tnt/tnt.component';
+import { TntComponent, DataToArray } from './tnt/tnt.component';
 import { SoapserverComponent } from './soapserver/soapserver.component';
+import { CatalogueComponent } from './catalogue/catalogue.component';
+import { EspacePersoComponent } from './espace-perso/espace-perso.component';
 
 @NgModule({
   declarations: [
+    DataToArray,
     AppComponent,
     AuthComponentComponent,
     AccueilComponent,
@@ -117,7 +119,9 @@ import { SoapserverComponent } from './soapserver/soapserver.component';
     DoughnutChartComponent,
     ExpressoComponent,
     TntComponent,
-    SoapserverComponent
+    SoapserverComponent,
+    CatalogueComponent,
+    EspacePersoComponent
   ],
   imports: [
     BrowserModule,
@@ -159,6 +163,7 @@ import { SoapserverComponent } from './soapserver/soapserver.component';
       SoapService,
       AuthentificationServiceWeb,
       PostCashServiceWeb,
+      TntServiceWeb,
       AuthenticationService
   ],
   bootstrap: [AppComponent]

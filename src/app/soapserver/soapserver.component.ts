@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostCashServiceWeb } from '../webServiceClients/PostcashClient/Postcash.service';
+import { TntServiceWeb, TntResponse } from '../webServiceClients/Tnt/Tnt.service';
 
 
 @Component({
@@ -11,15 +11,16 @@ import { PostCashServiceWeb } from '../webServiceClients/PostcashClient/Postcash
 export class SoapserverComponent implements OnInit {
 
   public resp : string  ;
-  public postcashcaller: PostCashServiceWeb;
-  public retourAuthentif:{} = {"return":{"_":{"type":"ns1:Resultat"},"prenom":{"_":{"type":"xsd:string"},"$":"Azou"},"token":{"_":{"type":"xsd:string"},"$":"someTokenNotReallySecured"},"reponse":{"_":{"type":"xsd:boolean"},"$":"true"}}} ;
+  public tntCaller: TntServiceWeb;
+  public retourTntWS: TntResponse[] ;
 
   constructor() {
-        this.postcashcaller = new PostCashServiceWeb();
+        this.tntCaller = new TntServiceWeb();
    }
 
    ngOnInit() {
-      this.postcashcaller.achatcredittelephonique(1, "gdth", "someNumber", "2220") ; 
+      this.tntCaller.listAbonnement(1, "assane").then( response =>
+        {this.retourTntWS = response  }); 
    }
 
 }

@@ -36,7 +36,7 @@ export class AuthentificationServiceWeb {
       return new Promise( (resolve, reject) => {
         parameters['authentification xmlns="urn:authwsdl#"'] = this.setParameters(tryLogin, tryPwd) ;
         this.soapService.post(method, parameters, 'authentificationResponse').then(response=>{
-        var authResponse:AuthResponse = {prenom:response["authentificationResponse"]["return"].prenom.$, token:response["authentificationResponse"]["return"].token.$, reponse:response["authentificationResponse"]["return"].reponse.$} ;
+        var authResponse:AuthResponse = {prenom:JSON.parse(response["authentificationResponse"]["return"].$).prenom, token:JSON.parse(response["authentificationResponse"]["return"].$).token, reponse:JSON.parse(response["authentificationResponse"]["return"].$).reponse} ;
         resolve(authResponse)
         }) ;
       });

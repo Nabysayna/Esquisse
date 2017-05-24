@@ -10,7 +10,7 @@
             <ul class="nav nav-pills">
                 <li class="active"><a href="#home-pills" data-toggle="tab">Nouvel Abonnement</a>
                 </li>
-                <li><a id="elec" href="#profile-pills" data-toggle="tab">Liste Abonnement </a>
+                <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="listerAbonnements()">Liste Abonnement </a>
                 </li>
                 <li><a href="#messages-pills" data-toggle="tab">Etat Financier</a>
                 </li>
@@ -64,25 +64,26 @@
                                     <th>Etat Activation</th>
                                    <th>Date Activation</th>
                                    
-                              </tr>
+                                </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>{{lAbonnement.nom}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tbody *ngIf="this.retourTntWS">
+                                <tr *ngFor="let abonnement of this.retourTntWS">
+                                    <td>{{abonnement.prenom}}</td>
+                                    <td>{{abonnement.nom}}</td>
+                                    <td>{{abonnement.tel}}</td>
+                                    <td>{{abonnement.ncni}}</td>
+                                    <td>{{abonnement.n_chip}}</td>
+                                    <td>{{abonnement.n_carte}}</td>
+                                    <td>{{abonnement.date_abonnement}}</td>
+                                    <td>{{abonnement.duree}}</td>
+                                    <td>{{abonnement.id_typeabonnement}}</td>
+                                    <td>{{abonnement.montant}}</td>
+                                    <td>{{abonnement.etat}}</td>
+                                    <td>{{abonnement.date_activation}}</td>
 
-                                </tr></tbody>
-                            </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
-                     
+                                </tr>
+                                </tbody>
+                            </table>                     
                 
                 
                 </div>
