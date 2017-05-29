@@ -24,6 +24,10 @@ export class DataToArray implements PipeTransform{
 })
 
 export class TntComponent implements OnInit {
+  verifierNumInput:string = '';
+  verifierNumValide:boolean = false;
+  verifierNumInputValide:boolean = true;
+
 	formvisible='';
 	noma:string;
 	prenoma:string;
@@ -64,8 +68,13 @@ export class TntComponent implements OnInit {
 
   }
 
-validnabon(){}
-listerAbonnements(){
+  validVerifierNum(){
+    this.verifierNumValide = true;
+    this.verifierNumInputValide = false;
+  }
+
+  validnabon(){}
+  listerAbonnements(){
       this.tntCaller.listAbonnement(43, "assane").then( response =>
         {
           this.retourTntWS = response ;

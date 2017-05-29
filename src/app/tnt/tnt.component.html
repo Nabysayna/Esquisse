@@ -20,31 +20,43 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane fade col-sm-6 col-xs-12 in active" id="home-pills">
-                <fieldset>
-                        <h4>FORMULAIRE NOUVEL ABONNEMENT</h4>
-                    </fieldset>
-                    <form (ngSubmit)="validnabon()" #nabon="ngForm" autocomplete="on">
+                    <div class="row" *ngIf="this.verifierNumInputValide" >
+                        <form (ngSubmit)="validVerifierNum()" #verifiernum="ngForm" autocomplete="on">
+                            <div class="col-md-8">
+                                <input type="text" [(ngModel)]="this.verifierNumInput" name="verifiernuminput" id="verifiernuminput"  class="form-control" placeholder="Numéro du chip ou de la carte" required autofocus>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success" [disabled]="!verifiernum.form.valid">Vérifier</button>
+                            </div>
+                        </form>
+                    </div>
 
-                        <input type="text" [(ngModel)]="this.noma" name="noma" id="noma"  class="form-control" placeholder="nom client" required autofocus>
+                    <div class="row" *ngIf="this.verifierNumValide" >
+                        <fieldset>
+                            <h4>FORMULAIRE NOUVEL ABONNEMENT</h4>
+                        </fieldset>
+                        <form (ngSubmit)="validnabon()" #nabon="ngForm" autocomplete="on">
 
-                        <input type="text" [(ngModel)]="this.prenoma" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom client" required >
+                            <input type="text" [(ngModel)]="this.noma" name="noma" id="noma"  class="form-control" placeholder="nom client" required autofocus>
 
-                        <input type="number" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
+                            <input type="text" [(ngModel)]="this.prenoma" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom client" required >
 
-                        <input type="number" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte ou numéro chip" required>
+                            <input type="number" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
 
-                 
-                        <input type="number" [(ngModel)]="this.nbm"   name="nbm" id="nbm" class="form-control" placeholder="nombre de mois" required>
+                            <input type="number" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte ou numéro chip" required>
+
+                     
+                            <input type="number" [(ngModel)]="this.nbm"   name="nbm" id="nbm" class="form-control" placeholder="nombre de mois" required>
 
 
-                        <input type="text" [(ngModel)]="this.tbouquet"   name="tbouquet" id="tbouquet" class="form-control" placeholder="type de bouquet" required>
+                            <input type="text" [(ngModel)]="this.tbouquet"   name="tbouquet" id="tbouquet" class="form-control" placeholder="type de bouquet" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!nabon.form.valid">Abonner</button>
-                        <button type="reset" class="btn btn-danger" [disabled]="!nabon.form.valid" >Annuler</button>
+                            <button type="submit" class="btn btn-success" [disabled]="!nabon.form.valid">Abonner</button>
+                            <button type="reset" class="btn btn-danger" [disabled]="!nabon.form.valid" >Annuler</button>
 
-                    </form>
-              
-                   
+                        </form>
+                  
+                    </div>
                 </div>
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
 
