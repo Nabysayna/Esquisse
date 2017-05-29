@@ -1,3 +1,23 @@
-<p>
-  catalogue works!
-</p>
+<div class="panel-body">
+                          
+                                <tbody>
+                                <tr *ngFor="let ligneArticle of articles" >
+                                    <td *ngFor="let article of ligneArticle">
+                                    <div class="card" style="width: 20rem;">
+									  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+									  <div class="card-block">
+									    <h4 class="card-title">{{article.designation}}</h4>
+									    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
+									    <a href="#" class="btn btn-primary">Commander</a>
+									  </div>
+									</div>
+									</td>
+	
+                                </tr>
+                                </tbody>
+                           
+                        </div>
+
+
+
+
