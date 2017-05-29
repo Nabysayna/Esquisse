@@ -38,7 +38,7 @@ import { EspacePersoComponent } from './espace-perso/espace-perso.component';
   //
 
 const appRoutes: Routes = [
-    { path: '', component: AccueilComponent },
+    { path: '', component: AuthComponentComponent },
     { path: 'accueil', component: AccueilComponent,  
            children:[
     			{path: 'RIA', component: SoapserverComponent},
