@@ -31,13 +31,13 @@ export class AuthComponentComponent implements OnInit {
   authentificate() {
     this.authenticationService.login(this.userName, this.userPwd).then(access=>
       {
-      	if ( access === "pdv" ){
+      	if ( access === 3 ){
           this.router.navigate(['/accueil']); 
       	}else 
-          if ( access === "admin-pdv" ){
+          if ( access === 2 ){
             this.router.navigate(['/accueiladmpdv']);  
           }else 
-            if ( access === "admin-mult-pdv" ){
+            if ( access === 1 ){
               this.router.navigate(['/accueiladmmpdv']);              
             }
       	     else{

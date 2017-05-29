@@ -9,8 +9,8 @@ export class TntResponse{
   tel: number ;
   adresse: number ;
   region: string ;
-  city: number ;
-  ncni: number ;
+  city: string ;
+  ncni: string ;
   n_chip : string ;
   n_carte : string ;
   date_abonnement: string ;
@@ -47,12 +47,12 @@ export class TntServiceWeb {
   }
 
 
-  public listAbonnement(api : number, token : string) : Promise<TntResponse[]> {
+  public listAbonnement(id : number, token : string) : Promise<TntResponse[]> {
 
       var method:string = 'listabonnement'; 
       var parameters:{}[] = []; 
 
-      var reEspParams = {api:api, token:token} ;
+      var reEspParams = {id:id, token:token} ;
       var params:{}[] = [] ; 
       params["params"] = reEspParams ;
 
@@ -60,7 +60,8 @@ export class TntServiceWeb {
         parameters['listabonnement xmlns="urn:tntwsdl#"'] = params ;
 
         this.soapService.post(method, parameters, 'listabonnementResponse').then(response=>{
-          this.responseJsoFWS = response['listabonnementResponse'].return.$;
+          this.responseJsoFWS = JSON.parse(response['listabonnementResponse'].return.$);
+          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
         }); 
       });      

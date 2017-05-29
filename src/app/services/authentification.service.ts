@@ -7,37 +7,42 @@ import { AuthentificationServiceWeb, AuthResponse } from '../webServiceClients/A
 
 @Injectable()
 export class AuthenticationService {
-    public authentiService: AuthentificationServiceWeb;
-    public token: string;
+    authentiService: AuthentificationServiceWeb;
+    public baseToken: string;
     public email: string;
-    public access: boolean;
+    public accessLevel: number;
+    public authorizedApis: string;
+
     constructor() {
         var currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-        this.token = currentUser && currentUser.token;
+        this.baseToken = currentUser && currentUser.baseToken;
         this.authentiService = new AuthentificationServiceWeb();
     }
 
-    login(email: string, password: string): Promise<string> {
+    login(email: string, password: string): Promise<number> {
       return new Promise( (resolve, reject)=> {
             this.authentiService.authentifier(email, password).then( response => { 
                 var resp:AuthResponse=response ;
                 console.log("Reponse du serveur : "+resp.reponse) ;
                 if( resp.reponse.toString()== "true" ){
-                    this.token = resp.token;
+                    this.baseToken = resp.baseToken;
                     this.email = resp.prenom;
-                    sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, token: this.token }));
+                    this.accessLevel = resp.accessLevel;
+                    this.authorizedApis = resp.authorizedApis;
+
+                    sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, baseToken: this.baseToken, authorizedApis:this.authorizedApis, accessLevel:this.accessLevel}));
                     console.log("Current user is : "+sessionStorage.getItem('currentUser'));
-                    console.log(this.token);
-                    resolve("pdv");
+                    console.log(this.baseToken);
+                    resolve(this.accessLevel);
                 } else {
-                resolve('');
+                    resolve(0);
                 }
             });
         });
     }
 
     logout(): void {
-        this.token = null;
+        this.baseToken = null;
         sessionStorage.removeItem('currentUser');
     }
 }

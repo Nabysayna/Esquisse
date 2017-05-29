@@ -3,9 +3,11 @@ import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 
 export class AuthResponse{
-  public prenom:string;
-  public token:string;
-  public reponse:boolean ;
+  public prenom: string;
+  public reponse: boolean ;
+  public accessLevel: number ;
+  public authorizedApis: string ;
+  public baseToken: string ;
 }
 
 @Injectable()
@@ -36,9 +38,27 @@ export class AuthentificationServiceWeb {
       return new Promise( (resolve, reject) => {
         parameters['authentification xmlns="urn:authwsdl#"'] = this.setParameters(tryLogin, tryPwd) ;
         this.soapService.post(method, parameters, 'authentificationResponse').then(response=>{
-        var authResponse:AuthResponse = {prenom:JSON.parse(response["authentificationResponse"]["return"].$).prenom, token:JSON.parse(response["authentificationResponse"]["return"].$).token, reponse:JSON.parse(response["authentificationResponse"]["return"].$).reponse} ;
+        var authResponse:AuthResponse = {prenom:JSON.parse(response["authentificationResponse"]["return"].$).prenom, baseToken:JSON.parse(response["authentificationResponse"]["return"].$).baseToken, reponse:JSON.parse(response["authentificationResponse"]["return"].$).reponse, accessLevel:JSON.parse(response["authentificationResponse"]["return"].$).accessLevel, authorizedApis:JSON.parse(response["authentificationResponse"]["return"].$).authorizedApis} ;
         resolve(authResponse)
         }) ;
+      });
+      
+  }
+
+  
+  public deconnecter(token : string) : Promise<number>  {
+      var method:string = 'deconnexion';
+      var parameters:{}[] = [];
+
+      var parame:{}[] = [] ;
+      var user = {token:token, hdeconnexion:"345"} ;
+      console.log("Token Utilisateur "+user.token+" H deconnexion "+user.hdeconnexion);
+      parame["user"] = user ;
+      return new Promise( (resolve, reject) => {
+        parameters['deconnexion xmlns="urn:authwsdl#"'] = parame ;
+        this.soapService.post(method, parameters, 'deconnexionResponse').then(response=>{
+        resolve(JSON.parse(response["deconnexionResponse"]["return"].$)) ;
+        }) ; 
       });
       
   }
