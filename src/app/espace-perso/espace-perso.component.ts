@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 export class Article {
 	public nomImg:string;
 	public designation:string;
@@ -27,10 +28,21 @@ export class EspacePersoComponent implements OnInit {
   ngOnInit() {
   }
 
- deleteArticle(article:Article){
+ deleteArticle(article:Article) {
+      
+      for(var j=0; j<this.articles.length; j++){
+      	var ligne=this.articles[j];
+      		for (var i=0; i<ligne.length; i++)
+      			if (ligne[i].nomImg==article.nomImg)
+      			{
+      				console.log(JSON.stringify(ligne[i]));
+      				ligne.splice(i,1);
+      				break;
+      			}
+      }
 
- 	this.articles.splice(2, 4);
- }
+}
+ 
 
  ajouter(){
 
