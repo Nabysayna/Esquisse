@@ -33,6 +33,7 @@ export class TntComponent implements OnInit {
 	noma:string;
 	prenoma:string;
 	tela:string;
+  nchip:string;
 	ncarte:string;
 	nbm:number;
 	tbouquet:string;
@@ -76,6 +77,7 @@ export class TntComponent implements OnInit {
         this.noma = this.singleTntWS.nom ;
         this.prenoma = this.singleTntWS.prenom ;
         this.tela = this.singleTntWS.tel;
+        this.nchip = this.singleTntWS.n_chip;
         this.ncarte = this.singleTntWS.n_carte;
 
         if (this.singleTntWS.id_typeabonnement=="1")
