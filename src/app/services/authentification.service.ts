@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CompteAccess } from '../models/compte-access';
 import { CompteAccessMock } from '../mocks/compte-access.mock';
 import { AuthentificationServiceWeb, AuthResponse } from '../webServiceClients/Authentification/authentification.service';
+import * as sha1 from 'js-sha1';
 
 
 @Injectable()
@@ -25,7 +26,8 @@ export class AuthenticationService {
                 var resp:AuthResponse=response ;
                 console.log("Reponse du serveur : "+resp.reponse) ;
                 if( resp.reponse.toString()== "true" ){
-                    this.baseToken = resp.baseToken;
+                    this.baseToken = sha1(resp.baseToken+sha1("bay3k00_f1_n10un") );
+                    console.log("Base token "+this.baseToken) ;
                     this.email = resp.prenom;
                     this.accessLevel = resp.accessLevel;
                     this.authorizedApis = resp.authorizedApis;
@@ -36,6 +38,7 @@ export class AuthenticationService {
                     resolve(this.accessLevel);
                 } else {
                     resolve(0);
+
                 }
             });
         });

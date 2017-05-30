@@ -10,6 +10,7 @@ import * as sha1 from 'js-sha1';
 })
 export class NavbarTopComponent implements OnInit {
   authentiService: AuthentificationServiceWeb;
+  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 
 	currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   constructor(private router: Router) { 
@@ -19,7 +20,7 @@ export class NavbarTopComponent implements OnInit {
   ngOnInit() {}
   
   deconnexion(){
-  	this.authentiService.deconnecter(sha1(JSON.parse(sessionStorage.getItem('currentUser')).baseToken+sha1("bay3k00_f1_n10un") )).then( response => {
+  	this.authentiService.deconnecter(this.token).then( response => {
   	 if (response==1){
   			sessionStorage.removeItem('currentUser');
 	        this.router.navigate(['']);

@@ -5,9 +5,9 @@ import {SoapService} from "../../soap.service";
 export class TntResponse{
   id_abonnement: number ;
   prenom: string ;
-  nom: number ;
-  tel: number ;
-  adresse: number ;
+  nom: string ;
+  tel: string ;
+  adresse: string ;
   region: string ;
   city: string ;
   ncni: string ;
@@ -29,8 +29,8 @@ export class TntResponse{
 @Injectable()
 export class TntServiceWeb {
 
-  private servicePort:string = 'http://abonnement.bbstvnet.com' ; 
-  private servicePath:string = '/integration-server-ws-tnt/index.php?wsdl' ;
+  private servicePort:string = 'http://localhost' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl' ;
   private targetNamespace:string = 'urn:tntwsdl' ;
 
   public responseJso : any ;
@@ -47,12 +47,12 @@ export class TntServiceWeb {
   }
 
 
-  public listAbonnement(id : number, token : string) : Promise<TntResponse[]> {
+  public listAbonnement(token : string) : Promise<TntResponse[]> {
 
       var method:string = 'listabonnement'; 
       var parameters:{}[] = []; 
 
-      var reEspParams = {id:id, token:token} ;
+      var reEspParams = {token:token} ;
       var params:{}[] = [] ; 
       params["params"] = reEspParams ;
 
@@ -61,8 +61,49 @@ export class TntServiceWeb {
 
         this.soapService.post(method, parameters, 'listabonnementResponse').then(response=>{
           this.responseJsoFWS = JSON.parse(response['listabonnementResponse'].return.$);
-          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
+          //console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
+        }); 
+      });      
+  }
+
+  public checkNumber(token : string, chipOrCardNum: string) : Promise<TntResponse> {
+
+      var method:string = 'verifinumeroabonnement'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = {token:token, numeroCarteChip:chipOrCardNum} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['verifinumeroabonnement xmlns="urn:tntwsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'verifinumeroabonnementResponse').then(response=>{
+          this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
+          //console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS) ) ;
+          resolve(this.responseJsoFWS) ;
+        }); 
+      });      
+  }
+
+
+  public abonner(token:string, prenom:string, nom:string, tel:string, adresse:string, region:string, city:string, cni:string, numerochip:string, numerocarte:string, duree:number, typedebouquet:number) : Promise<string> {
+
+      var method:string = 'ajoutabonnement'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = {token:token, prenom:prenom, nom:nom, tel:tel, adresse:adresse, region:region, city:city, cni:cni, numerochip:numerochip, numerocarte:numerocarte, duree:duree, typedebouquet:typedebouquet} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      console.log("Parameters : "+JSON.stringify(params["params"])) ;
+      return new Promise( (resolve, reject) => {
+        parameters['ajoutabonnement xmlns="urn:tntwsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'ajoutabonnementResponse').then(response=>{
+          var reponse : string = JSON.parse(response['ajoutabonnementResponse'].return.$).response;
+          //console.log("reponse brute  "+reponse ) ;
+          resolve(reponse) ;
         }); 
       });      
   }

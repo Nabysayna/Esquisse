@@ -12,15 +12,17 @@ export class SoapserverComponent implements OnInit {
 
   public resp : string  ;
   public tntCaller: TntServiceWeb;
-  public retourTntWS: TntResponse[] ;
+  public retourTntWS: TntResponse ;
 
   constructor() {
         this.tntCaller = new TntServiceWeb();
    }
 
    ngOnInit() {
-      this.tntCaller.listAbonnement(1, "assane").then( response =>
-        {this.retourTntWS = response  }); 
+      this.tntCaller.checkNumber('naby', '00616241893').then( response =>
+        {
+        this.retourTntWS = response ;
+        console.log("Response "+this.retourTntWS.prenom)  }); 
    }
 
 }

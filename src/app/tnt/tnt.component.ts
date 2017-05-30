@@ -27,12 +27,13 @@ export class TntComponent implements OnInit {
   verifierNumInput:string = '';
   verifierNumValide:boolean = false;
   verifierNumInputValide:boolean = true;
+  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 
 	formvisible='';
 	noma:string;
 	prenoma:string;
-	tela:number;
-	ncarte:number;
+	tela:string;
+	ncarte:string;
 	nbm:number;
 	tbouquet:string;
 	nAbonnement:NAbonnement;
@@ -40,6 +41,7 @@ export class TntComponent implements OnInit {
 	eFinancier:EFinancier;
   private tntCaller: TntServiceWeb ;
   private retourTntWS: {}[] ;
+  private singleTntWS: TntResponse ;
 
   constructor(
   	     private eFinancierService:EFinancierService,
@@ -61,24 +63,60 @@ export class TntComponent implements OnInit {
       this.lAbonnement = this.lAbonnementService.getLAbonnement(5);
     });
 
-
       this.route.params.subscribe( (params : Params) => { 
       this.eFinancier = this.eFinancierService.getEFinancier(5);
     });
 
   }
 
-  validVerifierNum(){
-    this.verifierNumValide = true;
-    this.verifierNumInputValide = false;
+  validVerifierNum(){  
+    this.tntCaller.checkNumber(this.token, this.verifierNumInput).then( response =>
+        {
+        this.singleTntWS = response ;
+        this.noma = this.singleTntWS.nom ;
+        this.prenoma = this.singleTntWS.prenom ;
+        this.tela = this.singleTntWS.tel;
+        this.ncarte = this.singleTntWS.n_carte;
+
+        if (this.singleTntWS.id_typeabonnement=="1")
+          this.tbouquet = "Maanaa";
+        if (this.singleTntWS.id_typeabonnement=="2")
+          this.tbouquet = "Boul Khool";
+        if (this.singleTntWS.id_typeabonnement=="3")
+          this.tbouquet = "Maanaa + Boul Khool";
+  
+        this.verifierNumValide = true;
+        this.verifierNumInputValide = false;
+    }); 
   }
 
-  validnabon(){}
+  validnabon(){  
+    var typedebouquet : number ;
+    if(this.tbouquet == "Maanaa")
+      typedebouquet=1;
+    if(this.tbouquet == "Boul Khool")
+      typedebouquet=2;
+    if(this.tbouquet == "Maanaa + Boul Khool")
+      typedebouquet=3;   
+
+    if(this.singleTntWS.ncni==null)
+      this.singleTntWS.ncni = "-" ;        
+
+   this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela, this.singleTntWS.adresse, this.singleTntWS.region, this.singleTntWS.city, this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
+      {
+        if(response=="ok"){
+        location.reload() ;
+        }
+
+      });      
+  }
+
+
   listerAbonnements(){
-      this.tntCaller.listAbonnement(43, "assane").then( response =>
+      this.tntCaller.listAbonnement(this.token).then( response =>
         {
           this.retourTntWS = response ;
-          console.log("response "+this.retourTntWS) ;
+          //console.log("response "+this.retourTntWS) ;
         }) ;  
 }
 
