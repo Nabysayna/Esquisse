@@ -1,30 +1,59 @@
 <div class="panel-body">
 
-<input type=file id=fichier name=fichier/>
-<button class="btn btn-success" type="button" ng-click="ajouter()">Ajouter</button>
+	<div class="row">
+		<div class="col-sm-3">
+			<a href="#ajout" class="btn " type="button" data-toggle="tab">Ajouter</a>
+		</div>
 
-                                <tbody>
-                                <tr *ngFor="let ligneArticle of articles" >
-                                    <td *ngFor="let article of ligneArticle">
-                                    <div class="card" style="width: 20rem;">
-									  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
-									  <div class="card-block">
-									    <h4 class="card-title">{{article.designation}}</h4>
-									    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
+		<div class="col-sm-3">
+			<a href="#commandes" class="btn " type="button" data-toggle="tab">Mes commandes</a>
+		</div>	
 
-									    <button class="btn btn-success" type="button">Modifier</button>
+		<div class="col-sm-3">
+			<a href="#articles" class="btn " type="button" data-toggle="tab">Mes Articles</a>
+		</div>	
 
-								
-									     <button class="btn btn-danger" type="button" (click)="deleteArticle(article)" >Supprimer </button>
-									  </div>
-									</div>
-									</td>
-	
-                                </tr>
-                                </tbody>
-                           
-                        </div>
+		<div class="col-sm-3">
+			<a href="#ventes" class="btn " type="button" data-toggle="tab">Mes ventes</a>
+		</div>
 
+	</div>
 
+	<div class="tab-content">
 
+		<div class="row tab-pane fade in active" id="articles">
+		    <tbody>
+		    <tr *ngFor="let ligneArticle of articles" >
+		        <td *ngFor="let article of ligneArticle">
+		        <div class="card" style="width: 20rem;">
+				  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+				  <div class="card-block">
+				    <h4 class="card-title">{{article.designation}}</h4>
+				    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
 
+				    <button class="btn btn-success" type="button">Modifier</button>
+
+			
+				     <button class="btn btn-danger" type="button" (click)="deleteArticle(article)" >Supprimer </button>
+				  </div>
+				</div>
+				</td>
+
+		    </tr>
+		    </tbody>                          
+	    </div>
+
+		<div class="row tab-pane fade" id="commandes">
+			Commandes
+	    </div>
+
+		<div class="row tab-pane fade" id="ventes">
+			Ventes
+	    </div>
+
+		<div class="row tab-pane fade" id="ajout">
+			Ajout
+			<input type=file id=fichier name=fichier/>
+	    </div>
+
+	</div>
