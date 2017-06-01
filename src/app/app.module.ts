@@ -2,6 +2,8 @@ import { NgModule }      from '@angular/core' ;
 import { BrowserModule } from '@angular/platform-browser' ; 
 import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
+import { Ng2UploaderModule } from 'ng2-uploader';
+
 
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
@@ -127,6 +129,7 @@ import { EspacePersoComponent } from './espace-perso/espace-perso.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    Ng2UploaderModule,
     Routing,
     ChartsModule,
     TabsModule.forRoot(),
