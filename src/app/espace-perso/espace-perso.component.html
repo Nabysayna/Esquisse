@@ -1,41 +1,5 @@
 <div class="panel-body">
 
-<<<<<<< HEAD
-<!-- <input type=file id=fichier name=fichier/> -->
-<input type="file"
-       ngFileSelect
-       [options]="options"
-       (onUpload)="handleUpload($event)"
-       (beforeUpload)="beforeUpload($event)">
-
-<button class="btn btn-success" type="button" ng-click="ajouter()">Ajouter</button>
-
-                                <tbody>
-                                <tr *ngFor="let ligneArticle of articles" >
-                                    <td *ngFor="let article of ligneArticle">
-                                    <div class="card" style="width: 20rem;">
-									  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
-									  <div class="card-block">
-									    <h4 class="card-title">{{article.designation}}</h4>
-									    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
-
-									    <button class="btn btn-success" type="button">Modifier</button>
-
-								
-									     <button class="btn btn-danger" type="button" (click)="deleteArticle(article)" >Supprimer </button>
-									  </div>
-									</div>
-									</td>
-	
-                                </tr>
-                                </tbody>
-                           
-                        </div>
-
-
-
-
-=======
 	<div class="row">
 		<div class="col-sm-3">
 			<a href="#ajout" class="btn " type="button" data-toggle="tab">Ajouter</a>
@@ -89,8 +53,12 @@
 
 		<div class="row tab-pane fade" id="ajout">
 			Ajout
-			<input type=file id=fichier name=fichier/>
+			<!-- <input type=file id=fichier name=fichier/> -->
+			<input type="file"
+       ngFileSelect
+       [options]="options"
+       (onUpload)="handleUpload($event)"
+       (beforeUpload)="beforeUpload($event)">
 	    </div>
 
 	</div>
->>>>>>> 7bdac34efc5684ed49ae133e5de80fc11f52aa01
