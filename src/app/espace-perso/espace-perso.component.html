@@ -103,6 +103,7 @@
                   
 	    </div>
 
+<<<<<<< HEAD
 		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ajout">
 			
 			<input type=file id=fichier name=fichier/>
@@ -115,6 +116,16 @@
 
 			  <button type="reset" class="btn btn-danger">Annuler</button>
 
+=======
+		<div class="row tab-pane fade" id="ajout">
+			Ajout
+			<!-- <input type=file id=fichier name=fichier/> -->
+			<input type="file"
+       ngFileSelect
+       [options]="options"
+       (onUpload)="handleUpload($event)"
+       (beforeUpload)="beforeUpload($event)">
+>>>>>>> 7d0827a014a183d46aa12468c1e57946941460f9
 	    </div>
 
 	</div>

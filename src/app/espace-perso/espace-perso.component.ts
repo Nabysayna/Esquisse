@@ -52,8 +52,35 @@ export class EspacePersoComponent implements OnInit {
               this.modif=article.nomImg;
  }
 
+<<<<<<< HEAD
 
 valider(){}
+=======
+ uploadFile: any;
+  hasBaseDropZoneOver: boolean = false;
+  options: Object = {
+    url: 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/index.php'
+  };
+  sizeLimit = 2000000;
+
+  handleUpload(data): void {
+    if (data && data.response) {
+      data = JSON.parse(data.response);
+      this.uploadFile = data;
+    }
+  }
+
+  fileOverBase(e:any):void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  beforeUpload(uploadingFile): void {
+    if (uploadingFile.size > this.sizeLimit) {
+      uploadingFile.setAbort();
+      alert('File is too large');
+    }
+  }
+>>>>>>> 7d0827a014a183d46aa12468c1e57946941460f9
 
 }
 
