@@ -59,15 +59,15 @@
         </div>
     </div>
     <div>
-        <div class="col-dm-12 col-sm-12">
+        <div class="col-dm-12 col-sm-12" >
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4><i class="fa fa-bar-chart-o fa-fw"></i> Montant total des transferts par service</h4>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" *ngIf="this.adminpdvDashboardMontantTransfertParservices">
                     <app-doughnut-chart 
-                        [doughnutChartLabels]="doughnutChartLabels" 
-                        [doughnutChartData]="doughnutChartData" 
+                        [doughnutChartLabels]="this.adminpdvDashboardMontantTransfertParservices.typeservice" 
+                        [doughnutChartData]="this.adminpdvDashboardMontantTransfertParservices.montanttotal" 
                     ></app-doughnut-chart>
                     <a href="#" class="btn btn-default btn-block"> Details</a>
                 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AdminpdvDashboard }    from '../../models/adminpdv-dashboard';
-import { AdminpdvDashboardService }    from '../../services/adminpdv-dashboard.service';
+import { AdminpdvMontantTransferParService }    from '../../models/adminpdv-mtps';
+import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
 @Component({
   selector: 'app-adminpdv-dashboard',
@@ -10,15 +10,14 @@ import { AdminpdvDashboardService }    from '../../services/adminpdv-dashboard.s
 })
 export class AdminpdvDashboardComponent implements OnInit {
 
-	public doughnutChartLabels:string[] = ['Post-Cash', 'TNT', 'Joni-Joni', 'Expresso-Cash'];
-  	public doughnutChartData:number[] = [350000, 550000, 100000, 200000];
+  adminpdvDashboardMontantTransfertParservices: AdminpdvMontantTransferParService;
 
-  adminpdvDashboardList: AdminpdvDashboard[] = [];
+  constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) {
 
-  constructor(private adminpdvDashboardService: AdminpdvDashboardService) { }
+  }
 
   ngOnInit(): void {
-    this.adminpdvDashboardService.getAdminpdvDashboardMock().then(adminpdvDashboardList => this.adminpdvDashboardList = adminpdvDashboardList);
+    this.adminpdvServiceWeb.montanttransfertservice('12345','azrrtt').then(adminpdvServiceWebList => this.adminpdvDashboardMontantTransfertParservices = adminpdvServiceWebList );
   }
   
 
