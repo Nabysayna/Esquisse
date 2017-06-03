@@ -27,11 +27,14 @@
 		        <td *ngFor="let article of ligneArticle">
 		        <div class="card" style="width: 20rem;">
 				  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
-				  <input type="file" *ngIf="this.modif==article.nomImg" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
-				  <div class="card-block">
-				    <h4 *ngIf="!this.modif==article.nomImg" class="card-title">{{article.designation}}</h4>
+				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
+				       [options]="options"
+				       (onUpload)="handleUpload($event)"
+				       (beforeUpload)="beforeUpload($event)" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+			   <div class="card-block">
+				    <h4 class="card-title">{{article.designation}}</h4>
 				    <input type="text" *ngIf="this.modif==article.nomImg" value="{{article.designation}}">
-				    <p *ngIf="!this.modif==article.nomImg" class="card-text">Prix:{{article.prix}}.FCFA</p>
+				    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
 				    <input type="number" *ngIf="this.modif==article.nomImg" value="{{article.prix}}">
 
 				    <button  class="btn btn-success" type="button"(click)="modifArticle(article)">Modifier</button>
@@ -103,10 +106,13 @@
                   
 	    </div>
 
-<<<<<<< HEAD
 		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ajout">
 			
-			<input type=file id=fichier name=fichier/>
+			<input type="file"
+       ngFileSelect
+       [options]="options"
+       (onUpload)="handleUpload($event)"
+       (beforeUpload)="beforeUpload($event)">
 
 			<input type="text" [(ngModel)]="this.designationa"   name="designationa" id="designationa" class="form-control" placeholder="designation de l'article" required>
 
@@ -116,16 +122,6 @@
 
 			  <button type="reset" class="btn btn-danger">Annuler</button>
 
-=======
-		<div class="row tab-pane fade" id="ajout">
-			Ajout
-			<!-- <input type=file id=fichier name=fichier/> -->
-			<input type="file"
-       ngFileSelect
-       [options]="options"
-       (onUpload)="handleUpload($event)"
-       (beforeUpload)="beforeUpload($event)">
->>>>>>> 7d0827a014a183d46aa12468c1e57946941460f9
-	    </div>
+	
 
 	</div>

@@ -50,16 +50,14 @@ export class EspacePersoComponent implements OnInit {
  modifArticle(article:Article){
    
               this.modif=article.nomImg;
+              
  }
 
-<<<<<<< HEAD
 
-valider(){}
-=======
  uploadFile: any;
   hasBaseDropZoneOver: boolean = false;
   options: Object = {
-    url: 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/index.php'
+    url: 'http://localhost:8888/EsquisseBackEnd/server-backend-upload/index.php'
   };
   sizeLimit = 2000000;
 
@@ -80,7 +78,6 @@ valider(){}
       alert('File is too large');
     }
   }
->>>>>>> 7d0827a014a183d46aa12468c1e57946941460f9
 
 }
 
