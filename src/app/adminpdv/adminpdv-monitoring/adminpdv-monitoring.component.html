@@ -11,7 +11,7 @@
                     <h3>Bilan Deposit</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
+                    <div class="row"  *ngIf="monitoringAdminpdvDeposit">
                         <div class="col-sm-3">
                             <p><strong>Deposit initial</strong></p>
                             <p><strong>{{max}}</strong>FCFA</p>
@@ -24,12 +24,13 @@
                         </div>
                         <div class="col-sm-3">
                             <p><strong>Deposit restant</strong></p>
-                            <p><strong>{{monitoringDepositAdminpdv.depositRestant}}</strong>FCFA</p>
+                            <p><strong>{{monitoringAdminpdvDeposit.depositRestant}}</strong>FCFA</p>
                         </div>
                         <div class="col-sm-2">
                             <p><strong>Commission</strong></p>
-                            <p><strong>{{monitoringDepositAdminpdv.commission}}</strong>FCFA</p>
+                            <p><strong>{{monitoringAdminpdvDeposit.commission}}</strong>FCFA</p>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,10 +53,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor=" let consommationdepositparservicetype of consommationdepositparservicetypeList; let i = index ">
+                                <tr *ngFor=" let consommationdepositparservicetype of monitoringAdminpdvConsommationDepositService; let i = index ">
                                     <td>{{i + 1}}</td>
                                     <td>{{ consommationdepositparservicetype.service  }}</td>
-                                    <td>{{ consommationdepositparservicetype.montantConsomme  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
                                     <td>{{ consommationdepositparservicetype.commission  }}</td>
                                 </tr>
                                 <tr>
@@ -82,20 +83,21 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Pdv</th>
+                                    <th>Adresse</th>
                                     <th>Montant consomme</th>
                                     <th>Commission</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let consommationdepositparpdv of consommationdepositparpdvList; let i = index ">
+                                <tr *ngFor="let consommationdepositparpdv of monitoringAdminpdvConsommationDepositPdv; let i = index ">
                                     <td>{{i + 1}}</td>
                                     <td>{{ consommationdepositparpdv.pdv | uppercase }}</td>
-                                    <td>{{ consommationdepositparpdv.montantConsomme  }}</td>
+                                    <td>{{ consommationdepositparpdv.adresse }}</td>
+                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
                                     <td>{{ consommationdepositparpdv.commission  }}</td>
                                 </tr>
                                 <tr>
-                                    <td>-</td>
-                                    <td>{{ "Total" | uppercase }}</td>
+                                    <td colspan="3">{{ "Total" | uppercase }}</td>
                                     <td>2000000</td>
                                     <td>200000</td>
                                 </tr>
@@ -107,10 +109,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-9">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Historique des recouvrement</h4>
+                    <h4>Historique des recouvrements</h4>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -127,17 +129,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let recouvrementadminpdv of recouvrementadminpdvList; let i = index ">
+                                <tr *ngFor="let recouvrementadminpdv of monitoringAdminpdvRecouvrement; let i = index ">
                                     <td>{{i + 1}}</td>
                                     <td>{{ recouvrementadminpdv.date  }}</td>
                                     <td>{{ recouvrementadminpdv.pdv | uppercase }}</td>
-                                    <td>{{ recouvrementadminpdv.montantConsomme  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantconsomme  }}</td>
                                     <td>{{ recouvrementadminpdv.commission  }}</td>
-                                    <td>{{ recouvrementadminpdv.montantRecouvre  }}</td>
-                                    <td>{{ recouvrementadminpdv.montantRestant  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantrecouvre  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantrestant  }}</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Historique des réclamations</h4>
+                </div>
+                <div class="panel-body">
+                    <div *ngFor="let reclamationpdv of monitoringAdminpdvReclamation; let i = index ">
+                        <div>
+                            <strong class="pull-left" >{{ reclamationpdv.pdv | uppercase }}</strong>
+                            <span class="pull-right text-muted">
+                                <em>Yesterday</em>
+                            </span>
+                        </div>
+                        <br>
+                        <div>{{ reclamationpdv.reclamation }}</div>
+                        <hr>
                     </div>
                 </div>
             </div>
