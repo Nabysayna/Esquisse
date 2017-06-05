@@ -46,7 +46,6 @@ export class TntServiceWeb {
         this.soapService.localNameMode = true;
   }
 
-
   public listAbonnement(token : string) : Promise<TntResponse[]> {
 
       var method:string = 'listabonnement'; 
@@ -61,7 +60,7 @@ export class TntServiceWeb {
 
         this.soapService.post(method, parameters, 'listabonnementResponse').then(response=>{
           this.responseJsoFWS = JSON.parse(response['listabonnementResponse'].return.$);
-          //console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
+          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
         }); 
       });      
@@ -81,7 +80,7 @@ export class TntServiceWeb {
 
         this.soapService.post(method, parameters, 'verifinumeroabonnementResponse').then(response=>{
           this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
-          //console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS) ) ;
+          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS) ) ;
           resolve(this.responseJsoFWS) ;
         }); 
       });      
@@ -92,8 +91,18 @@ export class TntServiceWeb {
 
       var method:string = 'ajoutabonnement'; 
       var parameters:{}[] = []; 
+      var montant : number = 0 ;
 
-      var reEspParams = {token:token, prenom:prenom, nom:nom, tel:tel, adresse:adresse, region:region, city:city, cni:cni, numerochip:numerochip, numerocarte:numerocarte, duree:duree, typedebouquet:typedebouquet} ;
+      if(typedebouquet==1)
+        montant = 5000;
+      if(typedebouquet==2)
+        montant = 3000;
+      if(typedebouquet==3)
+        montant = 8000;
+
+      montant = duree*montant ;
+
+      var reEspParams = {token:token, prenom:prenom, nom:nom, tel:tel, adresse:adresse, region:region, city:city, cni:cni, numerochip:numerochip, numerocarte:numerocarte, duree:duree, typedebouquet:typedebouquet, montant:montant} ;
       var params:{}[] = [] ; 
       params["params"] = reEspParams ;
 

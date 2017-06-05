@@ -28,6 +28,7 @@ export class TntComponent implements OnInit {
   verifierNumValide:boolean = false;
   verifierNumInputValide:boolean = true;
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+  loading = false ;
 
 	formvisible='';
 	noma:string;
@@ -71,8 +72,10 @@ export class TntComponent implements OnInit {
   }
 
   validVerifierNum(){  
+        this.loading = true ;
     this.tntCaller.checkNumber(this.token, this.verifierNumInput).then( response =>
         {
+        
         this.singleTntWS = response ;
         this.noma = this.singleTntWS.nom ;
         this.prenoma = this.singleTntWS.prenom ;
@@ -89,10 +92,13 @@ export class TntComponent implements OnInit {
   
         this.verifierNumValide = true;
         this.verifierNumInputValide = false;
+
+        this.loading = false ;
     }); 
   }
 
-  validnabon(){  
+  validnabon(){ 
+    this.loading = true ; 
     var typedebouquet : number ;
     if(this.tbouquet == "Maanaa")
       typedebouquet=1;
@@ -115,9 +121,12 @@ export class TntComponent implements OnInit {
 
 
   listerAbonnements(){
+      this.loading = true ;
+
       this.tntCaller.listAbonnement(this.token).then( response =>
         {
           this.retourTntWS = response ;
+          this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
         }) ;  
 }

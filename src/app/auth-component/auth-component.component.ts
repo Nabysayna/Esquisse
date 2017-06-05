@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AuthenticationService } from '../services/authentification.service';
 
 
@@ -15,6 +14,7 @@ export class AuthComponentComponent implements OnInit {
   userName = ''  ; 
   userPwd  = '' ; 
   fakevalues : boolean ;
+  loading = false ;
 
   constructor(
     private router: Router,
@@ -23,14 +23,15 @@ export class AuthComponentComponent implements OnInit {
   	this.fakevalues = true ;
   }
 
-
   ngOnInit() {
     this.authenticationService.logout();
   }
     
   authentificate() {
+    this.loading = true ;
     this.authenticationService.login(this.userName, this.userPwd).then(access=>
       {
+        this.loading = false ;
       	if ( access === 3 ){
           this.router.navigate(['/accueil']); 
       	}else 

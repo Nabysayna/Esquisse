@@ -2,6 +2,9 @@ import { NgModule }      from '@angular/core' ;
 import { BrowserModule } from '@angular/platform-browser' ; 
 import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
+import { LoadersCssModule } from 'angular2-loaders-css';
+
+
 
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
@@ -64,8 +67,9 @@ import { AccueilAdminMultiPdvComponent } from './accueil-admin-multi-pdv/accueil
 import { DemandepretComponent } from './demandepret/demandepret.component';
 import { GestionreportingComponent } from './gestionreporting/gestionreporting.component';
 import { SoldecompteComponent } from './soldecompte/soldecompte.component';
-import { RecusComponent } from './recus/recus.component';
+import { RecusComponent } from './recus/recus.component'; 
 import { PostcashComponent } from './postcash/postcash.component';
+import { LoaderComponent } from './loader/loader.component';
 
 import { TabsModule, CollapseModule, ProgressbarModule} from 'ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
@@ -104,6 +108,7 @@ import { EspacePersoComponent } from './espace-perso/espace-perso.component';
     RecusComponent,
     PostcashComponent,
 
+    LoaderComponent,
     NavbarTopComponent,
     AdminpdvAidedecisionComponent,
     AdminpdvParametrageComponent,
@@ -121,7 +126,8 @@ import { EspacePersoComponent } from './espace-perso/espace-perso.component';
     TntComponent,
     SoapserverComponent,
     CatalogueComponent,
-    EspacePersoComponent
+    EspacePersoComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -129,6 +135,7 @@ import { EspacePersoComponent } from './espace-perso/espace-perso.component';
     HttpModule,
     Routing,
     ChartsModule,
+    LoadersCssModule,
     TabsModule.forRoot(),
     CollapseModule.forRoot(),
     ProgressbarModule.forRoot()
