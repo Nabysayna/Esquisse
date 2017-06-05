@@ -15,7 +15,7 @@ import { AdminpdvReclamation }    from '../../models/adminpdv-reclamation';
 export class AdminpdvServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/invest/adminpdv?wsdl' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 
   public responseJso : any;

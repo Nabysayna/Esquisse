@@ -27,14 +27,19 @@
 		        <td *ngFor="let article of ligneArticle">
 		        <div class="card" style="width: 20rem;">
 				  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
-				  <div class="card-block">
+				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
+				       [options]="this.options"
+				       (onUpload)="handleUpload($event)"
+				       (beforeUpload)="beforeUpload($event)" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+			   <div class="card-block">
 				    <h4 class="card-title">{{article.designation}}</h4>
+				    <input type="text" *ngIf="this.modif==article.nomImg" value="{{article.designation}}">
 				    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
+				    <input type="number" *ngIf="this.modif==article.nomImg" value="{{article.prix}}">
 
-				    <button class="btn btn-success" type="button">Modifier</button>
+				    <button  class="btn btn-success" type="button"(click)="modifArticle(article)">Modifier</button>
+				    <button  class="btn btn-danger" type="button" (click)="deleteArticle(article)" >Supprimer </button>
 
-			
-				     <button class="btn btn-danger" type="button" (click)="deleteArticle(article)" >Supprimer </button>
 				  </div>
 				</div>
 				</td>
@@ -43,17 +48,80 @@
 		    </tbody>                          
 	    </div>
 
-		<div class="row tab-pane fade" id="commandes">
-			Commandes
+		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="commandes">
+		<div class="panel-body">
+                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <select name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="dataTables-example_filter"><label>Search:<input class="form-control input-sm" aria-controls="dataTables-example" type="search" placeholder=""></label></div></div></div><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    
+                                    <th>Référence</th>
+                                    <th>Désignation</th>
+                                    <th>Prix Unitaire</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
+                              
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>AN1</td>
+                                    <td>Chaussures femme</td>
+                                    <td>12000.FCFA</td>
+                                    <td>2</td>
+                                    <td>24000.FCFA</td>
+                                </tr></tbody>
+                            </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
+                            <!-- /.table-responsive -->
+                        </div>
+                       
+                  
 	    </div>
 
-		<div class="row tab-pane fade" id="ventes">
-			Ventes
+		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ventes">
+			<div class="panel-body">
+                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <select name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="dataTables-example_filter"><label>Search:<input class="form-control input-sm" aria-controls="dataTables-example" type="search" placeholder=""></label></div></div></div><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    
+                                    <th>#</th>
+                                    <th>Désignation</th>
+                                    <th>Prix Unitaire</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
+                              
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Chaussures femme</td>
+                                    <td>12000.FCFA</td>
+                                    <td>2</td>
+                                    <td>24000.FCFA</td>
+                                </tr></tbody>
+                            </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
+                            <!-- /.table-responsive -->
+                        </div>
+                       
+                  
 	    </div>
 
-		<div class="row tab-pane fade" id="ajout">
-			Ajout
-			<input type=file id=fichier name=fichier/>
-	    </div>
+		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ajout">
+			
+			<input type="file"
+       ngFileSelect
+       [options]="options"
+       (onUpload)="handleUpload($event)"
+       (beforeUpload)="beforeUpload($event)">
+
+			<input type="text" [(ngModel)]="this.designationa"   name="designationa" id="designationa" class="form-control" placeholder="designation de l'article" required>
+
+            <input type="number" [(ngModel)]="this.prixa"   name="prixa" id="prixa" class="form-control" placeholder="prix de l'article" required>
+
+			 <button class="btn btn-success" type="button"(click)="ajouter()">Ajouter</button>
+
+			  <button type="reset" class="btn btn-danger">Annuler</button>
+
+	
 
 	</div>

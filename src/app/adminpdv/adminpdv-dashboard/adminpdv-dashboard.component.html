@@ -19,16 +19,22 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="a">
-                            <h4>A</h4>
-                            <p>La 1</p>
+                            <br>
+                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }} 
+                            </p>
                         </div>
                         <div class="tab-pane fade" id="b">
-                            <h4>B</h4>
-                            <p>La 2</p>
+                            <br>
+                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }}
+                            </p>
                         </div>
                         <div class="tab-pane fade" id="c">
-                            <h4>C</h4>
-                            <p>La 3</p>
+                            <br>
+                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }}
+                            </p>
                         </div>
 
                   </div>
@@ -42,36 +48,43 @@
                 </div>
                 <div class="panel-body">
                     <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-comment fa-fw"></i> Nouvelle reclamation
+                        <a href="#" class="list-group-item"  *ngFor=" let notification of adminpdvDashboardNotifications; let i = index ">
+                            <i class="fa fa-comment fa-fw"></i>{{ notification.type  }}
                             <span class="pull-right text-muted small"><em>Il y'a 4 minutes</em>
                             </span>
                         </a>
-                        <a href="#" class="list-group-item">
+                        <!-- <a href="#" class="list-group-item">
                             <i class="fa fa-comment fa-fw"></i> Etat deposit
                             <span class="pull-right text-muted small"><em>Il y'a 4 minutes</em>
                             </span>
-                        </a>
+                        </a> -->
                     </div>
-                    <a href="#" class="btn btn-default btn-block"> Voir les Alerts</a>
+                    <!-- <a href="#" class="btn btn-default btn-block"> Voir les Alerts</a> -->
                 </div>
             </div>
         </div>
     </div>
     <div>
-        <div class="col-dm-12 col-sm-12">
+        <div class="col-dm-12 col-sm-12" >
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4><i class="fa fa-bar-chart-o fa-fw"></i> Montant total des transferts par service</h4>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" *ngIf="this.adminpdvDashboardMontantTransfertParservices">
                     <app-doughnut-chart 
-                        [doughnutChartLabels]="doughnutChartLabels" 
-                        [doughnutChartData]="doughnutChartData" 
+                        [doughnutChartLabels]="this.adminpdvDashboardMontantTransfertParservices.typeservice" 
+                        [doughnutChartData]="this.adminpdvDashboardMontantTransfertParservices.montanttotal" 
                     ></app-doughnut-chart>
-                    <a href="#" class="btn btn-default btn-block"> Details</a>
+                    <!-- <a href="#" class="btn btn-default btn-block"> Details</a> -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>
+
+
+
