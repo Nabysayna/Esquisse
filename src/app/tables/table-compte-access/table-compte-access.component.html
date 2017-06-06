@@ -19,13 +19,13 @@
 	                    </thead>
 
                         <tbody>
-                       		<tr *ngFor="let userPdv of userPdvList">
-                                <td>{{ userPdv.id  }}</td>
-                                <td>{{ userPdv.prenom  }} {{ userPdv.nom  }}</td>
+                       		<tr *ngFor="let userPdv of monitoringAdminpdvUserpdv; let i = index ">
+                                <td>{{ i + 1  }}</td>
+                                <td>{{ userPdv.fullname  }}</td>
                                 <td>{{ userPdv.email  }}</td>
                                 <td>{{ userPdv.adresse  }}</td>
                                 <td>{{ userPdv.telephone  }}</td>
-                                <td><a [routerLink]="['/accueiladmpdv', 'changer-acces-pdv', userPdv.id]" ><button type="button" class="btn btn-outline btn-warning">modifier password</button></a></td>
+                                <td><a [routerLink]="['/accueiladmpdv', 'changer-acces-pdv', userPdv.idpdv]" ><button type="button" class="btn btn-outline btn-warning">modifier password</button></a></td>
                             </tr>
                         </tbody>
                 	</table>
