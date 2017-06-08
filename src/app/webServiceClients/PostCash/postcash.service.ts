@@ -92,6 +92,40 @@ export class PostCashWebService {
     });     
   }
 
+  public detailfacturesenelec(police : string, num_facture : string): Promise<any>  {
+    var method:string = 'detailfacturesenelec';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, police: police, num_facture: num_facture} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['detailfacturesenelec xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'detailfacturesenelecResponse').then(response=>{
+        var reponse:any = JSON.parse(response['detailfacturesenelecResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
+  public achatneo(produit : string, montant : string, type : string): Promise<any>  {
+    var method:string = 'achatneo';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, produit: produit, montant: montant, type: type} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['achatneo xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'achatneoResponse').then(response=>{
+        var reponse:any = JSON.parse(response['achatneoResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
   public achatjula(mt_carte : string, nb_carte : string): Promise<any>  {
     var method:string = 'achatjula';
     var parameters:{}[] = [];
@@ -121,6 +155,28 @@ export class PostCashWebService {
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'achatcredittelephoniqueResponse').then(response=>{
         var reponse:any = JSON.parse(response['achatcredittelephoniqueResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
+  public cashtocashsend(tel_exp: string, nom_exp : string, prenom_exp : string, 
+    cni_exp : string, type_piece_exp : string, pays_exp : string, tel_rec : string, 
+    prenom_rec : string, nom_rec : string, montant : string): Promise<any>  {
+    var method:string = 'cashtocashsend';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, tel_exp: tel_exp, nom_exp: nom_exp, 
+      prenom_exp: prenom_exp, cni_exp: cni_exp, type_piece_exp: type_piece_exp, 
+      pays_exp: pays_exp, tel_rec: tel_rec, prenom_rec: prenom_rec, nom_rec: nom_rec, 
+      montant: montant} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['cashtocashsend xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'cashtocashsendResponse').then(response=>{
+        var reponse:any = JSON.parse(response['cashtocashsendResponse'].return.$);
         resolve(reponse) ;
       }); 
     });     

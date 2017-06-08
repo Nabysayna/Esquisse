@@ -19,6 +19,10 @@
                 </li>
                 <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Téléphonique</a>
                 </li>
+                <li><a href="#achatneo-pills" data-toggle="tab">Achat de Carte neosurf</a>
+                </li>
+                <li><a href="#cashtocashsend-pills" data-toggle="tab">Envoi du Cash</a>
+                </li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -61,18 +65,6 @@
                     </fieldset>
                     <form (ngSubmit)="validateachatjula()" #achatjula="ngForm" autocomplete="on">
 
-                        <!-- <input type="text" [(ngModel)]="this.noma" name="noma" id="noma"  class="form-control" placeholder="nom achéteur" required autofocus>
-
-                        <input type="text" [(ngModel)]="this.prenoma" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom achéteur" required >
-
-                        <input type="number" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone achéteur" required>
-
-                        <input type="text" [(ngModel)]="this.tca"   name="tca" id="tca" class="form-control" placeholder="type de carte" required>
-
-                        <input type="number" [(ngModel)]="this.nbc"   name="nbc" id="nbc" class="form-control" placeholder="nombre de carte" required>
-
-                        <input type="number" [(ngModel)]="this.mnt"   name="mnt" id="mnt" class="form-control" placeholder="montant à envoyer" required>
- -->
                         <input type="number" [(ngModel)]="this.nb_carte"   name="nbc" id="nbc" class="form-control" placeholder="nombre de carte" required>
 
                         <input type="number" [(ngModel)]="this.mt_carte"   name="mnt" id="mnt" class="form-control" placeholder="montant à envoyer" required>
@@ -89,15 +81,6 @@
         <h4>FORMULAIRE REGLEMENT SENELEC</h4>
     </fieldset>
     <form (ngSubmit)="validatereglementsenelec()" #reglementsenelec="ngForm" autocomplete="on">
-<!-- 
-        <input type="text" [(ngModel)]="this.refi" name="refi" id="refi"  class="form-control" placeholder="référence de la facture " required autofocus>
-
-        <input type="number" [(ngModel)]="this.mntf"   name="mntf" id="mntf" class="form-control" placeholder="montant à payer" required>
-
-        <input type="text" [(ngModel)]="this.nomp"   name="nomp" id="nomp" class="form-control" placeholder="nom client " required>
-        <input type="text" [(ngModel)]="this.prenomp"   name="prenomp" id="prenomp" class="form-control" placeholder="prénom client " required>
-
-        <input type="number" [(ngModel)]="this.teli"   name="teli" id="teli" class="form-control" placeholder="téléphone client " required> -->
 
         <input type="number" [(ngModel)]="this.police"   name="teli" id="teli" class="form-control" placeholder="police " required>
 
@@ -113,11 +96,6 @@
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="achatcodewoyofal-pills">
                     <h4>FORMULAIRE ACHAT CODE WOYOFAL</h4>
                     <form (ngSubmit)="validateachatcodewoyofal()" #achatcodewoyofal="ngForm" autocomplete="on">
-
-                        <!-- <input type="text" [(ngModel)]="this.nomc"   name="nomc" id="nomc" class="form-control" placeholder="nom client " required> -->
-                        <!-- <input type="text" [(ngModel)]="this.prenomc"   name="prenomc" id="prenomc" class="form-control" placeholder="prénom client " required> -->
-
-                        <!-- <input type="number" [(ngModel)]="this.telc"   name="telc" id="telc" class="form-control" placeholder="téléphone client " required> -->
 
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
 
@@ -135,12 +113,48 @@
                     </fieldset>
                     <form (ngSubmit)="validachatcredittelephonique()" #achatcredittelephoniq="ngForm" autocomplete="on">
 
-                        <input type="number" [(ngModel)]="this.telephone"   name="tels" id="tels" class="form-control" placeholder="numéro de téléphone" required>
+                        <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephone" class="form-control" placeholder="numéro de téléphone" required>
 
-                        <input type="number" [(ngModel)]="this.montant"   name="montantt" id="montantt" class="form-control" placeholder="montant" required>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!achatcredittelephoniq.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatcredittelephoniq.form.valid" >Annuler</button>
+
+
+                    </form>
+                </div>
+                <div class="tab-pane fade col-sm-6 col-xs-12" id="achatneo-pills">
+                    <fieldset>
+                        <h4>FORMULAIRE D'ACHAT CARTE NEOSURF</h4>
+                    </fieldset>
+                    <form (ngSubmit)="validateachatneo()" #achatneo="ngForm" autocomplete="on">
+
+                        <input type="text" [(ngModel)]="this.produit"   name="produit" id="produit" class="form-control" placeholder="produit" required>
+
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
+
+                        <input type="text" [(ngModel)]="this.type"   name="typet" id="typet" class="form-control" placeholder="type" required>
+
+                        <button type="submit" class="btn btn-success" [disabled]="!achatneo.form.valid">Acheter</button>
+                        <button type="reset" class="btn btn-danger" [disabled]="!achatneo.form.valid" >Annuler</button>
+
+
+                    </form>
+                </div>
+                <div class="tab-pane fade col-sm-6 col-xs-12" id="cashtocashsend-pills">
+                    <fieldset>
+                        <h4>FORMULAIRE D'ENVOI CASH</h4>
+                    </fieldset>
+                    <form (ngSubmit)="validatecashtocashsend()" #cashtocashsend="ngForm" autocomplete="on">
+
+                        <!-- <input type="text" [(ngModel)]="this.produit"   name="produit" id="produit" class="form-control" placeholder="produit" required>
+
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
+
+                        <input type="text" [(ngModel)]="this.type"   name="typet" id="typet" class="form-control" placeholder="type" required>
+ -->
+                        <button type="submit" class="btn btn-success" [disabled]="!cashtocashsend.form.valid">Acheter</button>
+                        <button type="reset" class="btn btn-danger" [disabled]="!cashtocashsend.form.valid" >Annuler</button>
 
 
                     </form>

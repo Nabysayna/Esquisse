@@ -1,14 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {ActivatedRoute, Params} from '@angular/router';
-import { Location }               from '@angular/common';
-import {RechargeEspeceService} from '../postcash/postservices';
-import {RechargeEspece} from '../postcash/postmodels';
-import {AchatCreditTelService} from '../postcash/postservices';
-import {AchatCreditTel} from '../postcash/postmodels';
-import {RetraitEspeceService} from '../postcash/postservices';
-import {RetraitEspece} from '../postcash/postmodels';
-import { PostCashServiceWeb } from '../webServiceClients/PostcashClient/Postcash.service';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { PostCashWebService } from '../webServiceClients/Postcash/postcash.service';
 
 
@@ -19,25 +10,6 @@ import { PostCashWebService } from '../webServiceClients/Postcash/postcash.servi
 })
 export class PostcashComponent implements OnInit {
     formvisible='';
-    noma:string;
-    prenoma:string;
-    tela:number;
-    tca:string;
-    nbc:number;
-    mnt:number;
-    teli : number;
-    refi : string;
-    mntf: number;
-    nomp:string;
-    prenomp:string;
-    telephon:number;
-    montan:number;
-    monts:number;
-    telc:number;
-    prenomc:string;
-    nomc:string;
-    montantt:number;
-    tels:number;
 
     telephone:number;
     montant:number;
@@ -48,42 +20,26 @@ export class PostcashComponent implements OnInit {
     numeroarecharger:number;
     num_facture: string;
     police: string;
-
-    
-    rechargeEspece:RechargeEspece;
-    achatCreditTel:AchatCreditTel;
-    retraitEspece:RetraitEspece;
-
-    loading = false ;
-
-
+    produit: string;
+    type: string;
+    tel_exp: string;
+    nom_exp: string;
+    prenom_exp: string;
+    cni_exp: string;
+    type_piece_exp: string;
+    pays_exp: string;
+    tel_rec: string;
+    prenom_rec: string;
+    nom_rec: string;
 
 
     constructor( 
-     private retraitEspeceService:RetraitEspeceService,
-     private achatCreditTelService:AchatCreditTelService,
-     private rechargeEspeceService: RechargeEspeceService,
-     private location: Location,
      private route:ActivatedRoute,
      private router: Router,
-     private postcashcaller: PostCashServiceWeb,
      private postcashwebservice: PostCashWebService
     ) { }
 
-  ngOnInit():void {
-    this.route.params.subscribe( (params : Params) => { 
-      this.rechargeEspece = this.rechargeEspeceService.getRechargeEspece(5);
-    });
-
-    this.route.params.subscribe( (params : Params) => { 
-      this.achatCreditTel = this.achatCreditTelService.getAchatCreditTel(5);
-    });
-
-    this.route.params.subscribe( (params : Params) => { 
-      this.retraitEspece = this.retraitEspeceService.getRetraitEspece(5);
-    });
-
-  }
+  ngOnInit():void { }
 
     validrechargementespece(){
       console.log(this.telephone+'-'+this.montant);
@@ -144,5 +100,29 @@ export class PostcashComponent implements OnInit {
         console.log(JSON.parse(postcashwebserviceList).response); 
       });
     }
+
+    validateachatneo(){
+      console.log(this.produit+'-'+this.montant+'-'+this.type);
+      this.postcashwebservice.achatneo(this.produit+'',this.montant+'',this.type+'').then(postcashwebserviceList => {
+        if(JSON.parse(postcashwebserviceList).response == "ok"){
+          this.router.navigate(['accueil/RECUS','aj']);
+        }
+        console.log(JSON.parse(postcashwebserviceList).response); 
+      });
+    }
+
+    validatecashtocashsend(){
+      console.log(this.tel_exp+'-'+this.nom_exp+'-'+this.prenom_exp+'-'+this.cni_exp+'-'+this.type_piece_exp+'-'+this.pays_exp+'-'+this.tel_rec+'-'+this.prenom_rec+'-'+this.nom_rec+'-'+this.montant);
+      // this.postcashwebservice.cashtocashsend(this.tel_exp+'',this.nom_exp+'',this.prenom_exp+''this.cni_exp+'',this.type_piece_exp+''this.pays_exp+'',this.tel_rec+''this.prenom_rec+'',this.nom_rec+''this.montant).then(postcashwebserviceList => {
+      //   if(JSON.parse(postcashwebserviceList).response == "ok"){
+      //     this.router.navigate(['accueil/RECUS','aj']);
+      //   }
+      //   console.log(JSON.parse(postcashwebserviceList).response); 
+      // });
+    }
+
+
+
+
 
 }
