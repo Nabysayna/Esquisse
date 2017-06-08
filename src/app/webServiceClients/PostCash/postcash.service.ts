@@ -12,6 +12,10 @@ export class PostCashWebService {
   public responseJso : any;
   public resp : string  ;  
   private soapService:SoapService;
+
+  private token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+
+
   
   constructor() {
         this.soapService = new SoapService(this.servicePort, this.servicePath, this.targetNamespace);
@@ -20,10 +24,10 @@ export class PostCashWebService {
         this.soapService.localNameMode = true;
    }
 
-  public rechargementespece(token : string, tel_destinataire : string, montant : string): Promise<any>  {
+  public rechargementespece(tel_destinataire : string, montant : string): Promise<any>  {
     var method:string = 'rechargementespece';
     var parameters:{}[] = [];
-    var reEspParams = {token:token, tel_destinataire: tel_destinataire, montant: montant} ;
+    var reEspParams = {token:this.token, tel_destinataire: tel_destinataire, montant: montant} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -37,10 +41,10 @@ export class PostCashWebService {
     });     
   }
 
-  public retraitespece(token : string, code_validation: string, tel_destinataire: string, montant : string): Promise<any>  {
+  public retraitespece(code_validation: string, tel_destinataire: string, montant : string): Promise<any>  {
     var method:string = 'retraitespece';
     var parameters:{}[] = [];
-    var reEspParams = {token:token, code_validation: code_validation, tel_destinataire: tel_destinataire, montant: montant} ;
+    var reEspParams = {token:this.token, code_validation: code_validation, tel_destinataire: tel_destinataire, montant: montant} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -54,10 +58,10 @@ export class PostCashWebService {
     });     
   }
 
-  public achatcodewoyofal(token : string, montant : string, compteur : string): Promise<any>  {
+  public achatcodewoyofal(montant : string, compteur : string): Promise<any>  {
     var method:string = 'achatcodewoyofal';
     var parameters:{}[] = [];
-    var reEspParams = {token:token, montant: montant, compteur: compteur} ;
+    var reEspParams = {token:this.token, montant: montant, compteur: compteur} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -71,10 +75,10 @@ export class PostCashWebService {
     });     
   }
 
-  public reglementsenelec(token : string, police : string, num_facture : string): Promise<any>  {
+  public reglementsenelec(police : string, num_facture : string): Promise<any>  {
     var method:string = 'reglementsenelec';
     var parameters:{}[] = [];
-    var reEspParams = {token:token, police: police, num_facture: num_facture} ;
+    var reEspParams = {token:this.token, police: police, num_facture: num_facture} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -88,10 +92,10 @@ export class PostCashWebService {
     });     
   }
 
-  public achatjula(token : string, mt_carte : string, nb_carte : string): Promise<any>  {
+  public achatjula(mt_carte : string, nb_carte : string): Promise<any>  {
     var method:string = 'achatjula';
     var parameters:{}[] = [];
-    var reEspParams = {token:token, mt_carte: mt_carte, nb_carte: nb_carte} ;
+    var reEspParams = {token:this.token, mt_carte: mt_carte, nb_carte: nb_carte} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -105,10 +109,10 @@ export class PostCashWebService {
     });     
   }
 
-  public achatcredittelephonique(token : string, numero_a_recharger : string, montant : string): Promise<any>  {
+  public achatcredittelephonique(numero_a_recharger : string, montant : string): Promise<any>  {
     var method:string = 'achatcredittelephonique';
     var parameters:{}[] = [];
-    var reEspParams = {token:token, numero_a_recharger: numero_a_recharger, montant: montant} ;
+    var reEspParams = {token:this.token, numero_a_recharger: numero_a_recharger, montant: montant} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 

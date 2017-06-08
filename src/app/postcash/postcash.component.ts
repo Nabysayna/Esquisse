@@ -30,22 +30,33 @@ export class PostcashComponent implements OnInit {
     mntf: number;
     nomp:string;
     prenomp:string;
-    telephone:number;
-    montant:number;
     telephon:number;
     montan:number;
     monts:number;
     telc:number;
     prenomc:string;
     nomc:string;
-    compteur:string;
     montantt:number;
     tels:number;
+
+    telephone:number;
+    montant:number;
+    compteur:string;
+    codevalidation:string;
+    mt_carte:number;
+    nb_carte:number;
+    numeroarecharger:number;
+    num_facture: string;
+    police: string;
 
     
     rechargeEspece:RechargeEspece;
     achatCreditTel:AchatCreditTel;
     retraitEspece:RetraitEspece;
+
+    loading = false ;
+
+
 
 
     constructor( 
@@ -72,32 +83,66 @@ export class PostcashComponent implements OnInit {
       this.retraitEspece = this.retraitEspeceService.getRetraitEspece(5);
     });
 
-    this.postcashwebservice.rechargementespece('assaneka','12','100000').then(postcashwebserviceList => 
-      console.log(postcashwebserviceList) 
-    );
-
-    this.postcashwebservice.achatcredittelephonique('assaneka','12','100000').then(postcashwebserviceList => 
-      console.log(postcashwebserviceList) 
-    );
-
   }
 
     validrechargementespece(){
-
+      console.log(this.telephone+'-'+this.montant);
+      this.postcashwebservice.rechargementespece(this.telephone+'',''+this.montant).then(postcashwebserviceList => {
+        if(JSON.parse(postcashwebserviceList).response == "ok"){
+          this.router.navigate(['accueil/RECUS','aj']);
+        }
+        console.log(JSON.parse(postcashwebserviceList).response);
+      });
     }
 
-    validateRetraitEspece(){}
-
-    validAchatJula(){
-        this.router.navigate(['accueil/RECUS','aj']);
+    validateretraitespece(){
+      console.log(this.codevalidation+'-'+this.telephone+'-'+this.montant);
+      this.postcashwebservice.retraitespece(this.codevalidation+'',this.telephone+'',''+this.montant).then(postcashwebserviceList => {
+        if(JSON.parse(postcashwebserviceList).response == "ok"){
+          this.router.navigate(['accueil/RECUS','aj']);
+        }
+        console.log(JSON.parse(postcashwebserviceList).response);
+      });
     }
 
-    validateReglementSenelec(){
-        this.router.navigate(['accueil/RECUS','rgs']);
+    validateachatcodewoyofal(){
+      console.log(this.montant+'-'+this.compteur);
+      this.postcashwebservice.achatcodewoyofal(this.montant+'',this.compteur+'').then(postcashwebserviceList => {
+        if(JSON.parse(postcashwebserviceList).response == "ok"){
+          this.router.navigate(['accueil/RECUS','aj']);
+        }
+        console.log(JSON.parse(postcashwebserviceList).response);
+      });
     }
 
-    validachatcodewoyofal(){this.router.navigate(['accueil/RECUS','acw']);}
+    validatereglementsenelec(){
+      console.log(this.police+'-'+this.num_facture);
+      this.postcashwebservice.reglementsenelec(this.police+'',this.num_facture).then(postcashwebserviceList => {
+        if(JSON.parse(postcashwebserviceList).response == "ok"){
+          this.router.navigate(['accueil/RECUS','aj']);
+        }
+        console.log(JSON.parse(postcashwebserviceList).response);
+      });
+    }
 
-    validachatcredittelephonique(){}
+    validateachatjula(){
+      console.log(this.mt_carte+'-'+this.nb_carte);
+      this.postcashwebservice.achatjula(this.mt_carte+'',this.nb_carte+'').then(postcashwebserviceList => {
+        if(JSON.parse(postcashwebserviceList).response == "ok"){
+          this.router.navigate(['accueil/RECUS','aj']);
+        }
+        console.log(JSON.parse(postcashwebserviceList).response);
+      });
+    }
+
+    validachatcredittelephonique(){
+      console.log(this.telephone+'-'+this.montant);
+      this.postcashwebservice.achatcredittelephonique(this.telephone+'',this.montant+'').then(postcashwebserviceList => {
+        if(JSON.parse(postcashwebserviceList).response == "ok"){
+          this.router.navigate(['accueil/RECUS','aj']);
+        }
+        console.log(JSON.parse(postcashwebserviceList).response); 
+      });
+    }
 
 }

@@ -41,11 +41,13 @@
                     <fieldset>
                         <h4>FORMULAIRE RETRAIT ESPECE</h4>
                     </fieldset>
-                    <form (ngSubmit)="retraitespece()" #retraitespece="ngForm" autocomplete="on">
+                    <form (ngSubmit)="validateretraitespece()" #retraitespece="ngForm" autocomplete="on">
 
-                        <input type="number" [(ngModel)]="this.telephon"   name="telephon" id="telephon" class="form-control" placeholder="téléphone client" required>
+                        <input type="text" [(ngModel)]="this.codevalidation"   name="codevalidation" id="codevalidation" class="form-control" placeholder="codevalidation client" required>
+                        
+                        <input type="number" [(ngModel)]="this.telephone"   name="telephon" id="telephon" class="form-control" placeholder="téléphone client" required>
 
-                        <input type="number" [(ngModel)]="this.montan"   name="montan" id="montan" class="form-control" placeholder="montant à retirer" required>
+                        <input type="number" [(ngModel)]="this.montant"   name="montan" id="montan" class="form-control" placeholder="montant à retirer" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!retraitespece.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!retraitespece.form.valid" >Annuler</button>
@@ -57,9 +59,9 @@
                     <fieldset>
                         <h4>FORMULAIRE D'ACHAT JULA</h4>
                     </fieldset>
-                    <form (ngSubmit)="validAchatJula()" #achatjula="ngForm" autocomplete="on">
+                    <form (ngSubmit)="validateachatjula()" #achatjula="ngForm" autocomplete="on">
 
-                        <input type="text" [(ngModel)]="this.noma" name="noma" id="noma"  class="form-control" placeholder="nom achéteur" required autofocus>
+                        <!-- <input type="text" [(ngModel)]="this.noma" name="noma" id="noma"  class="form-control" placeholder="nom achéteur" required autofocus>
 
                         <input type="text" [(ngModel)]="this.prenoma" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom achéteur" required >
 
@@ -70,6 +72,10 @@
                         <input type="number" [(ngModel)]="this.nbc"   name="nbc" id="nbc" class="form-control" placeholder="nombre de carte" required>
 
                         <input type="number" [(ngModel)]="this.mnt"   name="mnt" id="mnt" class="form-control" placeholder="montant à envoyer" required>
+ -->
+                        <input type="number" [(ngModel)]="this.nb_carte"   name="nbc" id="nbc" class="form-control" placeholder="nombre de carte" required>
+
+                        <input type="number" [(ngModel)]="this.mt_carte"   name="mnt" id="mnt" class="form-control" placeholder="montant à envoyer" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!achatjula.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatjula.form.valid" >Annuler</button>
@@ -82,8 +88,8 @@
     <fieldset>
         <h4>FORMULAIRE REGLEMENT SENELEC</h4>
     </fieldset>
-    <form (ngSubmit)="validateReglementSenelec()" #reglementsenelec="ngForm" autocomplete="on">
-
+    <form (ngSubmit)="validatereglementsenelec()" #reglementsenelec="ngForm" autocomplete="on">
+<!-- 
         <input type="text" [(ngModel)]="this.refi" name="refi" id="refi"  class="form-control" placeholder="référence de la facture " required autofocus>
 
         <input type="number" [(ngModel)]="this.mntf"   name="mntf" id="mntf" class="form-control" placeholder="montant à payer" required>
@@ -91,7 +97,11 @@
         <input type="text" [(ngModel)]="this.nomp"   name="nomp" id="nomp" class="form-control" placeholder="nom client " required>
         <input type="text" [(ngModel)]="this.prenomp"   name="prenomp" id="prenomp" class="form-control" placeholder="prénom client " required>
 
-        <input type="number" [(ngModel)]="this.teli"   name="teli" id="teli" class="form-control" placeholder="téléphone client " required>
+        <input type="number" [(ngModel)]="this.teli"   name="teli" id="teli" class="form-control" placeholder="téléphone client " required> -->
+
+        <input type="number" [(ngModel)]="this.police"   name="teli" id="teli" class="form-control" placeholder="police " required>
+
+        <input type="number" [(ngModel)]="this.num_facture"   name="teli" id="teli" class="form-control" placeholder="numéro facture " required>
 
         <br><button class="btn btn-success" type="submit" [disabled]="!reglementsenelec.form.valid" >
         Envoyer</button>
@@ -102,14 +112,14 @@
 </div>
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="achatcodewoyofal-pills">
                     <h4>FORMULAIRE ACHAT CODE WOYOFAL</h4>
-                    <form (ngSubmit)="validachatcodewoyofal()" #achatcodewoyofal="ngForm" autocomplete="on">
+                    <form (ngSubmit)="validateachatcodewoyofal()" #achatcodewoyofal="ngForm" autocomplete="on">
 
-                        <input type="text" [(ngModel)]="this.nomc"   name="nomc" id="nomc" class="form-control" placeholder="nom client " required>
-                        <input type="text" [(ngModel)]="this.prenomc"   name="prenomc" id="prenomc" class="form-control" placeholder="prénom client " required>
+                        <!-- <input type="text" [(ngModel)]="this.nomc"   name="nomc" id="nomc" class="form-control" placeholder="nom client " required> -->
+                        <!-- <input type="text" [(ngModel)]="this.prenomc"   name="prenomc" id="prenomc" class="form-control" placeholder="prénom client " required> -->
 
-                        <input type="number" [(ngModel)]="this.telc"   name="telc" id="telc" class="form-control" placeholder="téléphone client " required>
+                        <!-- <input type="number" [(ngModel)]="this.telc"   name="telc" id="telc" class="form-control" placeholder="téléphone client " required> -->
 
-                        <input type="number" [(ngModel)]="this.monts"   name="monts" id="monts" class="form-control" placeholder="montant" required>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
 
                         <input type="text" [(ngModel)]="this.compteur"   name="compteur" id="compteur" class="form-control" placeholder="compteur " required>
 
@@ -125,9 +135,9 @@
                     </fieldset>
                     <form (ngSubmit)="validachatcredittelephonique()" #achatcredittelephoniq="ngForm" autocomplete="on">
 
-                        <input type="number" [(ngModel)]="this.tels"   name="tels" id="tels" class="form-control" placeholder="téléphone achéteur" required>
+                        <input type="number" [(ngModel)]="this.telephone"   name="tels" id="tels" class="form-control" placeholder="numéro de téléphone" required>
 
-                        <input type="number" [(ngModel)]="this.montantt"   name="montantt" id="montantt" class="form-control" placeholder="montant" required>
+                        <input type="number" [(ngModel)]="this.montant"   name="montantt" id="montantt" class="form-control" placeholder="montant" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!achatcredittelephoniq.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatcredittelephoniq.form.valid" >Annuler</button>
