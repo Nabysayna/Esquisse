@@ -9,6 +9,7 @@ import {AchatCreditTel} from '../postcash/postmodels';
 import {RetraitEspeceService} from '../postcash/postservices';
 import {RetraitEspece} from '../postcash/postmodels';
 import { PostCashServiceWeb } from '../webServiceClients/PostcashClient/Postcash.service';
+import { PostCashWebService } from '../webServiceClients/Postcash/postcash.service';
 
 
 @Component({
@@ -48,13 +49,15 @@ export class PostcashComponent implements OnInit {
 
 
     constructor( 
-         private retraitEspeceService:RetraitEspeceService,
-         private achatCreditTelService:AchatCreditTelService,
-         private rechargeEspeceService: RechargeEspeceService,
-         private location: Location,
-         private route:ActivatedRoute,
-         private router: Router,
-         private postcashcaller: PostCashServiceWeb) { }
+     private retraitEspeceService:RetraitEspeceService,
+     private achatCreditTelService:AchatCreditTelService,
+     private rechargeEspeceService: RechargeEspeceService,
+     private location: Location,
+     private route:ActivatedRoute,
+     private router: Router,
+     private postcashcaller: PostCashServiceWeb,
+     private postcashwebservice: PostCashWebService
+    ) { }
 
   ngOnInit():void {
     this.route.params.subscribe( (params : Params) => { 
@@ -68,6 +71,15 @@ export class PostcashComponent implements OnInit {
     this.route.params.subscribe( (params : Params) => { 
       this.retraitEspece = this.retraitEspeceService.getRetraitEspece(5);
     });
+
+    this.postcashwebservice.rechargementespece('assaneka','12','100000').then(postcashwebserviceList => 
+      console.log(postcashwebserviceList) 
+    );
+
+    this.postcashwebservice.achatcredittelephonique('assaneka','12','100000').then(postcashwebserviceList => 
+      console.log(postcashwebserviceList) 
+    );
+
   }
 
     validrechargementespece(){
