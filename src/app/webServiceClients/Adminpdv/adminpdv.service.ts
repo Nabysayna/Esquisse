@@ -15,7 +15,7 @@ import { AdminpdvUserpdv }    from '../../models/adminpdv-userpdv';
 @Injectable()
 export class AdminpdvServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 

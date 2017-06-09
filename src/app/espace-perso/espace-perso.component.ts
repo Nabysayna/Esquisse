@@ -101,7 +101,7 @@ export class EspacePersoComponent implements OnInit {
  uploadFile: any;
   hasBaseDropZoneOver: boolean = false;
   options: Object = {
-    url: 'http://localhost/EsquisseBackEnd/web/server-backend-upload/index.php?nomImage=justForTheFun'
+    url: 'http://localhost:8888/EsquisseBackEnd/web/server-backend-upload/index.php?nomImage=justForTheFun'
   };
   sizeLimit = 2000000;
 
