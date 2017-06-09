@@ -30,6 +30,17 @@ export class TntComponent implements OnInit {
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
 
+  prenomNewClient : string ; 
+  nomNewClient: string ;
+  telNewClient: string ;
+  adresseNewClient: string ;
+  regionNewClient: string ; 
+  ncniNewClient: string ; 
+  nchipNewClient: string ;
+  ncarteNewClient: string ; 
+  nbmNewClient: number; 
+  tbouquetNewClient : string ;
+
 	formvisible='';
 	noma:string;
 	prenoma:string;
@@ -113,7 +124,8 @@ export class TntComponent implements OnInit {
    this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela, this.singleTntWS.adresse, this.singleTntWS.region, this.singleTntWS.city, this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
       {
         if(response=="ok"){
-        location.reload() ;
+         this.verifierNumValide = false ;
+         this.loading = false ; 
         }
 
       });      
@@ -129,7 +141,88 @@ export class TntComponent implements OnInit {
           this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
         }) ;  
-}
+  }
+
+  listerVenteDeco(){
+      this.loading = true ;
+
+      this.tntCaller.listeVenteDecods(this.token).then( response =>
+        {
+          this.retourTntWS = response ;
+          this.loading = false ;
+          //console.log("response "+this.retourTntWS) ;
+        }) ;  
+  }
+
+  listerVenteCarte(){
+      this.loading = true ;
+
+      this.tntCaller.listerVenteCartes(this.token).then( response =>
+        {
+          this.retourTntWS = response ;
+          this.loading = false ;
+          //console.log("response "+this.retourTntWS) ;
+        }) ;  
+  }
+
+
+
+  vendreDecodeur(){ 
+    this.loading = true ; 
+    var typedebouquet : number ;
+    var prix:number ;
+    if(this.tbouquetNewClient == "Maanaa"){
+      typedebouquet=1;
+      prix = 3000*this.nbmNewClient ;
+    }
+    if(this.tbouquetNewClient == "Boul Khool"){
+      typedebouquet=2;
+      prix = 5000*this.nbmNewClient ;
+    }
+    if(this.tbouquetNewClient == "Maanaa + Boul Khool"){
+      typedebouquet=3;  
+      prix = 8000*this.nbmNewClient ; 
+    }
+
+   this.tntCaller.vendreDecodeur(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.nchipNewClient, this.ncarteNewClient, this.nbmNewClient, typedebouquet, prix).then( response =>
+      {
+        if(response=="ok"){
+          this.reinitialiserVariables() ;
+          this.loading = false ; 
+        }
+
+      });      
+  }
+
+  vendreCarte(){ 
+     this.loading = true ; 
+
+     this.tntCaller.vendreCarte(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.ncarteNewClient, 5000).then( response =>
+        {
+          if(response=="ok"){
+            this.reinitialiserVariables() ;
+            this.loading = false ; 
+          }
+
+        });      
+  }
+
+
+
+  reinitialiserVariables(){
+      this.verifierNumValide = false ;
+      this.prenomNewClient ="" ; 
+      this.nomNewClient="" ;
+      this.telNewClient="" ;
+      this.adresseNewClient="" ;
+      this.regionNewClient="" ; 
+      this.ncniNewClient="" ; 
+      this.nchipNewClient="" ;
+      this.ncarteNewClient="" ; 
+      this.nbmNewClient=0; 
+      this.tbouquetNewClient="" ;
+  }
+
 
 }
 

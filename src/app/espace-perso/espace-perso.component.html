@@ -22,26 +22,32 @@
 	<div class="tab-content">
 
 		<div class="row tab-pane fade in active" id="articles">
+		<input type="search" class="form-control input-sm" 
+	  	   [(ngModel)]="this.filtre"
+	       [typeahead]="this.listarticles"
+	       typeaheadOptionField="designation"
+	       typeaheadGroupField="prix"
+	        placeholder="Rechercher" aria-controls="dataTables-example">
+
 		    <tbody>
-		    <tr *ngFor="let ligneArticle of articles" >
+		    <tr *ngFor="let ligneArticle of filtrerCatalogue()" >
 		        <td *ngFor="let article of ligneArticle">
 		        <div class="card" style="width: 20rem;">
-				  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+				  <img class="card-img-top" src="http://localhost/EsquisseBackEnd/web/img/{{article.nomImg}}.jpg"  alt="Card image cap" width="200" height="200">
 				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
 				       [options]="this.options"
 				       (onUpload)="handleUpload($event)"
-				       (beforeUpload)="beforeUpload($event)" src="http://localhost:8888/EsquisseBackEnd/web/img/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+				       (beforeUpload)="beforeUpload($event)" src="http://localhost/EsquisseBackEnd/web/img/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
 			   <div class="card-block">
 				    <h4 class="card-title">{{article.designation}}</h4>
 				    <input type="text" *ngIf="this.modif==article.nomImg" [(ngModel)]="article.designation">
 				    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
 				    <input type="number" *ngIf="this.modif==article.nomImg" [(ngModel)]="article.prix">
 
-				    <button  class="btn btn-success" *ngIf="this.modifart"  type="button"(click)="modifArticle(article)">Modifier</button>
-				    <button  class="btn btn-success" *ngIf="!this.modifart" type="button"(click)="enregArticle()">Enregistrer</button>
-				    <button  class="btn btn-danger" type="button" *ngIf="this.modifart" (click)="deleteArticle(article)" >Supprimer </button>
-
-				    <button  class="btn btn-danger" type="button" *ngIf="!this.modifart" (click)="annulArticle()" >Annuler </button>
+				    <button  class="btn btn-success" *ngIf="this.modifart!='record'+article.nomImg"  type="button"(click)="modifArticle(article)">Modifier</button>
+				    <button  class="btn btn-success" *ngIf="this.modifart=='record'+article.nomImg" type="button"(click)="enregArticle()">Enregistrer</button>
+				    <button  class="btn btn-danger" type="button" *ngIf="this.modifart!='record'+article.nomImg" (click)="deleteArticle(article)" >Supprimer </button>
+				    <button  class="btn btn-danger" type="button" *ngIf="this.modifart=='record'+article.nomImg" (click)="annulArticle()" >Annuler </button>
 
 				  </div>
 				</div>

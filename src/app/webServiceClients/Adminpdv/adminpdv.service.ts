@@ -10,12 +10,12 @@ import { AdminpdvConsommationDepositPdv }    from '../../models/adminpdv-cdpdv';
 import { AdminpdvRecouvrement }    from '../../models/adminpdv-recouvrement';
 import { AdminpdvReclamation }    from '../../models/adminpdv-reclamation';
 import { AdminpdvUserpdv }    from '../../models/adminpdv-userpdv';
-
+ 
 
 @Injectable()
 export class AdminpdvServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 

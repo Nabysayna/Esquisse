@@ -29,7 +29,7 @@ export class TntResponse{
 @Injectable()
 export class TntServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl' ;
   private targetNamespace:string = 'urn:tntwsdl' ;
 
@@ -42,7 +42,7 @@ export class TntServiceWeb {
   constructor() {
         this.soapService = new SoapService(this.servicePort, this.servicePath, this.targetNamespace);
         this.soapService.envelopeBuilder = this.envelopeBuilder;
-        this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso =response ; };
+        this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
         this.soapService.localNameMode = true;
   }
 
@@ -65,6 +65,48 @@ export class TntServiceWeb {
         }); 
       });      
   }
+
+
+  public listeVenteDecods(token : string) : Promise<{}[]> {
+
+      var method:string = 'listdecodeur'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = {token:token} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listdecodeur xmlns="urn:tntwsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'listdecodeurResponse').then(response=>{
+          this.responseJsoFWS = JSON.parse(response['listdecodeurResponse'].return.$);
+          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
+          resolve(this.responseJsoFWS) ;
+        }); 
+      });      
+  }
+
+  public listerVenteCartes(token : string) : Promise<{}[]> {
+
+      var method:string = 'listcarte'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = {token:token} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listcarte xmlns="urn:tntwsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'listcarteResponse').then(response=>{
+          this.responseJsoFWS = JSON.parse(response['listcarteResponse'].return.$);
+          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
+          resolve(this.responseJsoFWS) ;
+        }); 
+      });      
+  }
+
 
   public checkNumber(token : string, chipOrCardNum: string) : Promise<TntResponse> {
 
@@ -111,6 +153,48 @@ export class TntServiceWeb {
         parameters['ajoutabonnement xmlns="urn:tntwsdl#"'] = params ;
         this.soapService.post(method, parameters, 'ajoutabonnementResponse').then(response=>{
           var reponse : string = JSON.parse(response['ajoutabonnementResponse'].return.$).response;
+          //console.log("reponse brute  "+reponse ) ;
+          resolve(reponse) ;
+        }); 
+      });      
+  }
+
+
+  public vendreDecodeur(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, ncniNewClient, nchipNewClient, ncarteNewClient, nbmNewClient, typedebouquet, prix) : Promise<string> {
+
+      var method:string = 'ventedecodeur'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:ncniNewClient, numerochip:nchipNewClient, numerocarte:ncarteNewClient, typedebouquet:typedebouquet, prix:prix} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      console.log("Parameters de la vente : "+JSON.stringify(params["params"])) ;
+      return new Promise( (resolve, reject) => {
+        parameters['ventedecodeur xmlns="urn:tntwsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'ventedecodeurResponse').then(response=>{
+          var reponse : string = response['ventedecodeurResponse'].return.$;
+          //console.log("reponse brute  "+reponse ) ;
+          resolve(reponse) ;
+        }); 
+      });      
+  }
+
+
+  public vendreCarte(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, ncniNewClient, ncarteNewClient, prix) : Promise<string> {
+
+      var method:string = 'ventecarte'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:ncniNewClient, numerocarte:ncarteNewClient, prix:prix} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      console.log("Parameters de la vente : "+JSON.stringify(params["params"])) ;
+      return new Promise( (resolve, reject) => {
+        parameters['ventecarte xmlns="urn:tntwsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'ventecarteResponse').then(response=>{
+          var reponse : string = response['ventecarteResponse'].return.$;
           //console.log("reponse brute  "+reponse ) ;
           resolve(reponse) ;
         }); 

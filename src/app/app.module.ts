@@ -4,6 +4,8 @@ import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
+import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
+import {DataTableModule} from "angular2-datatable";
 
 
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
@@ -86,6 +88,12 @@ import { TntComponent, DataToArray } from './tnt/tnt.component';
 import { SoapserverComponent } from './soapserver/soapserver.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { EspacePersoComponent } from './espace-perso/espace-perso.component';
+import { CommercialComponent } from './commercial/commercial.component';
+import { AgentComponent } from './agent/agent.component';
+import { RecouvreurComponent } from './recouvreur/recouvreur.component';
+import { CoursierComponent } from './coursier/coursier.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +137,13 @@ import { EspacePersoComponent } from './espace-perso/espace-perso.component';
     SoapserverComponent,
     CatalogueComponent,
     EspacePersoComponent,
-    LoaderComponent
+    LoaderComponent,
+    CommercialComponent,
+    AgentComponent,
+    RecouvreurComponent,
+    CoursierComponent,
+    ManagerComponent,
+    ComptabiliteComponent
   ],
   imports: [
     BrowserModule,
@@ -137,11 +151,13 @@ import { EspacePersoComponent } from './espace-perso/espace-perso.component';
     HttpModule,
     Ng2UploaderModule,
     Routing,
+    DataTableModule,
     ChartsModule,
     LoadersCssModule,
     TabsModule.forRoot(),
     CollapseModule.forRoot(),
-    ProgressbarModule.forRoot()
+    ProgressbarModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [
       EFinancierService,

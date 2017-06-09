@@ -7,12 +7,18 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
             <!-- Nav tabs -->  
-            <ul class="nav nav-pills">
+            <ul class="nav nav-pills" id="tnt-options">
                 <li class="active"><a href="#home-pills" data-toggle="tab">Nouvel Abonnement</a>
                 </li>
-                <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="listerAbonnements()">Liste Abonnement </a>
+                <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="listerAbonnements()">Liste Abonnements </a>
                 </li>
-                <li><a href="#vente-decodeur" data-toggle="tab">Vente décodeur</a>
+                <li><a href="#vente-decodeur" id="vdec" data-toggle="tab">Vente Décodeur</a>
+                </li>
+                <li><a href="#vente-carte" id="vcart" data-toggle="tab">Vente Carte</a>
+                </li>
+                <li><a href="#vente-deco-liste" id="vdecolist" data-toggle="tab" (click)="listerVenteDeco()">Liste Vente Décodeur</a>
+                </li>
+                <li><a href="#vente-carte-liste" id="vcartlist" data-toggle="tab" (click)="listerVenteCarte()">Liste Vente Carte</a>
                 </li>
                 
             </ul>
@@ -21,7 +27,8 @@
             <div class="tab-content">
                 <div class="tab-pane fade col-sm-6 col-xs-12 in active" id="home-pills">
                     <div class="row" *ngIf="this.verifierNumInputValide" >
-                        <form (ngSubmit)="validVerifierNum()" #verifiernum="ngForm" autocomplete="on">
+                        <form (ngSubmit)="validVerifierNum()" #verifiernum="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                            <label for="verifiernuminput">Numéro du chip ou de la carte</label>
                             <div class="col-md-8">
                                 <input type="text" [(ngModel)]="this.verifierNumInput" name="verifiernuminput" id="verifiernuminput"  class="form-control" placeholder="Numéro du chip ou de la carte" required autofocus>
                             </div>
@@ -32,25 +39,32 @@
                     </div>
 
                     <div class="row" *ngIf="this.verifierNumValide" >
-                        <fieldset>
+                        <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                             <h4>FORMULAIRE NOUVEL ABONNEMENT</h4>
                         </fieldset>
                         <form (ngSubmit)="validnabon()" #nabon="ngForm" autocomplete="on">
 
+                            <label for="noma">Nom client</label>
                             <input type="text" [(ngModel)]="this.noma" name="noma" id="noma"  class="form-control" placeholder="nom client" required autofocus>
 
+                            <label for="prenoma">Prénom client</label>
                             <input type="text" [(ngModel)]="this.prenoma" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom client" required >
 
+                            <label for="tela">Téléphone client</label>
                             <input type="text" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
 
+                            <label for="nchip">Numéro chip</label>
                             <input type="text" [(ngModel)]="this.nchip"   name="nchip" id="nchip" class="form-control" placeholder="numéro chip" required>
                             
+                            <label for="ncarte">Numéro carte</label>
                             <input type="text" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte" required>
 
                      
+                            <label for="nbm">Nombre de mois</label>
                             <input type="number" [(ngModel)]="this.nbm"   name="nbm" id="nbm" class="form-control" placeholder="nombre de mois" required>
 
 
+                            <label for="tbouquet">Type de bouquet</label>
                             <input type="text" [(ngModel)]="this.tbouquet"   name="tbouquet" id="tbouquet" class="form-control" placeholder="type de bouquet" required>
 
                             <button type="submit" class="btn btn-success" [disabled]="!nabon.form.valid">Abonner</button>
@@ -62,20 +76,21 @@
                 </div>
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
 
-                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <select name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="dataTables-example_filter"><label>Search:<input class="form-control input-sm" aria-controls="dataTables-example" type="search" placeholder=""></label></div></div></div><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-12">
+                 <table width="100%" class="table table-responsive table-striped" [mfData]="this.retourTntWS" #mf="mfDataTable" [mfRowsOnPage]="5" style="width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th>Prénom</th>
-                                    <th>Nom</th>
-                                    <th>Téléphone</th>
-                                    <th>N_Chip</th>
-                                    <th>N_Carte</th>
-                                    <th>Date Abonnement</th>
-                                    <th>Durée</th>
-                                    <th>Type Bouquet</th>
-                                    <th>Montant</th>
-                                    <th>Etat Activation</th>
-                                   <th>Date Activation</th>
+                                    <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="n_chip">N_Chip</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="n_carte">N_Carte</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="date_abonnement">Date Abonnement</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="etat">Etat Activation</mfDefaultSorter></th>
+                                   <th><mfDefaultSorter by="date_activation">Date Activation</mfDefaultSorter></th>
                                    
                                 </tr>
                                 </thead>
@@ -95,38 +110,126 @@
 
                                 </tr>
                                 </tbody>
-                            </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
-                     
-                
-                
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                            </div></div></div> 
                 </div>
 
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-decodeur">
                            
                     <fieldset>
-                        <h4>FORMULAIRE NOUVEAU DECODEUR</h4>
+                        <h4>DECODEUR</h4>
                     </fieldset>
                     <form autocomplete="on">
 
-                        <input type="text" name="noma" id="noma"  class="form-control" placeholder="nom client" required autofocus>
+                        <input type="text" name="nomNewClient" [(ngModel)]="this.nomNewClient"  class="form-control" placeholder="nom client" required autofocus>
 
-                        <input type="text" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom client" required >
+                        <input type="text" name="prenomNewClient" [(ngModel)]="this.prenomNewClient"  class="form-control" placeholder="prénom client" required >
 
-                        <input type="text" name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
+                        <input type="text" name="telNewClient" [(ngModel)]="this.telNewClient" class="form-control" placeholder="téléphone client" required>
+                        <input type="text" name="adresseNewClient" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required>
+                        <input type="text" name="regionNewClient" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="Région" required>
 
-                        <input type="text" name="nchip" id="nchip" class="form-control" placeholder="numéro chip" required>
+                        <input type="text" name="ncniNewClient" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CI" required>
 
-                        <input type="text" name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte" required>
+                        <input type="text" name="nchipNewClient" [(ngModel)]="this.nchipNewClient" class="form-control" placeholder="Numèro chip" required>
+
+                        <input type="text" name="ncarteNewClient" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
                  
-                        <input type="number" name="nbm" id="nbm" class="form-control" placeholder="nombre de mois" required>
+                        <input type="number" name="nbmNewClient" [(ngModel)]="this.nbmNewClient" class="form-control" placeholder="Nombre de mois" required>
 
-                        <input type="text" name="tbouquet" id="tbouquet" class="form-control" placeholder="type de bouquet" required>
+                        <input type="text" name="tbouquetNewClient" [(ngModel)]="this.tbouquetNewClient" class="form-control" placeholder="type de bouquet" required>
 
-                        <button type="submit" class="btn btn-success" >Ajouter</button>
-                        <button type="reset" class="btn btn-danger" >Annuler</button>
 
+                        <button type="submit" class="btn btn-success" (click)="vendreDecodeur()">Valider</button>
+<!--                         <button type="reset" class="btn btn-danger" >Annuler</button>
+ -->
                     </form>
+                </div>
+                <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-carte">
+                           
+                    <fieldset>
+                        <h4>CARTE</h4>
+                    </fieldset>
+                        <input type="text" name="nomNewClient" [(ngModel)]="this.nomNewClient"  class="form-control" placeholder="nom client" required autofocus>
+
+                        <input type="text" name="prenomNewClient" [(ngModel)]="this.prenomNewClient"  class="form-control" placeholder="prénom client" required >
+
+                        <input type="text" name="telNewClient" [(ngModel)]="this.telNewClient" class="form-control" placeholder="téléphone client" required>
+                        <input type="text" name="adresseNewClient" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required>
+                        <input type="text" name="regionNewClient" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="Région" required>
+
+                        <input type="text" name="ncniNewClient" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CI" required>
+
+                        <input type="text" name="ncarteNewClient" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
+
+
+                        <button type="submit" class="btn btn-success" (click)="vendreCarte()">Valider</button>
+                </div>
+
+                <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-deco-liste">
+
+                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>Téléphone</th>
+                                    <th>N_Chip</th>
+                                    <th>N_Carte</th>
+                                    <th>Durée</th>
+                                    <th>Type Bouquet</th>
+                                    <th>Montant</th>                                   
+                                </tr>
+                                </thead>
+                                <tbody *ngIf="this.retourTntWS">
+                                <tr *ngFor="let abonnement of this.retourTntWS">
+                                    <td>{{abonnement.prenom}}</td>
+                                    <td>{{abonnement.nom}}</td>
+                                    <td>{{abonnement.tel}}</td>
+                                    <td>{{abonnement.n_chip}}</td>
+                                    <td>{{abonnement.n_carte}}</td>
+                                    <td>{{abonnement.duree}}</td>
+                                    <td>{{abonnement.id_typeabonnement}}</td>
+                                    <td>{{abonnement.montant}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div></div></div> 
+                </div>
+
+                <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-carte-liste">
+
+                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>Téléphone</th>
+                                    <th>N_Carte</th>
+                                    <th>Montant</th>
+                                   
+                                </tr>
+                                </thead>
+                                <tbody *ngIf="this.retourTntWS">
+                                <tr *ngFor="let abonnement of this.retourTntWS">
+                                    <td>{{abonnement.prenom}}</td>
+                                    <td>{{abonnement.nom}}</td>
+                                    <td>{{abonnement.tel}}</td>
+                                    <td>{{abonnement.n_carte}}</td>
+                                    <td>{{abonnement.montant}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div></div></div> 
                 </div>
 
             </div>
