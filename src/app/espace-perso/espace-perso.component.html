@@ -45,7 +45,7 @@
 				    <input type="number" *ngIf="this.modif==article.nomImg" [(ngModel)]="article.prix">
 
 				    <button  class="btn btn-success" *ngIf="this.modifart!='record'+article.nomImg"  type="button"(click)="modifArticle(article)">Modifier</button>
-				    <button  class="btn btn-success" *ngIf="this.modifart=='record'+article.nomImg" type="button"(click)="enregArticle()">Enregistrer</button>
+				    <button  class="btn btn-success" *ngIf="this.modifart=='record'+article.nomImg" type="button"(click)="enregArticle(article)">Enregistrer</button>
 				    <button  class="btn btn-danger" type="button" *ngIf="this.modifart!='record'+article.nomImg" (click)="deleteArticle(article)" >Supprimer </button>
 				    <button  class="btn btn-danger" type="button" *ngIf="this.modifart=='record'+article.nomImg" (click)="annulArticle()" >Annuler </button>
 

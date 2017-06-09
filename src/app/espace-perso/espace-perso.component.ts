@@ -1,4 +1,6 @@
 import { Component, OnInit} from '@angular/core';
+import * as sha1 from 'js-sha1';
+
 
 export class Article {
 	
@@ -23,6 +25,8 @@ export class EspacePersoComponent implements OnInit {
 
   listarticles = [{nomImg:"n", designation:"Chaussures homme", prix:18000},{nomImg:"nf", designation:"Chaussures femme", prix:15000},{nomImg:"hs", designation:"soulier homme", prix:20000},{nomImg:"bha", designation:"basket homme", prix:13000},{nomImg:"bbb", designation:"chaussures bb", prix:8000},{nomImg:"mc", designation:"montre couple", prix:21000}];
 
+  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+  nomImage : string ;
   designationa:String;
   prixa:number;
   modif:string="-";
@@ -74,7 +78,7 @@ export class EspacePersoComponent implements OnInit {
       else
         if ( (article.nomImg.toLowerCase().match( this.filtre.toLowerCase() )!=null) || (article.designation.toLowerCase().match( this.filtre.toLowerCase() )!=null) ) 
             return true ;
-        else
+       else
             return false ;    
   }
 
@@ -85,12 +89,22 @@ export class EspacePersoComponent implements OnInit {
  modifArticle(article:Article){                        
   this.modif=article.nomImg; 
   this.modifart="record"+article.nomImg;
+
  }
 
-  enregArticle(){
+  enregArticle(article: Article){
    this.modif="";
    this.modifart="";
-
+   for(var j=0; j<this.articles.length; j++){
+    var ligne=this.articles[j];
+      for (var i=0; i<ligne.length; i++)
+        if (ligne[i].nomImg==article.nomImg)
+        {
+          console.log("Nom image générée : "+this.uploadFile.generatedName) ;
+          ligne[i].nomImg = this.uploadFile.originalName ;
+          break;
+        }
+    }
   }
 
   annulArticle(){
@@ -100,9 +114,11 @@ export class EspacePersoComponent implements OnInit {
 
  uploadFile: any;
   hasBaseDropZoneOver: boolean = false;
+
   options: Object = {
-    url: 'http://localhost/EsquisseBackEnd/web/server-backend-upload/index.php?nomImage=justForTheFun'
+    url: 'http://localhost/EsquisseBackEnd/web/server-backend-upload/index.php'
   };
+
   sizeLimit = 2000000;
 
   handleUpload(data): void {
