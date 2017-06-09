@@ -24,6 +24,7 @@ export class EspacePersoComponent implements OnInit {
    designationa:String;
    prixa:number;
    modif:string="-";
+   modifart:boolean=true;
 
   constructor() {}
 
@@ -48,16 +49,26 @@ export class EspacePersoComponent implements OnInit {
 
 
  modifArticle(article:Article){
-   
-              this.modif=article.nomImg;
-              
+                        
+              this.modif=article.nomImg; 
+              this.modifart=false;
+
  }
 
+enregArticle(){
+ this.modif="";
+
+}
+
+annulArticle(){
+  location.reload();
+
+}
 
  uploadFile: any;
   hasBaseDropZoneOver: boolean = false;
   options: Object = {
-    url: 'http://localhost/EsquisseBackEnd/server-backend-upload/index.php'
+    url: 'http://localhost:8888/EsquisseBackEnd/server-backend-upload/index.php'
   };
   sizeLimit = 2000000;
 

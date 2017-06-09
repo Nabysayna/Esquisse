@@ -30,15 +30,18 @@
 				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
 				       [options]="this.options"
 				       (onUpload)="handleUpload($event)"
-				       (beforeUpload)="beforeUpload($event)" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+				       (beforeUpload)="beforeUpload($event)" src="http://localhost:8888/EsquisseBackEnd/web/img/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
 			   <div class="card-block">
 				    <h4 class="card-title">{{article.designation}}</h4>
-				    <input type="text" *ngIf="this.modif==article.nomImg" value="{{article.designation}}">
+				    <input type="text" *ngIf="this.modif==article.nomImg" [(ngModel)]="article.designation">
 				    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
-				    <input type="number" *ngIf="this.modif==article.nomImg" value="{{article.prix}}">
+				    <input type="number" *ngIf="this.modif==article.nomImg" [(ngModel)]="article.prix">
 
-				    <button  class="btn btn-success" type="button"(click)="modifArticle(article)">Modifier</button>
-				    <button  class="btn btn-danger" type="button" (click)="deleteArticle(article)" >Supprimer </button>
+				    <button  class="btn btn-success" *ngIf="this.modifart"  type="button"(click)="modifArticle(article)">Modifier</button>
+				    <button  class="btn btn-success" *ngIf="!this.modifart" type="button"(click)="enregArticle()">Enregistrer</button>
+				    <button  class="btn btn-danger" type="button" *ngIf="this.modifart" (click)="deleteArticle(article)" >Supprimer </button>
+
+				    <button  class="btn btn-danger" type="button" *ngIf="!this.modifart" (click)="annulArticle()" >Annuler </button>
 
 				  </div>
 				</div>
