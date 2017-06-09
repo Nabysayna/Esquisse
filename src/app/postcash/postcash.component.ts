@@ -6,7 +6,8 @@ import { PostCashWebService } from '../webServiceClients/Postcash/postcash.servi
 @Component({
   selector: 'app-postcash',
   templateUrl: './postcash.component.html',
-  styleUrls: ['./postcash.component.css']
+  styleUrls: ['./postcash.component.css'],
+  providers: [PostCashWebService]
 })
 export class PostcashComponent implements OnInit {
     formvisible='';

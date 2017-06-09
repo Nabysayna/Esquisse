@@ -15,7 +15,7 @@
 		        <tr *ngFor="let ligneArticle of filtrerCatalogue()" >
 		            <td *ngFor="let article of ligneArticle">
 		            <div class="card" style="width: 20rem;">
-					  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+					  <img class="card-img-top" src="http://localhost/EsquisseBackEnd/web/img/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
 					  <div class="card-block">
 					    <h4 class="card-title">{{article.designation}}</h4>
 					    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
@@ -27,6 +27,8 @@
 	        </tbody>
    		</table>
 </div>
+
+
 
 
 

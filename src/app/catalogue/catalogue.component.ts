@@ -28,6 +28,7 @@ export class CatalogueComponent implements OnInit {
   ngOnInit() {
   }
 
+
  filtrerCatalogue() : Article[][] {
 
      let catalogueApresFiltre : Article[][] = [] ;
@@ -53,7 +54,7 @@ export class CatalogueComponent implements OnInit {
       if (this.filtre=="" || this.filtre==null)
         return true ;
       else
-        if ( (article.nomImg.match(this.filtre)!=null) || (article.designation.match(this.filtre)!=null) ) 
+        if ( (article.nomImg.toLowerCase().match( this.filtre.toLowerCase() )!=null) || (article.designation.toLowerCase().match( this.filtre.toLowerCase() )!=null) ) 
             return true ;
         else
             return false ;    
