@@ -31,19 +31,20 @@ export class CatalogueComponent implements OnInit {
  filtrerCatalogue() : Article[][] {
 
      let catalogueApresFiltre : Article[][] = [] ;
-
       if (this.filtre=="" || this.filtre==null)
           return this.articles ;
       else
         for(var j=0; j<this.articles.length; j++){
           var ligne=this.articles[j] ;
-           let ligneCopy : Article[] = [] ;
-            for (var i=0; i<ligne.length; i++)
-              if (this.repondAuFiltre(ligne[i]))
-              {
-                ligneCopy[i]=ligne[i]
-              }
-            catalogueApresFiltre.push(ligneCopy);
+          let ligneCopy : Article[] = [] ;
+          let k : number = 0 ;
+          for (var i=0; i<ligne.length; i++)
+            if (this.repondAuFiltre(ligne[i]))
+            {
+              ligneCopy[k]=ligne[i];
+              k=k+1 ;
+            }
+          catalogueApresFiltre.push(ligneCopy) ;
         }
         return catalogueApresFiltre ;
  }
