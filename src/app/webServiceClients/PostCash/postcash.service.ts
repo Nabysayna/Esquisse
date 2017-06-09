@@ -182,6 +182,104 @@ export class PostCashWebService {
     });     
   }
 
+  public cashtocashreceive(tel_rec: string, cni_rec : string, type_piece_rec : string, 
+    pays_rec : string, code : string, montant : string): Promise<any>  {
+    var method:string = 'cashtocashreceive';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, tel_rec: tel_rec, cni_rec: cni_rec, 
+      type_piece_rec: type_piece_rec, pays_rec: pays_rec, code: code, 
+      montant: montant} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['cashtocashreceive xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'cashtocashreceiveResponse').then(response=>{
+        var reponse:any = JSON.parse(response['cashtocashreceiveResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
+  public transfertverstamtam(tel: string, montant : string, frais : string, 
+    nom : string, prenom : string, telephone_benef : string, code : string, 
+    pays : string, rcv_address : string, transaction_reason : string, incoming_source : string): Promise<any>  {
+    var method:string = 'transfertverstamtam';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, tel: tel, montant: montant, 
+      frais: frais, nom: nom, prenom: prenom, telephone_benef: telephone_benef,
+      code: code, pays: pays, rcv_address: rcv_address, transaction_reason: transaction_reason,
+      incoming_source: incoming_source } ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['transfertverstamtam xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'transfertverstamtamResponse').then(response=>{
+        var reponse:any = JSON.parse(response['transfertverstamtamResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
+  public transfertverstamtamviaapay(prenom_exp: string, nom_exp : string, typecni_exp : string, 
+    cni_exp : string, tel_exp : string, montant : string, frais : string, nom_dest : string, 
+    prenom_dest : string, tel_dest : string, pays_dest : string, adresse_dest : string): Promise<any>  {
+    var method:string = 'transfertverstamtamviaapay';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, prenom_exp: prenom_exp, nom_exp: nom_exp, 
+      typecni_exp: typecni_exp, cni_exp: cni_exp, tel_exp: tel_exp, montant: montant,
+      frais: frais, nom_dest: nom_dest, prenom_dest: prenom_dest, tel_dest: tel_dest,
+      pays_dest: pays_dest, adresse_dest: adresse_dest } ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['transfertverstamtamviaapay xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'transfertverstamtamviaapayResponse').then(response=>{
+        var reponse:any = JSON.parse(response['transfertverstamtamviaapayResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
+  public fraistamtamviaapay(montant: string, pays: string): Promise<any>  {
+    var method:string = 'fraistamtamviaapay';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, montant: montant, pays: pays } ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['fraistamtamviaapay xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'fraistamtamviaapayResponse').then(response=>{
+        var reponse:any = JSON.parse(response['fraistamtamviaapayResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
+  public histotransactmarchand(date_debut: string, date_fin: string): Promise<any>  {
+    var method:string = 'histotransactmarchand';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, date_debut: date_debut, date_fin: date_fin } ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['histotransactmarchand xmlns="urn:postcashwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'histotransactmarchandResponse').then(response=>{
+        var reponse:any = JSON.parse(response['histotransactmarchandResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });     
+  }
+
   private envelopeBuilder(requestBody:string):string {
     return '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'+requestBody+'</soap:Body></soap:Envelope>' ;
   }
