@@ -1,4 +1,4 @@
-import { NgModule }      from '@angular/core' ;
+import { NgModule }  from '@angular/core' ;
 
 import  { RouterModule, Routes} from '@angular/router' ;
 
@@ -11,6 +11,8 @@ import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/admi
 
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
 
+
+import { ManagerComponent } from './manager/manager.component';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { AccueilComponent } from './accueil/accueil.component'; 
 import { AccueiladminpdvComponent } from './accueiladminpdv/accueiladminpdv.component';
@@ -76,7 +78,7 @@ const appRoutes: Routes = [
             }
         ]
     },
-    { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent },
+    { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard]   },
 
 
     // otherwise redirect to home

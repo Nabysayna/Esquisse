@@ -40,7 +40,6 @@ export class EspacePersoComponent implements OnInit {
       				break;
       			}
       }
-
   }
  
 

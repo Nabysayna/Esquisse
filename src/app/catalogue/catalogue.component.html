@@ -1,22 +1,32 @@
 <div class="panel-body">
-                          
-                                <tbody>
-                                <tr *ngFor="let ligneArticle of articles" >
-                                    <td *ngFor="let article of ligneArticle">
-                                    <div class="card" style="width: 20rem;">
-									  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
-									  <div class="card-block">
-									    <h4 class="card-title">{{article.designation}}</h4>
-									    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
-									    <a href="#" class="btn btn-primary">Commander</a>
-									  </div>
-									</div>
-									</td>
-	
-                                </tr>
-                                </tbody>
-                           
-                        </div>
+
+	<input type="search" class="form-control input-sm" 
+  	   [(ngModel)]="this.filtre"
+       [typeahead]="this.listarticles"
+       typeaheadOptionField="designation"
+       typeaheadGroupField="prix"
+        placeholder="Rechercher" aria-controls="dataTables-example">
+ 
+      <div class="dataTable_wrapper">
+  		<table id="dataTables-example">     
+            <thead>
+            </thead>
+	        <tbody>
+		        <tr *ngFor="let ligneArticle of filtrerCatalogue()" >
+		            <td *ngFor="let article of ligneArticle">
+		            <div class="card" style="width: 20rem;">
+					  <img class="card-img-top" src="../../assets/{{article.nomImg}}.jpg" alt="Card image cap" width="200" height="200">
+					  <div class="card-block">
+					    <h4 class="card-title">{{article.designation}}</h4>
+					    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
+					    <a href="#" class="btn btn-primary">Commander</a>
+					  </div>
+					</div>
+					</td>
+		        </tr>
+	        </tbody>
+   		</table>
+</div>
 
 
 
