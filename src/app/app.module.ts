@@ -39,6 +39,7 @@ import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.ser
 import { SoapService } from './soap.service';
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
+import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
 import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
 import { AuthenticationService }    from './services/authentification.service';
@@ -188,6 +189,7 @@ import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
       SoapService,
       AuthentificationServiceWeb,
       PostCashServiceWeb,
+      PostCashWebService,
       TntServiceWeb,
       AdminpdvServiceWeb,
       AuthenticationService

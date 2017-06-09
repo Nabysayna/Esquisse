@@ -9,13 +9,14 @@ import { AdminpdvConsommationDepositService }    from '../../models/adminpdv-cds
 import { AdminpdvConsommationDepositPdv }    from '../../models/adminpdv-cdpdv';
 import { AdminpdvRecouvrement }    from '../../models/adminpdv-recouvrement';
 import { AdminpdvReclamation }    from '../../models/adminpdv-reclamation';
+import { AdminpdvUserpdv }    from '../../models/adminpdv-userpdv';
 
 
 @Injectable()
 export class AdminpdvServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 
   public responseJso : any;
@@ -176,6 +177,25 @@ export class AdminpdvServiceWeb {
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'historiquereclamationResponse').then(response=>{
         var reponse = JSON.parse(response['historiquereclamationResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public listuserpdv(token : string,type : string): Promise<AdminpdvUserpdv[]>  {
+    var method:string = 'listuserpdv';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token:token, type: type} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['listuserpdv xmlns="urn:adminpdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'listuserpdvResponse').then(response=>{
+        var reponse = JSON.parse(response['listuserpdvResponse'].return.$);
         resolve(reponse) ;
       }); 
     });   

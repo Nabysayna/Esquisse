@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AdminpdvUserpdv }    from '../../models/adminpdv-userpdv';
+import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
 
 @Component({
@@ -9,10 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminpdvParametrageComponent implements OnInit {
 
-  
-  constructor() { }
+  listeuser:boolean = true;
+  modifyuser:boolean = false;
+
+  public monitoringAdminpdvUserpdv: AdminpdvUserpdv[];
+
+  constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) {
+
+  }
 
   ngOnInit() {
+  	this.adminpdvServiceWeb.listuserpdv('12345','azrrtt').then(adminpdvServiceWebList => 
+      	this.monitoringAdminpdvUserpdv = adminpdvServiceWebList
+    );
+  }
+
+  validate(): void {
+    // if (this.userPdv.password === this.confirmPassword) {
+    //   this.submitted = true;
   }
 
 }
