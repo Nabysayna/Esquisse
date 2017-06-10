@@ -1,3 +1,7 @@
+/*-----------------*/
+/*      Modules     */
+/*-----------------*/
+
 import { NgModule }      from '@angular/core' ;
 import { BrowserModule } from '@angular/platform-browser' ; 
 import  { FormsModule} from '@angular/forms' ;
@@ -7,6 +11,10 @@ import { Ng2UploaderModule } from 'ng2-uploader';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
 
+
+/*-----------------*/
+/*      Services   */
+/*-----------------*/
 
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
@@ -29,9 +37,7 @@ import { NAbonnementService} from './tnt/tntservices';
 import { LAbonnementService} from './tnt/tntservices';
 import { EFinancierService} from './tnt/tntservices';
 
-import { Routing }        from './app.routing';
 
-import { AuthGuard } from './_guards/auth.guard';
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
@@ -44,8 +50,21 @@ import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
 import { AuthenticationService }    from './services/authentification.service';
 
-import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
+/*-----------------*/
+/*      Routes     */
+/*-----------------*/
+
+import { Routing }        from './app.routing';
+import { AuthGuard } from './_guards/auth.guard';
+
+
+
+/*-----------------*/
+/*      Components  */
+/*-----------------*/
+
+import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/adminpdv-aidedecision.component';
 import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/adminpdv-parametrage.component';
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
@@ -95,6 +114,21 @@ import { CoursierComponent } from './coursier/coursier.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 
+/*-----------------*/
+/*      Pipes      */
+/*-----------------*/
+import { DatafilterPipe } from './pipes/datafilter.pipe';
+import { DecodatafilterPipe } from './pipes/decodatafilter.pipe';
+import { CarddatafilterPipe } from './pipes/carddatafilter.pipe';
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------*/
+/*                                            END OF IMPORTS                                              */
+/*--------------------------------------------------------------------------------------------------------*/
+
+
 @NgModule({
   declarations: [
     DataToArray,
@@ -143,7 +177,10 @@ import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
     RecouvreurComponent,
     CoursierComponent,
     ManagerComponent,
-    ComptabiliteComponent
+    ComptabiliteComponent,
+    DatafilterPipe,
+    DecodatafilterPipe,
+    CarddatafilterPipe,
   ],
   imports: [
     BrowserModule,

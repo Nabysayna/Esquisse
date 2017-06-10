@@ -140,4 +140,3 @@ export class EspacePersoComponent implements OnInit {
   }
 
 }
-

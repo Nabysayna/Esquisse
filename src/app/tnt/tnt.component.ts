@@ -1,7 +1,8 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
 import {ActivatedRoute, Params} from '@angular/router';
-import { Location }               from '@angular/common';
+import { Location }  from '@angular/common';
+
 import {NAbonnementService} from '../tnt/tntservices';
 import {NAbonnement} from '../tnt/tntmodels';
 import {LAbonnementService} from '../tnt/tntservices';
@@ -20,7 +21,7 @@ export class DataToArray implements PipeTransform{
 @Component({
   selector: 'app-tnt',
   templateUrl: './tnt.component.html',
-  styleUrls: ['./tnt.component.css']
+  styleUrls: ['./tnt.component.css'],
 })
 
 export class TntComponent implements OnInit {
@@ -29,6 +30,7 @@ export class TntComponent implements OnInit {
   verifierNumInputValide:boolean = true;
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
+
 
   prenomNewClient : string ; 
   nomNewClient: string ;
@@ -53,8 +55,15 @@ export class TntComponent implements OnInit {
 	lAbonnement:LAbonnement;
 	eFinancier:EFinancier;
   private tntCaller: TntServiceWeb ;
-  private retourTntWS: {}[] ;
+  public retourTntWS: {}[] ;
   private singleTntWS: TntResponse ;
+
+  rowsOnPage = 7 ;
+  sortBy = "prenom";
+  sortOrder = "asc";
+  filtre = "" ;
+  filtreDeco = "" ;
+  filtreCarte = "" ;
 
   constructor(
   	     private eFinancierService:EFinancierService,
@@ -67,15 +76,12 @@ export class TntComponent implements OnInit {
   ngOnInit():void {
 
     this.tntCaller = new TntServiceWeb();
-
     this.route.params.subscribe( (params : Params) => { 
       this.nAbonnement = this.nAbonnementService.getNAbonnement(5);
     });
-
       this.route.params.subscribe( (params : Params) => { 
       this.lAbonnement = this.lAbonnementService.getLAbonnement(5);
     });
-
       this.route.params.subscribe( (params : Params) => { 
       this.eFinancier = this.eFinancierService.getEFinancier(5);
     });

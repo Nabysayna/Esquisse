@@ -76,26 +76,32 @@
                 </div>
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
 
-                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-12">
-                 <table width="100%" class="table table-responsive table-striped" [mfData]="this.retourTntWS" #mf="mfDataTable" [mfRowsOnPage]="5" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | datafilter : filtre" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder" style="width: 100%;">
                                 <thead>
-                                <tr>
-                                    <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="n_chip">N_Chip</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="n_carte">N_Carte</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="date_abonnement">Date Abonnement</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="etat">Etat Activation</mfDefaultSorter></th>
-                                   <th><mfDefaultSorter by="date_activation">Date Activation</mfDefaultSorter></th>
-                                   
-                                </tr>
+ 
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="n_chip">N_Chip</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="n_carte">N_Carte</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="date_abonnement">Date Abonnement</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="etat">Activation</mfDefaultSorter></th>
+                                       <th><mfDefaultSorter by="date_activation">Date Activation</mfDefaultSorter></th>
+                                   </tr>
+                            
                                 </thead>
-                                <tbody *ngIf="this.retourTntWS">
-                                <tr *ngFor="let abonnement of this.retourTntWS">
+                                <tbody *ngIf="this.retourTntWS" >
+                                <tr *ngFor="let abonnement of mf.data">
                                     <td>{{abonnement.prenom}}</td>
                                     <td>{{abonnement.nom}}</td>
                                     <td>{{abonnement.tel}}</td>
@@ -113,13 +119,13 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
-                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
                                         </td>
                                     </tr>
                                 </tfoot>
 
                             </table>
-                            </div></div></div> 
+                             
                 </div>
 
 
@@ -177,59 +183,84 @@
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-deco-liste">
 
-                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                     <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | decodatafilter : filtreDeco" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder" style="width: 100%;">
                                 <thead>
-                                <tr>
-                                    <th>Prénom</th>
-                                    <th>Nom</th>
-                                    <th>Téléphone</th>
-                                    <th>N_Chip</th>
-                                    <th>N_Carte</th>
-                                    <th>Durée</th>
-                                    <th>Type Bouquet</th>
-                                    <th>Montant</th>                                   
-                                </tr>
-                                </thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtreDeco"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="numerochip">N_Chip</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="numerocarte">N_Carte</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="typedebouquet">Type Bouquet</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prix">Montant</mfDefaultSorter></th>                                   
+                                    </tr>
+                                </thead>    
                                 <tbody *ngIf="this.retourTntWS">
-                                <tr *ngFor="let abonnement of this.retourTntWS">
-                                    <td>{{abonnement.prenom}}</td>
-                                    <td>{{abonnement.nom}}</td>
-                                    <td>{{abonnement.tel}}</td>
-                                    <td>{{abonnement.n_chip}}</td>
-                                    <td>{{abonnement.n_carte}}</td>
-                                    <td>{{abonnement.duree}}</td>
-                                    <td>{{abonnement.id_typeabonnement}}</td>
-                                    <td>{{abonnement.montant}}</td>
-                                </tr>
+                                    <tr *ngFor="let decodeur of mf.data">
+                                        <td>{{decodeur.prenom}}</td>
+                                        <td>{{decodeur.nom}}</td>
+                                        <td>{{decodeur.tel}}</td>
+                                        <td>{{decodeur.numerochip}}</td>
+                                        <td>{{decodeur.numerocarte}}</td>
+
+                                        <td *ngIf="decodeur.typedebouquet==1">Maanaa</td>
+                                        <td *ngIf="decodeur.typedebouquet==2">Boul Khool</td>
+                                        <td *ngIf="decodeur.typedebouquet==3">Maanaa + Boul Khool</td>
+
+                                        <td>{{decodeur.prix}}</td>
+                                    </tr>
                                 </tbody>
-                            </table>
-                            </div></div></div> 
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                     </table>
                 </div>
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-carte-liste">
 
-                 <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                     <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | carddatafilter : filtreCarte" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder" style="width: 100%;">
                                 <thead>
-                                <tr>
-                                    <th>Prénom</th>
-                                    <th>Nom</th>
-                                    <th>Téléphone</th>
-                                    <th>N_Carte</th>
-                                    <th>Montant</th>
-                                   
-                                </tr>
-                                </thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtreCarte"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="numerocarte">N_Carte</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prix">Montant</mfDefaultSorter></th>                                   
+                                    </tr>
+                                </thead>    
                                 <tbody *ngIf="this.retourTntWS">
-                                <tr *ngFor="let abonnement of this.retourTntWS">
-                                    <td>{{abonnement.prenom}}</td>
-                                    <td>{{abonnement.nom}}</td>
-                                    <td>{{abonnement.tel}}</td>
-                                    <td>{{abonnement.n_carte}}</td>
-                                    <td>{{abonnement.montant}}</td>
-                                </tr>
+                                    <tr *ngFor="let carte of mf.data">
+                                        <td>{{carte.prenom}}</td>
+                                        <td>{{carte.nom}}</td>
+                                        <td>{{carte.tel}}</td>
+                                        <td>{{carte.numerocarte}}</td>
+                                        <td>{{carte.prix}}</td>
+                                    </tr>
                                 </tbody>
-                            </table>
-                            </div></div></div> 
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                     </table>
                 </div>
 
             </div>
