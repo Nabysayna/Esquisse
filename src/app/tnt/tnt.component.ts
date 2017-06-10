@@ -91,8 +91,7 @@ export class TntComponent implements OnInit {
   validVerifierNum(){  
         this.loading = true ;
     this.tntCaller.checkNumber(this.token, this.verifierNumInput).then( response =>
-        {
-        
+        { 
         this.singleTntWS = response ;
         this.noma = this.singleTntWS.nom ;
         this.prenoma = this.singleTntWS.prenom ;
