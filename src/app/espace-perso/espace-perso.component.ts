@@ -1,27 +1,30 @@
 import { Component, OnInit} from '@angular/core';
+import { EcomServiceWeb } from '../webServiceClients/ecom/ecom.service';
 import * as sha1 from 'js-sha1';
+import * as _ from "lodash";
 
-
-export class Article {
-	
+class Article {
+  public id:number;
   public nomImg:string;
-	public designation:string;
-	public prix:number;	
+  public designation:string;
+  public description:string;
+  public prix:number;
+  public stock:number;
 }
 
 @Component({
   selector: 'app-espace-perso',
   templateUrl: './espace-perso.component.html', 
   styleUrls: ['./espace-perso.component.css']
-
-
 })
 
 
 export class EspacePersoComponent implements OnInit {
 
-  articles:Article[][] =[[{nomImg:"n", designation:"Chaussures homme", prix:18000},{nomImg:"nf", designation:"Chaussures femme", prix:15000},{nomImg:"hs", designation:"soulier homme", prix:20000},{nomImg:"bha", designation:"basket homme", prix:13000}, {nomImg:"bbb", designation:"chaussures enfant", prix:8000}],
-  [{nomImg:"mc", designation:"montre couple", prix:21000}]];
+  articles:Article[][];
+  ecomCaller: EcomServiceWeb;
+
+  loading = false ;
 
   listarticles = [{nomImg:"n", designation:"Chaussures homme", prix:18000},{nomImg:"nf", designation:"Chaussures femme", prix:15000},{nomImg:"hs", designation:"soulier homme", prix:20000},{nomImg:"bha", designation:"basket homme", prix:13000},{nomImg:"bbb", designation:"chaussures bb", prix:8000},{nomImg:"mc", designation:"montre couple", prix:21000}];
 
@@ -32,9 +35,18 @@ export class EspacePersoComponent implements OnInit {
   modif:string="-";
   modifart:string;
 
-  constructor() {}
+  constructor() {
+      this.ecomCaller = new EcomServiceWeb();
+  }
 
-  ngOnInit() {}
+  ngOnInit() { 
+      this.loading = true ;
+      this.ecomCaller.listeArticles(this.token, 'perso').then( response =>
+        {
+          this.articles = _.chunk(response, 5) ;
+          this.loading = false ;
+        }); 
+  }
 
  deleteArticle(article:Article) {      
       for(var j=0; j<this.articles.length; j++){

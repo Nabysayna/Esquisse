@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     { path: 'accueil', component: AccueilComponent,  
            children:[
     			{path: 'COURSIER', component: CoursierComponent},
-    			{path: 'MONEYGRAM', component: MoneyGramComponentComponent},
+    			{path: 'MONEYGRAM', component: SoapserverComponent},
     			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
     			{path: 'POSTECASH', component: PostcashComponent},
     			{path: 'TIGO CASH', component: TigoCashComponentComponent},

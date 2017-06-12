@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TntServiceWeb, TntResponse } from '../webServiceClients/Tnt/Tnt.service';
+import { EcomServiceWeb } from '../webServiceClients/ecom/ecom.service';
 
 
 @Component({
@@ -11,18 +11,19 @@ import { TntServiceWeb, TntResponse } from '../webServiceClients/Tnt/Tnt.service
 export class SoapserverComponent implements OnInit {
 
   public resp : string  ;
-  public tntCaller: TntServiceWeb;
-  public retourTntWS: TntResponse ;
+  public ecomCaller: EcomServiceWeb;
+  public retourWS: {}[] ;
+  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 
   constructor() {
-        this.tntCaller = new TntServiceWeb();
+        this.ecomCaller = new EcomServiceWeb();
    }
 
    ngOnInit() {
-      this.tntCaller.checkNumber('naby', '00616241893').then( response =>
+      this.ecomCaller.listeArticles(this.token, 'catalogue').then( response =>
         {
-        this.retourTntWS = response ;
-        console.log("Response "+this.retourTntWS.prenom)  }); 
+        this.retourWS = response ;
+        console.log("Designation premier article "+this.retourWS)  }); 
    }
 
 }

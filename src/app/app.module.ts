@@ -48,6 +48,7 @@ import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.
 import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
 import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
+import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
 
 
@@ -228,6 +229,7 @@ import { CarddatafilterPipe } from './pipes/carddatafilter.pipe';
       PostCashServiceWeb,
       PostCashWebService,
       TntServiceWeb,
+      EcomServiceWeb,
       AdminpdvServiceWeb,
       AuthenticationService
   ],

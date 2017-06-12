@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { EcomServiceWeb } from '../webServiceClients/ecom/ecom.service';
+import * as _ from "lodash";
 
-export class Article {
-	public nomImg:string;
-	public designation:string;
-	public prix:number;
-	
+class Article {
+  public id:number;
+  public nomImg:string;
+  public designation:string;
+  public description:string;
+  public prix:number;
+  public stock:number;
 }
 
 @Component({
@@ -13,19 +17,26 @@ export class Article {
   styleUrls: ['./catalogue.component.css']
 })
 export class CatalogueComponent implements OnInit {
+  
+  public ecomCaller: EcomServiceWeb;
+  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+  loading = false ;
 
-   articles:Article[][] =[[{nomImg:"n", designation:"Chaussures homme", prix:18000},{nomImg:"nf", designation:"Chaussures femme", prix:15000},{nomImg:"hs", designation:"soulier homme", prix:20000},{nomImg:"es", designation:"soulier enfant", prix:12000},{nomImg:"fs", designation:"soulier femme", prix:18000}],
-   [{nomImg:"bha", designation:"basket homme", prix:13000},{nomImg:"bfa", designation:"basket femme", prix:11000},{nomImg:"bea", designation:"basket enfant", prix:9000},{nomImg:"bbb", designation:"chaussures bb", prix:8000},{nomImg:"mc", designation:"montre couple", prix:21000}]];
-
-   listarticles = [{nomImg:"n", designation:"Chaussures homme", prix:18000},{nomImg:"nf", designation:"Chaussures femme", prix:15000},{nomImg:"hs", designation:"soulier homme", prix:20000},{nomImg:"es", designation:"soulier enfant", prix:12000},{nomImg:"fs", designation:"soulier femme", prix:18000},
-   {nomImg:"bha", designation:"basket homme", prix:13000},{nomImg:"bfa", designation:"basket femme", prix:11000},{nomImg:"bea", designation:"basket enfant", prix:9000},{nomImg:"bbb", designation:"chaussures bb", prix:8000},{nomImg:"mc", designation:"montre couple", prix:21000}];
-
-   filtre : string = "" ;
+  articles:Article[][] ;
+  filtre : string = "" ;
 
   constructor() { 
+        this.ecomCaller = new EcomServiceWeb();
   }
 
   ngOnInit() {
+      this.loading = true ;
+      this.ecomCaller.listeArticles(this.token, 'catalogue').then( response =>
+        {
+          this.articles = _.chunk(response, 5) ;
+          this.loading = false ;
+        }); 
+
   }
 
 
