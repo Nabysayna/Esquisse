@@ -37,6 +37,7 @@ import { SoapserverComponent } from './soapserver/soapserver.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { EspacePersoComponent } from './espace-perso/espace-perso.component';
 import { CoursierComponent } from './coursier/coursier.component';
+import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 
   //
 
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
     { path: 'accueil', component: AccueilComponent,  
            children:[
-    			{path: 'COURSIER', component: CoursierComponent},
+    			{path: 'ADMINCOURSIER', component: AdmincoursierComponent},
     			{path: 'MONEYGRAM', component: SoapserverComponent},
     			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
     			{path: 'POSTECASH', component: PostcashComponent},

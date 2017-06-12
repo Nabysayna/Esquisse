@@ -121,9 +121,11 @@ import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 import { DatafilterPipe } from './pipes/datafilter.pipe';
 import { DecodatafilterPipe } from './pipes/decodatafilter.pipe';
 import { CarddatafilterPipe } from './pipes/carddatafilter.pipe';
+import { FiltrerecouvrementPipe } from './pipes/filtrerecouvrement.pipe';
+import { FiltrerecommandearecupPipe } from './pipes/filtrerecommandearecup.pipe';
+import { FiltrerecommandealivrerPipe } from './pipes/filtrerecommandealivrer.pipe';
+import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
-
-
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -183,6 +185,10 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     DatafilterPipe,
     DecodatafilterPipe,
     CarddatafilterPipe,
+    FiltrerecouvrementPipe,
+    FiltrerecommandearecupPipe,
+    FiltrerecommandealivrerPipe,
+    AdmincoursierComponent,
     PipeCommandePipe,
   ],
   imports: [
