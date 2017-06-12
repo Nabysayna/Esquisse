@@ -2,6 +2,26 @@
 import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 
+class Article {
+  public id:number;
+  public nomImg:string;
+  public designation:string;
+  public description:string;
+  public prix:number;
+  public stock:number;
+}
+
+
+export class Commande {
+  public id:number;
+  public quantite:number;
+  public designation:string;
+  public prixUnitaire:number ;
+  public tel:number;
+  public fullName:string;
+  public dateCommande:string;
+}
+
 
 @Injectable()
 export class EcomServiceWeb {
@@ -12,7 +32,8 @@ export class EcomServiceWeb {
 
   public responseJso : any ;
   public resp : string ;
-  public responseJsoFWS : {}[] ;  
+  public filtre : string ;
+  public responseJsoFWS : Article[] ;  
 
   private soapService:SoapService;
   
@@ -23,7 +44,46 @@ export class EcomServiceWeb {
         this.soapService.localNameMode = true;
   }
 
-  public listeArticles(token : string, type:string) : Promise<{}[]> {
+
+  public ajouterArticle(requestedValue:{}) : Promise<string> {
+
+      var method:string = 'ajoutarticle'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = requestedValue ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['ajoutarticle xmlns="urn:ecommercewsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'ajoutarticleResponse').then(response=>{
+          let wSresponse = response['ajoutarticleResponse'].return.$ ;
+          console.log("reponse brute from articles Web Service "+wSresponse ) ;
+          resolve(wSresponse) ;
+        }); 
+      });      
+  }
+
+  public commander(requestedValue:{}) : Promise<string> {
+    var method:string = 'ajoutcommande'; 
+    var parameters:{}[] = []; 
+    var reEspParams = requestedValue ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    return new Promise( (resolve, reject) => {
+      parameters['ajoutcommande xmlns="urn:ecommercewsdl#"'] = params ;
+
+      this.soapService.post(method, parameters, 'ajoutcommandeResponse').then(response=>{
+        let wSresponse = response['ajoutcommandeResponse'].return.$ ;
+        console.log("reponse brute from articles Web Service "+wSresponse ) ;
+        resolve(wSresponse) ;
+      }); 
+    });      
+  }
+
+  public listeArticles(token : string, type:string) : Promise<Article[]> {
 
       var method:string = 'listerarticle'; 
       var parameters:{}[] = []; 
@@ -42,6 +102,25 @@ export class EcomServiceWeb {
         }); 
       });      
   }
+
+  public listerCommandes(token : string) : Promise<Commande[]> {
+
+      var method:string = 'listercommande'; 
+      var parameters:{}[] = []; 
+      var reEspParams = {token:token} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listercommande xmlns="urn:ecommercewsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'listercommandeResponse').then(response=>{
+          let responseJsoFWS : Commande[] = JSON.parse(response['listercommandeResponse'].return.$);
+          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
+          resolve(responseJsoFWS) ;
+        }); 
+      });      
+  }
+
 
 
   private envelopeBuilder(requestBody:string):string {

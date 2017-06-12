@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { EcomServiceWeb } from '../webServiceClients/ecom/ecom.service';
+import { EcomServiceWeb, Commande } from '../webServiceClients/ecom/ecom.service';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
@@ -23,15 +23,16 @@ export class EspacePersoComponent implements OnInit {
 
   articles:Article[][];
   ecomCaller: EcomServiceWeb;
-
   loading = false ;
-
-  listarticles = [{nomImg:"n", designation:"Chaussures homme", prix:18000},{nomImg:"nf", designation:"Chaussures femme", prix:15000},{nomImg:"hs", designation:"soulier homme", prix:20000},{nomImg:"bha", designation:"basket homme", prix:13000},{nomImg:"bbb", designation:"chaussures bb", prix:8000},{nomImg:"mc", designation:"montre couple", prix:21000}];
+  listeCommande : Commande[] ;
+  listarticles : Article[] ;
 
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   nomImage : string ;
-  designationa:String;
+  designationa: string;
+  descriptiona: string ;
   prixa:number;
+  stocka:number;
   modif:string="-";
   modifart:string;
 
@@ -44,6 +45,7 @@ export class EspacePersoComponent implements OnInit {
       this.ecomCaller.listeArticles(this.token, 'perso').then( response =>
         {
           this.articles = _.chunk(response, 5) ;
+          this.listarticles = response;
           this.loading = false ;
         }); 
   }
@@ -95,13 +97,34 @@ export class EspacePersoComponent implements OnInit {
   }
 
 
- ajouter(){ }
+  ajouter(){ 
+    this.loading = true ;
+    let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName }
+    this.ecomCaller.ajouterArticle(params).then( response =>
+      {
+        console.log("Le serveur a répondu : "+response) ;
+        this.designationa="";
+        this.descriptiona="";
+        this.prixa=0 ;
+        this.stocka=0;
+        this.loading = false ;
+      }); 
+  }
 
 
- modifArticle(article:Article){                        
-  this.modif=article.nomImg; 
-  this.modifart="record"+article.nomImg;
+  chargerCommandes(){
+    this.loading = true ;
+    this.ecomCaller.listerCommandes(this.token).then( response =>
+      {
+        console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
+        this.listeCommande = response ;
+        this.loading = false ;
+      });     
+  }
 
+ modifArticle(article:Article){
+    this.modif=article.nomImg; 
+    this.modifart="record"+article.nomImg;
  }
 
   enregArticle(article: Article){

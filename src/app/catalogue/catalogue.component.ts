@@ -23,8 +23,13 @@ export class CatalogueComponent implements OnInit {
   loading = false ;
 
   articles:Article[][] ;
+  listarticles : Article[] ;
   filtre : string = "" ;
-
+  saisieInfosClient = false ;
+  orderedArticle : Article ;
+  prenomClient = "" ;
+  nomClient = "" ;
+  telClient : number ;
   constructor() { 
         this.ecomCaller = new EcomServiceWeb();
   }
@@ -34,9 +39,30 @@ export class CatalogueComponent implements OnInit {
       this.ecomCaller.listeArticles(this.token, 'catalogue').then( response =>
         {
           this.articles = _.chunk(response, 5) ;
+          this.listarticles = response;
           this.loading = false ;
         }); 
+  }
 
+  prendreCommande(article){
+    this.orderedArticle = article ;
+    this.saisieInfosClient = true ;
+  }
+
+  commanderArticle(){
+    let article = this.orderedArticle ;
+    this.loading = true ;
+    this.saisieInfosClient = false ;
+    let params = { token: this.token , id_article:article.id, quantite: 1, prenomclient: this.prenomClient, nomclient: this.nomClient,telclient: this.telClient } ;
+    this.ecomCaller.commander(params).then( response =>
+      {
+        console.log("Le serveur a répondu : "+response) ;
+        alert("Votre commande a bien été passée!") ;
+        this.prenomClient="";
+        this.nomClient="";
+        this.telClient=0;
+        this.loading = false ;
+      });  
   }
 
 

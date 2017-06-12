@@ -121,6 +121,7 @@ import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 import { DatafilterPipe } from './pipes/datafilter.pipe';
 import { DecodatafilterPipe } from './pipes/decodatafilter.pipe';
 import { CarddatafilterPipe } from './pipes/carddatafilter.pipe';
+import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
 
 
 
@@ -182,6 +183,7 @@ import { CarddatafilterPipe } from './pipes/carddatafilter.pipe';
     DatafilterPipe,
     DecodatafilterPipe,
     CarddatafilterPipe,
+    PipeCommandePipe,
   ],
   imports: [
     BrowserModule,

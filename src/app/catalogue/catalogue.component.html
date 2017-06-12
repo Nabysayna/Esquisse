@@ -1,4 +1,4 @@
-<div class="panel-body">
+<div class="panel-body" [ngClass]="{'arriere-plan' : saisieInfosClient}">
 
 	<input type="search" class="form-control input-sm" 
   	   [(ngModel)]="this.filtre"
@@ -14,18 +14,34 @@
 	        <tbody>
 		        <tr *ngFor="let ligneArticle of filtrerCatalogue()" >
 		            <td *ngFor="let article of ligneArticle">
-		            <div class="card" style="width: 20rem;">
+		            <div class="card">
 					  <img class="card-img-top" src="http://localhost/EsquisseBackEnd/web/img/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
 					  <div class="card-block">
 					    <h4 class="card-title">{{article.designation}}</h4>
 					    <p class="card-text">Prix:{{article.prix}}.FCFA</p>
-					    <a href="#" class="btn btn-primary">Commander</a>
+					    <a class="btn btn-primary" (click)="prendreCommande(article)">Commander</a>
 					  </div>
 					</div>
 					</td>
 		        </tr>
 	        </tbody>
    		</table>
+	</div>
+</div>
+
+<div id="infosclient" *ngIf="saisieInfosClient">
+
+	<h2>Infos Client</h2>
+
+	<input type="text" [(ngModel)]="prenomClient"   name="prenom" id="prenom" class="form-control" placeholder="Prénom client" required>
+
+	<input type="text" [(ngModel)]="nomClient"   name="nom" id="nom" class="form-control" placeholder="Nom client" required>
+
+    <input type="number" [(ngModel)]="telClient"   name="tel_client" id="tel_client" class="form-control" placeholder="Numéro téléphone client" required>
+
+	 <button class="btn btn-success" type="button"(click)="commanderArticle()">Valider la commande pour ce client</button>
+
+	 <button type="reset" class="btn btn-danger" (click)="saisieInfosClient=false">Annuler</button>
 </div>
 
 <div *ngIf="this.loading">
