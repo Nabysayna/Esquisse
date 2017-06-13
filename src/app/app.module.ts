@@ -126,6 +126,8 @@ import { FiltrerecommandearecupPipe } from './pipes/filtrerecommandearecup.pipe'
 import { FiltrerecommandealivrerPipe } from './pipes/filtrerecommandealivrer.pipe';
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
+import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
+import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -190,6 +192,8 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     FiltrerecommandealivrerPipe,
     AdmincoursierComponent,
     PipeCommandePipe,
+    FiltreoperateursPipe,
+    FiltrervoperateursPipe,
   ],
   imports: [
     BrowserModule,

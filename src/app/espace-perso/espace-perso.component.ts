@@ -151,7 +151,7 @@ export class EspacePersoComponent implements OnInit {
   hasBaseDropZoneOver: boolean = false;
 
   options: Object = {
-    url: 'http://localhost/EsquisseBackEnd/web/server-backend-upload/index.php'
+    url: 'http://localhost:8888/EsquisseBackEnd/server-backend-upload/index.php'
   };
 
   sizeLimit = 2000000;
