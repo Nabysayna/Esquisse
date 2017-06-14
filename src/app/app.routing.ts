@@ -9,6 +9,12 @@ import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/ad
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
 import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
 
+import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-pdv-dashboard/admin-multi-pdv-dashboard.component';
+import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
+import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
+import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
+import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
+
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
 
 
@@ -76,6 +82,21 @@ const appRoutes: Routes = [
                     { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
                     { path: 'changer-acces-pdv/:id', component: FormChangerAccessUserComponent },
                     { path: '', component: AdminpdvDashboardComponent }
+                ]
+            }
+        ]
+    },
+    { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent, canActivate: [AuthGuard], 
+        children: [
+            {
+                path: '',
+                children: [
+                    { path: 'dashboard', component: AdminmultipdvDashboardComponent },
+                    { path: 'monitoring', component: AdminmultipdvMonitoringComponent },
+                    { path: 'statusreclamation', component: AdminmultipdvStatusReclamationComponent },
+                    { path: 'demanderetrait', component: AdminmultipdvDemandeRetraitComponent },
+                    { path: 'updatecaution', component: AdminmultipdvUpdateCautionComponent },
+                    { path: '', component: AdminmultipdvDashboardComponent }
                 ]
             }
         ]

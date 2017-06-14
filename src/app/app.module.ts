@@ -71,6 +71,12 @@ import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/ad
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
 import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
 
+import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-pdv-dashboard/admin-multi-pdv-dashboard.component';
+import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
+import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
+import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
+import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
+
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
 import { TableCompteAccessComponent } from './tables/table-compte-access/table-compte-access.component';
 
@@ -155,6 +161,13 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     SoldecompteComponent,
     RecusComponent,
     PostcashComponent,
+
+    AdminmultipdvDashboardComponent,
+    AdminmultipdvDemandeRetraitComponent,
+    AdminmultipdvMonitoringComponent,
+    AdminmultipdvStatusReclamationComponent,
+    AdminmultipdvUpdateCautionComponent,    
+
 
     LoaderComponent,
     NavbarTopComponent,
