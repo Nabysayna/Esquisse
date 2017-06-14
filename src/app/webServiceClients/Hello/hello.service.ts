@@ -6,7 +6,7 @@ import {SoapService} from "../../soap.service";
 export class HelloService {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/helloService?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/helloService?wsdl' ;
   private targetNamespace:string = 'urn:helloservicewsdl' ;
 
   public responseJso : any;

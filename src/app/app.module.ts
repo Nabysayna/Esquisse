@@ -10,6 +10,8 @@ import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
+import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule} from 'ng2-bootstrap';
+
 
 
 /*-----------------*/
@@ -101,7 +103,6 @@ import { RecusComponent } from './recus/recus.component';
 import { PostcashComponent } from './postcash/postcash.component';
 import { LoaderComponent } from './loader/loader.component';
 
-import { TabsModule, CollapseModule, ProgressbarModule} from 'ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { BarChartComponent } from './graphs/bar-chart/bar-chart.component';
@@ -132,6 +133,11 @@ import { FiltrerecommandearecupPipe } from './pipes/filtrerecommandearecup.pipe'
 import { FiltrerecommandealivrerPipe } from './pipes/filtrerecommandealivrer.pipe';
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
+import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
+import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
+import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.pipe';
+import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
+
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -203,6 +209,12 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     FiltrerecommandealivrerPipe,
     AdmincoursierComponent,
     PipeCommandePipe,
+    FiltreoperateursPipe,
+    FiltrervoperateursPipe,
+
+    AdminmultipdvStatusReclamationPipe,
+    AdminmultipdvUpdateCautionPipe,
+    
   ],
   imports: [
     BrowserModule,
@@ -216,7 +228,8 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     TabsModule.forRoot(),
     CollapseModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   providers: [
       EFinancierService,

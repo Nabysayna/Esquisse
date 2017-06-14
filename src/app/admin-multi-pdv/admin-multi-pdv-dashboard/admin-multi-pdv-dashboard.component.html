@@ -5,80 +5,24 @@
         </div>
     </div>
     <div class="row">
-
-        <div class="col-lg-7 col-md-7">
-            <div class="panel panel-primary">
-                <div class="panel panel-heading">
-                    <h3>Performances des points de vente</h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#a" data-toggle="tab">La journée</a></li>
-                        <li><a href="#b" data-toggle="tab">La semaine</a></li>
-                        <li><a href="#c" data-toggle="tab">Le mois</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="a">
-                            <br>
-                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                {{ i + 1 }} - {{ performancepdv.fullname }} 
-                            </p>
-                        </div>
-                        <div class="tab-pane fade" id="b">
-                            <br>
-                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                {{ i + 1 }} - {{ performancepdv.fullname }}
-                            </p>
-                        </div>
-                        <div class="tab-pane fade" id="c">
-                            <br>
-                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                {{ i + 1 }} - {{ performancepdv.fullname }}
-                            </p>
-                        </div>
-
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5 col-md-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4><i class="fa fa-bell fa-fw"></i> Notifications</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item"  *ngFor=" let notification of adminpdvDashboardNotifications; let i = index ">
-                            <i class="fa fa-comment fa-fw"></i>{{ notification.type  }}
-                            <span class="pull-right text-muted small"><em>Il y'a 4 minutes</em>
-                            </span>
-                        </a>
-                        <!-- <a href="#" class="list-group-item">
-                            <i class="fa fa-comment fa-fw"></i> Etat deposit
-                            <span class="pull-right text-muted small"><em>Il y'a 4 minutes</em>
-                            </span>
-                        </a> -->
-                    </div>
-                    <!-- <a href="#" class="btn btn-default btn-block"> Voir les Alerts</a> -->
-                </div>
-            </div>
-        </div>
+        <div class="col-lg-12">
+		  <canvas baseChart
+		          [datasets]="radarChartData"
+		          [labels]="radarChartLabels"
+		          [chartType]="radarChartType"></canvas>
+		</div>
     </div>
-    <div>
-        <div class="col-dm-12 col-sm-12" >
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4><i class="fa fa-bar-chart-o fa-fw"></i> Montant total des transferts par service</h4>
-                </div>
-                <div class="panel-body" *ngIf="this.adminpdvDashboardMontantTransfertParservices">
-                    <app-doughnut-chart 
-                        [doughnutChartLabels]="this.adminpdvDashboardMontantTransfertParservices.typeservice" 
-                        [doughnutChartData]="this.adminpdvDashboardMontantTransfertParservices.montanttotal" 
-                    ></app-doughnut-chart>
-                    <!-- <a href="#" class="btn btn-default btn-block"> Details</a> -->
-                </div>
-            </div>
-        </div>
+    <div class="row">
+    	<div class="col-lg-12">
+		    <canvas baseChart
+		            [datasets]="barChartData"
+		            [labels]="barChartLabels"
+		            [options]="barChartOptions"
+		            [legend]="barChartLegend"
+		            [chartType]="barChartType"></canvas>
+		  <!-- <button (click)="randomize()">Update</button> -->
+		</div>
+        
     </div>
 </div>
 
