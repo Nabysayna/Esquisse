@@ -16,6 +16,11 @@ import { ManagerComponent } from './manager/manager.component';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
 import { AccueilComponent } from './accueil/accueil.component'; 
 import { AccueiladminpdvComponent } from './accueiladminpdv/accueiladminpdv.component';
+import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
+import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercial.component';
+import { AccueiladmincommercialComponent } from './accueiladmincommercial/accueiladmincommercial.component';
+import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladmincoursier.component';
+import { AdmincommercialComponent } from './admincommercial/admincommercial.component';
 import { AccueilAdminMultiPdvComponent } from './accueil-admin-multi-pdv/accueil-admin-multi-pdv.component';
 import { RyaComponentComponent } from './rya-component/rya-component.component';
 import { MoneyGramComponentComponent } from './money-gram-component/money-gram-component.component';
@@ -46,7 +51,7 @@ const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
     { path: 'accueil', component: AccueilComponent,  
            children:[
-    			{path: 'COMMERCIAL', component: CommercialComponent},
+    			{path: 'RIA', component: RyaComponentComponent},
     			{path: 'MONEYGRAM', component: SoapserverComponent},
     			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
     			{path: 'POSTECASH', component: PostcashComponent},
@@ -77,6 +82,66 @@ const appRoutes: Routes = [
                     { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
                     { path: 'changer-acces-pdv/:id', component: FormChangerAccessUserComponent },
                     { path: '', component: AdminpdvDashboardComponent }
+                ]
+            }
+        ]
+    },
+    { path: 'accueilcoursier', component: AccueilcoursierComponent, canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                children: [
+                    {path: 'COURSIER', component: CoursierComponent},
+                    {path: 'E-COMMERCE', component: ECommerceComponent},
+                    {path: 'DEMANDEPRET', component: DemandepretComponent},
+                    {path: 'GESTIONREPORTING', component: GestionreportingComponent},
+                    { path: '', component: CoursierComponent }
+
+                ]
+            }
+        ]
+    },
+     { path: 'accueiladmincoursier', component: AccueiladmincoursierComponent, canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                children: [
+                    {path: 'ADMIN COURSIER', component: AdmincoursierComponent},
+                    {path: 'E-COMMERCE', component: ECommerceComponent},
+                    {path: 'DEMANDEPRET', component: DemandepretComponent},
+                    {path: 'GESTIONREPORTING', component: GestionreportingComponent},
+                    { path: '', component: AdmincoursierComponent }
+
+                ]
+            }
+        ]
+    },
+    { path: 'accueiladmincommercial', component: AccueiladmincommercialComponent, canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                children: [
+                    {path: 'ADMIN COMMERCIAL', component: AdmincommercialComponent},
+                    {path: 'E-COMMERCE', component: ECommerceComponent},
+                    {path: 'DEMANDEPRET', component: DemandepretComponent},
+                    {path: 'GESTIONREPORTING', component: GestionreportingComponent},
+                    { path: '', component: AdmincommercialComponent }
+
+                ]
+            }
+        ]
+    },
+    { path: 'accueilcommercial', component: AccueilcommercialComponent, canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                children: [
+                    {path: 'COMMERCIAL', component: CommercialComponent},
+                    {path: 'E-COMMERCE', component: ECommerceComponent},
+                    {path: 'DEMANDEPRET', component: DemandepretComponent},
+                    {path: 'GESTIONREPORTING', component: GestionreportingComponent},
+                    { path: '', component: CommercialComponent }
+
                 ]
             }
         ]

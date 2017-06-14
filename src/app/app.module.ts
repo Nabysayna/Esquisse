@@ -128,6 +128,11 @@ import { AdmincoursierComponent } from './admincoursier/admincoursier.component'
 import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
 import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
 import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
+import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
+import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladmincoursier.component';
+import { AdmincommercialComponent } from './admincommercial/admincommercial.component';
+import { AccueiladmincommercialComponent } from './accueiladmincommercial/accueiladmincommercial.component';
+import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercial.component';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -194,6 +199,11 @@ import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
     PipeCommandePipe,
     FiltreoperateursPipe,
     FiltrervoperateursPipe,
+    AccueilcoursierComponent,
+    AccueiladmincoursierComponent,
+    AdmincommercialComponent,
+    AccueiladmincommercialComponent,
+    AccueilcommercialComponent,
   ],
   imports: [
     BrowserModule,
