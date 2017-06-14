@@ -19,7 +19,7 @@
                 <div class="tab-pane fade col-sm-12 col-xs-12 in active" id="home-pills">
 	                <div class="panel-body">
 
-	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="operateurs | filtreoperateurs :filtre" #fop="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="operateurs|filtrefichier:filtre" #fopad="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
 		                            <option >Dakar</option>
@@ -51,18 +51,18 @@
 
                                     <tr>
 
-                                        <th><mfDefaultSorter by="nom">Choisir</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter >Choisir</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="nom">Nom Opérateur</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="prenom">Prénom Opérateur</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="adr">Adresse</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="montant">Qualification</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="qualification">Qualification</mfDefaultSorter></th>
                                    </tr>
                             
                                 </thead>
                                 <tbody *ngIf="this.operateurs">
-                                <tr *ngFor="let operateurs of fop.data">
-                                    <input type="checkbox" [(ngModel)]="operateurs.choix">
+                                <tr *ngFor="let operateurs of fopad.data">
+                                    <input type="checkbox" class="form-control" [(ngModel)]="operateurs.choix">
                                     <td>{{operateurs.nom}}</td>
                                     <td>{{operateurs.prenom}}</td>
                                     <td>{{operateurs.tel}}</td>
@@ -99,7 +99,7 @@
                    
                 </div>
 	                <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
-	                  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="rvoperateurs | filtrervoperateurs :filtre" #fop="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+	                  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="rvoperateurs|filtrefichier:filtre" #fopa="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
 		                            <option >Dakar</option>
@@ -132,7 +132,7 @@
                             
                                 </thead>
                                 <tbody *ngIf="this.rvoperateurs">
-                                <tr *ngFor="let rvoperateurs of fop.data">
+                                <tr *ngFor="let rvoperateurs of fopa.data">
                                     <td>{{rvoperateurs.nom}}</td>
                                     <td>{{rvoperateurs.prenom}}</td>
                                     <td>{{rvoperateurs.tel}}</td>

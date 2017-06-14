@@ -137,12 +137,15 @@ import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
 import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
 import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.pipe';
 import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
+import { AdminmultipdvDemandeRetrait } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
 
 import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
 import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladmincoursier.component';
 import { AdmincommercialComponent } from './admincommercial/admincommercial.component';
 import { AccueiladmincommercialComponent } from './accueiladmincommercial/accueiladmincommercial.component';
 import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercial.component';
+import { FiltrefichierPipe } from './pipes/filtrefichier.pipe';
+import { FiltrervPipe } from './pipes/filtrerv.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -219,13 +222,15 @@ import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercia
 
     AdminmultipdvStatusReclamationPipe,
     AdminmultipdvUpdateCautionPipe,
+    AdminmultipdvDemandeRetrait,
     
     AccueilcoursierComponent,
     AccueiladmincoursierComponent,
     AdmincommercialComponent,
     AccueiladmincommercialComponent,
     AccueilcommercialComponent,
-
+    FiltrefichierPipe,
+    FiltrervPipe,
   ],
   imports: [
     BrowserModule,
