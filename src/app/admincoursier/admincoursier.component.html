@@ -21,7 +21,7 @@
                 <div class="tab-pane fade col-sm-12 col-xs-12 in active" id="home-pills">
                 <div class="panel-body">
                            
-                             <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="recouvrement | filtrerecouvrement :filtre" #rcvrc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                             <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="recouvrement|filtrerecouvrement:filtre" #rcvrc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
 		                            <option >Dakar</option>
@@ -91,7 +91,7 @@
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
                
                            
-                             <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandearecup | filtrerecommandearecup :filtre" #carc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                             <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandearecup|filtrerecommandearecup :filtre" #carc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
 		                            <option >Dakar</option>
@@ -161,7 +161,7 @@
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="messages-pills">  
 
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandealivrer | filtrerecommandealivrer :filtre" #cal="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandealivrer|filtrerecommandealivrer:filtre" #cal="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                <thead>
                                  <label>Zone <select class="form-control input-sm" >
 		                            <option >Dakar</option>

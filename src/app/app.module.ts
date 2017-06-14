@@ -133,6 +133,8 @@ import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladm
 import { AdmincommercialComponent } from './admincommercial/admincommercial.component';
 import { AccueiladmincommercialComponent } from './accueiladmincommercial/accueiladmincommercial.component';
 import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercial.component';
+import { FiltrefichierPipe } from './pipes/filtrefichier.pipe';
+import { FiltrervPipe } from './pipes/filtrerv.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -204,6 +206,8 @@ import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercia
     AdmincommercialComponent,
     AccueiladmincommercialComponent,
     AccueilcommercialComponent,
+    FiltrefichierPipe,
+    FiltrervPipe,
   ],
   imports: [
     BrowserModule,
