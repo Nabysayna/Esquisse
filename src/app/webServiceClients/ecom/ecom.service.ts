@@ -26,8 +26,8 @@ export class Commande {
 @Injectable()
 export class EcomServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 
   public responseJso : any ;

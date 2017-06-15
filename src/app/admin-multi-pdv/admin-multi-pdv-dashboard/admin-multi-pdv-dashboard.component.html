@@ -4,14 +4,293 @@
             <h1 class="page-header">Dashboard</h1>
         </div>
     </div>
-   <!--  <div class="row">
-        <div class="col-lg-12">
-		  <canvas baseChart
-		          [datasets]="radarChartData"
-		          [labels]="radarChartLabels"
-		          [chartType]="radarChartType"></canvas>
-		</div>
-    </div> -->
+    
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">26</div>
+                            <div>New Comments!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>New Tasks!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+                            <div>New Orders!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>Support Tickets!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-dm-12 col-sm-12" >
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-bar-chart-o fa-fw"></i> Nombre d'opérations par service par mois</h4>
+                </div>
+                <div class="panel-body" >
+                    <canvas baseChart class="table-responsive"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Consommation du deposit par service</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Service</th>
+                                    <th>Nombre d'operations</th>
+                                    <th>Montant envoyé</th>
+                                    <th>Montant reçu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor=" let consommationdepositparservicetype of monitoringAdminpdvConsommationDepositService; let i = index ">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{ consommationdepositparservicetype.service  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
+                                </tr>
+                                <tr>
+                                    <td>-</td>
+                                    <td>{{ "Total" | uppercase }}</td>
+                                    <td>2000000</td>
+                                    <td>2000000</td>
+                                    <td>2000000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Consommation du deposit par Point de vente</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Pdv</th>
+                                    <th>Adresse</th>
+                                    <th>Nombre d'operations</th>
+                                    <th>Montant consomme</th>
+                                    <th>Commission</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let consommationdepositparpdv of monitoringAdminpdvConsommationDepositPdv; let i = index ">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{ consommationdepositparpdv.pdv | uppercase }}</td>
+                                    <td>{{ consommationdepositparpdv.adresse }}</td>
+                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparpdv.commission  }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">{{ "Total" | uppercase }}</td>
+                                    <td>2000000</td>
+                                    <td>2000000</td>
+                                    <td>200000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Historique des recouvrements</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Pts de Vente</th>
+                                    <th>Montant consomme</th>
+                                    <th>Commission</th>
+                                    <th>Montant recouvre</th>
+                                    <th>Montant restant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let recouvrementadminpdv of monitoringAdminpdvRecouvrement; let i = index ">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{ recouvrementadminpdv.date  }}</td>
+                                    <td>{{ recouvrementadminpdv.pdv | uppercase }}</td>
+                                    <td>{{ recouvrementadminpdv.montantconsomme  }}</td>
+                                    <td>{{ recouvrementadminpdv.commission  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantrecouvre  }}</td>
+                                    <td>{{ recouvrementadminpdv.montantrestant  }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7 col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">
+                    <h3>Performances des points de vente</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#a" data-toggle="tab">La journée</a></li>
+                        <li><a href="#b" data-toggle="tab">La semaine</a></li>
+                        <li><a href="#c" data-toggle="tab">Le mois</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="a">
+                            <br>
+                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }} 
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="b">
+                            <br>
+                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }}
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="c">
+                            <br>
+                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }}
+                            </p>
+                        </div>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Historique des réclamations</h4>
+                </div>
+                <div class="panel-body">
+                    <div *ngFor="let reclamationpdv of monitoringAdminpdvReclamation; let i = index ">
+                        <div>
+                            <strong class="pull-left" >{{ reclamationpdv.pdv | uppercase }}</strong>
+                            <span class="pull-right text-muted">
+                                <em>Yesterday</em>
+                            </span>
+                        </div>
+                        <br>
+                        <div>{{ reclamationpdv.reclamation }}</div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="this.loading">
