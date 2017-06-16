@@ -16,6 +16,9 @@ import {DataTableModule} from "angular2-datatable";
 /*      Services   */
 /*-----------------*/
 
+import { SoapService } from './soap.service';
+
+
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
 import { ReglSenelecService} from './postcash/postservices';
@@ -38,11 +41,11 @@ import { LAbonnementService} from './tnt/tntservices';
 import { EFinancierService} from './tnt/tntservices';
 
 
+
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
 import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
-import { SoapService } from './soap.service';
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
 import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
@@ -205,7 +208,8 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     ProgressbarModule.forRoot(),
     TypeaheadModule.forRoot()
   ],
-  providers: [
+  providers: [  
+      SoapService,
       EFinancierService,
       LAbonnementService,
       NAbonnementService,
@@ -232,7 +236,6 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
       PostCashService, 
       AdminpdvDashboardService,
       AdminpdvMonitoringService,
-      SoapService,
       AuthentificationServiceWeb,
       PostCashServiceWeb,
       PostCashWebService,

@@ -5,8 +5,11 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class PostCashWebService {
 
-  private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl';
+//  private servicePort:string = 'http://localhost' ; 
+//  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl';
+
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/postcash?wsdl' ;
   private targetNamespace:string = 'urn:postcashwsdl' ;
 
   public responseJso : any;
@@ -18,7 +21,13 @@ export class PostCashWebService {
 
   
   constructor() {
-        this.soapService = new SoapService(this.servicePort, this.servicePath, this.targetNamespace);
+        this.soapService = new SoapService();
+
+        this.soapService.setServicePort(this.servicePort) ;
+        this.soapService.setServicePath(this.servicePath);
+        this.soapService.setServiceUrl(this.servicePort+this.servicePath);
+        this.soapService.setTargetNamespace(this.targetNamespace);  
+
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
         this.soapService.localNameMode = true;

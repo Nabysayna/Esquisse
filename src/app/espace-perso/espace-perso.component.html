@@ -1,20 +1,25 @@
 <div class="panel-body">
 
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<a href="#ajout" class="btn " type="button" data-toggle="tab">Ajouter</a>
 		</div>
 
 		<div class="col-sm-3">
-			<a href="#commandes" (click)="chargerCommandes()" class="btn " type="button" data-toggle="tab">Mes commandes</a>
+			<a href="#waitingCmd" (click)="chargerCommandes('toReceive')" class="btn " type="button" data-toggle="tab">Commandes Attendues</a>
 		</div>	
 
 		<div class="col-sm-3">
+			<a href="#cmdToDeliver" (click)="chargerCommandes('toDeliver')" class="btn " type="button" data-toggle="tab">Commandes à Livrer</a>
+		</div>	
+
+
+		<div class="col-sm-2">
 			<a href="#articles" class="btn " type="button" data-toggle="tab">Mes Articles</a>
 		</div>	
 
-		<div class="col-sm-3">
-			<a href="#ventes" class="btn " type="button" data-toggle="tab">Mes ventes</a>
+		<div class="col-sm-2">
+			<a href="#ventes" class="btn " type="button" data-toggle="tab">Mes Ventes</a>
 		</div>
 
 	</div>
@@ -33,11 +38,11 @@
 		    <tr *ngFor="let ligneArticle of filtrerCatalogue()" >
 		        <td *ngFor="let article of ligneArticle">
 		        <div class="card" >
-				  <img class="card-img-top" src="http://localhost/EsquisseBackEnd/web/img/{{article.nomImg}}"  alt="Card image cap" width="200" height="200">
+				  <img class="card-img-top" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}"  alt="Card image cap" width="200" height="200">
 				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
 				       [options]="this.options"
 				       (onUpload)="handleUpload($event)"
-				       (beforeUpload)="beforeUpload($event)" src="http://localhost/EsquisseBackEnd/web/img/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
+				       (beforeUpload)="beforeUpload($event)" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
 			   <div class="card-block">
 				    <h4 class="card-title">{{article.designation}}</h4>
 				    <input type="text" *ngIf="this.modif==article.nomImg" [(ngModel)]="article.designation">
@@ -57,7 +62,7 @@
 		    </tbody>                          
 	    </div>
 
-			<div class="row tab-pane col-sm-12 col-xs-12 fade" id="commandes">
+			<div class="row tab-pane col-sm-12 col-xs-12 fade" id="waitingCmd">
                  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmds="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
  
@@ -75,6 +80,7 @@
                                         <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
+                                        <th>Réception</th>
                                    </tr>
                             
                                 </thead>
@@ -86,6 +92,10 @@
 	                                    <td>{{commande.dateCommande}}</td>
 	                                    <td>{{commande.fullName}}</td>
 	                                    <td>{{commande.tel}}</td>
+	                                    <td>
+	                                    	<button *ngIf="!receivedCmd(commande.id)" class="btn btn-success" (click)="receptionner(commande.id)">Reçu</button>
+	                                    	<span *ngIf="receivedCmd(commande.id)"><i class="fa fa-check" aria-hidden="true"></i></span>
+	                                    </td>
 	                                </tr>
                                 </tbody>
                                 <tfoot>
@@ -99,8 +109,101 @@
                             </table>         
 		    </div>
 
+			<div class="row tab-pane col-sm-12 col-xs-12 fade" id="cmdToDeliver">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmds="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+ 
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
+                                        <th>Réception</th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.listeCommande" >
+	                                <tr *ngFor="let commande of listCmds.data">
+	                                    <td>{{commande.designation}}</td>
+	                                    <td>{{commande.prixUnitaire}}</td>
+	                                    <td>{{commande.quantite}}</td>
+	                                    <td>{{commande.dateCommande}}</td>
+	                                    <td>{{commande.fullName}}</td>
+	                                    <td>{{commande.tel}}</td>
+	                                    <td>
+	                                    	<button *ngIf="!cmdFournis(commande.id)" class="btn btn-success" (click)="fournir(commande.id)">Fourni</button>
+	                                    	<span *ngIf="cmdFournis(commande.id)"><i class="fa fa-check" aria-hidden="true"></i></span>
+	                                    </td>
+	                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10]" ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>         
+		    </div>
+
+
 		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ventes">
 			<div class="panel-body">
+
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmds="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+ 
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
+                                        <th>Réception</th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.listeCommande" >
+	                                <tr *ngFor="let commande of listCmds.data">
+	                                    <td>{{commande.designation}}</td>
+	                                    <td>{{commande.prixUnitaire}}</td>
+	                                    <td>{{commande.quantite}}</td>
+	                                    <td>{{commande.dateCommande}}</td>
+	                                    <td>{{commande.fullName}}</td>
+	                                    <td>{{commande.tel}}</td>
+	                                    <td>
+	                                    	<button *ngIf="!cmdFournis(commande.id)" class="btn btn-success" (click)="fournir(commande.id)">Fourni</button>
+	                                    	<span *ngIf="cmdFournis(commande.id)"><i class="fa fa-check" aria-hidden="true"></i></span>
+	                                    </td>
+	                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10]" ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>         
     
 	        </div>
                
@@ -113,6 +216,16 @@
        [options]="options"
        (onUpload)="handleUpload($event)"
        (beforeUpload)="beforeUpload($event)">
+
+		<div *ngIf="uploadFile">
+		Progress: {{ uploadProgress }}%
+		</div>
+		<div *ngIf="uploadFile">
+		  <div class="ui indicating blue progress">
+		    <div class="bar" [style.width]="uploadProgress + '%'"></div>
+		    <div class="label">Image en cours de chargement ({{ uploadProgress }}%)</div>
+		  </div>
+		</div>
 
 			<input type="text" [(ngModel)]="this.designationa"   name="designationa" id="designationa" class="form-control" placeholder="designation de l'article" required>
 

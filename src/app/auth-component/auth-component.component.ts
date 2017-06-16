@@ -41,12 +41,15 @@ export class AuthComponentComponent implements OnInit {
             if ( access === 1 ){
               this.router.navigate(['/accueiladmmpdv']);              
             }
-      	     else{
-                console.log("One the else statement") ;
-      	     		this.fakevalues = false ;
-    		        this.userName = ''  ; 
-      			    this.userPwd  = '' ; 
-      		  }
+      	     else
+                if ( access === 4 ){
+                  this.router.navigate(['/ADMINCOURSIER']);              
+                }else{
+                  console.log("One the else statement") ;
+        	     		this.fakevalues = false ;
+      		        this.userName = ''  ; 
+        			    this.userPwd  = '' ; 
+        		  }
       });
   }
 

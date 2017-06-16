@@ -1,8 +1,8 @@
-
+<div class="row">
 <div class="col-sm-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            ADMINISTRATEUR DES COURSIERS
+            ADMINISTRATEUR COURSIERS
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -10,9 +10,9 @@
             <ul class="nav nav-pills">
                 <li class="active"><a href="#home-pills" data-toggle="tab">Recouvrement</a>
                 </li>
-                <li><a id="elec" href="#profile-pills" data-toggle="tab">Commande à Récupérer</a>
+                <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="chargerCommandesDeliver('dispatchDelivering')">Commandes à Récupérer</a>
                 </li>
-                <li><a href="#messages-pills" data-toggle="tab">Commande à Livrer</a>
+                <li><a href="#messages-pills" (click)="chargerCommandesRecep('dispatchReception')" data-toggle="tab">Commandes à Livrer</a>
                 </li>
             </ul>
 
@@ -23,37 +23,35 @@
                            
                              <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="recouvrement | filtrerecouvrement :filtre" #rcvrc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
-                                 <label>Zone <select class="form-control input-sm" >
-		                            <option >Dakar</option>
-		                            <option >Pikine</option>
-		                            <option >Rufisque</option>
-		                            <option >Yoff</option>
-		                            <option >Guédiawaye</option>
-		                            <option >Parcelles</option>
-		                            </select>
-		                         </label>
- 
                                     <tr>
                                         <th colspan="3" style="padding-right: 3rem ;">
                                             Rechercher :
                                             <input class="form-control" [(ngModel)]="filtre"/>
                                         </th>
-                                        <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier">
-				                            <option >Amath</option>
-				                            <option >Demba</option>
-				                            <option >Oury</option>
-				                            <option >Adja</option>
-				                            <option >Aliou</option>
-				                            <option >Sy</option>
-				                            </select>
-		                         		</label>
-		                         		<button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                        <th colspan="2" style="padding-right: 3rem ;">
+                                        <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
+                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}}</option>
+                                            </select>
+                                        </label>
+                                        <button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                        </th>
+                                        <th colspan="2" style="padding-right: 3rem ; text-align: center ;"> 
+                                            <label>Zone <select class="form-control input-sm" >
+                                                <option >Dakar</option>
+                                                <option >Pikine</option>
+                                                <option >Rufisque</option>
+                                                <option >Yoff</option>
+                                                <option >Guédiawaye</option>
+                                                <option >Parcelles</option>
+                                                </select>
+                                            </label>
+                                        </th>
                                     </tr>
 
 
                                     <tr>
 
-                                        <th><mfDefaultSorter by="nom">Choisir</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter >Choisir</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
@@ -93,55 +91,52 @@
                            
                              <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandearecup | filtrerecommandearecup :filtre" #carc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
-                                 <label>Zone <select class="form-control input-sm" >
-		                            <option >Dakar</option>
-		                            <option >Pikine</option>
-		                            <option >Rufisque</option>
-		                            <option >Yoff</option>
-		                            <option >Guédiawaye</option>
-		                            <option >Parcelles</option>
-		                            </select>
-		                         </label>
  
                                     <tr>
                                         <th colspan="3" style="padding-right: 3rem ;">
                                             Rechercher :
                                             <input class="form-control" [(ngModel)]="filtre"/>
                                         </th>
+                                        <th colspan="2" style="padding-right: 3rem ;">
                                         <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
-				                            <option >Amath</option>
-				                            <option >Demba</option>
-				                            <option >Oury</option>
-				                            <option >Adja</option>
-				                            <option >Aliou</option>
-				                            <option >Sy</option>
-				                            </select>
-		                         		</label>
-		                         		<button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}}</option>                                         
+                                            </select>
+                                        </label>
+                                        <button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                        </th>
+                                        <th colspan="2" style="padding-right: 3rem ; text-align: center ;"> 
+                                            <label>Zone <select class="form-control input-sm" >
+                                                <option >Dakar</option>
+                                                <option >Pikine</option>
+                                                <option >Rufisque</option>
+                                                <option >Yoff</option>
+                                                <option >Guédiawaye</option>
+                                                <option >Parcelles</option>
+                                                </select>
+                                            </label>
+                                        </th>
                                     </tr>
 
-
                                     <tr>
-
-                                        <th><mfDefaultSorter by="nom">Choisir</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="adr">Adresse</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prod">produits</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prix">prix</mfDefaultSorter></th>
+                                        <th>#</th>
+                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Nom Fournisseur</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="adress">Adresse Fournisseur</mfDefaultSorter></th>
                                    </tr>
                             
                                 </thead>
                                 <tbody *ngIf="this.commandearecup">
                                 <tr *ngFor="let commandearecup of carc.data">
-                                    <input type="checkbox" [(ngModel)]="commandearecup.choix" >
-                                    <td>{{commandearecup.nom}}</td>
-                                    <td>{{commandearecup.prenom}}</td>
-                                    <td>{{commandearecup.tel}}</td>
-                                    <td>{{commandearecup.adr}}</td>
-                                    <td>{{commandearecup.prod}}</td>
-                                    <td>{{commandearecup.prix}}</td>
+                                    <td><input type="checkbox" #checkbox (change)="checkThisCmd(checkbox.checked,commandearecup.id)" ></td>
+                                    <td>{{commandearecup.designation}}</td>
+                                    <td>{{commandearecup.prixUnitaire}}</td>
+                                    <td>{{commandearecup.quantite}}</td>
+                                    <td>{{commandearecup.fullName}}</td>
+                                    <td>{{commandearecup.dateCommande}}</td>
+                                    <td>{{commandearecup.adress}}</td>
 
                                 </tr>
                                 </tbody>
@@ -163,56 +158,51 @@
 
                  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandealivrer | filtrerecommandealivrer :filtre" #cal="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                <thead>
-                                 <label>Zone <select class="form-control input-sm" >
-		                            <option >Dakar</option>
-		                            <option >Pikine</option>
-		                            <option >Rufisque</option>
-		                            <option >Yoff</option>
-		                            <option >Guédiawaye</option>
-		                            <option >Parcelles</option>
-		                            </select>
-		                         </label>
- 
                                     <tr>
-                                        <th colspan="3" style=" padding-right: 3rem ;">
+                                        <th colspan="3" style="padding-right: 3rem ;">
                                             Rechercher :
                                             <input class="form-control" [(ngModel)]="filtre"/>
                                         </th>
+                                        <th colspan="2" style="padding-right: 3rem ;">
                                         <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
-				                            <option >Amath</option>
-				                            <option >Demba</option>
-				                            <option >Oury</option>
-				                            <option >Adja</option>
-				                            <option >Aliou</option>
-				                            <option >Sy</option>
-				                            </select>
-		                         		</label>
-		                         		<button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}}</option>
+                                            </select>
+                                        </label>
+                                        <button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                        </th>
+                                        <th colspan="2" style="padding-right: 3rem ; text-align: center ;"> 
+                                            <label>Zone <select class="form-control input-sm" >
+                                                <option >Dakar</option>
+                                                <option >Pikine</option>
+                                                <option >Rufisque</option>
+                                                <option >Yoff</option>
+                                                <option >Guédiawaye</option>
+                                                <option >Parcelles</option>
+                                                </select>
+                                            </label>
+                                        </th>
                                     </tr>
 
-
                                     <tr>
-
-                                        <th><mfDefaultSorter by="nom">Choisir</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="adr">Adresse</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prod">produits</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prix">prix</mfDefaultSorter></th>
+                                        <th>#</th>
+                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Nom Fournisseur</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="adress">Adresse Fournisseur</mfDefaultSorter></th>
                                    </tr>
                             
                                 </thead>
                                 <tbody *ngIf="this.commandealivrer">
                                 <tr *ngFor="let commandealivrer of cal.data">
-                                   <input type="checkbox" [(ngModel)]="commandealivrer.choix">
-                                    <td>{{commandealivrer.nom}}</td>
-                                    <td>{{commandealivrer.prenom}}</td>
-                                    <td>{{commandealivrer.tel}}</td>
-                                    <td>{{commandealivrer.adr}}</td>
-                                    <td>{{commandealivrer.prod}}</td>
-                                    <td>{{commandealivrer.prix}}</td>
-
+                                    <td><input type="checkbox" #checkbox (change)="checkThisCmd(checkbox.checked,commandealivrer.id)" ></td>
+                                    <td>{{commandealivrer.designation}}</td>
+                                    <td>{{commandealivrer.prixUnitaire}}</td>
+                                    <td>{{commandealivrer.quantite}}</td>
+                                    <td>{{commandealivrer.fullName}}</td>
+                                    <td>{{commandealivrer.dateCommande}}</td>
+                                    <td>{{commandealivrer.adress}}</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -229,14 +219,12 @@
 
         </div>
 
-
-
         <!-- /.panel-body -->
     </div>
-
     <!-- /.panel -->
-
+ </div>
 </div>
 
-
-
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>

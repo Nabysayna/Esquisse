@@ -13,8 +13,12 @@ export class AuthResponse{
 @Injectable()
 export class AuthentificationServiceWeb {
 
-  private servicePort:string = 'http://localhost' ;  
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
+//  private servicePort:string = 'http://localhost' ;  
+//  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
+
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/logging?wsdl' ;
+
   private targetNamespace:string = 'urn:authwsdl' ;
 
   public responseJso : any ;
@@ -23,7 +27,13 @@ export class AuthentificationServiceWeb {
   private soapService:SoapService;
   
   constructor() {
-        this.soapService = new SoapService(this.servicePort, this.servicePath, this.targetNamespace);
+        this.soapService = new SoapService();
+
+        this.soapService.setServicePort(this.servicePort) ;
+        this.soapService.setServicePath(this.servicePath);
+        this.soapService.setServiceUrl(this.servicePort+this.servicePath);
+        this.soapService.setTargetNamespace(this.targetNamespace);  
+
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso =response ; };
         this.soapService.localNameMode = true;
@@ -41,8 +51,7 @@ export class AuthentificationServiceWeb {
         var authResponse:AuthResponse = {prenom:JSON.parse(response["authentificationResponse"]["return"].$).prenom, baseToken:JSON.parse(response["authentificationResponse"]["return"].$).baseToken, reponse:JSON.parse(response["authentificationResponse"]["return"].$).reponse, accessLevel:JSON.parse(response["authentificationResponse"]["return"].$).accessLevel, authorizedApis:JSON.parse(response["authentificationResponse"]["return"].$).authorizedApis} ;
         resolve(authResponse)
         }) ;
-      });
-      
+      });      
   }
 
   

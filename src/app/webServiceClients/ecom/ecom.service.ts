@@ -19,15 +19,36 @@ export class Commande {
   public prixUnitaire:number ;
   public tel:number;
   public fullName:string;
+  public adress:string = "" ;
   public dateCommande:string;
+}
+
+export class Vente {
+  public id:number;
+  public quantite:number;
+  public designation:string;
+  public prixUnitaire:number ;
+  public tel:number;
+  public fullName:string;
+  public dateVente:string;
+}
+
+export class Coursier{  
+  public id:number;
+  public prenom:string;
+  public nom:string;
 }
 
 
 @Injectable()
 export class EcomServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
+//  private servicePort:string = 'http://localhost' ; 
+//  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
+
+
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 
   public responseJso : any ;
@@ -38,7 +59,13 @@ export class EcomServiceWeb {
   private soapService:SoapService;
   
   constructor() {
-        this.soapService = new SoapService(this.servicePort, this.servicePath, this.targetNamespace);
+        this.soapService = new SoapService();
+
+        this.soapService.setServicePort(this.servicePort) ;
+        this.soapService.setServicePath(this.servicePath);
+        this.soapService.setServiceUrl(this.servicePort+this.servicePath);
+        this.soapService.setTargetNamespace(this.targetNamespace);  
+
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
         this.soapService.localNameMode = true;
@@ -83,6 +110,45 @@ export class EcomServiceWeb {
     });      
   }
 
+  public receptionnerCommandes(requestParams:{}) : Promise<string> {
+    var method:string = 'receptionnerCommandes'; 
+    var parameters:{}[] = []; 
+    var reEspParams = requestParams ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    return new Promise( (resolve, reject) => {
+      parameters['receptionnerCommandes xmlns="urn:ecommercewsdl#"'] = params ;
+
+      this.soapService.post(method, parameters, 'receptionnerCommandesResponse').then(response=>{
+        let wSresponse = response['receptionnerCommandesResponse'].return.$ ;
+        console.log("reponse brute from articles Web Service "+wSresponse ) ;
+        resolve(wSresponse) ;
+      }); 
+    });      
+  }
+
+
+  public fournirCommandes(requestParams:{}) : Promise<string> {
+    var method:string = 'fournirCommandes'; 
+    var parameters:{}[] = []; 
+    var reEspParams = requestParams ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    return new Promise( (resolve, reject) => {
+      parameters['fournirCommandes xmlns="urn:ecommercewsdl#"'] = params ;
+
+      this.soapService.post(method, parameters, 'fournirCommandesResponse').then(response=>{
+        let wSresponse = response['fournirCommandesResponse'].return.$ ;
+        console.log("reponse brute from articles Web Service "+wSresponse ) ;
+        resolve(wSresponse) ;
+      }); 
+    });      
+  }
+
+
+
   public listeArticles(token : string, type:string) : Promise<Article[]> {
 
       var method:string = 'listerarticle'; 
@@ -103,11 +169,48 @@ export class EcomServiceWeb {
       });      
   }
 
-  public listerCommandes(token : string) : Promise<Commande[]> {
+  public listerCommandes(token : string, typeListe : string) : Promise<Commande[]> {
 
       var method:string = 'listercommande'; 
       var parameters:{}[] = []; 
-      var reEspParams = {token:token} ;
+      var reEspParams = { token:token, typeListe:typeListe } ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listercommande xmlns="urn:ecommercewsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'listercommandeResponse').then(response=>{
+          let responseJsoFWS : Commande[] = JSON.parse(response['listercommandeResponse'].return.$);
+          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
+          resolve(responseJsoFWS) ;
+        }); 
+      });      
+  }
+
+  public listerCoursier(token : string) : Promise<Coursier[]> {
+
+      var method:string = 'listerCoursier'; 
+      var parameters:{}[] = []; 
+      var reEspParams = { token:token} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listerCoursier xmlns="urn:ecommercewsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'listerCoursierResponse').then(response=>{
+          let responseJsoFWS : Coursier[] = JSON.parse(response['listerCoursierResponse'].return.$);
+          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
+          resolve(responseJsoFWS) ;
+        }); 
+      });      
+  }
+
+
+  public listerVentes(token : string, typeListe : string) : Promise<Vente[]> {
+
+      var method:string = 'listervente'; 
+      var parameters:{}[] = []; 
+      var reEspParams = { token:token, typeListe:typeListe } ;
       var params:{}[] = [] ; 
       params["params"] = reEspParams ;
 

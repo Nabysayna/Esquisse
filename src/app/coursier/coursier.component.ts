@@ -16,6 +16,8 @@ export class CoursierComponent implements OnInit {
 
 
 	filtre="";
+  nom = "nom" ;
+  asc = "asc" ;
 
   constructor(
   		   private location: Location,
