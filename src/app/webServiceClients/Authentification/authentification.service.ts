@@ -13,10 +13,10 @@ export class AuthResponse{
 @Injectable()
 export class AuthentificationServiceWeb {
 
-//  private servicePort:string = 'http://localhost' ;  
-//  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
+//  private servicePort:string = 'http://51.254.200.129' ; 
 
-  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePort:string = 'http://localhost' ;  
+
   private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/logging?wsdl' ;
 
   private targetNamespace:string = 'urn:authwsdl' ;

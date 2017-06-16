@@ -11,7 +11,6 @@ class Article {
   public stock:number;
 }
 
-
 export class Commande {
   public id:number;
   public quantite:number;
@@ -43,11 +42,11 @@ export class Coursier{
 @Injectable()
 export class EcomServiceWeb {
 
-//  private servicePort:string = 'http://localhost' ; 
-//  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
 
+//  private servicePort:string = 'http://51.254.200.129' ; 
 
-  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePort:string = 'http://localhost' ; 
+
   private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 

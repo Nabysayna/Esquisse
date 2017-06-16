@@ -40,6 +40,21 @@ export class AuthComponentComponent implements OnInit {
           }else 
             if ( access === 1 ){
               this.router.navigate(['/accueiladmmpdv']);              
+            }else 
+            if ( access === 5 ){
+              this.router.navigate(['/accueilcoursier']);              
+            }
+            else 
+            if ( access === 4 ){
+              this.router.navigate(['/accueiladmincoursier']);              
+            }
+            else 
+            if ( access === 6 ){
+              this.router.navigate(['/accueiladmincommercial']);              
+            }
+             else 
+            if ( access === 7 ){
+              this.router.navigate(['/accueilcommercial']);              
             }
       	     else
                 if ( access === 4 ){

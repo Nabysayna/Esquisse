@@ -10,6 +10,8 @@ import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
+import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule} from 'ng2-bootstrap';
+
 
 
 /*-----------------*/
@@ -74,6 +76,12 @@ import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/ad
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
 import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
 
+import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-pdv-dashboard/admin-multi-pdv-dashboard.component';
+import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
+import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
+import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
+import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
+
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
 import { TableCompteAccessComponent } from './tables/table-compte-access/table-compte-access.component';
 
@@ -98,7 +106,6 @@ import { RecusComponent } from './recus/recus.component';
 import { PostcashComponent } from './postcash/postcash.component';
 import { LoaderComponent } from './loader/loader.component';
 
-import { TabsModule, CollapseModule, ProgressbarModule} from 'ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { BarChartComponent } from './graphs/bar-chart/bar-chart.component';
@@ -129,6 +136,19 @@ import { FiltrerecommandearecupPipe } from './pipes/filtrerecommandearecup.pipe'
 import { FiltrerecommandealivrerPipe } from './pipes/filtrerecommandealivrer.pipe';
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
+import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
+import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
+import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.pipe';
+import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
+import { AdminmultipdvDemandeRetrait } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
+
+import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
+import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladmincoursier.component';
+import { AdmincommercialComponent } from './admincommercial/admincommercial.component';
+import { AccueiladmincommercialComponent } from './accueiladmincommercial/accueiladmincommercial.component';
+import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercial.component';
+import { FiltrefichierPipe } from './pipes/filtrefichier.pipe';
+import { FiltrervPipe } from './pipes/filtrerv.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -158,6 +178,13 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     SoldecompteComponent,
     RecusComponent,
     PostcashComponent,
+
+    AdminmultipdvDashboardComponent,
+    AdminmultipdvDemandeRetraitComponent,
+    AdminmultipdvMonitoringComponent,
+    AdminmultipdvStatusReclamationComponent,
+    AdminmultipdvUpdateCautionComponent,    
+
 
     LoaderComponent,
     NavbarTopComponent,
@@ -193,6 +220,20 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     FiltrerecommandealivrerPipe,
     AdmincoursierComponent,
     PipeCommandePipe,
+    FiltreoperateursPipe,
+    FiltrervoperateursPipe,
+
+    AdminmultipdvStatusReclamationPipe,
+    AdminmultipdvUpdateCautionPipe,
+    AdminmultipdvDemandeRetrait,
+    
+    AccueilcoursierComponent,
+    AccueiladmincoursierComponent,
+    AdmincommercialComponent,
+    AccueiladmincommercialComponent,
+    AccueilcommercialComponent,
+    FiltrefichierPipe,
+    FiltrervPipe,
   ],
   imports: [
     BrowserModule,
@@ -206,7 +247,8 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
     TabsModule.forRoot(),
     CollapseModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   providers: [  
       SoapService,

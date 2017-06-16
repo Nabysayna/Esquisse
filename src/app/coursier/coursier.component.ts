@@ -10,19 +10,19 @@ import { Location }  from '@angular/common';
   styleUrls: ['./coursier.component.css']
 })
 export class CoursierComponent implements OnInit {
-	recouvrement:{}[];
-	commandearecup:{}[];
-	commandealivrer:{}[];
+  recouvrement:{}[];
+  commandearecup:{}[];
+  commandealivrer:{}[];
 
 
-	filtre="";
+  filtre="";
   nom = "nom" ;
   asc = "asc" ;
 
   constructor(
-  		   private location: Location,
+         private location: Location,
          private route:ActivatedRoute,
-  	     private router: Router) { }
+         private router: Router) { }
 
  ngOnInit():void {
 
