@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, NgZone} from '@angular/core';
 import { EcomServiceWeb, Commande } from '../webServiceClients/ecom/ecom.service';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
@@ -36,8 +36,18 @@ export class EspacePersoComponent implements OnInit {
   modif:string="-";
   modifart:string;
 
+  uploadProgress: number;
+  zone: NgZone;
+
+  receivedArticles = "" ;
+  articlesFournis = "" ;
+
+  designation = "designation" ;
+  asc = "asc" ;
+
   constructor() {
       this.ecomCaller = new EcomServiceWeb();
+      this.zone = new NgZone({ enableLongStackTrace: false });
   }
 
   ngOnInit() { 
@@ -99,28 +109,64 @@ export class EspacePersoComponent implements OnInit {
 
   ajouter(){ 
     this.loading = true ;
-    let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName }
-    this.ecomCaller.ajouterArticle(params).then( response =>
-      {
-        console.log("Le serveur a répondu : "+response) ;
-        this.designationa="";
-        this.descriptiona="";
-        this.prixa=0 ;
-        this.stocka=0;
-        this.loading = false ;
-      }); 
+
+      let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName }
+      this.ecomCaller.ajouterArticle(params).then( response =>
+        {
+          console.log("Le serveur a répondu : "+response) ;
+          console.log("L'image généré est : "+this.uploadFile.generatedName) ;
+          this.designationa="";
+          this.descriptiona="";
+          this.prixa=0 ;
+          this.stocka=0;
+          this.loading = false ;
+        }); 
   }
 
 
-  chargerCommandes(){
+  chargerCommandes(typeListe : string){
     this.loading = true ;
-    this.ecomCaller.listerCommandes(this.token).then( response =>
+    this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
       {
-        console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
+        //console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
         this.listeCommande = response ;
         this.loading = false ;
       });     
   }
+
+  receptionner(idCommande : number){
+    let params = {token: this.token, idCommande: idCommande};
+    this.loading = true ;
+    this.ecomCaller.receptionnerCommandes(params).then( response =>
+      {
+        if(response=="ok")
+          console.log("Le serveur a répondu : "+response) ;
+          this.receivedArticles = this.receivedArticles + "-"+idCommande.toString()+"-" ;
+          this.loading = false ;
+      });  
+   }
+
+  fournir(idCommande : number){
+    let params = {token: this.token, idCommande: idCommande};
+    this.loading = true ;
+    this.ecomCaller.fournirCommandes(params).then( response =>
+      {
+        if(response=="ok")
+          console.log("Le serveur a répondu : "+response) ;
+          this.articlesFournis = this.articlesFournis + "-"+idCommande.toString()+"-" ;
+          this.loading = false ;
+      });  
+   }
+
+
+  receivedCmd(idCommande : number){
+    return ( this.receivedArticles.indexOf("-"+idCommande.toString()+"-")>-1 ) ;
+  }
+
+  cmdFournis(idCommande : number){
+    return ( this.articlesFournis.indexOf("-"+idCommande.toString()+"-")>-1 ) ;
+  }
+
 
  modifArticle(article:Article){
     this.modif=article.nomImg; 
@@ -151,13 +197,15 @@ export class EspacePersoComponent implements OnInit {
   hasBaseDropZoneOver: boolean = false;
 
   options: Object = {
-    url: 'http://localhost:8888/EsquisseBackEnd/server-backend-upload/index.php'
+    url: 'http://localhost/EsquisseBackEnd/server-backend-upload/index.php'
   };
 
   sizeLimit = 2000000;
 
   handleUpload(data): void {
-    if (data && data.response) {
+      this.zone.run(() => {this.uploadProgress = data.progress.percent;});
+
+      if (data.response) {
       data = JSON.parse(data.response);
       this.uploadFile = data;
     }

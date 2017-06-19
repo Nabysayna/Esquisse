@@ -25,11 +25,17 @@ export class AdminmultipdvServiceWeb {
   private soapService:SoapService;
   
   constructor() {
-        this.soapService = new SoapService(this.servicePort, this.servicePath, this.targetNamespace);
-        this.soapService.envelopeBuilder = this.envelopeBuilder;
-        this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
-        this.soapService.localNameMode = true;
-   }
+    this.soapService = new SoapService();
+    
+    this.soapService.setServicePort(this.servicePort) ;
+    this.soapService.setServicePath(this.servicePath);
+    this.soapService.setServiceUrl(this.servicePort+this.servicePath);
+    this.soapService.setTargetNamespace(this.targetNamespace);  
+
+    this.soapService.envelopeBuilder = this.envelopeBuilder;
+    this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
+    this.soapService.localNameMode = true;
+  }
 
   public nombredereclamationagentpdvvente(token : string,type : string): Promise<AdminmultipdvNombredeReclamationAgentPdvVente>  {
     var method:string = 'nombredereclamationagentpdvvente';
