@@ -50,6 +50,7 @@ import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.
 import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
 import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
+import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/adminmultipdv.service';
 import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
 
@@ -77,6 +78,7 @@ import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-p
 import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
 import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
 import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
+import { AdminmultipdvStatusRecouvrementComponent } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.component';
 import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
 
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
@@ -136,8 +138,9 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
 import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
 import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
 import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.pipe';
+import { AdminmultipdvStatusRecouvrementPipe } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.pipe';
 import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
-import { AdminmultipdvDemandeRetrait } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
+import { AdminmultipdvDemandeRetraitPipe } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
 
 import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
 import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladmincoursier.component';
@@ -180,6 +183,7 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     AdminmultipdvDemandeRetraitComponent,
     AdminmultipdvMonitoringComponent,
     AdminmultipdvStatusReclamationComponent,
+    AdminmultipdvStatusRecouvrementComponent,
     AdminmultipdvUpdateCautionComponent,    
 
 
@@ -221,8 +225,9 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     FiltrervoperateursPipe,
 
     AdminmultipdvStatusReclamationPipe,
+    AdminmultipdvStatusRecouvrementPipe,
     AdminmultipdvUpdateCautionPipe,
-    AdminmultipdvDemandeRetrait,
+    AdminmultipdvDemandeRetraitPipe,
     
     AccueilcoursierComponent,
     AccueiladmincoursierComponent,
@@ -281,6 +286,7 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       TntServiceWeb,
       EcomServiceWeb,
       AdminpdvServiceWeb,
+      AdminmultipdvServiceWeb,
       AuthenticationService
   ],
   bootstrap: [AppComponent]

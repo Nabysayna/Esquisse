@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AdminpdvUserpdv }    from '../../models/adminpdv-userpdv';
-import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
+import { AdminmultipdvDemanderetrait }    from '../../models/adminmultipdv-demanderetrait';
+import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
 
 
 @Component({
@@ -11,79 +11,22 @@ import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.se
 })
 export class AdminmultipdvDemandeRetraitComponent implements OnInit {
 
-  public data = [
-      {
-        "agent": "P Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": 70000,
-      },
-    {
-        "agent": "O Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": 20000,
-      },
-    {
-        "agent": "I Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": 20000,
-      },
-    {
-        "agent": "U Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": 20000,
-      },
-    {
-        "agent": "Y Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": 20000,
-      },
-    {
-        "agent": "T Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": 20000,
-      },
-    {
-        "agent": "R Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": "60000",
-      },
-    {
-        "agent": "E Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": "50000",
-      },
-    {
-        "agent": "Z Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": "900000",
-      },
-    {
-        "agent": "A Wring",
-        "telephone": "1234567",
-        "adresse": "Pikine Dakar Sénégal",
-        "cautionconsomme": "290000",
-      },
-    
-  ];
-
     public filterQuery = "";
     public rowsOnPage = 10;
-    public sortBy = "agent";
-    public sortOrder = "asc";
+    public sortBy = "datedemanderetrait";
+    public sortOrder = "desc";
 
-    constructor() { }
+    public adminmultipdvDemanderetrait: AdminmultipdvDemanderetrait[];
+    loading = false ;
+
+  constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb) { }
 
   ngOnInit() {
-  
+    this.loading = true ;
+    this.adminmultipdvServiceWeb.demanderetraitfond('12345','azrrtt').then(adminmultipdvServiceWebList => {
+      this.adminmultipdvDemanderetrait = adminmultipdvServiceWebList; 
+    });
+
   }
 
   public toInt(num: string) {
@@ -91,7 +34,7 @@ export class AdminmultipdvDemandeRetraitComponent implements OnInit {
     }
 
     public sortByWordLength = (a: any) => {
-        return a.agent.length;
+        return a.datedemanderetrait.length;
     }
 
 

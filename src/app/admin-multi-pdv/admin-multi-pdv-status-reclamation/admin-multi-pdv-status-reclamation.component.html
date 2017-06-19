@@ -1,7 +1,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Status des reclamations</h1>
+            <h1 class="page-header">Status des réclamations</h1>
         </div>
     </div>
 
@@ -17,7 +17,9 @@
 	                <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
 	                    <option [ngValue]="5">5</option>
 	                    <option [ngValue]="10">10</option>
-	                    <option [ngValue]="15">15</option>
+	                    <option [ngValue]="25">25</option>
+	                    <option [ngValue]="50">50</option>
+	                    <option [ngValue]="100">100</option>
 	                </select>
 	            </div>
 	            <div class="col-xs-4">
@@ -28,10 +30,12 @@
 	                    <div class="row">
 	                        <select class="form-control input-sm" [(ngModel)]="sortBy">
 	                            <option ngValue="datereclamation">Date réclamation</option>
-	                            <option ngValue="pdv">pdv</option>
+	                            <option ngValue="agent">Admin Pdv</option>
+	                            <option ngValue="pdv">Pdv</option>
 	                            <option ngValue="telephone">Téléphone</option>
 	                            <option ngValue="adresse">Adresse</option>
-	                            <option ngValue="message">Message</option>
+	                            <option ngValue="typeservice">Type de service</option>
+	                            <option ngValue="reclamation">Message</option>
 	                            <option [ngValue]="sortByWordLength">Etat</option>
 	                        </select>
 	                    </div>
@@ -48,46 +52,40 @@
 	            </div>
 	        </div>
 	        <div class="panel panel-default table-responsive">
-	            <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+	            <table class="table table-striped" [mfData]="adminmultipdvReclamation | dataFilterAdminmultipdvStatusReclamation : filterQuery" #mf="mfDataTable"
 	                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 	                <thead>
 	                <tr>
-	                    <th style="width: 10%"><mfDefaultSorter by="datereclamation">Date de reclamation</mfDefaultSorter></th>
-	                    <th style="width: 20%">
-	                        <mfDefaultSorter by="pdv">Pdv</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 40%">
-	                        <mfDefaultSorter by="telephone">Telephone</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 10%">
-	                        <mfDefaultSorter by="adresse">Adresse</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 10%">
-	                        <mfDefaultSorter by="message">Message</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 20%">
-	                        <mfDefaultSorter [by]="sortByWordLength">Etat</mfDefaultSorter>
-	                    </th>
+	                    <th><mfDefaultSorter by="datereclamation">Date de reclamation</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="agent">Admin Pdv</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="pdv">Pdv</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="adresse">Adresse</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="typeservice">Type de service</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="reclamation">Message</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter [by]="sortByWordLength">Etat</mfDefaultSorter></th>
 	                </tr>
 	                </thead>
 	                <tbody>
 	                <tr *ngFor="let item of mf.data">
 	                    <td>{{item.datereclamation}}</td>
+	                    <td>{{item.agent}}</td>
 	                    <td>{{item.pdv}}</td>
 	                    <td>{{item.telephone}}</td>
 	                    <td>{{item.adresse}}</td>
+	                    <td>{{item.typeservice}}</td>
 	                    <td class="text-center">
-	                    	<button type="button" class="btn btn-danger" popover="{{item.message}}" popoverTitle="Réclamation" triggers="focus">
+	                    	<button type="button" class="btn btn-danger" popover="{{item.reclamation}}" popoverTitle="Réclamation" triggers="focus">
 							  	voir
 							</button>
 	                    </td>
-	                    <td>{{item.etat}}</td>
+	                    <td>{{item.etatreclamation}}</td>
 	                </tr>
 	                </tbody>
 	                <tfoot>
 	                <tr>
 	                    <td colspan="5">
-	                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+	                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100]"></mfBootstrapPaginator>
 	                    </td>
 	                </tr>
 	                </tfoot>
