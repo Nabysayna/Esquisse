@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
 
 import { AdminmultipdvMajcaution }    from '../../models/adminmultipdv-majcaution';
 import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
@@ -10,6 +10,8 @@ import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/a
   styleUrls: ['./admin-multi-pdv-update-caution.component.css']
 })
 export class AdminmultipdvUpdateCautionComponent implements OnInit {
+
+  @ViewChild('closeBtn') closeBtn: ElementRef;
 
 	public filterQuery = "";
     public rowsOnPage = 10;
@@ -32,13 +34,17 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
 
   }
 
+  private closeModal(): void {
+        this.closeBtn.nativeElement.click();
+  }
+  
   public toInt(num: string) {
-        return +num;
-    }
+      return +num;
+  }
 
-    public sortByWordLength = (a: any) => {
-        return a.agent.length;
-    }
+  public sortByWordLength = (a: any) => {
+      return a.agent.length;
+  }
 
   public maj(item):void {
     this.inputCaution = null;
@@ -49,6 +55,7 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
     this.loading = true ;
     this.adminmultipdvServiceWeb.modifymajcaution('12345','azrrtt', this.majcaution.idagent, this.inputCaution).then(adminmultipdvServiceWebList => {
       console.log(adminmultipdvServiceWebList); 
+      this.closeModal();
       this.loading = false ;
     });
   }

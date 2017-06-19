@@ -101,10 +101,9 @@
             <div class="modal-body">
             	<label for="inputCaution">Nouvelle caution</label>
           		<input id="inputCaution" name="inputCaution" type="number" placeholder="Nouvelle caution" class="form-control" required [(ngModel)]="inputCaution" #Caution="ngModel">
-          
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-default" id="idmodalferme" data-dismiss="modal" #closeBtn>Annuler</button>
                 <button type="button" (click)="validermaj(inputCaution)" [disabled]="!Caution.valid" class="btn btn-primary">Valider</button>
             </div>
         </div>
