@@ -50,6 +50,7 @@ import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
 import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
+import { CommercialServiceWeb }    from './webServiceClients/Commercial/commercial.service';
 
 
 /*-----------------*/
@@ -257,7 +258,8 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       TntServiceWeb,
       EcomServiceWeb,
       AdminpdvServiceWeb,
-      AuthenticationService
+      AuthenticationService,
+      CommercialServiceWeb
   ],
   bootstrap: [AppComponent]
 })

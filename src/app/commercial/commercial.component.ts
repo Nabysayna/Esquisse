@@ -42,7 +42,7 @@ export class CommercialComponent implements OnInit {
   constructor(
   		   private location: Location,
          private route:ActivatedRoute,
-  	     private router: Router) { }
+  	     private router: Router ) { }
 
   ngOnInit():void {
 
@@ -55,9 +55,7 @@ export class CommercialComponent implements OnInit {
    { id: 2, nom: 'sarr', prenom: 'marieme', tel:"774444444", adr: "djily mbaye", nomag:"dia mouhamed"},
    { id: 3, nom: 'ka', prenom: 'assane', tel:"777777777", adr: "keur mbaye fall", nomag:"diouf luc"}];
 
-
-  }
-
+}
   enregistrer(){
   	for (var i = this.fichier.length - 1; i >= 0; i--) {
   		if(this.fichier[i].choix)
