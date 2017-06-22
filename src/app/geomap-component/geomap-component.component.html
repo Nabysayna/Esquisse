@@ -7,8 +7,8 @@
       [zoom]="zoom"
     >
   		<agm-marker *ngFor="let m of markers; let i = index"
-          [latitude]="m.position.lat"
-          [longitude]="m.position.lng"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
           [label]="m.label"
           [title]="m.title"
         >

@@ -5,8 +5,8 @@
         </div>
     </div>
 
-    <div class="row">
-	    <app-geomap-component [markers]="markers"></app-geomap-component>
+    <div class="row" *ngIf="adminmultipdvListmap">
+	    <app-geomap-component [markers]="adminmultipdvListmap"></app-geomap-component>
 	</div>
             
 </div>

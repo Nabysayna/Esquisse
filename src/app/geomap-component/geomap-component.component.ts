@@ -29,7 +29,8 @@ export class GeomapComponentComponent implements OnInit {
 
 // just an interface for type safety.
 interface marker {
-	position: {lat: number, lng: number};
+	lat: number;
+  lng: number;
 	label?: string;
 	title?: string;
 	content?: string;

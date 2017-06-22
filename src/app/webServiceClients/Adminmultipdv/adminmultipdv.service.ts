@@ -153,6 +153,25 @@ export class AdminmultipdvServiceWeb {
       
   }
 
+  public listmap(type : string): Promise<any>  {
+    var method:string = 'listmap';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, type: type} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['listmap xmlns="urn:adminmultipdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'listmapResponse').then(response=>{
+        var reponse = JSON.parse(response['listmapResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
   public activiteservices(type : string): Promise<AdminmultipdvActiviteservices>  {
     var method:string = 'activiteservices';
     var parameters:{}[] = [];
