@@ -27,7 +27,7 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true ;
-    this.adminmultipdvServiceWeb.listmajcautions('12345','azrrtt').then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.listmajcautions('azrrtt').then(adminmultipdvServiceWebList => {
       this.adminmultipdvMajcaution = adminmultipdvServiceWebList; 
       this.loading = false ;
     });
@@ -53,7 +53,7 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
 
   public validermaj(item):void {
     this.loading = true ;
-    this.adminmultipdvServiceWeb.modifymajcaution('12345','azrrtt', this.majcaution.idagent, this.inputCaution).then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.modifymajcaution('azrrtt', this.majcaution.idagent, this.inputCaution).then(adminmultipdvServiceWebList => {
       console.log(adminmultipdvServiceWebList); 
       this.closeModal();
       this.loading = false ;

@@ -21,8 +21,10 @@ export class AdminmultipdvServiceWeb {
 
   public responseJso : any;
   public resp : string  ;  
-
   private soapService:SoapService;
+
+  private token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+
   
   constructor() {
     this.soapService = new SoapService();
@@ -37,11 +39,11 @@ export class AdminmultipdvServiceWeb {
     this.soapService.localNameMode = true;
   }
 
-  public nombredereclamationagentpdvvente(token : string,type : string): Promise<AdminmultipdvNombredeReclamationAgentPdvVente>  {
+  public nombredereclamationagentpdvvente(type : string): Promise<AdminmultipdvNombredeReclamationAgentPdvVente>  {
     var method:string = 'nombredereclamationagentpdvvente';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -56,11 +58,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public bilandeposit(token : string,type : string): Promise<AdminmultipdvDeposit>  {
+  public bilandeposit(type : string): Promise<AdminmultipdvDeposit>  {
     var method:string = 'bilandeposit';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -75,11 +77,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public depositinitialconsommeparservice(token : string,type : string): Promise<AdminmultipdvDepositInitialConsommeParService>  {
+  public depositinitialconsommeparservice(type : string): Promise<AdminmultipdvDepositInitialConsommeParService>  {
     var method:string = 'depositinitialconsommeparservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -94,11 +96,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public performanceagent(token : string,type : string): Promise<AdminmultipdvPerformanceagent[]>  {
+  public performanceagent(type : string): Promise<AdminmultipdvPerformanceagent[]>  {
     var method:string = 'performanceagent';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -113,11 +115,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public historiquerecouvrement(token : string,type : string): Promise<AdminmultipdvRecouvrement[]>  {
+  public historiquerecouvrement(type : string): Promise<AdminmultipdvRecouvrement[]>  {
     var method:string = 'historiquerecouvrement';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -132,11 +134,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public historiquereclamation(token : string,type : string): Promise<AdminmultipdvReclamation[]>  {
+  public historiquereclamation(type : string): Promise<AdminmultipdvReclamation[]>  {
     var method:string = 'historiquereclamation';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -151,11 +153,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public activiteservices(token : string,type : string): Promise<AdminmultipdvActiviteservices>  {
+  public activiteservices(type : string): Promise<AdminmultipdvActiviteservices>  {
     var method:string = 'activiteservices';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -170,11 +172,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public demanderetraitfond(token : string,type : string): Promise<AdminmultipdvDemanderetrait[]>  {
+  public demanderetraitfond(type : string): Promise<AdminmultipdvDemanderetrait[]>  {
     var method:string = 'demanderetraitfond';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -189,11 +191,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public listmajcautions(token : string,type : string): Promise<AdminmultipdvMajcaution[]>  {
+  public listmajcautions(type : string): Promise<AdminmultipdvMajcaution[]>  {
     var method:string = 'listmajcautions';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -208,11 +210,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public modifymajcaution(token : string, type : string, idagent : number, modifycaution : number): Promise<any>  {
+  public modifymajcaution(type : string, idagent : number, modifycaution : number): Promise<any>  {
     var method:string = 'modifymajcaution';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type, idagent: idagent, modifycaution: modifycaution} ;
+    var reEspParams = {token: this.token, type: type, idagent: idagent, modifycaution: modifycaution} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 

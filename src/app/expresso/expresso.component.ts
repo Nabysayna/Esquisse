@@ -11,6 +11,8 @@ import {AgentTopUp} from '../expresso/expressomodels';
 import {MyAccountService} from '../expresso/expressoservices';
 import {MyAccount} from '../expresso/expressomodels';
 
+import { ExpressoCashWebService } from '../webServiceClients/ExpressoCash/expressocash.service';
+
 
 @Component({
   selector: 'app-expresso',
@@ -47,7 +49,8 @@ export class ExpressoComponent implements OnInit {
   		 private cashInService: CashInService,
          private location: Location,
          private route:ActivatedRoute,
-  	     private router: Router
+  	     private router: Router,
+         private expressocashwebservice:ExpressoCashWebService
   	) { }
 
   ngOnInit():void {
@@ -67,14 +70,32 @@ export class ExpressoComponent implements OnInit {
        this.route.params.subscribe( (params : Params) => { 
       this.myAccount = this.myAccountService.getMyAccount(5);
     });
-}
+    
 
-  validcashin(){}
+  }
 
-  validcashout(){}
+  validcashin(){
+    this.expressocashwebservice.cashin('12345678902','221703593438','100',"bank cash in",'N/A','N/A','TEST _BANK','C1B5669733701269F11862510C93E932','9A1D2C5FD5B16EBD0184E0DE8108EB814635CDDC509999A922C4A4A267A7FCFB172B44D1D05AC536989').then(expressocashwebserviceList => {
+      console.log(expressocashwebserviceList);
+    });
+  }
 
-  validagenttopup(){}
+  validcashout(){
+    this.expressocashwebservice.cashout('12345678902','221703593438','100',"bank cash out",'N/A','N/A','TEST _BANK','C1B5669733701269F11862510C93E932','9A1D2C5FD5B16EBD0184E0DE8108EB814635CDDC509999A922C4A4A267A7FCFB172B44D1D05AC536989').then(expressocashwebserviceList => {
+      console.log(expressocashwebserviceList);
+    });
+  }
 
-  validmyaccount(){}
+  validagenttopup(){
+    this.expressocashwebservice.topup('12345678902','221703593438','100',"bank top up",'N/A','N/A','TEST _BANK','C1B5669733701269F11862510C93E932','9A1D2C5FD5B16EBD0184E0DE8108EB814635CDDC509999A922C4A4A267A7FCFB172B44D1D05AC536989').then(expressocashwebserviceList => {
+      console.log(expressocashwebserviceList);
+    });
+  }
+
+  validmyaccount(){
+    this.expressocashwebservice.checkbalance('TEST _BANK','C1B5669733701269F11862510C93E932','9A1D2C5FD5B16EBD0184E0DE8108EB814635CDDC509999A922C4A4A267A7FCFB172B44D1D05AC536989').then(expressocashwebserviceList => {
+      console.log(expressocashwebserviceList);
+    });
+  }
 
 }

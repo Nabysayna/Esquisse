@@ -51,6 +51,8 @@ import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.ser
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
 import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
+import { ExpressoCashWebService } from './webServiceClients/ExpressoCash/expressocash.service';
+import { JoniJoniWebService } from './webServiceClients/JoniJoni/jonijoni.service';
 import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
 import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/adminmultipdv.service';
@@ -286,6 +288,8 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       AuthentificationServiceWeb,
       PostCashServiceWeb,
       PostCashWebService,
+      ExpressoCashWebService,
+      JoniJoniWebService,
       TntServiceWeb,
       EcomServiceWeb,
       AdminpdvServiceWeb,
