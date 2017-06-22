@@ -1,7 +1,27 @@
-<h1>{{ title }}</h1>
-
+<div class="row">
+  <div class="col-md-6">
+    <label>Recherche par département</label>
+    <input [(ngModel)]="groupSelected"
+         [typeahead]="centreDepartement"
+         (typeaheadLoading)="changeTypeaheadLoading($event)"
+         (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         typeaheadOptionField="name"
+         typeaheadGroupField="region"
+         placeholder="Locations des pdv"
+         class="form-control">
+    <div *ngIf="typeaheadLoading===true">
+      <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
+    </div>
+    <div *ngIf="typeaheadNoResults===true" class="" style="">
+      <i class="glyphicon glyphicon-remove"></i> Pas de réponse
+    </div>
+  </div>
+</div>
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
+<h1>{{ title }}: {{nameSelected | json}}</h1>
+
 <agm-map [latitude]="lat" 
       [longitude]="lng"
       [zoom]="zoom"
