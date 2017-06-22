@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import {ActivatedRoute, Params} from '@angular/router';
 import { Location }  from '@angular/common';
 
+import { CommercialServiceWeb } from '../webServiceClients/Commercial/commercial.service';
+
 
 class Fichier {
 	id:number;
@@ -39,12 +41,22 @@ export class CommercialComponent implements OnInit {
 
 	filtre="";
 
+  public zone:any;
+  
+
   constructor(
   		   private location: Location,
          private route:ActivatedRoute,
-  	     private router: Router ) { }
+  	     private router: Router,
+         private commercialServiceWeb:CommercialServiceWeb
+          ) { }
 
   ngOnInit():void {
+
+    this.commercialServiceWeb.zone('dyjt','gdty').then(commercialserviceList => {
+        this.zone = commercialserviceList;
+        console.log(this.zone);
+      });
 
   	 this.fichier= [{ id: 5, nom: 'ndiaye', prenom: 'naby', tel:"771111111", adr: "parcelles u24", qualification:"",choix:false},
    { id: 2, nom: 'sarr', prenom: 'marieme', tel:"774444444", adr: "djily mbaye", qualification:"", choix:false},

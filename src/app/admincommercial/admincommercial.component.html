@@ -22,12 +22,12 @@
 	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="operateurs|filtrefichier:filtre" #fopad="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
-		                            <option >Dakar</option>
-		                            <option >Pikine</option>
+		                            <option *ngFor="let zones of zone">{{zones}}</option>
+		                            <!-- <option >Pikine</option>
 		                            <option >Rufisque</option>
 		                            <option >Yoff</option>
 		                            <option >Guédiawaye</option>
-		                            <option >Parcelles</option>
+		                            <option >Parcelles</option> -->
 		                            </select>
 		                         </label>
  
@@ -37,13 +37,8 @@
                                             <input class="form-control" [(ngModel)]="filtre"/>
                                         </th>
                                       		<label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier">
-				                            <option >Amath</option>
-				                            <option >Demba</option>
-				                            <option >Oury</option>
-				                            <option >Adja</option>
-				                            <option >Aliou</option>
-				                            <option >Sy</option>
-				                            </select>
+				                             <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>
+                                            </select>
 		                         		</label>
 		                         		<button class="btn btn-success" (click)="assigner()">Assigner</button>
                                     </tr>
@@ -102,12 +97,12 @@
 	                  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="rvoperateurs|filtrefichier:filtre" #fopa="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
-		                            <option >Dakar</option>
-		                            <option >Pikine</option>
-		                            <option >Rufisque</option>
-		                            <option >Yoff</option>
-		                            <option >Guédiawaye</option>
-		                            <option >Parcelles</option>
+		                            <option *ngFor="let zones of zone">{{zones}}</option>
+                                    <!-- <option >Pikine</option>
+                                    <option >Rufisque</option>
+                                    <option >Yoff</option>
+                                    <option >Guédiawaye</option>
+                                    <option >Parcelles</option> -->
 		                            </select>
 		                         </label>
  

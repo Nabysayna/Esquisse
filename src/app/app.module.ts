@@ -10,11 +10,16 @@ import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
+import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule} from 'ng2-bootstrap';
+
 
 
 /*-----------------*/
 /*      Services   */
 /*-----------------*/
+
+import { SoapService } from './soap.service';
+
 
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
@@ -38,16 +43,17 @@ import { LAbonnementService} from './tnt/tntservices';
 import { EFinancierService} from './tnt/tntservices';
 
 
+
 import { UserPdvService }    from './services/userPdv.service';
 import { PostCashService }    from './services/postCash.service';
 import { AdminpdvDashboardService }    from './services/adminpdv-dashboard.service';
 import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.service';
-import { SoapService } from './soap.service';
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
 import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
 import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
+import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/adminmultipdv.service';
 import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
 import { CommercialServiceWeb }    from './webServiceClients/Commercial/commercial.service';
@@ -71,6 +77,13 @@ import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/
 import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/adminpdv-parametrage.component';
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
 import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
+
+import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-pdv-dashboard/admin-multi-pdv-dashboard.component';
+import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
+import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
+import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
+import { AdminmultipdvStatusRecouvrementComponent } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.component';
+import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
 
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
 import { TableCompteAccessComponent } from './tables/table-compte-access/table-compte-access.component';
@@ -96,7 +109,6 @@ import { RecusComponent } from './recus/recus.component';
 import { PostcashComponent } from './postcash/postcash.component';
 import { LoaderComponent } from './loader/loader.component';
 
-import { TabsModule, CollapseModule, ProgressbarModule} from 'ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { BarChartComponent } from './graphs/bar-chart/bar-chart.component';
@@ -129,6 +141,11 @@ import { AdmincoursierComponent } from './admincoursier/admincoursier.component'
 import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
 import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
 import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
+import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.pipe';
+import { AdminmultipdvStatusRecouvrementPipe } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.pipe';
+import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
+import { AdminmultipdvDemandeRetraitPipe } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
+
 import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
 import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladmincoursier.component';
 import { AdmincommercialComponent } from './admincommercial/admincommercial.component';
@@ -166,6 +183,14 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     RecusComponent,
     PostcashComponent,
 
+    AdminmultipdvDashboardComponent,
+    AdminmultipdvDemandeRetraitComponent,
+    AdminmultipdvMonitoringComponent,
+    AdminmultipdvStatusReclamationComponent,
+    AdminmultipdvStatusRecouvrementComponent,
+    AdminmultipdvUpdateCautionComponent,    
+
+
     LoaderComponent,
     NavbarTopComponent,
     AdminpdvAidedecisionComponent,
@@ -202,6 +227,12 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     PipeCommandePipe,
     FiltreoperateursPipe,
     FiltrervoperateursPipe,
+
+    AdminmultipdvStatusReclamationPipe,
+    AdminmultipdvStatusRecouvrementPipe,
+    AdminmultipdvUpdateCautionPipe,
+    AdminmultipdvDemandeRetraitPipe,
+    
     AccueilcoursierComponent,
     AccueiladmincoursierComponent,
     AdmincommercialComponent,
@@ -222,9 +253,11 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     TabsModule.forRoot(),
     CollapseModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    PopoverModule.forRoot()
   ],
-  providers: [
+  providers: [  
+      SoapService,
       EFinancierService,
       LAbonnementService,
       NAbonnementService,
@@ -251,7 +284,6 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       PostCashService, 
       AdminpdvDashboardService,
       AdminpdvMonitoringService,
-      SoapService,
       AuthentificationServiceWeb,
       PostCashServiceWeb,
       PostCashWebService,
@@ -259,7 +291,9 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       EcomServiceWeb,
       AdminpdvServiceWeb,
       AuthenticationService,
-      CommercialServiceWeb
+      CommercialServiceWeb,
+      AdminmultipdvServiceWeb,
+      AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

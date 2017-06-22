@@ -13,12 +13,18 @@ class Fichier {
   
   }
 
+  export class Coursier{  
+  public id:number;
+  public prenom:string;
+  public nom:string;
+}
+
 
 @Injectable()
 export class CommercialServiceWeb {
 
   private servicePort:string = 'http://localhost:8888' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/commercial?wsdl' ;
   private targetNamespace:string = 'urn:commercialwsdl' ;
 
   public responseJso : any ;
@@ -29,26 +35,51 @@ export class CommercialServiceWeb {
   private soapService:SoapService;
   
   constructor() {
-        this.soapService = new SoapService(this.servicePort, this.servicePath, this.targetNamespace);
+
+        this.soapService = new SoapService();
+
+        this.soapService.setServicePort(this.servicePort) ;
+        this.soapService.setServicePath(this.servicePath);
+        this.soapService.setServiceUrl(this.servicePort+this.servicePath);
+        this.soapService.setTargetNamespace(this.targetNamespace);  
+
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
         this.soapService.localNameMode = true;
   }
 
 
-  public listcoursier(token:string, type:string) : Promise<string> {
+  public listcoursier(token : string) : Promise<Coursier[]> {
 
-     var method:string = 'listcoursier';
+      var method:string = 'listcoursier'; 
+      var parameters:{}[] = []; 
+      var reEspParams = { token:token} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listcoursier xmlns="urn:commercialwsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'listcoursierResponse').then(response=>{
+          let responseJsoFWS : Coursier[] = JSON.parse(response['listcoursierResponse'].return.$);
+          console.log("reponse brute from coursiers Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
+          resolve(responseJsoFWS) ;
+        }); 
+      });      
+  }
+
+  public zone(token:string, type:string) : Promise<any> {
+
+     var method:string = 'zone';
     var parameters:{}[] = [];
     var reEspParams = {token:token, type: type} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
-    parameters['listcoursier xmlns="urn:commercialwsdl#"'] = params;
+    parameters['zone xmlns="urn:commercialwsdl#"'] = params;
     
     return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'listcoursierResponse').then(response=>{
-        var reponse:any = JSON.parse(response['listcoursierResponse'].return.$);
+      this.soapService.post(method, parameters, 'zoneResponse').then(response=>{
+        var reponse:any = JSON.parse(response['zoneResponse'].return.$);
         resolve(reponse) ;
       }); 
     });     

@@ -1,0 +1,334 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+    </div>
+    
+    <div class="row"  *ngIf="AdminmultipdvNombredereclamationagentpdvvente">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{AdminmultipdvNombredereclamationagentpdvvente.nbrecouvrements}}</div>
+                            <div>Nouveaux Récouvrements!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"><a [routerLink]="['/accueiladmmpdv', 'statusrecouvrement']" >Voir Details</a></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{AdminmultipdvNombredereclamationagentpdvvente.nbreclamations}}</div>
+                            <div>Nouvelles Réclamations!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"><a [routerLink]="['/accueiladmmpdv', 'statusreclamation']" >Voir Details</a></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{AdminmultipdvNombredereclamationagentpdvvente.nbagents}}</div>
+                            <div>Nouveaux Agents!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Voir Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{AdminmultipdvNombredereclamationagentpdvvente.nbpdv}}</div>
+                            <div>Nouveaux Points de vente!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Voir Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{AdminmultipdvNombredereclamationagentpdvvente.nbarticlesvendus}}</div>
+                            <div>Nouveaux Articles vendus!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Voir Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-dm-12 col-sm-12" >
+            <div class="panel panel-primary" *ngIf="adminmultipdvActiviteservices">
+                <div class="panel-heading">
+                    <h4>Activés des services</h4>
+                    <i class="fa fa-bar-chart-o fa-fw"></i>{{lineTilte}}<div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                Activité par
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li (click)="activiteserviceparno()"><a>Nombre d'opérations</a></li>
+                                <li (click)="activiteserviceparmp()"><a>Montant perçus</a></li>
+                                <li (click)="activiteserviceparmd()"><a>Montant donnés</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" >
+                    <canvas baseChart class="table-responsive"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--     <div class="row">
+        <div class="col-sm-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Consommation du deposit par service</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Service</th>
+                                    <th>Nombre d'operations</th>
+                                    <th>Montant envoyé</th>
+                                    <th>Montant reçu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor=" let consommationdepositparservicetype of monitoringAdminpdvConsommationDepositService; let i = index ">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{ consommationdepositparservicetype.service  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
+                                </tr>
+                                <tr>
+                                    <td>-</td>
+                                    <td>{{ "Total" | uppercase }}</td>
+                                    <td>2000000</td>
+                                    <td>2000000</td>
+                                    <td>2000000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Consommation du deposit par Agent</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Agent</th>
+                                    <th>Adresse</th>
+                                    <th>Nombre d'operations</th>
+                                    <th>Montant consomme</th>
+                                    <th>Commission</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let consommationdepositparpdv of monitoringAdminpdvConsommationDepositPdv; let i = index ">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{ consommationdepositparpdv.pdv | uppercase }}</td>
+                                    <td>{{ consommationdepositparpdv.adresse }}</td>
+                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
+                                    <td>{{ consommationdepositparpdv.commission  }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">{{ "Total" | uppercase }}</td>
+                                    <td>2000000</td>
+                                    <td>2000000</td>
+                                    <td>200000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+<!--     <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Recouvrements en cours</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Agent</th>
+                                    <th>Téléphone</th>
+                                    <th>Adresse</th>
+                                    <th>Montant consomme</th>
+                                    <th>Commission</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let recouvrementadminpdv of monitoringAdminpdvRecouvrement; let i = index ">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{ recouvrementadminpdv.date  }}</td>
+                                    <td>{{ recouvrementadminpdv.pdv | uppercase }}</td>
+                                    <td>1234</td>
+                                    <td>Pk Dk</td>
+                                    <td>{{ recouvrementadminpdv.montantconsomme  }}</td>
+                                    <td>{{ recouvrementadminpdv.commission  }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">
+                    <h3>Performances des agents</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#a" data-toggle="tab">La journée</a></li>
+                        <li><a href="#b" data-toggle="tab">La semaine</a></li>
+                        <li><a href="#c" data-toggle="tab">Le mois</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="a">
+                            <br>
+                            <p *ngFor=" let performancepdv of adminmultipdvDashboardPerformanceagent; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }} 
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="b">
+                            <br>
+                            <p *ngFor=" let performancepdv of adminmultipdvDashboardPerformanceagent; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }}
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="c">
+                            <br>
+                            <p *ngFor=" let performancepdv of adminmultipdvDashboardPerformanceagent; let i = index ">
+                                {{ i + 1 }} - {{ performancepdv.fullname }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-sm-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Réclamations en cours</h4>
+                </div>
+                <div class="panel-body">
+                    <div *ngFor="let reclamationpdv of monitoringAdminpdvReclamation; let i = index ">
+                        <div>
+                            <strong class="pull-left" >{{ reclamationpdv.pdv | uppercase }}</strong>
+                            <span class="pull-right text-muted">
+                                <em>Hier</em>
+                            </span>
+                        </div>
+                        <br>
+                        <div>{{ reclamationpdv.reclamation }}</div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>
+
+
+

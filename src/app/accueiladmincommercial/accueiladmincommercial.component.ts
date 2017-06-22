@@ -14,10 +14,11 @@ export class AccueiladmincommercialComponent implements OnInit {
 
   constructor( private commercialServiceWeb:CommercialServiceWeb) { }
 
-  ngOnInit():void  {
-  	 this.commercialServiceWeb.listcoursier('dyjt','gdty').then(postcashwebserviceList => {
-        console.log(postcashwebserviceList);
-      });
+  ngOnInit() {
+  	 // this.commercialServiceWeb.listcoursier('dyjt','gdty').then(commercialserviceList => {
+        // console.log(commercialserviceList);
+      // });
+  	 // console.log('test');
   }
 
 }

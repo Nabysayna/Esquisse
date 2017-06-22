@@ -29,6 +29,7 @@ export class CatalogueComponent implements OnInit {
   orderedArticle : Article ;
   prenomClient = "" ;
   nomClient = "" ;
+  qteCmd : number ;
   telClient : number ;
   constructor() { 
         this.ecomCaller = new EcomServiceWeb();
@@ -53,7 +54,7 @@ export class CatalogueComponent implements OnInit {
     let article = this.orderedArticle ;
     this.loading = true ;
     this.saisieInfosClient = false ;
-    let params = { token: this.token , id_article:article.id, quantite: 1, prenomclient: this.prenomClient, nomclient: this.nomClient,telclient: this.telClient } ;
+    let params = { token: this.token , id_article:article.id, quantite: this.qteCmd, prenomclient: this.prenomClient, nomclient: this.nomClient,telclient: this.telClient } ;
     this.ecomCaller.commander(params).then( response =>
       {
         console.log("Le serveur a répondu : "+response) ;

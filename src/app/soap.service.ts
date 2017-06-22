@@ -5,7 +5,7 @@ import * as xml2js from 'xml2js';
 @Injectable()
 export class SoapService {
     private debug:boolean = false;
-    private asynchronous:boolean = true;
+    private asynchronous:boolean = true; 
     private localName:boolean = false;
     private servicePort:string = '';
     private servicePath:string = '';  
@@ -19,46 +19,49 @@ export class SoapService {
     private xmlResponseHandler_:(response:NodeListOf<Element>) => void = null;
     private jsoResponseHandler_:(response:{}) => void = null;
 
-    constructor(servicePort:string, servicePath:string, targetNamespace?:string) {
-        this.servicePort = servicePort;
-        this.servicePath = servicePath;
-        this.serviceUrl = servicePort + servicePath;
+    constructor() {
+        
+        //this.servicePort = servicePort;
+        //this.servicePath = servicePath;
+        //this.serviceUrl = servicePort + servicePath;
 
-    this.nodeTypeNames = [
-        undefined,
-        "Element",
-        "Attribute",
-        "Text",
-        "CDATA Section",
-        "Entity Reference",
-        "Entity",
-        "Processing Instruction",
-        "Comment",
-        "Document",
-        "Document Type",
-        "Document Fragment",
-        "Notation"
-    ];
+        //if (undefined !== targetNamespace) 
+          //  this.targetNamespace = targetNamespace;
 
-     
-    enum nodeTypesEnum {
-        UNDEFINED = 0,
-        ELEMENT = 1,
-        ATTRIBUTE = 2,
-        TEXT = 3,
-        CDATA_SECTION = 4,
-        ENTITY_REFERENCE = 5,
-        ENTITY = 6,
-        PROCESSING_INSTRUCTION = 7,
-        COMMENT = 8,
-        DOCUMENT = 9,
-        DOCUMENT_TYPE = 10,
-        DOCUMENT_FRAGMENT = 11,
-        NOTATION = 12
-    } ;
+        this.nodeTypeNames = [
+            undefined,
+            "Element",
+            "Attribute",
+            "Text",
+            "CDATA Section",
+            "Entity Reference",
+            "Entity",
+            "Processing Instruction",
+            "Comment",
+            "Document",
+            "Document Type",
+            "Document Fragment",
+            "Notation"
+        ];
+         
+        enum nodeTypesEnum {
+            UNDEFINED = 0,
+            ELEMENT = 1,
+            ATTRIBUTE = 2,
+            TEXT = 3,
+            CDATA_SECTION = 4,
+            ENTITY_REFERENCE = 5,
+            ENTITY = 6,
+            PROCESSING_INSTRUCTION = 7,
+            COMMENT = 8,
+            DOCUMENT = 9,
+            DOCUMENT_TYPE = 10,
+            DOCUMENT_FRAGMENT = 11,
+            NOTATION = 12
+        } ;
 
-    this.nodeTypes = nodeTypesEnum ; 
-        if (undefined !== targetNamespace) this.targetNamespace = targetNamespace;
+        this.nodeTypes = nodeTypesEnum ; 
+
     }
 
     set envelopeBuilder(envelopeBuilder:(response:{}) => string) {
@@ -95,6 +98,14 @@ export class SoapService {
         this.debug = on;
         this.asynchronous = !on;
     }
+
+    public setServicePort(servicePort:string){ this.servicePort = servicePort ; }
+
+    public setServiceUrl(serviceUrl:string){ this.serviceUrl = serviceUrl ;}
+
+    public setServicePath(servicePath:string){ this.servicePath = servicePath ; }
+
+    public setTargetNamespace(targetNamespace:string){ this.targetNamespace = targetNamespace ;}   
 
     public post(method:string, parameters:any, responseRoot?:string):Promise<{}> {
         var request:string = this.toXml(parameters);

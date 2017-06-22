@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import {ActivatedRoute, Params} from '@angular/router';
 import { Location }  from '@angular/common';
 
+import { CommercialServiceWeb } from '../webServiceClients/Commercial/commercial.service';
+
+
 
 @Component({
   selector: 'app-coursier',
@@ -10,19 +13,31 @@ import { Location }  from '@angular/common';
   styleUrls: ['./coursier.component.css']
 })
 export class CoursierComponent implements OnInit {
-	recouvrement:{}[];
-	commandearecup:{}[];
-	commandealivrer:{}[];
+  recouvrement:{}[];
+  commandearecup:{}[];
+  commandealivrer:{}[];
 
 
-	filtre="";
+  filtre="";
+  nom = "nom" ;
+  asc = "asc" ;
+
+  public zone:any;
+  
 
   constructor(
-  		   private location: Location,
+         private location: Location,
          private route:ActivatedRoute,
-  	     private router: Router) { }
+         private router: Router,
+         private commercialServiceWeb:CommercialServiceWeb
+          ) { }
 
  ngOnInit():void {
+
+    this.commercialServiceWeb.zone('dyjt','gdty').then(commercialserviceList => {
+        this.zone = commercialserviceList;
+        console.log(this.zone);
+      });
 
    this.recouvrement= [{ id: 5, nom: 'ndiaye', prenom: 'naby', tel:"771111111", adr: "parcelles u24",  montant:200000}];
 
