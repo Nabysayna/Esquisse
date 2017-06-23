@@ -59,6 +59,7 @@ import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.servic
 import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/adminmultipdv.service';
 import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
+import { CommercialServiceWeb }    from './webServiceClients/Commercial/commercial.service';
 
 
 /*-----------------*/
@@ -302,6 +303,8 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       TntServiceWeb,
       EcomServiceWeb,
       AdminpdvServiceWeb,
+      AuthenticationService,
+      CommercialServiceWeb,
       AdminmultipdvServiceWeb,
       AuthenticationService
   ],

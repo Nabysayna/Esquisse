@@ -64,7 +64,7 @@ export class AdmincoursierComponent implements OnInit {
 	     private route:ActivatedRoute,
 		     private router: Router) { }
 
-	ngOnInit():void {
+	ngOnInit(){
 
 	this.recouvrement= [{ id: 5, nom: 'ndiaye', prenom: 'naby', tel:"771111111", adr: "parcelles u24",  montant:200000, choix:false},
 	{ id: 2, nom: 'sarr', prenom: 'marieme', tel:"774444444", adr: "djily mbaye",  montant:350000, choix:false}];
@@ -72,9 +72,9 @@ export class AdmincoursierComponent implements OnInit {
 		this.loading = true ;
 		this.ecomCaller.listerCoursier(this.token).then( response =>
 		  {
-		    //console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
-		    this.coursiers = response ;
+		    console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
 		    this.loading = false ;
+		    this.coursiers = response; 
 		  });     
 
 	}

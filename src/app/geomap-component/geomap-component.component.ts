@@ -48,6 +48,7 @@ export class GeomapComponentComponent implements OnInit {
     this.lng = e.item.lng;
     console.log(e.value);
     this.mapsServiceWeb.listmapspardepart(e.value).then(mapsServiceWebList => {
+      console.log(mapsServiceWebList); 
       this.markers = mapsServiceWebList; 
       this.zoom = 9;
     });

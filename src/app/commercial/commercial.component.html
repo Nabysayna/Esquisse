@@ -21,12 +21,12 @@
 	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="fichier |filtrefichier:filtre" #fop="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
-		                            <option >Dakar</option>
-		                            <option >Pikine</option>
-		                            <option >Rufisque</option>
-		                            <option >Yoff</option>
-		                            <option >Guédiawaye</option>
-		                            <option >Parcelles</option>
+		                             <option *ngFor="let zones of zone">{{zones}}</option>
+                                    <!-- <option >Pikine</option>
+                                    <option >Rufisque</option>
+                                    <option >Yoff</option>
+                                    <option >Guédiawaye</option>
+                                    <option >Parcelles</option> -->
 		                            </select>
 		                         </label>
  
@@ -94,12 +94,12 @@
 	                  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="rv|filtrerv:filtre" #fops="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
                                  <label>Zone <select class="form-control input-sm" >
-		                            <option >Dakar</option>
-		                            <option >Pikine</option>
-		                            <option >Rufisque</option>
-		                            <option >Yoff</option>
-		                            <option >Guédiawaye</option>
-		                            <option >Parcelles</option>
+		                            <option *ngFor="let zones of zone">{{zones}}</option>
+                                    <!-- <option >Pikine</option>
+                                    <option >Rufisque</option>
+                                    <option >Yoff</option>
+                                    <option >Guédiawaye</option>
+                                    <option >Parcelles</option> -->
 		                            </select>
 		                         </label>
  

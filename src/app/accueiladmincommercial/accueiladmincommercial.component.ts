@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommercialServiceWeb } from '../webServiceClients/Commercial/commercial.service';
 
 @Component({
   selector: 'app-accueiladmincommercial',
@@ -11,9 +12,13 @@ export class AccueiladmincommercialComponent implements OnInit {
 	 registredAPIs : string [] = ['ADMIN COMMERCIAL'] ;
   	 authorisedToUseCRM = false ;
 
-  constructor() { }
+  constructor( private commercialServiceWeb:CommercialServiceWeb) { }
 
   ngOnInit() {
+  	 // this.commercialServiceWeb.listcoursier('dyjt','gdty').then(commercialserviceList => {
+        // console.log(commercialserviceList);
+      // });
+  	 // console.log('test');
   }
 
 }
