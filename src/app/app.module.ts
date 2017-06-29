@@ -8,9 +8,10 @@ import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
-import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
+// import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
-import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule} from 'ng2-bootstrap';
+import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, TypeaheadModule} from 'ng2-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -51,6 +52,8 @@ import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.ser
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
 import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
+import { ExpressoCashWebService } from './webServiceClients/ExpressoCash/expressocash.service';
+import { JoniJoniWebService } from './webServiceClients/JoniJoni/jonijoni.service';
 import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
 import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/adminmultipdv.service';
@@ -81,6 +84,7 @@ import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/admi
 import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-pdv-dashboard/admin-multi-pdv-dashboard.component';
 import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
 import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
+import { AdminmultipdvStatusPdvComponent } from './admin-multi-pdv/admin-multi-pdv-status-pdv/admin-multi-pdv-status-pdv.component';
 import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
 import { AdminmultipdvStatusRecouvrementComponent } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.component';
 import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
@@ -127,6 +131,9 @@ import { RecouvreurComponent } from './recouvreur/recouvreur.component';
 import { CoursierComponent } from './coursier/coursier.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
+
+import { GeomapComponentComponent } from './geomap-component/geomap-component.component';
+
 
 /*-----------------*/
 /*      Pipes      */
@@ -186,11 +193,12 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     AdminmultipdvDashboardComponent,
     AdminmultipdvDemandeRetraitComponent,
     AdminmultipdvMonitoringComponent,
+    AdminmultipdvStatusPdvComponent,
     AdminmultipdvStatusReclamationComponent,
     AdminmultipdvStatusRecouvrementComponent,
     AdminmultipdvUpdateCautionComponent,    
 
-
+    GeomapComponentComponent,
     LoaderComponent,
     NavbarTopComponent,
     AdminpdvAidedecisionComponent,
@@ -254,7 +262,10 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     CollapseModule.forRoot(),
     ProgressbarModule.forRoot(),
     TypeaheadModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC-2WxSYvBmnQ0HgUYU7fWxCyY_itypwn8'
+    })
   ],
   providers: [  
       SoapService,
@@ -287,6 +298,8 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       AuthentificationServiceWeb,
       PostCashServiceWeb,
       PostCashWebService,
+      ExpressoCashWebService,
+      JoniJoniWebService,
       TntServiceWeb,
       EcomServiceWeb,
       AdminpdvServiceWeb,

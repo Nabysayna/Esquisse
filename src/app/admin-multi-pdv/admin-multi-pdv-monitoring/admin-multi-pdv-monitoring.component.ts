@@ -40,7 +40,7 @@ export class AdminmultipdvMonitoringComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true ;
-    this.adminmultipdvServiceWeb.bilandeposit('12345','azrrtt').then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.bilandeposit('azrrtt').then(adminmultipdvServiceWebList => {
       this.monitoringAdminmultipdvDeposit = adminmultipdvServiceWebList; 
       this.max = this.monitoringAdminmultipdvDeposit.depositInitial;
       this.dynamic = this.monitoringAdminmultipdvDeposit.depositConsomme;
@@ -50,7 +50,7 @@ export class AdminmultipdvMonitoringComponent implements OnInit {
       this.loading = false ;
     });
 
-    this.adminmultipdvServiceWeb.depositinitialconsommeparservice('12345','azrrtt').then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.depositinitialconsommeparservice('azrrtt').then(adminmultipdvServiceWebList => {
       this.monitoringAdminmultipdvDepositParService = adminmultipdvServiceWebList; 
       this.barChartLabels = this.monitoringAdminmultipdvDepositParService.services;
       this.barChartData = [

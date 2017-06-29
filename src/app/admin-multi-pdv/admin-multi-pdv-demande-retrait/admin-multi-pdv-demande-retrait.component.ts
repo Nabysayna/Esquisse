@@ -23,7 +23,7 @@ export class AdminmultipdvDemandeRetraitComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true ;
-    this.adminmultipdvServiceWeb.demanderetraitfond('12345','azrrtt').then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.demanderetraitfond('azrrtt').then(adminmultipdvServiceWebList => {
       this.adminmultipdvDemanderetrait = adminmultipdvServiceWebList; 
     });
 

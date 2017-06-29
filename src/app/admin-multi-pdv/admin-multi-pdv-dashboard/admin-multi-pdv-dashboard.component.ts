@@ -62,13 +62,13 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   }
 
   public nombredereclamationagentpdvvente():void {
-    this.adminmultipdvServiceWeb.nombredereclamationagentpdvvente('12345','azrrtt').then(adminpdvServiceWebList => 
+    this.adminmultipdvServiceWeb.nombredereclamationagentpdvvente('azrrtt').then(adminpdvServiceWebList => 
       this.AdminmultipdvNombredereclamationagentpdvvente = adminpdvServiceWebList 
     );
   }
  
   public activiteservice(lineTitle):void {
-    this.adminmultipdvServiceWeb.activiteservices('12345',lineTitle).then(adminpdvServiceWebList =>{
+    this.adminmultipdvServiceWeb.activiteservices(lineTitle).then(adminpdvServiceWebList =>{
       this.adminmultipdvActiviteservices = adminpdvServiceWebList;
       this.lineChartData = this.adminmultipdvActiviteservices.datas;
       this.lineChartLabels = this.adminmultipdvActiviteservices.dateactivite;     
@@ -77,7 +77,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   }
  
   public performanceagent():void {
-    this.adminmultipdvServiceWeb.performanceagent('12345','azrrtt').then(adminmultipdvServiceWebList => 
+    this.adminmultipdvServiceWeb.performanceagent('azrrtt').then(adminmultipdvServiceWebList => 
       this.adminmultipdvDashboardPerformanceagent = adminmultipdvServiceWebList 
     );
   }

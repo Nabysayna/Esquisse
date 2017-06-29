@@ -23,7 +23,7 @@ export class AdminmultipdvStatusRecouvrementComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true ;
-    this.adminmultipdvServiceWeb.historiquerecouvrement('12345','azrrtt').then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.historiquerecouvrement('azrrtt').then(adminmultipdvServiceWebList => {
       this.adminmultipdvRecouvrement = adminmultipdvServiceWebList; 
     });
 

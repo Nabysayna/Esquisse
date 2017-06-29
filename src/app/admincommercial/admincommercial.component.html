@@ -36,9 +36,11 @@
                                             Rechercher :
                                             <input class="form-control" [(ngModel)]="filtre"/>
                                         </th>
-                                      		<label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier">
-				                             <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>
-                                            </select>
+                                      		<label style="padding-left: 4rem; margin-right: 5rem;">COMMERCIAUX <select class="form-control input-sm" [(ngModel)]="commerciaux" >
+                                            <option *ngFor="let commercial of commerciaux">{{commercial.prenom}} &nbsp;{{commercial.nom}}</option>
+                                            </select> <!-- <select class="form-control input-sm" [(ngModel)]="operateurs">
+				                             <option *ngFor="let commerciaux of fopad.data >{{commerciaux.nom}} &nbsp;{{commerciaux.prenom}}   </option>
+                                            </select> -->
 		                         		</label>
 		                         		<button class="btn btn-success" (click)="assigner()">Assigner</button>
                                     </tr>
@@ -60,8 +62,8 @@
                                     <input type="checkbox" class="form-control" [(ngModel)]="operateurs.choix">
                                     <td>{{operateurs.nom}}</td>
                                     <td>{{operateurs.prenom}}</td>
-                                    <td>{{operateurs.tel}}</td>
-                                    <td>{{operateurs.adr}}</td>
+                                    <td>{{operateurs.telephone}}</td>
+                                    <td>{{operateurs.adresse}}</td>
                                     <td>
                                    <select class="form-control input-sm" >
 			                            <option >Promesse</option>
@@ -162,5 +164,7 @@
 
 		</div>
 
-
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>
 
