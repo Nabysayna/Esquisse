@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
+
+import { AdminmultipdvMajcaution }    from '../../models/adminmultipdv-majcaution';
+import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
+
 
 @Component({
   selector: 'app-admin-multi-pdv-update-caution',
@@ -7,97 +11,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminmultipdvUpdateCautionComponent implements OnInit {
 
-public data = [
-	  	{
-		    "agent": "P Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": 100000,
-		    "cautionconsomme": 70000,
-	  	},
-		{
-		    "agent": "O Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": 200000,
-		    "cautionconsomme": 20000,
-	  	},
-		{
-		    "agent": "I Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": 300000,
-		    "cautionconsomme": 20000,
-	  	},
-		{
-		    "agent": "U Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": 500000,
-		    "cautionconsomme": 20000,
-	  	},
-		{
-		    "agent": "Y Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": 600000,
-		    "cautionconsomme": 20000,
-	  	},
-		{
-		    "agent": "T Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": 600000,
-		    "cautionconsomme": 20000,
-	  	},
-		{
-		    "agent": "R Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": "700000",
-		    "cautionconsomme": "60000",
-	  	},
-		{
-		    "agent": "E Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": "900000",
-		    "cautionconsomme": "50000",
-	  	},
-		{
-		    "agent": "Z Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": "1000000",
-		    "cautionconsomme": "900000",
-	  	},
-		{
-		    "agent": "A Wring",
-		    "telephone": "1234567",
-		    "adresse": "Pikine Dakar Sénégal",
-		    "cautioninitial": "9300000",
-		    "cautionconsomme": "290000",
-	  	},
-		
-	];
+  @ViewChild('closeBtn') closeBtn: ElementRef;
 
-    public filterQuery = "";
+	public filterQuery = "";
     public rowsOnPage = 10;
     public sortBy = "agent";
-    public sortOrder = "asc";
+    public sortOrder = "desc";
 
-    constructor() { }
+    public adminmultipdvMajcaution: AdminmultipdvMajcaution[];
+    loading = false ;
 
-	ngOnInit() {
-	
-	}
+    inputCaution: number;
+    majcaution:AdminmultipdvMajcaution;
+  constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb) { }
 
-	public toInt(num: string) {
-        return +num;
-    }
+  ngOnInit() {
+    this.loading = true ;
+    this.adminmultipdvServiceWeb.listmajcautions('azrrtt').then(adminmultipdvServiceWebList => {
+      this.adminmultipdvMajcaution = adminmultipdvServiceWebList; 
+      this.loading = false ;
+    });
 
-    public sortByWordLength = (a: any) => {
-        return a.agent.length;
-    }
+  }
+
+  private closeModal(): void {
+        this.closeBtn.nativeElement.click();
+  }
+  
+  public toInt(num: string) {
+      return +num;
+  }
+
+  public sortByWordLength = (a: any) => {
+      return a.agent.length;
+  }
+
+  public maj(item):void {
+    this.inputCaution = null;
+    this.majcaution = item;
+  }
+
+  public validermaj(item):void {
+    this.loading = true ;
+    this.adminmultipdvServiceWeb.modifymajcaution('azrrtt', this.majcaution.idagent, this.inputCaution).then(adminmultipdvServiceWebList => {
+      console.log(adminmultipdvServiceWebList); 
+      this.closeModal();
+      this.loading = false ;
+    });
+  }
 
 }

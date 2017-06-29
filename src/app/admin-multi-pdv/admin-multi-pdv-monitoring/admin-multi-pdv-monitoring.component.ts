@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
+import { AdminmultipdvDeposit }    from '../../models/adminmultipdv-monitoring';
+import { AdminmultipdvDepositInitialConsommeParService }    from '../../models/adminmultipdv-monitoring-dicps';
+import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
 
 
 
@@ -11,33 +13,56 @@ import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.se
 })
 export class AdminmultipdvMonitoringComponent implements OnInit {
 
-  // loading = false ;
-  labels:string[] = ['Poste Cash', 'Tigo Cash', 'Expresso Cash', 'TNT', 'Joni Joni', 'Wari', 'Orange Money'];
- 
-  chartData:any = [
-    {data: [1000000, 900000, 200000, 500000, 300000, 800000, 100000], label: 'Déposit initial'},
-    {data: [280000, 480000, 40000, 190000, 96000, 270000, 10000], label: 'Déposit consommé'},
-  ];
+  public monitoringAdminmultipdvDeposit: AdminmultipdvDeposit;
+  public monitoringAdminmultipdvDepositParService: AdminmultipdvDepositInitialConsommeParService;
+  loading = false ;
 
-
-  constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) { }
-
-  ngOnInit() {
-    // this.loading = true ;
-
-  }
-
+  // For progreesbar
+  public max: number;
+  public showWarning: boolean;
+  public dynamic: number;
+  public type: string;
   
+
   // Bar
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = this.labels;
+  public barChartLabels:string[];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
- 
-  public barChartData:any[] = this.chartData;
+  public barChartData:any[];
 
 
+
+  constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb) { }
+
+  ngOnInit() {
+    this.loading = true ;
+    this.adminmultipdvServiceWeb.bilandeposit('azrrtt').then(adminmultipdvServiceWebList => {
+      this.monitoringAdminmultipdvDeposit = adminmultipdvServiceWebList; 
+      this.max = this.monitoringAdminmultipdvDeposit.depositInitial;
+      this.dynamic = this.monitoringAdminmultipdvDeposit.depositConsomme;
+      if ( this.dynamic <= (this.max*0.5) ){ this.type = 'success'; }
+      else if ( (this.dynamic > (this.max*0.5)) && (this.dynamic <= (this.max*0.75)) ){ this.type = 'warning'; }
+      else if ( this.dynamic > (this.max*0.75) ){ this.type = 'danger'; }
+      this.loading = false ;
+    });
+
+    this.adminmultipdvServiceWeb.depositinitialconsommeparservice('azrrtt').then(adminmultipdvServiceWebList => {
+      this.monitoringAdminmultipdvDepositParService = adminmultipdvServiceWebList; 
+      this.barChartLabels = this.monitoringAdminmultipdvDepositParService.services;
+      this.barChartData = [
+      {data: this.monitoringAdminmultipdvDepositParService.depositinitial, label: 'Déposit initial'},
+      {data: this.monitoringAdminmultipdvDepositParService.depositconsomme, label: 'Déposit consommé'}
+      ]
+    });
+
+    
+
+  }
+
+  
+  
 }

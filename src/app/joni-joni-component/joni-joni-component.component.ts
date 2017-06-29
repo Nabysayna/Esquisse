@@ -7,6 +7,10 @@ import {RechargeVitfe} from '../joni-joni-component/jonimodels';
 import {RechargeCarteService} from '../joni-joni-component/joniservices';
 import {RechargeCarte} from '../joni-joni-component/jonimodels';
 
+
+import { JoniJoniWebService } from '../webServiceClients/JoniJoni/jonijoni.service';
+
+
 @Component({
   selector: 'app-joni-joni-component',
   templateUrl: './joni-joni-component.component.html',
@@ -42,7 +46,9 @@ export class JoniJoniComponentComponent implements OnInit {
          private rechargeVitfeService: RechargeVitfeService,
          private location: Location,
          private route:ActivatedRoute,
-         private router: Router) { }
+         private router: Router,
+         private jonijoniwebservice: JoniJoniWebService
+    ) { }
   
     validform(){
         this.router.navigate(['accueil/RECUS','ec']);
@@ -55,14 +61,19 @@ export class JoniJoniComponentComponent implements OnInit {
     rechargecjjform(){}
 
     ngOnInit():void {
-    this.route.params.subscribe( (params : Params) => { 
-      this.rechargeVitfe = this.rechargeVitfeService.getRechargeVitfe(5);
-    });
+      this.route.params.subscribe( (params : Params) => { 
+        this.rechargeVitfe = this.rechargeVitfeService.getRechargeVitfe(5);
+      });
 
 
-     this.route.params.subscribe( (params : Params) => { 
-      this.rechargeCarte = this.rechargeCarteService.getRechargeCarte(5);
-    });}
+       this.route.params.subscribe( (params : Params) => { 
+        this.rechargeCarte = this.rechargeCarteService.getRechargeCarte(5);
+      });
 
+      this.jonijoniwebservice.cashtocash_getcommissionsttc('type').then(expressocashwebserviceList => {
+        console.log(expressocashwebserviceList);
+      });
+
+    }
 
 }

@@ -6,7 +6,7 @@ import {SoapService} from "../../soap.service";
 export class PostCashWebService {
 
 
-//  private servicePort:string = 'http://51.254.200.129' ; 
+ // private servicePort:string = 'http://51.254.200.129' ; 
 
   private servicePort:string = 'http://localhost' ; 
 

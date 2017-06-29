@@ -1,0 +1,113 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Status des recouvrements</h1>
+        </div>
+    </div>
+
+    <div class="row">
+	    <div class="col-xs-12 col-md-12 col-lg-12">
+	        <div class="row">
+	            <div class="col-xs-6">
+	            	<label class="label-control">Recherche:</label>
+	            	<input class="form-control" [(ngModel)]="filterQuery"/>
+	            </div>
+	            <div class="col-xs-2">
+	                <label class="label-control">Nombre de ligne</label>
+	                <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
+	                    <option [ngValue]="5">5</option>
+	                    <option [ngValue]="10">10</option>
+	                    <option [ngValue]="25">25</option>
+	                    <option [ngValue]="50">50</option>
+	                    <option [ngValue]="100">100</option>
+	                </select>
+	            </div>
+	            <div class="col-xs-4">
+	                <div class="row">
+	                    <label class="col-xs-12 label-control">Trier par</label>
+	                </div>
+	                <div class="col-xs-6">
+	                    <div class="row">
+	                        <select class="form-control input-sm" [(ngModel)]="sortBy">
+	                            <option ngValue="daterecouvrement">Date recouvrement</option>
+	                            <option ngValue="agent">Agent</option>
+	                            <option ngValue="telephone">Téléphone</option>
+	                            <option ngValue="adresse">Adresse</option>
+	                            <option [ngValue]="sortByWordLength">Etat</option>
+	                        </select>
+	                    </div>
+	                </div>
+
+	                <div class="col-xs-6">
+	                    <div class="row">
+	                        <select class="form-control input-sm" [(ngModel)]="sortOrder">
+	                            <option ngValue="asc">Ascendant</option>
+	                            <option ngValue="desc">Descendant</option>
+	                            <option ngValue="badValue">Bad value</option>
+	                        </select>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="panel panel-default table-responsive">
+	            <table class="table table-striped" [mfData]="adminmultipdvRecouvrement | dataFilterAdminmultipdvStatusRecouvrement : filterQuery" #mf="mfDataTable"
+	                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+	                <thead>
+	                <tr>
+	                    <th style="width: 10%"><mfDefaultSorter by="daterecouvrement">Date de recouvrement</mfDefaultSorter></th>
+	                    <th>
+	                        <mfDefaultSorter by="agent">Agent</mfDefaultSorter>
+	                    </th>
+	                    <th>
+	                        <mfDefaultSorter by="telephone">Telephone</mfDefaultSorter>
+	                    </th>
+	                    <th>
+	                        <mfDefaultSorter by="adresse">Adresse</mfDefaultSorter>
+	                    </th>
+	                    <th>
+	                        <mfDefaultSorter by="montantconsomme">Montant consommé</mfDefaultSorter>
+	                    </th>
+	                    <th>
+	                        <mfDefaultSorter by="commission">Commission</mfDefaultSorter>
+	                    </th>
+	                    <th>
+	                        <mfDefaultSorter by="montantrecouvre">Montant recouvre</mfDefaultSorter>
+	                    </th>
+	                    <th>
+	                        <mfDefaultSorter by="montantrestant">Montant restant</mfDefaultSorter>
+	                    </th>
+	                    <th>
+	                        <mfDefaultSorter [by]="sortByWordLength">Etat</mfDefaultSorter>
+	                    </th>
+	                    <th>Option</th>
+	                </tr>
+	                </thead>
+	                <tbody>
+	                <tr *ngFor="let item of mf.data">
+	                    <td>{{item.daterecouvrement}}</td>
+	                    <td>{{item.agent}}</td>
+	                    <td>{{item.telephone}}</td>
+	                    <td>{{item.adresse}}</td>
+	                    <td>{{item.montantconsomme}}</td>
+	                    <td>{{item.commission}}</td>
+	                    <td>{{item.montantrecouvre}}</td>
+	                    <td>{{item.montantrestant}}</td>
+	                    <td>{{item.etat}}</td>
+	                    <td class="text-center">
+	                    	<button type="button" class="btn btn-danger">Voir détail</button>
+	                    </td>
+	                </tr>
+	                </tbody>
+	                <tfoot>
+	                <tr>
+	                    <td colspan="5">
+	                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100]"></mfBootstrapPaginator>
+	                    </td>
+	                </tr>
+	                </tfoot>
+	            </table>
+	        </div>
+	    </div>
+	</div>
+            
+</div>

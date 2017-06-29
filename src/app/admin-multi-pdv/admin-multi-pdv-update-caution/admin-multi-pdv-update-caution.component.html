@@ -20,8 +20,6 @@
 	                    <option [ngValue]="25">25</option>
 	                    <option [ngValue]="50">50</option>
 	                    <option [ngValue]="100">100</option>
-	                    <option [ngValue]="250">250</option>
-	                    <option [ngValue]="500">500</option>
 	                </select>
 	            </div>
 	            <div class="col-xs-4">
@@ -34,8 +32,8 @@
 	                            <option ngValue="agent">Admin pdv</option>
 	                            <option ngValue="telephone">Téléphone</option>
 	                            <option ngValue="adresse">Adresse</option>
-	                            <option ngValue="cautioninitial">Caution Initiale</option>
-	                            <option ngValue="cautionconsomme">Caution consommée</option>
+	                            <option ngValue="cautioninitiale">Caution Initiale</option>
+	                            <option ngValue="montantconsomme">Montant consommé</option>
 	                            <option [ngValue]="sortByWordLength">Test</option>
 	                        </select>
 	                    </div>
@@ -52,27 +50,17 @@
 	            </div>
 	        </div>
 	        <div class="panel panel-default table-responsive">
-	            <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+	            <table class="table table-striped" [mfData]="adminmultipdvMajcaution | dataFilterAdminmultipdvUpdateCaution : filterQuery" #mf="mfDataTable"
 	                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
 	                <thead>
 	                <tr>
 	                    <th>#</th>
-	                    <th style="width: 10%"><mfDefaultSorter by="agent">Admin pdv</mfDefaultSorter></th>
-	                    <th style="width: 40%">
-	                        <mfDefaultSorter by="telephone">Telephone</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 10%">
-	                        <mfDefaultSorter by="adresse">Adresse</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 10%">
-	                        <mfDefaultSorter by="cautioninitial">Caution initiale</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 10%">
-	                        <mfDefaultSorter by="cautionconsomme">Caution consommée</mfDefaultSorter>
-	                    </th>
-	                    <th style="width: 20%">
-	                        <mfDefaultSorter [by]="sortByWordLength">Option</mfDefaultSorter>
-	                    </th>
+	                    <th><mfDefaultSorter by="agent">Admin pdv</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="adresse">Adresse</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="cautioninitiale">Caution initiale</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="montantconsomme">Montant consommé</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter [by]="sortByWordLength">Option</mfDefaultSorter></th>
 	                </tr>
 	                </thead>
 	                <tbody>
@@ -81,17 +69,17 @@
 	                    <td>{{item.agent}}</td>
 	                    <td>{{item.telephone}}</td>
 	                    <td>{{item.adresse}}</td>
-	                    <td>{{item.cautioninitial}}</td>
-	                    <td>{{item.cautionconsomme}}</td>
+	                    <td>{{item.cautioninitiale}}</td>
+	                    <td>{{item.montantconsomme}}</td>
 	                    <td class="text-center">
-	                    	<button type="button" class="btn btn-danger">Mettre à jour</button>
+	                    	<button type="button" class="btn btn-danger" (click)="maj(item)" data-toggle="modal" data-target="#myModal">Mettre à jour</button>
 	                    </td>
 	                </tr>
 	                </tbody>
 	                <tfoot>
 	                <tr>
 	                    <td colspan="5">
-	                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100,250,500]"></mfBootstrapPaginator>
+	                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100]"></mfBootstrapPaginator>
 	                    </td>
 	                </tr>
 	                </tfoot>
@@ -101,3 +89,26 @@
 	</div>
             
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"  *ngIf="majcaution">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Mettre à jour la caution de {{majcaution.agent}}</h4>
+            </div>
+            <div class="modal-body">
+            	<label for="inputCaution">Nouvelle caution</label>
+          		<input id="inputCaution" name="inputCaution" type="number" placeholder="Nouvelle caution" class="form-control" required [(ngModel)]="inputCaution" #Caution="ngModel">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="idmodalferme" data-dismiss="modal" #closeBtn>Annuler</button>
+                <button type="button" (click)="validermaj(inputCaution)" [disabled]="!Caution.valid" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+                            

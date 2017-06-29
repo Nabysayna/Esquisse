@@ -8,10 +8,10 @@ import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
-import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
+// import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
-import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule} from 'ng2-bootstrap';
-
+import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, TypeaheadModule} from 'ng2-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 
 /*-----------------*/
@@ -19,8 +19,6 @@ import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule} from 'ng2
 /*-----------------*/
 
 import { SoapService } from './soap.service';
-
-
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
 import { ReglSenelecService} from './postcash/postservices';
@@ -51,10 +49,14 @@ import { AdminpdvMonitoringService }    from './services/adminpdv-monitoring.ser
 import { AuthentificationServiceWeb } from './webServiceClients/Authentification/authentification.service';
 import { PostCashServiceWeb } from './webServiceClients/PostcashClient/Postcash.service';
 import { PostCashWebService } from './webServiceClients/Postcash/postcash.service';
+import { ExpressoCashWebService } from './webServiceClients/ExpressoCash/expressocash.service';
+import { JoniJoniWebService } from './webServiceClients/JoniJoni/jonijoni.service';
 import { TntServiceWeb } from './webServiceClients/Tnt/Tnt.service';
 import { AdminpdvServiceWeb } from './webServiceClients/Adminpdv/adminpdv.service';
+import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/adminmultipdv.service';
 import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
+import { CommercialServiceWeb }    from './webServiceClients/Commercial/commercial.service';
 
 
 /*-----------------*/
@@ -79,7 +81,9 @@ import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/admi
 import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-pdv-dashboard/admin-multi-pdv-dashboard.component';
 import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
 import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
+import { AdminmultipdvStatusPdvComponent } from './admin-multi-pdv/admin-multi-pdv-status-pdv/admin-multi-pdv-status-pdv.component';
 import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
+import { AdminmultipdvStatusRecouvrementComponent } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.component';
 import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
 
 import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
@@ -125,6 +129,9 @@ import { CoursierComponent } from './coursier/coursier.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 
+import { GeomapComponentComponent } from './geomap-component/geomap-component.component';
+
+
 /*-----------------*/
 /*      Pipes      */
 /*-----------------*/
@@ -139,8 +146,9 @@ import { PipeCommandePipe } from './pipes/pipe-commande.pipe';
 import { FiltreoperateursPipe } from './pipes/filtreoperateurs.pipe';
 import { FiltrervoperateursPipe } from './pipes/filtrervoperateurs.pipe';
 import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.pipe';
+import { AdminmultipdvStatusRecouvrementPipe } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.pipe';
 import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
-import { AdminmultipdvDemandeRetrait } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
+import { AdminmultipdvDemandeRetraitPipe } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
 
 import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
 import { AccueiladmincoursierComponent } from './accueiladmincoursier/accueiladmincoursier.component';
@@ -182,10 +190,12 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     AdminmultipdvDashboardComponent,
     AdminmultipdvDemandeRetraitComponent,
     AdminmultipdvMonitoringComponent,
+    AdminmultipdvStatusPdvComponent,
     AdminmultipdvStatusReclamationComponent,
+    AdminmultipdvStatusRecouvrementComponent,
     AdminmultipdvUpdateCautionComponent,    
 
-
+    GeomapComponentComponent,
     LoaderComponent,
     NavbarTopComponent,
     AdminpdvAidedecisionComponent,
@@ -224,8 +234,9 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     FiltrervoperateursPipe,
 
     AdminmultipdvStatusReclamationPipe,
+    AdminmultipdvStatusRecouvrementPipe,
     AdminmultipdvUpdateCautionPipe,
-    AdminmultipdvDemandeRetrait,
+    AdminmultipdvDemandeRetraitPipe,
     
     AccueilcoursierComponent,
     AccueiladmincoursierComponent,
@@ -248,7 +259,10 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     CollapseModule.forRoot(),
     ProgressbarModule.forRoot(),
     TypeaheadModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC-2WxSYvBmnQ0HgUYU7fWxCyY_itypwn8'
+    })
   ],
   providers: [  
       SoapService,
@@ -281,9 +295,14 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
       AuthentificationServiceWeb,
       PostCashServiceWeb,
       PostCashWebService,
+      ExpressoCashWebService,
+      JoniJoniWebService,
       TntServiceWeb,
       EcomServiceWeb,
       AdminpdvServiceWeb,
+      AuthenticationService,
+      CommercialServiceWeb,
+      AdminmultipdvServiceWeb,
       AuthenticationService
   ],
   bootstrap: [AppComponent]
