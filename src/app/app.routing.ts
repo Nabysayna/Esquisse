@@ -47,9 +47,10 @@ import { TntComponent } from './tnt/tnt.component';
 import { SoapserverComponent } from './soapserver/soapserver.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { EspacePersoComponent } from './espace-perso/espace-perso.component';
-import { CoursierComponent } from './coursier/coursier.component';
+import { CoursierComponent } from './coursier/coursier.component';  
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { CommercialComponent } from './commercial/commercial.component';
+import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 
   //
 
@@ -160,6 +161,7 @@ const appRoutes: Routes = [
                     { path: 'monitoring', component: AdminpdvMonitoringComponent },
                     { path: 'parametrage', component: AdminpdvParametrageComponent },
                     { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
+                    { path: 'comptabilite', component: ComptabiliteComponent },
                     { path: 'changer-acces-pdv/:id', component: FormChangerAccessUserComponent },
                     { path: '', component: AdminpdvDashboardComponent }
                 ]

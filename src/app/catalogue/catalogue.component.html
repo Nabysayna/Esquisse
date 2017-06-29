@@ -1,3 +1,4 @@
+
 <div class="panel-body" [ngClass]="{'arriere-plan' : saisieInfosClient}">
 
 	<input type="search" class="form-control input-sm" 
@@ -46,6 +47,8 @@
 
 	 <button type="reset" class="btn btn-danger" (click)="saisieInfosClient=false">Annuler</button>
 </div>
+
+
 
 <div *ngIf="this.loading">
     <app-loader></app-loader>    

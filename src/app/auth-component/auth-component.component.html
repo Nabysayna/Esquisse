@@ -6,7 +6,7 @@
 
 
 
-            <div class="account-wall">
+            <div class="account-wall" *ngIf="phase1">
 
                 <form class="form-signin" (ngSubmit)="authentificate()" #heroForm="ngForm">
                     <div [hidden]="this.fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
@@ -16,8 +16,20 @@
                     <input type="password" [(ngModel)]="this.userPwd"   name="pwd" id="userpwd" class="form-control" placeholder="Mot de pass" required>
 
                     <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!heroForm.form.valid" >
-
                         Login</button>
+                    
+                </form>
+
+            </div>
+
+            <div class="account-wall" *ngIf="!phase1">
+
+                <form class="form-signin" (ngSubmit)="authentificateBySMS()" #heroNextForm="ngForm">
+                    <div [hidden]="this.phase2fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
+
+                    <input type="text" [(ngModel)]="this.fromSMS" name="fromSMS" id="fromSMS"  class="form-control" placeholder="SMS code" required autofocus>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!heroNextForm.form.valid" >Se Connecter</button>
                     
 
                 </form>

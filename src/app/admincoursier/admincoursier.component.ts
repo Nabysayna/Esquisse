@@ -54,6 +54,8 @@ export class AdmincoursierComponent implements OnInit {
 	token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 	filtre="";
 
+	zones : string[] =  ['Dakar','Pikine','Rufisque','Yoff','Guédiawaye','Parcelles Assainies'] ;
+
 	nom = "nom" ;
 	asc = "asc" ;
 

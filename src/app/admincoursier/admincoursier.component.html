@@ -99,19 +99,14 @@
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ;">
                                         <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
-                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}}</option>                                         
+                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>                                         
                                             </select>
                                         </label>
                                         <button class="btn btn-success" (click)="assigner()">Assigner</button>
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ; text-align: center ;"> 
                                             <label>Zone <select class="form-control input-sm" >
-                                                <option >Dakar</option>
-                                                <option >Pikine</option>
-                                                <option >Rufisque</option>
-                                                <option >Yoff</option>
-                                                <option >Guédiawaye</option>
-                                                <option >Parcelles</option>
+                                                <option *ngFor="let zone of zones">{{zone}}</option>
                                                 </select>
                                             </label>
                                         </th>
@@ -165,7 +160,7 @@
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ;">
                                         <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
-                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}}</option>
+                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>
                                             </select>
                                         </label>
                                         <button class="btn btn-success" (click)="assigner()">Assigner</button>
