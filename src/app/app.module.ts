@@ -14,14 +14,11 @@ import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, Typeahead
 import { AgmCoreModule } from '@agm/core';
 
 
-
 /*-----------------*/
 /*      Services   */
 /*-----------------*/
 
 import { SoapService } from './soap.service';
-
-
 import { EnvoicashService, PaiecashService } from './joni-joni-component/joniservices';
 import { AchatJulaService} from './postcash/postservices';
 import { ReglSenelecService} from './postcash/postservices';

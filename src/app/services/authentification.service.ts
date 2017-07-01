@@ -20,9 +20,25 @@ export class AuthenticationService {
         this.authentiService = new AuthentificationServiceWeb();
     }
 
-    login(email: string, password: string): Promise<number> {
+    login(email: string, password: string): Promise<string> {
       return new Promise( (resolve, reject)=> {
             this.authentiService.authentifier(email, password).then( response => { 
+                console.log("Reponse du serveur : "+response) ;
+                if( response == 'true' ){
+                    console.log("Has been granted by the server") ;
+                    resolve("granted");
+                } else {
+                    resolve("rejected");
+
+                }
+            });
+        });
+    }
+
+   
+    loginPhase2(smsCode): Promise<number> {
+      return new Promise( (resolve, reject)=> {
+            this.authentiService.authentifierParCodeSMS(smsCode).then( response => { 
                 var resp:AuthResponse=response ;
                 console.log("Reponse du serveur : "+resp.reponse) ;
                 if( resp.reponse.toString()== "true" ){
@@ -43,6 +59,7 @@ export class AuthenticationService {
             });
         });
     }
+
 
     logout(): void {
         this.baseToken = null;

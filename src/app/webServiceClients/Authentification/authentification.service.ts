@@ -13,14 +13,19 @@ export class AuthResponse{
 @Injectable()
 export class AuthentificationServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
+//  private servicePort:string = 'http://51.254.200.129' ; 
+//  private servicePath:string = '/EsquisseBackEnd/web/invest/logging?wsdl' ;
+
+  private servicePort:string = 'http://localhost:8888' ;  
+
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
 
   private targetNamespace:string = 'urn:authwsdl' ;
 
   public responseJso : any ;
   public resp : string ;  
-
+   
+   
   private soapService:SoapService;
   
   constructor() {
@@ -36,7 +41,7 @@ export class AuthentificationServiceWeb {
         this.soapService.localNameMode = true;
   }
 
-  public authentifier(login : string, password: string) : Promise<AuthResponse>  {
+  public authentifier(login : string, password: string) : Promise<string>  {
       var method:string = 'authentification';
       var parameters:{}[] = [];
 
@@ -44,12 +49,29 @@ export class AuthentificationServiceWeb {
       let tryPwd = password ;
       return new Promise( (resolve, reject) => {
         parameters['authentification xmlns="urn:authwsdl#"'] = this.setParameters(tryLogin, tryPwd) ;
-        this.soapService.post(method, parameters, 'authentificationResponse').then(response=>{
-        var authResponse:AuthResponse = {prenom:JSON.parse(response["authentificationResponse"]["return"].$).prenom, baseToken:JSON.parse(response["authentificationResponse"]["return"].$).baseToken, reponse:JSON.parse(response["authentificationResponse"]["return"].$).reponse, accessLevel:JSON.parse(response["authentificationResponse"]["return"].$).accessLevel, authorizedApis:JSON.parse(response["authentificationResponse"]["return"].$).authorizedApis} ;
+        this.soapService.post(method, parameters, 'authentificationResponse').then(response=>
+        resolve(response["authentificationResponse"]["return"].$) ) ;
+      });      
+  }
+
+  public authentifierParCodeSMS(smsCode) : Promise<AuthResponse>  {
+      var method:string = 'authentificationPhaseTwo';
+      var parameters:{}[] = [];
+
+      var parame:{}[] = [] ;
+      var user = {tokentemporaire:smsCode} ;
+      parame["user"] = user ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['authentificationPhaseTwo xmlns="urn:authwsdl#"'] = parame ;
+        this.soapService.post(method, parameters, 'authentificationPhaseTwoResponse').then(response=>{
+        var authResponse:AuthResponse = {
+        prenom:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).prenom, baseToken:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).baseToken, reponse:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).reponse, accessLevel:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).accessLevel, authorizedApis:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).authorizedApis} ;
         resolve(authResponse)
         }) ;
       });      
   }
+
 
   
   public deconnecter(token : string) : Promise<number>  {

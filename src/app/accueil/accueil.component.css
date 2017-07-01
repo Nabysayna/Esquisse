@@ -10,7 +10,8 @@ body {
 
 #page-wrapper{
     padding-top: 3rem; 
-    margin-top:25px;
+/*    margin-top:25px;
+*/
 }
 
 #haut {
@@ -64,9 +65,9 @@ body {
 	background-color: #f8f8f8 !important ;
     border-color: #f8f8f8;
 	width : 100%;
-    margin-top: 15px;
+/*    margin-top: 15px;
+*/
 }
-
 
 #side-menu a{
     background-color: #f8f8f8;
@@ -80,6 +81,7 @@ body {
 
 #leftsidemenu{
     margin-top: 0 ;
+    background:  url(/assets/bga.png)   ;
 }
 
 #routeContainDisplayer{

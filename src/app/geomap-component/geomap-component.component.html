@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6" *ngIf="listDepartement">
     <label>Recherche par département</label>
     <input [(ngModel)]="groupSelected"
-         [typeahead]="centreDepartement"
+         [typeahead]="listDepartement"
          (typeaheadLoading)="changeTypeaheadLoading($event)"
          (typeaheadNoResults)="changeTypeaheadNoResults($event)"
          (typeaheadOnSelect)="typeaheadOnSelect($event)"

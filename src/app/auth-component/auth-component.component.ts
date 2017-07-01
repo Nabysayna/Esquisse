@@ -14,8 +14,10 @@ export class AuthComponentComponent implements OnInit {
   userName = ''  ; 
   userPwd  = '' ; 
   fakevalues : boolean ;
+  phase2fakevalues : boolean = true ;
   loading = false ;
-
+  phase1 = true ;
+  fromSMS : string ;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService) 
@@ -31,10 +33,26 @@ export class AuthComponentComponent implements OnInit {
     this.loading = true ;
     this.authenticationService.login(this.userName, this.userPwd).then(access=>
       {
-        this.loading = false ;
-      	if ( access === 3 ){
+        if(access  == "granted"){
+          this.loading = false ;
+          this.phase1 = false ;
+        }else{
+          console.log("One the else statement") ;
+          this.fakevalues = false ;
+          this.userName = ''  ; 
+          this.userPwd  = '' ; 
+        }
+      });
+  }
+
+  authentificateBySMS(){
+
+    this.loading = true ;
+    this.authenticationService.loginPhase2(this.fromSMS).then( access=>
+      { 
+       if ( access === 3 ){
           this.router.navigate(['/accueil']); 
-      	}else 
+        }else 
           if ( access === 2 ){
             this.router.navigate(['/accueiladmpdv']);  
           }else 
@@ -56,16 +74,20 @@ export class AuthComponentComponent implements OnInit {
             if ( access === 7 ){
               this.router.navigate(['/accueilcommercial']);              
             }
-      	     else
+             else
                 if ( access === 4 ){
                   this.router.navigate(['/ADMINCOURSIER']);              
                 }else{
                   console.log("One the else statement") ;
-        	     		this.fakevalues = false ;
-      		        this.userName = ''  ; 
-        			    this.userPwd  = '' ; 
-        		  }
+                  this.fakevalues = false ;
+                  this.userName = ''  ; 
+                  this.userPwd  = '' ; 
+              }  
+
+        this.loading = false ; 
       });
+
+
   }
 
 }
