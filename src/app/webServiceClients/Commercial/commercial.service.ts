@@ -23,7 +23,7 @@ class Fichier {
 @Injectable()
 export class CommercialServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/commercial?wsdl' ;
   private targetNamespace:string = 'urn:commercialwsdl' ;
 
