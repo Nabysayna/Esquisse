@@ -18,7 +18,7 @@ export class AuthentificationServiceWeb {
 
   private servicePort:string = 'http://localhost' ;  
 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/invest/logging?wsdl' ;
 
   private targetNamespace:string = 'urn:authwsdl' ;
 

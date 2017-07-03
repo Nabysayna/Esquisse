@@ -18,9 +18,9 @@ export class AdminpdvServiceWeb {
 
 //  private servicePort:string = 'http://51.254.200.129' ; 
 
-  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePort:string = 'http://localhost' ; 
 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 
   public responseJso : any;
