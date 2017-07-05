@@ -12,6 +12,8 @@
 	                </li>
 	                <li><a href="#bilans" data-toggle="tab">Bilan</a>
 	                </li>
+	                <li><a href="#reclamation" data-toggle="tab">Réclamation</a>
+	                </li>
 	            </ul>
 
 
@@ -114,12 +116,16 @@
 			    <div class="row tab-pane fade" id="bilans">
 			        <div class="col-sm-4 col-xs-12">
 			            <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
-						    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
+						    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle chargeo" required>
 						    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
 
 			                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
 				        </form>
 			        </div>
+			    </div>
+
+			    <div class=" tab-pane fade in" id="reclamation" >
+			    	test
 			    </div>	
 	        </div>
 
