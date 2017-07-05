@@ -8,7 +8,7 @@
 	                </li>
 	                <li><a href="#charge" data-toggle="tab">Charges</a>
 	                </li>
-	                <li><a href="#arretecaisse" data-toggle="tab">Arrêté de caisse</a>
+	                <li><a href="#revenus" data-toggle="tab">Revenues</a>
 	                </li>
 	                <li><a href="#bilans" data-toggle="tab">Bilan</a>
 	                </li>
@@ -44,12 +44,20 @@
 			    <div class=" tab-pane fade in" id="charge" >
 			       
 		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
-				        <div class="col-sm-3 col-xs-12">
-				                <label>{{pdv.nom}}</label>
+
+				        <div class="col-sm-3 col-xs-4">
+			                <label>{{pdv.nom}}</label>
+				        </div>
+				        <div class="col-sm-3 col-xs-4">
+	                         <button class="btn btn-success"  href="#list" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
+				        </div>
+				        <div class="col-sm-3 col-xs-4">
+			                 <button class="btn btn-success"  href="#ajout" data-toggle="collapse"  (click)="ajoutercharges(i)">
+			                 Ajouter Charge
+			                 </button>
 				        </div>
 
-	                    <div class="col-sm-3 col-xs-12" >
-                                             <button class="btn btn-success"  href="#list" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
+	                    <div class="col-sm-12 col-xs-6" >
                                     
                                     <div id="list" *ngIf="i==estselection">
                                         
@@ -83,10 +91,7 @@
                                     
                            </div>
 				        
-				        <div class="col-sm-3 col-xs-12" >
-				                 <button class="btn btn-success"  href="#ajout" data-toggle="collapse"  (click)="ajoutercharges(i)">
-				                 Ajouter Charge
-				                 </button>
+				        <div class="col-sm-12 col-xs-12" >
 				                 <div id="ajout" *ngIf="i==estselectionf">
 				                 		<form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
 										    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
@@ -98,12 +103,11 @@
 
 				    </div>
 
-				       
 			    </div>	
 
 
-			    <div class="row tab-pane fade" id="arretecaisse">
-			        <div class="col-sm-4 col-xs-12">
+			    <div class="row tab-pane fade" id="revenus">
+			        <div class="col-sm-12 col-xs-12">
 			            <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
 						    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
 						    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
@@ -114,7 +118,7 @@
 			    </div>	
 
 			    <div class="row tab-pane fade" id="bilans">
-			        <div class="col-sm-4 col-xs-12">
+			        <div class="col-sm-12 col-xs-12">
 			            <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
 						    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle chargeo" required>
 						    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
