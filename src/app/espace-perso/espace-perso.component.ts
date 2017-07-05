@@ -12,6 +12,18 @@ class Article {
   public stock:number;
 }
 
+export class Vente {
+  public id:number;
+  public quantite:number;
+  public designation:string;
+  public prixUnitaire:number ;
+  public tel:number;
+  public fullName:string;
+  public dateVente:string;
+}
+
+
+
 @Component({
   selector: 'app-espace-perso',
   templateUrl: './espace-perso.component.html', 
@@ -126,13 +138,37 @@ export class EspacePersoComponent implements OnInit {
 
   chargerCommandes(typeListe : string){
     this.loading = true ;
-    this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
+
+    if (typeListe=='toReceive'){
+      setTimeout(()=>{
+      this.listeCommande = [ {id:1, quantite:2,designation:"Chaussures Homme", prixUnitaire:19000 , tel:77000000,fullName:"Bamba BBS", adress:"Diamalaye", dateCommande:"05/07/2017"}, {id:2, quantite:1, designation:"Chemise Homme", prixUnitaire:5000, tel:77008000, fullName:"Assane BBS", adress:"Keur Mbaye Fall",  dateCommande:"15/06/2017"}, {id:3, quantite:4, designation:"Sac Femme", prixUnitaire:1, tel:77000009, fullName:"Khady BBS", adress:"Parcelles", dateCommande:"28/05/2017"}] ;
+      this.loading = false ;
+      }, 500) ;
+    }else{
+      setTimeout(()=>{
+      this.listeCommande = [ {id:1, quantite:2,designation:"Ordinateur Portable", prixUnitaire:190000 , tel:77000000,fullName:"Awa BBS", adress:"Ouest Foire", dateCommande:"05/07/2017"}, {id:2, quantite:4, designation:"Chaussettes", prixUnitaire:500, tel:77008000, fullName:"Naby BBS", adress:"Parcelles",  dateCommande:"15/06/2017"}] ;
+      this.loading = false ;
+      }, 500) ;
+    }
+
+
+/*    this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
       {
         //console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
         this.listeCommande = response ;
         this.loading = false ;
-      });     
+      });    */
+
   }
+
+  chargerVentes(){
+     setTimeout(()=>{ this.listeCommande = [ {id:1, quantite:2,designation:"Soulier Homme", prixUnitaire:23000 , tel:77000000,fullName:"Bamba BBS", adress:"Diamalaye", dateCommande:"15/05/2017"}, {id:2, quantite:1, designation:"Chemise courtes manches", prixUnitaire:8000, tel:77008000, fullName:"Alioune BBS", adress:"Keur Mbaye Fall",  dateCommande:"15/06/2017"}, {id:3, quantite:4, designation:"Chaussures Femme", prixUnitaire:10000, tel:77000009, fullName:"Michelle BBS", adress:"Plateau", dateCommande:"28/05/2017"}] ;
+      this.loading = false ;
+      }, 500) ;
+   }
+
+
+
 
   receptionner(idCommande : number){
     let params = {token: this.token, idCommande: idCommande};
@@ -197,7 +233,7 @@ export class EspacePersoComponent implements OnInit {
   hasBaseDropZoneOver: boolean = false;
 
   options: Object = {
-    url: 'http://localhost/EsquisseBackEnd/server-backend-upload/index.php'
+    url: 'http://51.254.200.129/backecom/server-backend-upload/index.php'
   };
 
   sizeLimit = 2000000;
