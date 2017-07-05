@@ -10,7 +10,7 @@
 	                </li>
 	                <li><a href="#revenus" data-toggle="tab">Revenues</a>
 	                </li>
-	                <li><a href="#bilans" data-toggle="tab">Bilan</a>
+	                <li><a href="#bilans" data-toggle="tab">Journal</a>
 	                </li>
 	                <li><a href="#reclamation" data-toggle="tab">Réclamation</a>
 	                </li>
@@ -77,9 +77,9 @@
 			                                <tbody>
 			                                <tr>
 			                                    <td>12/12/2016</td>
-			                                    <td>Retrait</td>
-			                                    <td>100000.FCFA</td>
-			                                    <td>tigo cash</td>
+			                                    <td>Achat Rame Papier</td>
+			                                    <td>10000.FCFA</td>
+			                                    <td>Impression</td>
 			                                </tr></tbody>
 			                            </table>
 			                        </div>
@@ -96,6 +96,7 @@
 				                 		<form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
 										    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
 										    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
+										    <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
 
 							                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
 								        </form>
@@ -104,27 +105,51 @@
 				    </div>
 
 			    </div>	
+			    </div>	
 
 
-			    <div class="row tab-pane fade" id="revenus">
+			    <div class="row tab-pane fade in" id="revenus">
 			        <div class="col-sm-12 col-xs-12">
-			            <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
-						    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
-						    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
 
-			                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
-				        </form>
+					  <div style="position: absolute ; left: 20%; top:15%; min-width: 70% ; min-height: 50% ;text-align: -webkit-center; padding-top: 10%; z-index:1000; opacity: 1; ">
+					    CET ONGLET EST EN DEVELOPPEMENT !
+					      <div class="loader" style="margin-top: 3rem ;">
+					        <div class="loader-inner ball-pulse-rise">
+					          <div></div>
+					          <div></div>
+					          <div></div>
+					          <div></div>
+					          <div></div>
+					        </div>
+					      </div>
+					   </div>
+
 			        </div>
 			    </div>	
 
-			    <div class="row tab-pane fade" id="bilans">
+			    <div class="row tab-pane fade in" id="bilans">
 			        <div class="col-sm-12 col-xs-12">
+<<<<<<< HEAD
 			            <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
 						    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle chargeo" required>
 						    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
 
 			                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
 				        </form>
+=======
+					  <div style="position: absolute ; left: 20%; top:15%; min-width: 70% ; min-height: 50% ;text-align: -webkit-center; padding-top: 10%; z-index:1000; opacity: 1; ">
+					    CET ONGLET EST EN DEVELOPPEMENT !
+					      <div class="loader" style="margin-top: 3rem ;">
+					        <div class="loader-inner ball-pulse-rise">
+					          <div></div>
+					          <div></div>
+					          <div></div>
+					          <div></div>
+					          <div></div>
+					        </div>
+					      </div>
+					   </div>
+>>>>>>> 7c7cfb3bd44e4c97cb4af8ce12c26c03dd86d773
 			        </div>
 			    </div>
 

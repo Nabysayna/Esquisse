@@ -43,11 +43,17 @@ export class Coursier{
 export class EcomServiceWeb {
 
 
-//  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/backecom/web/app.php/invest/ecommerce?wsdl' ;
 
+<<<<<<< HEAD
   private servicePort:string = 'http://localhost:8888' ; 
+=======
+>>>>>>> 7c7cfb3bd44e4c97cb4af8ce12c26c03dd86d773
 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
+//  private servicePort:string = 'http://localhost' ; 
+
+//  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 
   public responseJso : any ;
@@ -75,7 +81,7 @@ export class EcomServiceWeb {
 
       var method:string = 'ajoutarticle'; 
       var parameters:{}[] = []; 
-
+      console.log('Parametres envoyés '+JSON.stringify(requestedValue) ) ;
       var reEspParams = requestedValue ;
       var params:{}[] = [] ; 
       params["params"] = reEspParams ;

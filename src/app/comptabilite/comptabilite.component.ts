@@ -15,7 +15,8 @@ export class ComptabiliteComponent implements OnInit {
  
   pdvCaisses : PdvCaisse[] ;
   libelleCharge : string ;
-  montantCharge	: string ;
+  montantCharge : number ;
+  service : string ;
   approvisionnement = "" ;
   estselection:number;
   estselectionf:number;

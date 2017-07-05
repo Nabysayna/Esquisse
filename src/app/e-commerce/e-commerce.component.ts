@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ECommerceComponent implements OnInit {
-
+	mntp = 0 ;
   constructor() { }
 
   ngOnInit() {
