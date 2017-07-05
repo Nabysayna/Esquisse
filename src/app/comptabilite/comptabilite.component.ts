@@ -19,7 +19,9 @@ export class ComptabiliteComponent implements OnInit {
   service : string ;
   approvisionnement = "" ;
   estselection:number;
+  estselectionr:number;
   estselectionf:number;
+  estselectionfr:number;
 
   constructor() { }
 
@@ -39,9 +41,18 @@ export class ComptabiliteComponent implements OnInit {
     this.estselection = i;
   }
 
+  listerrevenus(i){
+    this.estselectionr = i;
+  }
+
   ajoutercharges(i){
 
     this.estselectionf = i;
+  }
+
+  totalrevenus(i){
+    this.estselectionfr = i;
+
   }
 
 

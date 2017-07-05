@@ -29,15 +29,11 @@ export class TntResponse{
 @Injectable()
 export class TntServiceWeb {
 
-  private servicePort:string = 'http://51.254.200.129' ; 
+  // private servicePort:string = 'http://51.254.200.129' ; 
 
-<<<<<<< HEAD
   private servicePort:string = 'http://localhost:8888' ; 
-=======
-//  private servicePort:string = 'http://localhost' ; 
->>>>>>> 7c7cfb3bd44e4c97cb4af8ce12c26c03dd86d773
 
-  private servicePath:string = '/backecom/web/app.php/invest/tnt?wsdl' ;
+  private servicePath:string = '/backecom/web/app_dev.php/invest/tnt?wsdl' ;
   private targetNamespace:string = 'urn:tntwsdl' ;
 
   public responseJso : any ;

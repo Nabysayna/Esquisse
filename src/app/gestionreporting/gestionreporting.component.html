@@ -7,13 +7,17 @@
         <div class="panel-body">
             <!-- Nav tabs -->
             <ul class="nav nav-pills">
-                <li class="active"><a href="#home-pills" data-toggle="tab">Historique des Opérations</a>
+                <li class="active"><a href="#historique" data-toggle="tab">Historique des Opérations</a>
                 </li>
-                <li><a id="elec" href="#profile-pills" data-toggle="tab">Arrêté de Caisse</a>
+                <li><a id="elec" href="#charges" data-toggle="tab">Charges</a>
+                </li>
+                <li><a id="elec" href="#ventes" data-toggle="tab">Ventes</a>
+                </li>
+                <li><a id="elec" href="#reclamation" data-toggle="tab">Réclamations</a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="home-pills">
+                <div class="tab-pane fade in active" id="historique">
                     <div class="panel panel-default">
                         <div id="hop" class="panel-heading">
                             Historique Opérations
@@ -42,42 +46,36 @@
                         <!-- /.panel-body -->
                     </div>
                 </div>
-                <div class="tab-pane fade" id="profile-pills" onLoad="window.print();">
+                <div class="tab-pane fade" id="charges">
 
-                        <div class="panel panel-default">
-                            <div id="acj" class="panel-heading" >
-                                Arrêté de caisse journalier
-                            </div>
-                            <div class="table-responsive">
-                                <div class="dataTable_wrapper">
-                                    <table class="table table-bordered table-hover" id="dataTables-examples">
-                                        <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Opérateur</th>
-                                            <th>Solde</th>
-                                            <th>Montant Consommé</th>
-                                            <th>Débiteur</th>
-                                            <th>Créditeur</th>
-                                        </tr>
+                        
+                         <div class="col-sm-12 col-xs-12" >
+                                        <form class="form-signin" (ngSubmit)="totalCharge()" #chargeForm="ngForm">
+                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required></div> 
+                                            <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
+                                           <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
 
-                                        </thead>
-                                        <tbody >
-                                        <tr>
-                                            <td>{{arretCaisse.date}}</td>
-                                            <td>{{arretCaisse.operateur}}</td>
-                                            <td>{{arretCaisse.solde}}</td>
-                                            <td>{{arretCaisse.montantc}}</td>
-                                            <td>{{arretCaisse.debiteur}}</td>
-                                            <td>{{arretCaisse.crediteur}}</td>
-                                        </tr>
-                                        <button id="imp" class="btn btn-success"  onclick="javascript:window.print()"  >Impression</button>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Valider</button></div>
+                                        </form>
+                    
                     </div>
+                    <div class="tab-pane fade" id="ventes">
+                        <form class="form-signin" (ngSubmit)="totalCharge()" #chargeForm="ngForm">
+                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required></div> 
+                                            <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
+                                           <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
+
+                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Valider</button></div>
+                                        </form>
+                    
+                        
+                    </div>
+
+                    <div class="tab-pane fade" id="reclamation">
+                        test
+                        
+                    </div>
+                    
 
 
                 </div>
