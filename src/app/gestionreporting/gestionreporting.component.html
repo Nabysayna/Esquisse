@@ -47,38 +47,61 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="charges">
-
+                        <div class="panel">
+                        <div id="hop" class="panel-heading">
+                            Charge
+                        </div>
                         
                          <div class="col-sm-12 col-xs-12" >
-                                        <form class="form-signin" (ngSubmit)="totalCharge()" #chargeForm="ngForm">
+                                        <form class="form-signin" (ngSubmit)="validCharge()" #validCharge="ngForm">
                                            <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required></div> 
                                             <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
                                            <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
 
-                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Valider</button></div>
+                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validCharge.form.valid" >Valider</button></div>
                                         </form>
                     
                     </div>
+                    </div>
+                </div>    
                     <div class="tab-pane fade" id="ventes">
-                        <form class="form-signin" (ngSubmit)="totalCharge()" #chargeForm="ngForm">
+                        <div class="panel">
+                        <div id="hop2" class="panel-heading">
+                          Vente
+                        </div>
+                        <div class="col-sm-12 col-xs-12">
+                        <form class="form-signin" (ngSubmit)="validvente()" #validvente="ngForm">
+                                           
                                            <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required></div> 
                                             <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
                                            <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
 
-                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Valider</button></div>
-                                        </form>
-                    
-                        
+                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validvente.form.valid" >Valider</button>
+                                            </div>
+                        </form>
                     </div>
-
+                    </div>
+                    </div>
+                      
                     <div class="tab-pane fade" id="reclamation">
-                        test
+                    <div class="panel">
+                        <div id="hop3" class="panel-heading">
+                            Réclamation
+                        </div>
+
+                        <div class="col-sm-12 col-xs-12">
+                       <form class="form-signin" (ngSubmit)="validreclamation()" #validreclamation="ngForm">
+                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujetreclam"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
+                                            <input type="number" [(ngModel)]="descripreclam"   name="descrip" id="descrip" class="form-control" placeholder="description réclamation" required>
+
+                                            <div class="col-sm-3 col-xs-12" ><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validreclamation.form.valid" >Envoyer</button></div>
+                        </form>
                         
                     </div>
                     
-
-
+                    </div>
+                    </div>
                 </div>
+            </div> 
         </div>
-        </div>
-    </div>
+  </div>

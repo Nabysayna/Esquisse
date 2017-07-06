@@ -10,7 +10,7 @@
 	                </li>
 	                <li><a href="#revenus" data-toggle="tab">Revenues</a>
 	                </li>
-	                <li><a href="#journal" data-toggle="tab">Journal</a>
+	                <li><a href="#resultat" data-toggle="tab" (click)="result()">Résultats</a>
 	                </li>
 	                <!-- <li><a href="#reclamation" data-toggle="tab">Réclamation</a>
 	                </li> -->
@@ -173,7 +173,7 @@
 			        </div>
 			    </div>	
 
-			    <div class="row tab-pane fade in" id="journal">
+			    <div class="row tab-pane fade in" id="resultat">
 			        
 		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
@@ -181,26 +181,9 @@
 			                <label>{{pdv.nom}}</label>
 				        </div>
 				        <div class="col-sm-3 col-xs-4">
-	                         <button class="btn btn-success"  href="#list" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
+	                         
 				        </div>
-				        <div class="col-sm-3 col-xs-4">
-			                 <button class="btn btn-success"  href="#ajout" data-toggle="collapse"  (click)="listerrevenus(i)">
-			                 Lister Revenus
-			                 </button>
-				        </div>
-
-	                    <div class="col-sm-12 col-xs-6" >
-                                    
-                                  
-                                    
-                           </div>
-				        
-				      <div class="col-sm-12 col-xs-6" >
-                                    
-                                  
-                                    
-                           </div>
-
+				             
 			    </div>
 			    </div>
 
