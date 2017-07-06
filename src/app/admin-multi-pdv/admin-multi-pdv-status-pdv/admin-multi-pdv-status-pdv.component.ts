@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
 import { MapsServiceWeb } from '../../webServiceClients/Maps/maps.service';
 
 @Component({
@@ -15,16 +14,25 @@ export class AdminmultipdvStatusPdvComponent implements OnInit {
   loading = false ;
 
   public adminmultipdvListmap: any;
+  public centermap = {zoom: 7, lat: 14.716447783648722, lng: -15.32318115234375};
+  
 
-	constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb, private mapsServiceWeb: MapsServiceWeb) { }
+	constructor(private mapsServiceWeb: MapsServiceWeb) { }
 
   ngOnInit() {
     this.loading = true ;
     this.mapsServiceWeb.listmaps('azrrtt').then(mapsServiceWebList => {
-      this.adminmultipdvListmap = mapsServiceWebList; 
+      console.log(mapsServiceWebList);
+      this.adminmultipdvListmap = mapsServiceWebList.response; 
       this.loading = false ;
     });
   }
+
+
+  listDepartement: any[];
+  public typeaheadLoading: boolean;
+  public typeaheadNoResults: boolean;
+
 
 
 

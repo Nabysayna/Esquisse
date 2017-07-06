@@ -37,5 +37,12 @@ export class AdminmultipdvDemandeRetraitComponent implements OnInit {
         return a.datedemanderetrait.length;
     }
 
+    validretrait(iddemanderetrait:number){
+      this.loading = true ;
+      this.adminmultipdvServiceWeb.validerretrait('azrrtt', iddemanderetrait).then(adminmultipdvServiceWebList => {
+        console.log(adminmultipdvServiceWebList); 
+        this.loading = false ;
+      });
+    }
 
 }

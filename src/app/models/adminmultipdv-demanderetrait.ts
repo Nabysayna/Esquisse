@@ -1,5 +1,6 @@
 export class AdminmultipdvDemanderetrait {
   constructor(
+    public iddemanderetrait: number,
     public datedemanderetrait: string,
     public agent: string,
     public telephone: string,

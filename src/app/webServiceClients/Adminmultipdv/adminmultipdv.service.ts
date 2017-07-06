@@ -21,9 +21,9 @@ export class AdminmultipdvServiceWeb {
   private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl' ;
   
-  // private servicePort:string = 'http://localhost:8888' ; 
+  // private servicePort:string = 'http://localhost' ; 
   // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl' ;
-
+  
   private targetNamespace:string = 'urn:adminmultipdvwsdl' ;
 
   public responseJso : any;
@@ -46,7 +46,7 @@ export class AdminmultipdvServiceWeb {
     this.soapService.localNameMode = true;
   }
 
-  public nombredereclamationagentpdvvente(type : string): Promise<AdminmultipdvNombredeReclamationAgentPdvVente>  {
+  public nombredereclamationagentpdvvente(type : string): Promise<any>  {
     var method:string = 'nombredereclamationagentpdvvente';
     var parameters:{}[] = [];
 
@@ -65,7 +65,7 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public bilandeposit(type : string): Promise<AdminmultipdvDeposit>  {
+  public bilandeposit(type : string): Promise<any>  {
     var method:string = 'bilandeposit';
     var parameters:{}[] = [];
 
@@ -84,7 +84,7 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public depositinitialconsommeparservice(type : string): Promise<AdminmultipdvDepositInitialConsommeParService>  {
+  public depositinitialconsommeparservice(type : string): Promise<any>  {
     var method:string = 'depositinitialconsommeparservice';
     var parameters:{}[] = [];
 
@@ -141,7 +141,7 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public historiquereclamation(type : string): Promise<AdminmultipdvReclamation[]>  {
+  public historiquereclamation(type : string): Promise<any>  {
     var method:string = 'historiquereclamation';
     var parameters:{}[] = [];
 
@@ -217,7 +217,26 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public listmajcautions(type : string): Promise<AdminmultipdvMajcaution[]>  {
+  public validerretrait(type : string, idretrait : number): Promise<any>  {
+    var method:string = 'validerretrait';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, type: type, idretrait: idretrait} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['validerretrait xmlns="urn:adminmultipdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'validerretraitResponse').then(response=>{
+        var reponse = JSON.parse(response['validerretraitResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public listmajcautions(type : string): Promise<any>  {
     var method:string = 'listmajcautions';
     var parameters:{}[] = [];
 
@@ -236,11 +255,11 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public modifymajcaution(type : string, idagent : number, modifycaution : number): Promise<any>  {
+  public modifymajcaution(type : string, idadminpdv : number, modifycaution : number): Promise<any>  {
     var method:string = 'modifymajcaution';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idagent: idagent, modifycaution: modifycaution} ;
+    var reEspParams = {token: this.token, type: type, idadminpdv: idadminpdv, modifycaution: modifycaution} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 

@@ -41,6 +41,7 @@ export class AuthComponentComponent implements OnInit {
           this.fakevalues = false ;
           this.userName = ''  ; 
           this.userPwd  = '' ; 
+          this.loading = false ;
         }
       });
   }

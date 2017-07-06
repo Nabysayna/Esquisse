@@ -13,11 +13,21 @@ class Fichier {
   
   }
 
-  export class Coursier{  
+  export class Operateurs{  
+  public id:number;
+  public prenom:string;
+  public nom:string;
+  public adresse:string;
+  public telephone:number;
+  public accesslevel:number;
+}
+
+export class Commerciaux{  
   public id:number;
   public prenom:string;
   public nom:string;
 }
+
 
 
 @Injectable()
@@ -49,24 +59,42 @@ export class CommercialServiceWeb {
   }
 
 
-  public listcoursier(token : string) : Promise<Coursier[]> {
+  public listoperateurs(token : string) : Promise<Operateurs[]> {
 
-      var method:string = 'listcoursier'; 
+      var method:string = 'listoperateurs'; 
       var parameters:{}[] = []; 
       var reEspParams = { token:token} ;
       var params:{}[] = [] ; 
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
-        parameters['listcoursier xmlns="urn:commercialwsdl#"'] = params ;
-        this.soapService.post(method, parameters, 'listcoursierResponse').then(response=>{
-          let responseJsoFWS : Coursier[] = JSON.parse(response['listcoursierResponse'].return.$);
-          console.log("reponse brute from coursiers Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
+        parameters['listoperateurs xmlns="urn:commercialwsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'listoperateursResponse').then(response=>{
+          let responseJsoFWS : Operateurs[] = JSON.parse(response['listoperateursResponse'].return.$);
+          console.log("reponse brute from operateurs Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
           resolve(responseJsoFWS) ;
         }); 
       });      
   }
 
+
+  public listcommerciaux(token : string) : Promise<Commerciaux[]> {
+
+      var method:string = 'listcommerciaux'; 
+      var parameters:{}[] = []; 
+      var reEspParams = { token:token} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listcommerciaux xmlns="urn:commercialwsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'listcommerciauxResponse').then(response=>{
+          let responseJsoFWS : Commerciaux[] = JSON.parse(response['listcommerciauxResponse'].return.$);
+          console.log("reponse brute from listcommerciaux Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
+          resolve(responseJsoFWS) ;
+        }); 
+      });      
+  }
   public zone(token:string, type:string) : Promise<any> {
 
      var method:string = 'zone';

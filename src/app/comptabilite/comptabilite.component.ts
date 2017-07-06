@@ -17,6 +17,8 @@ export class ComptabiliteComponent implements OnInit {
   libelleCharge : string ;
   montantCharge	: string ;
   approvisionnement = "" ;
+  estselection:number;
+  estselectionf:number;
 
   constructor() { }
 
@@ -30,6 +32,15 @@ export class ComptabiliteComponent implements OnInit {
 
   approvisionnercaisse(pdv : PdvCaisse){
   	this.approvisionnement="" ;
+  }
+
+  listercharges(i){
+    this.estselection = i;
+  }
+
+  ajoutercharges(i){
+
+    this.estselectionf = i;
   }
 
 

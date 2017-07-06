@@ -63,7 +63,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
 
   public nombredereclamationagentpdvvente():void {
     this.adminmultipdvServiceWeb.nombredereclamationagentpdvvente('azrrtt').then(adminpdvServiceWebList => 
-      this.AdminmultipdvNombredereclamationagentpdvvente = adminpdvServiceWebList 
+      this.AdminmultipdvNombredereclamationagentpdvvente = adminpdvServiceWebList.response 
     );
   }
  
