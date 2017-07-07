@@ -157,6 +157,8 @@ import { AccueiladmincommercialComponent } from './accueiladmincommercial/accuei
 import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercial.component';
 import { FiltrefichierPipe } from './pipes/filtrefichier.pipe';
 import { FiltrervPipe } from './pipes/filtrerv.pipe';
+import { FiltrechargesPipe } from './pipes/filtrecharges.pipe';
+import { FiltrerevenusPipe } from './pipes/filtrerevenus.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -245,6 +247,8 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
     AccueilcommercialComponent,
     FiltrefichierPipe,
     FiltrervPipe,
+    FiltrechargesPipe,
+    FiltrerevenusPipe,
   ],
   imports: [
     BrowserModule,

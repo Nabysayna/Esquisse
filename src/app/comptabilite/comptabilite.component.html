@@ -6,11 +6,11 @@
 	            <ul class="nav nav-pills">
 	                <li class="active"><a href="#caisse" data-toggle="tab">Caisse</a>
 	                </li>
-	                <li><a href="#charge" data-toggle="tab">Charges</a>
+	                <li><a href="#journal" data-toggle="tab">Journal</a>
 	                </li>
-	                <li><a href="#revenus" data-toggle="tab">Revenues</a>
+	                <li><a href="#exploitations" data-toggle="tab">Exploitation</a>
 	                </li>
-	                <li><a href="#resultat" data-toggle="tab" (click)="result()">Résultats</a>
+	                <li><a href="#personnalisation" data-toggle="tab">Personnalisation</a>
 	                </li>
 	                <!-- <li><a href="#reclamation" data-toggle="tab">Réclamation</a>
 	                </li> -->
@@ -41,7 +41,7 @@
 			    </div>	
 
 
-			    <div class=" tab-pane fade in" id="charge" >
+			    <div class="row tab-pane fade in" id="journal" >
 			       
 		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
@@ -49,39 +49,110 @@
 			                <label>{{pdv.nom}}</label>
 				        </div>
 				        <div class="col-sm-3 col-xs-4">
-	                         <button class="btn btn-success"  href="#list" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
+	                         <button class="btn btn-success"  href="#listc" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
 				        </div>
 				        <div class="col-sm-3 col-xs-4">
 			                 <button class="btn btn-success"  href="#ajout" data-toggle="collapse"  (click)="ajoutercharges(i)">
 			                 Ajouter Charge
 			                 </button>
 				        </div>
+				         <div class="col-sm-3 col-xs-4">
+	                         <button class="btn btn-success"  href="#listr" data-toggle="collapse"  (click)="listerrevenus(i)">Lister Revenus</button>
+				        </div>
 
 	                    <div class="col-sm-12 col-xs-6" >
                                     
-                                    <div id="list" *ngIf="i==estselection">
+                                    <div id="listc" *ngIf="i==estselection">
                                         
                                            <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
                             	<div class="row">
                             		<div class="col-sm-12">
-                            			<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
-			                                <thead>
-			                                <tr>
-			                                    <th>Date</th>
-			                                    <th>Libellé</th>
-			                                    <th>Montant</th>
-			                                    <th>Service</th>
-			                                </tr>
-			                                </thead>
-			                                <tbody>
-			                                <tr>
-			                                    <td>12/12/2016</td>
-			                                    <td>Achat Rame Papier</td>
-			                                    <td>10000.FCFA</td>
-			                                    <td>Impression</td>
-			                                </tr></tbody>
-			                            </table>
+                            			
+	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="charges|filtrecharges:filtre" #fopad="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+		                            </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="date">Date</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="libelle">Libellé</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="service">Service</mfDefaultSorter></th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.charges">
+                                <tr *ngFor="let charges of fopad.data">
+                                    <td>{{charges.date}}</td>
+                                    <td>{{charges.libelle}}</td>
+                                    <td>{{charges.montant}}</td>
+                                    <td>{{charges.service}}</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+			                        </div>
+			                    </div>
+			                </div>
+			                            <!-- /.table-responsive -->
+                        </div>
+                                    </div>
+                                    
+                           </div>
+
+                           <div class="col-sm-12 col-xs-6" >
+                                    
+                                    <div id="listr" *ngIf="i==estselectionr">
+                                        
+                                           <div class="panel-body">
+                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
+                            	<div class="row">
+                            		<div class="col-sm-12">
+                            			
+	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="revenus|filtrerevenus:filtre" #fopa="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+		                            </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="date">Date</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="libelle">Libellé</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="service">Service</mfDefaultSorter></th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.revenus">
+                                <tr *ngFor="let revenus of fopa.data">
+                                    <td>{{revenus.date}}</td>
+                                    <td>{{revenus.libelle}}</td>
+                                    <td>{{revenus.montant}}</td>
+                                    <td>{{revenus.service}}</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
 			                        </div>
 			                    </div>
 			                </div>
@@ -108,83 +179,15 @@
 			    </div>	
 
 
-			    <div class="row tab-pane fade in" id="revenus">
+			    <div class="row tab-pane fade in" id="exploitations">
 			        <div class="col-sm-12 col-xs-12">
-
-					  
-		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
-
-				        <div class="col-sm-3 col-xs-4">
-			                <label>{{pdv.nom}}</label>
-				        </div>
-				        <div class="col-sm-3 col-xs-4">
-	                         <button class="btn btn-success"  href="#list" data-toggle="collapse"  (click)="listerrevenus(i)">Lister Revenus</button>
-				        </div>
-
-	                    <div class="col-sm-12 col-xs-6" >
-                                    
-                                    <div id="list" *ngIf="i==estselectionr">
-                                        
-                                           <div class="panel-body">
-                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
-                            	<div class="row">
-                            		<div class="col-sm-12">
-                            			<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
-			                                <thead>
-			                                <tr>
-			                                    <th>Date & Heure</th>
-			                                    <th>Libellé</th>
-			                                    <th>Montant</th>
-			                                    <th>Total </th>
-			                                </tr>
-			                                </thead>
-			                                <tbody>
-			                                <tr>
-			                                    <td>12/12/2016 12:02:29</td>
-			                                    <td>Vente de sacs</td>
-			                                    <td>15000.FCFA</td>
-			                                    <td>2</td>
-			                                </tr></tbody>
-			                            </table>
-			                        </div>
-			                    </div>
-			                </div>
-			                            <!-- /.table-responsive -->
-                        </div>
-                                    </div>
-                                    
-                           </div>
-				        
-				        <div class="col-sm-12 col-xs-12" >
-				                 <div id="total" *ngIf="i==estselectionfr">
-				                 		<form class="form-signin" (ngSubmit)="totalCharge()" #chargeForm="ngForm">
-										    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
-										    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
-										    <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
-
-							                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
-								        </form>
-				        </div>
-
-				    </div>
-
-			    </div>
 
 			        </div>
 			    </div>	
 
-			    <div class="row tab-pane fade in" id="resultat">
+			    <div class="row tab-pane fade in" id="personnalisation">
 			        
-		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
-
-				        <div class="col-sm-3 col-xs-4">
-			                <label>{{pdv.nom}}</label>
-				        </div>
-				        <div class="col-sm-3 col-xs-4">
-	                         
-				        </div>
-				             
-			    </div>
+		            
 			    </div>
 
 			    
