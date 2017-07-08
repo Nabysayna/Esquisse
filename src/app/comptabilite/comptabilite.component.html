@@ -109,7 +109,7 @@
                         </div>
                                     </div>
                                     
-                           </div>
+                        </div>
 
                            <div class="col-sm-12 col-xs-6" >
                                     
@@ -160,7 +160,7 @@
                         </div>
                                     </div>
                                     
-                           </div>
+                        </div>
 				        
 				        <div class="col-sm-12 col-xs-12" >
 				                 <div id="ajout" *ngIf="i==estselectionf">
@@ -173,16 +173,130 @@
 								        </form>
 				        </div>
 
-				    </div>
+				    	</div>
 
 			    </div>	
 			    </div>	
 
 
 			    <div class="row tab-pane fade in" id="exploitations">
-			        <div class="col-sm-12 col-xs-12">
+			           <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
-			        </div>
+				        <div class="col-sm-3 col-xs-4">
+			                <label>{{pdv.nom}}</label>
+				        </div>
+				        <div class="col-sm-3 col-xs-4">
+	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerventes(i)">Lister Ventes</button>
+				        </div>
+				      
+
+	                    <div class="col-sm-12 col-xs-6" >
+                                    
+                                    <div id="exp" *ngIf="i==estselectionfr">
+                                        
+                                           <div class="panel-body">
+                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
+                            	<div class="row">
+                            		<div class="col-sm-12">
+                            			
+	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="exploitation|filtreexploitation:filtre" #fopd="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+		                            </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="stocki">Stock Initial</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="vente">Ventes</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="stockf">Stock Final</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="mnt">Montant</mfDefaultSorter></th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.exploitation">
+                                <tr *ngFor="let exploitation of fopd.data">
+                                    <td>{{exploitation.designation}}</td>
+                                    <td>{{exploitation.stocki}}</td>
+                                    <td>{{exploitation.vente}}</td>
+                                    <td>{{exploitation.stockf}}</td>
+                                    <td>{{exploitation.mnt}}</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+			                        </div>
+			                    </div>
+			                </div>
+			                            <!-- /.table-responsive -->
+                        </div>
+                                    </div>
+                                    
+                        </div>
+
+                           <div class="col-sm-12 col-xs-6" >
+                                    
+                                    <div id="listr" *ngIf="i==estselectionr">
+                                        
+                                           <div class="panel-body">
+                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
+                            	<div class="row">
+                            		<div class="col-sm-12">
+                            			
+	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="revenus|filtrerevenus:filtre" #fopa="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+		                            </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="date">Date</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="libelle">Libellé</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="service">Service</mfDefaultSorter></th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.revenus">
+                                <tr *ngFor="let revenus of fopa.data">
+                                    <td>{{revenus.date}}</td>
+                                    <td>{{revenus.libelle}}</td>
+                                    <td>{{revenus.montant}}</td>
+                                    <td>{{revenus.service}}</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+			                        </div>
+			                    </div>
+			                </div>
+			                            <!-- /.table-responsive -->
+                        </div>
+                                    </div>
+                                    
+                        </div>
+				        
+				    
+
+			    </div>	
 			    </div>	
 
 			    <div class="row tab-pane fade in" id="personnalisation">

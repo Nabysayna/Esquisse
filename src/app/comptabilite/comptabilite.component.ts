@@ -27,12 +27,15 @@ class Revenus{
   service:string;
 
 }
-// class Charges{
-//   date:string;
-//   libelle:string;
-//   montant:number;
-//   service:string;
-// } 
+
+class Exploitation{
+  designation:string;
+  stocki:number;
+  vente:string;
+  stockf:number;
+  mnt:number;
+} 
+
 //  class Revenus{
 //   date:string;
 //   libelle:string;
@@ -64,6 +67,7 @@ export class ComptabiliteComponent implements OnInit {
   estselectionfr:number;
   charges:Charges[];
   revenus:Revenus[];
+  exploitation:Exploitation[];
 
 
   filtre ="";
@@ -83,8 +87,12 @@ export class ComptabiliteComponent implements OnInit {
 
     this.charges= [{ date: "03/03/2012", libelle: 'paiement électricité', montant: 2000000, service:"fonctionnement"},
                    { date: "04/06/2017", libelle: 'achat cartouche', montant: 1000000, service:"photocopie"}];
+   
     this.revenus= [{ date: "03/03/2012", libelle: 'ventes de sac', montant: 20000, service:"commerce"},
                    { date: "04/06/2017", libelle: 'ventes de chaussures homme', montant: 18000, service:"commerce"}];
+   
+    this.exploitation= [{ designation: "chaussures", stocki: 12, vente: "chaussures femme", stockf:20, mnt:20000},
+                   {  designation: "sac", stocki: 2, vente: "sac à dos homme", stockf:10, mnt:15000}];
 
 
 
@@ -116,7 +124,7 @@ export class ComptabiliteComponent implements OnInit {
     this.estselectionf = i;
   }
 
-  totalrevenus(i){
+  listerventes(i){
     this.estselectionfr = i;
 
   }

@@ -159,6 +159,7 @@ import { FiltrefichierPipe } from './pipes/filtrefichier.pipe';
 import { FiltrervPipe } from './pipes/filtrerv.pipe';
 import { FiltrechargesPipe } from './pipes/filtrecharges.pipe';
 import { FiltrerevenusPipe } from './pipes/filtrerevenus.pipe';
+import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -249,6 +250,7 @@ import { FiltrerevenusPipe } from './pipes/filtrerevenus.pipe';
     FiltrervPipe,
     FiltrechargesPipe,
     FiltrerevenusPipe,
+    FiltreexploitationPipe,
   ],
   imports: [
     BrowserModule,
