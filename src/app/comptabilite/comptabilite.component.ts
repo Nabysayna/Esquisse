@@ -31,16 +31,16 @@ class Revenus{
 class Exploitation{
   designation:string;
   stocki:number;
-  vente:string;
+  vente:number;
   stockf:number;
   mnt:number;
 } 
 
-//  class Revenus{
-//   date:string;
-//   libelle:string;
-//   montant:number;
-// } 
+ class Supservice{
+  services:string;
+  design:string;
+} 
+
 // class InfosPoint{
 //   nomPoint:string;
 //   chargesPoint:Charges[];
@@ -65,9 +65,15 @@ export class ComptabiliteComponent implements OnInit {
   estselectionr:number;
   estselectionf:number;
   estselectionfr:number;
+  estselectionas:number;
+  estselectionms:number;
+  estselectionss:number;
+  montreautredesignation:number;
+  estselectionmods:number = -1;
   charges:Charges[];
   revenus:Revenus[];
   exploitation:Exploitation[];
+  supservice:Supservice[];
 
 
   filtre ="";
@@ -91,8 +97,11 @@ export class ComptabiliteComponent implements OnInit {
     this.revenus= [{ date: "03/03/2012", libelle: 'ventes de sac', montant: 20000, service:"commerce"},
                    { date: "04/06/2017", libelle: 'ventes de chaussures homme', montant: 18000, service:"commerce"}];
    
-    this.exploitation= [{ designation: "chaussures", stocki: 12, vente: "chaussures femme", stockf:20, mnt:20000},
-                   {  designation: "sac", stocki: 2, vente: "sac à dos homme", stockf:10, mnt:15000}];
+    this.exploitation= [{ designation: "chaussures", stocki: 24, vente:12 , stockf:12, mnt:20000},
+                   {  designation: "sac", stocki:35 , vente:2 , stockf:33, mnt:15000}];
+
+    this.supservice= [{ services: "saisir avec word", design: "traitement de texte"},
+                   { services: "photocopie", design: "multiservice"}];  
 
 
 
@@ -129,7 +138,51 @@ export class ComptabiliteComponent implements OnInit {
 
   }
 
+  ajouterservice(i){
+    this.estselectionas = i;
+
+  }
+
+  modifierservice(i){
+    this.estselectionms = i;
+
+  }
+
+  supprimerservice(i){
+    this.estselectionss = i;
+
+  }
+  
+  serviceamodifier(){
+    return this.supservice[this.estselectionmods];
+  }
+
+  modifyservice(i)
+  {
+    this.estselectionmods=i;
+
+  }
+  autredesignation(i){
+    this.montreautredesignation=i;
+  }
+  
+
+  ajtservice(){
+    // Envoyer
+  }
 // calculresultat(){}
  
-
+ deleteservice(supservice:Supservice) {      
+      for(var j=0; j<this.supservice.length; j++){
+        var ligne=this.supservice[j];
+         
+            if (ligne.services==supservice.services)
+            {
+              // console.log(JSON.stringify(ligne));
+              this.supservice.splice(j,1);
+              break;
+            }
+      
+  }
+}
 }

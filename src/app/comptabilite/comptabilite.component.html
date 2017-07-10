@@ -300,7 +300,140 @@
 			    </div>	
 
 			    <div class="row tab-pane fade in" id="personnalisation">
-			        
+			         <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
+
+				        <div class="col-sm-3 col-xs-4">
+			                <label>{{pdv.nom}}</label>
+				        </div>
+				        <div class="boutonspersonnalisation">
+				        <div class="col-sm-3 col-xs-4">
+	                         <button  class="btn btn-success"  href="#ajoutservice" data-toggle="collapse"  (click)="ajouterservice(i)">Ajouter Service</button>
+				        </div>
+				        <div class="col-sm-3 col-xs-4">
+			                 <button class="btn btn-success"  href="#modifservice" data-toggle="collapse"  (click)="modifierservice(i)">
+			                 Modifier Service
+			                 </button>
+				        </div>
+				         <div class="col-sm-3 col-xs-4">
+	                         <button class="btn btn-success"  href="#supservice" data-toggle="collapse"  (click)="supprimerservice(i)">Supprimer Service</button>
+				        </div>
+				        </div>
+
+	                    <div class="col-sm-12 col-xs-6" >
+                                    
+                                    <div id="ajoutservice" *ngIf="i==estselectionas">
+				                 		<form style="margin-bottom: 2rem;" class="form-signin" (ngSubmit)="ajouterservice()" #exploitationForm="ngForm">
+				                 		<div class="row col-sm-3 col-xs-3" >
+										    <input type="text" [(ngModel)]="service"   name="service" id="service" class="form-control"  placeholder="ajouter un service" required>
+										
+										    <input type="text" [(ngModel)]="designations"   name="designations" id="designations" class="form-control" placeholder="désignation du service" required>
+
+                                            <input type="text" [(ngModel)]="adesignations" *ngIf="i==montreautredesignation"   name="adesignations" id="adesignations" class="form-control" placeholder="autre désignation du service" required>
+
+										</div>
+										<div class="col-sm-3 col-xs-3" >
+										    
+										
+							                <button id="validservice" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!exploitationForm.form.valid" >Ajouter</button>
+
+                                            <button id="autresdesignation" class="btn btn-lg btn-primary btn-block" type="
+                                            submit" (click)="autredesignation(i)">Autre désignation</button>
+							             </div>
+								        </form>
+				       				 </div>
+                                    
+                        </div>
+                        	<div id="modifservice" *ngIf="i==estselectionms">
+                           <div class="col-sm-6 col-xs-12" >
+                                    
+                                   
+
+                          <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="supservice|filtresupservice:filtre" #foi="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+		                            </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="services">Services</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="design">Désignations</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter >Supprimer</mfDefaultSorter></th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.supservice">
+                                <tr *ngFor="let supservice of foi.data; let j=index; ">
+                                    <td>{{supservice.services}}</td>
+                                    <td>{{supservice.design}}</td>
+                                    <td>
+                                    <button id="modifyservice" type="submit" (click)="modifyservice(j)">Modifier</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                            </div>
+                            <div *ngIf="estselectionmods!=-1" class="col-sm-6 col-xs-12" >
+
+				                 		<form class="form-signin" (ngSubmit)="ajtservice()" #exploitationForm="ngForm">
+										    <input name="services" type="text" [(ngModel)]="serviceamodifier().services" class="form-control"   required>
+										    <input name="design" type="text" [(ngModel)]="serviceamodifier().design" class="form-control"  required>
+
+							                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!exploitationForm.form.valid" >Modifier</button>
+								        </form>
+				        			</div>
+				        	
+                        </div>
+				        
+				        <div class="col-sm-6 col-xs-12" >
+				                 <div id="supservice" *ngIf="i==estselectionss">
+				                 		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="supservice|filtresupservice:filtre" #fo="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" style="padding-right: 3rem ;">
+                                            Rechercher :
+                                            <input class="form-control" [(ngModel)]="filtre"/>
+                                        </th>
+		                            </tr>
+                                    <tr>
+                                        <th><mfDefaultSorter by="services">Services</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="design">Désignations</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter >Supprimer</mfDefaultSorter></th>
+                                   </tr>
+                            
+                                </thead>
+                                <tbody *ngIf="this.supservice">
+                                <tr *ngFor="let supservice of fo.data">
+                                    <td>{{supservice.services}}</td>
+                                    <td>{{supservice.design}}</td>
+                                    <td>
+                                    <button id="deleteservice" type="submit" (click)="deleteservice(supservice)">Supprimer</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+				       			 </div>
+
+				    	</div>
+
+			    </div>
 		            
 			    </div>
 
