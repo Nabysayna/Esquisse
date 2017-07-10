@@ -6,28 +6,6 @@
     </div>
     
     <div class="row"  *ngIf="AdminmultipdvNombredereclamationagentpdvvente">
-        <!-- <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-comments fa-3x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">{{AdminmultipdvNombredereclamationagentpdvvente.nbrecouvrements}}</div>
-                            <div>Nouveaux Récouvrements!</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left"><a [routerLink]="['/accueiladmmpdv', 'statusrecouvrement']" >Voir Details</a></span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div> -->
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -151,123 +129,6 @@
         </div>
     </div>
 
-<!--     <div class="row">
-        <div class="col-sm-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Consommation du deposit par service</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Service</th>
-                                    <th>Nombre d'operations</th>
-                                    <th>Montant envoyé</th>
-                                    <th>Montant reçu</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor=" let consommationdepositparservicetype of monitoringAdminpdvConsommationDepositService; let i = index ">
-                                    <td>{{i + 1}}</td>
-                                    <td>{{ consommationdepositparservicetype.service  }}</td>
-                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
-                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
-                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
-                                </tr>
-                                <tr>
-                                    <td>-</td>
-                                    <td>{{ "Total" | uppercase }}</td>
-                                    <td>2000000</td>
-                                    <td>2000000</td>
-                                    <td>2000000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-7">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Consommation du deposit par Agent</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Agent</th>
-                                    <th>Adresse</th>
-                                    <th>Nombre d'operations</th>
-                                    <th>Montant consomme</th>
-                                    <th>Commission</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let consommationdepositparpdv of monitoringAdminpdvConsommationDepositPdv; let i = index ">
-                                    <td>{{i + 1}}</td>
-                                    <td>{{ consommationdepositparpdv.pdv | uppercase }}</td>
-                                    <td>{{ consommationdepositparpdv.adresse }}</td>
-                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
-                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
-                                    <td>{{ consommationdepositparpdv.commission  }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">{{ "Total" | uppercase }}</td>
-                                    <td>2000000</td>
-                                    <td>2000000</td>
-                                    <td>200000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-<!--     <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Recouvrements en cours</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Date</th>
-                                    <th>Agent</th>
-                                    <th>Téléphone</th>
-                                    <th>Adresse</th>
-                                    <th>Montant consomme</th>
-                                    <th>Commission</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let recouvrementadminpdv of monitoringAdminpdvRecouvrement; let i = index ">
-                                    <td>{{i + 1}}</td>
-                                    <td>{{ recouvrementadminpdv.date  }}</td>
-                                    <td>{{ recouvrementadminpdv.pdv | uppercase }}</td>
-                                    <td>1234</td>
-                                    <td>Pk Dk</td>
-                                    <td>{{ recouvrementadminpdv.montantconsomme  }}</td>
-                                    <td>{{ recouvrementadminpdv.commission  }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="panel panel-primary">
@@ -281,11 +142,19 @@
                         <li><a href="#c" data-toggle="tab">Le mois</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="a">
+                        <div class="tab-pane fade in active" id="a" *ngIf="adminmultpdvperformancesservices">
                             <br>
-                            <p *ngFor=" let performancepdv of adminmultipdvDashboardPerformanceagent; let i = index ">
-                                {{ i + 1 }} - {{ performancepdv.fullname }} 
-                            </p>
+                            <div style="display: block">
+                              <canvas baseChart
+                                  [data]="adminmultpdvperformancesservices.montanttotal"
+                                  [labels]="adminmultpdvperformancesservices.typeservice"
+                                  [chartType]="doughnutChartType"
+                                  (chartHover)="chartHovered($event)"
+                                  (chartClick)="chartClicked($event)"></canvas>
+
+                                  <!-- [doughnutChartLabels]="adminmultpdvperformancesservices.typeservice" 
+                                [doughnutChartData]="adminmultpdvperformancesservices.montanttotal"  -->
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="b">
                             <br>
@@ -303,26 +172,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-sm-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Réclamations en cours</h4>
-                </div>
-                <div class="panel-body">
-                    <div *ngFor="let reclamationpdv of monitoringAdminpdvReclamation; let i = index ">
-                        <div>
-                            <strong class="pull-left" >{{ reclamationpdv.pdv | uppercase }}</strong>
-                            <span class="pull-right text-muted">
-                                <em>Hier</em>
-                            </span>
-                        </div>
-                        <br>
-                        <div>{{ reclamationpdv.reclamation }}</div>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 

@@ -5,7 +5,6 @@ import { AdminmultipdvPerformanceagent }    from '../../models/adminmultipdv-das
 import { AdminmultipdvActiviteservices }    from '../../models/adminmultipdv-dashboard-as';
 import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
 
-
 @Component({
   selector: 'app-admin-multi-pdv-dashboard',
   templateUrl: './admin-multi-pdv-dashboard.component.html',
@@ -13,6 +12,7 @@ import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/a
 })
 export class AdminmultipdvDashboardComponent implements OnInit {
 
+  adminmultpdvperformancesservices: any;
   loading = false ;
   adminmultipdvActiviteservices: AdminmultipdvActiviteservices;
   AdminmultipdvNombredereclamationagentpdvvente: AdminmultipdvNombredeReclamationAgentPdvVente;
@@ -23,13 +23,29 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.adminmultipdvServiceWeb.performancesadminpdv('azrrtt').then(adminmultipdvServiceWebList => {
+      console.log(adminmultipdvServiceWebList);
+      this.adminmultpdvperformancesservices = adminmultipdvServiceWebList ;
+    } );
+        
     this.nombredereclamationagentpdvvente();
     this.activiteservice("Nombre d'opérations par mois");
     this.performanceagent();
     
   }
   
+  public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData:number[] = [350, 450, 100];
+  public doughnutChartType:string = 'doughnut';
+ 
+  // events
+  public doughnutChartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public doughnutChartHovered(e:any):void {
+    console.log(e);
+  }
 
   // lineChart
   public lineChartData:Array<any>;

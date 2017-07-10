@@ -1,4 +1,3 @@
-
 import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 import { AdminmultipdvNombredeReclamationAgentPdvVente }    from '../../models/adminmultipdv-dashboard-nrpv';
@@ -15,14 +14,8 @@ import { AdminmultipdvDepositInitialConsommeParService }    from '../../models/a
 @Injectable()
 export class AdminmultipdvServiceWeb {
 
-  // private servicePort:string = 'http://51.254.200.129' ; 
-  // private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/adminmultipdv?wsdl' ;
-  
   private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl' ;
-  
-  // private servicePort:string = 'http://localhost' ; 
-  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl' ;
   
   private targetNamespace:string = 'urn:adminmultipdvwsdl' ;
 
@@ -274,9 +267,24 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  private envelopeBuilder(requestBody:string):string {
+  public performancesadminpdv(type : string): Promise<any>  {
+    var method:string = 'performancesadminpdv';
+    var parameters:{}[] = [];
+    var reEspParams = {token: this.token, type: type} ;
+    var params:{}[] = [] ; 
 
-      return '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'+requestBody+'</soap:Body></soap:Envelope>' ;
+    params["params"] = reEspParams ;
+    parameters['performancesadminpdv xmlns="urn:adminmultipdvwsdl#"'] = params;
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'performancesadminpdvResponse').then(response=>{
+        var reponse = JSON.parse(response['performancesadminpdvResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+  }
+
+  private envelopeBuilder(requestBody:string):string {
+    return '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'+requestBody+'</soap:Body></soap:Envelope>' ;
   }
 
 
