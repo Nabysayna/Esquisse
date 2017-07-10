@@ -12,7 +12,6 @@ export class MapsServiceWeb {
   private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/maps?wsdl' ;
 
-  
 
   private targetNamespace:string = 'urn:mapswsdl' ;
 

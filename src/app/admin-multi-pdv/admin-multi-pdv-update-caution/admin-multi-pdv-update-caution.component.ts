@@ -15,7 +15,7 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
 
 	public filterQuery = "";
     public rowsOnPage = 10;
-    public sortBy = "agent";
+    public sortBy = "adminpdv";
     public sortOrder = "desc";
 
     public adminmultipdvMajcaution: AdminmultipdvMajcaution[];
@@ -28,22 +28,28 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
   ngOnInit() {
     this.loading = true ;
     this.adminmultipdvServiceWeb.listmajcautions('azrrtt').then(adminmultipdvServiceWebList => {
-      this.adminmultipdvMajcaution = adminmultipdvServiceWebList; 
+      console.log(adminmultipdvServiceWebList);
+      if(adminmultipdvServiceWebList.errorCode == 1){
+        this.adminmultipdvMajcaution = adminmultipdvServiceWebList.response; 
+      }
+      else{
+       this.adminmultipdvMajcaution = []; 
+      }
       this.loading = false ;
     });
 
   }
 
   private closeModal(): void {
-        this.closeBtn.nativeElement.click();
+    this.closeBtn.nativeElement.click();
   }
   
   public toInt(num: string) {
-      return +num;
+    return +num;
   }
 
   public sortByWordLength = (a: any) => {
-      return a.agent.length;
+    return a.adminpdv.length;
   }
 
   public maj(item):void {
@@ -53,7 +59,7 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
 
   public validermaj(item):void {
     this.loading = true ;
-    this.adminmultipdvServiceWeb.modifymajcaution('azrrtt', this.majcaution.idagent, this.inputCaution).then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.modifymajcaution('azrrtt', this.majcaution.idcaution, this.inputCaution).then(adminmultipdvServiceWebList => {
       console.log(adminmultipdvServiceWebList); 
       this.closeModal();
       this.loading = false ;

@@ -24,7 +24,8 @@ export class AdminmultipdvStatusReclamationComponent implements OnInit {
   ngOnInit() {
     this.loading = true ;
     this.adminmultipdvServiceWeb.historiquereclamation('azrrtt').then(adminmultipdvServiceWebList => {
-      this.adminmultipdvReclamation = adminmultipdvServiceWebList; 
+      console.log(adminmultipdvServiceWebList.response); 
+      this.adminmultipdvReclamation = adminmultipdvServiceWebList.response; 
     });
 
   }

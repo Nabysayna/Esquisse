@@ -8,7 +8,6 @@ import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
-// import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
 import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, TypeaheadModule} from 'ng2-bootstrap';
 import { AgmCoreModule } from '@agm/core';
