@@ -25,3 +25,7 @@ input{
     margin-right: 40px;
 }
 
+#descrip{
+    min-height: 150px;
+}
+

@@ -4,8 +4,7 @@
   </div> 
 
   <div class="col-sm-4" >
-  	<div id="dataTables-example_filter" class="dataTables_filter">
-  	</div>
+    <a class="btn ecomBtn" href="#prisecom" data-toggle="tab">Prendre une commande</a>
   </div>
 
   <div class="col-sm-4 extremite">
@@ -22,6 +21,16 @@
         	<app-espace-perso></app-espace-perso>
 	    </div>
 
+      <div class="row tab-pane fade col-sm-12 col-xs-12" id="prisecom">
+            <form (ngSubmit)="demandeprt()" #dpret="ngForm">
+
+                <label class=" control-label">Saisissez le code du client </label>
+
+            <input type="number" [(ngModel)]="this.mntp"   name="mntp" id="mntp" class="form-control" placeholder="montant demandé" required>
+
+            <br><button class="btn btn-success" type="submit" [disabled]="!dpret.form.valid" >
+            Validation</button>
+            </form>
     </div>
 
 </div>

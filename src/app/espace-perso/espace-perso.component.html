@@ -19,7 +19,7 @@
 		</div>	
 
 		<div class="col-sm-2">
-			<a href="#ventes" class="btn " type="button" data-toggle="tab">Mes Ventes</a>
+			<a href="#ventes" class="btn " (click)="chargerVentes()" type="button" data-toggle="tab">Mes Ventes</a>
 		</div>
 
 	</div>
@@ -38,11 +38,12 @@
 		    <tr *ngFor="let ligneArticle of filtrerCatalogue()" >
 		        <td *ngFor="let article of ligneArticle">
 		        <div class="card" >
-				  <img class="card-img-top" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}"  alt="Card image cap" width="200" height="200">
+				  <img class="card-img-top" src="http://51.254.200.129/backecom/server-backend-upload/uploads/{{article.nomImg}}"  alt="Card image cap" width="200" height="200">
 				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
 				       [options]="this.options"
-				       (onUpload)="handleUpload($event)"
-				       (beforeUpload)="beforeUpload($event)" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
+				       (onUpload)="handleUpload($event)" 
+				       (beforeUpload)="beforeUpload($event)" src="http://51.254.200.129/backecom/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
+
 			   <div class="card-block">
 				    <h4 class="card-title">{{article.designation}}</h4>
 				    <input type="text" *ngIf="this.modif==article.nomImg" [(ngModel)]="article.designation">
@@ -174,10 +175,9 @@
                                         <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="dateCommande">Date Vente</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
-                                        <th>Réception</th>
                                    </tr>
                             
                                 </thead>
@@ -189,10 +189,6 @@
 	                                    <td>{{commande.dateCommande}}</td>
 	                                    <td>{{commande.fullName}}</td>
 	                                    <td>{{commande.tel}}</td>
-	                                    <td>
-	                                    	<button *ngIf="!cmdFournis(commande.id)" class="btn btn-success" (click)="fournir(commande.id)">Fourni</button>
-	                                    	<span *ngIf="cmdFournis(commande.id)"><i class="fa fa-check" aria-hidden="true"></i></span>
-	                                    </td>
 	                                </tr>
                                 </tbody>
                                 <tfoot>

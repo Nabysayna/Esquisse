@@ -10,7 +10,7 @@ export class AccueilComponent implements OnInit {
   registredAPIs : string [] = ['POSTECASH','JONI JONI', 'ORANGE MONEY', 'TIGO CASH', 'EXPRESSO', 'TNT BY BBS INVEST'] ;
   authorisedToUseCRM = false ;
   
-  constructor() { }
+  constructor() {   }
 
   ngOnInit() {
   }

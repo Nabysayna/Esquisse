@@ -1,9 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
+import { Location }  from '@angular/common';
+
+import * as sha1 from 'js-sha1';
+import * as _ from "lodash";
+
 
 class PdvCaisse{
 	nom : string ;
 	caisse : number ;
 }
+
+class Charges{
+  date:string;
+  libelle:string;
+  montant:number;
+  service:string;
+
+}
+
+class Revenus{
+  date:string;
+  libelle:string;
+  montant:number;
+  service:string;
+
+}
+
+class Exploitation{
+  designation:string;
+  stocki:number;
+  vente:string;
+  stockf:number;
+  mnt:number;
+} 
+
+//  class Revenus{
+//   date:string;
+//   libelle:string;
+//   montant:number;
+// } 
+// class InfosPoint{
+//   nomPoint:string;
+//   chargesPoint:Charges[];
+//   revenusPoint:Revenus[];
+
+// }
 
 
 @Component({
@@ -15,15 +58,49 @@ export class ComptabiliteComponent implements OnInit {
  
   pdvCaisses : PdvCaisse[] ;
   libelleCharge : string ;
-  montantCharge	: string ;
+  montantCharge : number ;
+  service : string ;
   approvisionnement = "" ;
   estselection:number;
+  estselectionr:number;
   estselectionf:number;
+  estselectionfr:number;
+  charges:Charges[];
+  revenus:Revenus[];
+  exploitation:Exploitation[];
 
-  constructor() { }
+
+  filtre ="";
+  nom="nom";
+  asc="asc";
+
+  // infoSuperviseur:InfosPoint[];
+  
+
+
+  constructor(
+         private location: Location,
+         private route:ActivatedRoute,
+         private router: Router) { }
 
   ngOnInit() {
-  	this.pdvCaisses = [{nom:"Fallou DIOP", caisse:20000}, {nom:"Khalifa GUEYE", caisse:500000}, {nom:"Naby DIOUF", caisse:10000}, {nom:"Moussa SYLL", caisse:1000}]
+
+    this.charges= [{ date: "03/03/2012", libelle: 'paiement électricité', montant: 2000000, service:"fonctionnement"},
+                   { date: "04/06/2017", libelle: 'achat cartouche', montant: 1000000, service:"photocopie"}];
+   
+    this.revenus= [{ date: "03/03/2012", libelle: 'ventes de sac', montant: 20000, service:"commerce"},
+                   { date: "04/06/2017", libelle: 'ventes de chaussures homme', montant: 18000, service:"commerce"}];
+   
+    this.exploitation= [{ designation: "chaussures", stocki: 12, vente: "chaussures femme", stockf:20, mnt:20000},
+                   {  designation: "sac", stocki: 2, vente: "sac à dos homme", stockf:10, mnt:15000}];
+
+
+
+  	this.pdvCaisses = [{nom:"Fallou DIOP", caisse:20000}, {nom:"Khalifa GUEYE", caisse:500000}, {nom:"Naby DIOUF", caisse:10000}, {nom:"Moussa SYLL", caisse:1000}];
+    // let infosPoint={nomPoint:"Naby",chargesPoint:[{date:"12/12/2017", libelle:"retrait", montant:1200000, service:"postcash"}], revenusPoint:[{date:"11/01/2017", libelle:"ventes de sac", montant:20000}]};
+    // this.infoSuperviseur[0]=infosPoint;
+    // infosPoint={nomPoint:"Assane",chargesPoint:[{date:"12/12/2017", libelle:"envoie", montant:5200000, service:"tigocash"}], revenusPoint:[{date:"11/01/2017", libelle:"ventes de chaussures", montant:50000}]};
+    // this.infoSuperviseur[1]=infosPoint;
   }
 
   isActif(nomPdv : string) : boolean{
@@ -38,10 +115,21 @@ export class ComptabiliteComponent implements OnInit {
     this.estselection = i;
   }
 
+  listerrevenus(i){
+    this.estselectionr = i;
+  }
+
   ajoutercharges(i){
 
     this.estselectionf = i;
   }
 
+  listerventes(i){
+    this.estselectionfr = i;
+
+  }
+
+// calculresultat(){}
+ 
 
 }

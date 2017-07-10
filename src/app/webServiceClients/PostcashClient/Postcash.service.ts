@@ -16,11 +16,15 @@ export class PostCashResponse{
 @Injectable()
 export class PostCashServiceWeb {
 
-//  private servicePort:string = 'http://51.254.200.129' ; 
+  // private servicePort:string = 'http://51.254.200.129' ; 
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
 
+<<<<<<< HEAD
   private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
+=======
+  private servicePath:string = '/backecom/web/app_dev.php/invest/postcash?wsdl' ;
+>>>>>>> 7c1c9209b7055143cc29fd54354c4a72bce67b76
   private targetNamespace:string = 'urn:postcashwsdl' ;
 
   public responseJso : any ;
