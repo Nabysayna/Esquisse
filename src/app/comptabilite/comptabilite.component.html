@@ -2,24 +2,20 @@
     <div class="row" >
         <div class="col-sm-12">
             <h1 class="page-header">Comptabilité</h1> 
-
+               
 	            <ul class="nav nav-pills">
-                    <div class="col-sm-3 col-xs-6">
+                    
 	                <li class="active"><a href="#caisse" data-toggle="tab">Caisse</a>
-	                </li></div>
-                    <div class="col-sm-3 col-xs-6">
-	                <li><a href="#journal" data-toggle="tab">Journal</a>
-	                </li></div>
-                    <div class="col-sm-3 col-xs-6">
-	                <li><a href="#exploitations" data-toggle="tab">Exploitation</a>
-	                </li></div>
-                    <div class="col-sm-3 col-xs-6">
-	                <li><a href="#personnalisation" data-toggle="tab">Personnalisation</a>
-	                </li></div>
-	                <!-- <li><a href="#reclamation" data-toggle="tab">Réclamation</a>
-	                </li> -->
+	                </li>
+	                <li><a href="#journal" data-toggle="tab">Journal</a></li>
+	               
+	                <li><a href="#exploitations" data-toggle="tab">Exploitation</a></li>
+	           
+	                <li><a href="#personnalisation" data-toggle="tab">Personnalisation</a></li>
+	               
+	            
 	            </ul>
-
+               
 
             <div class="tab-content">
 
@@ -52,16 +48,16 @@
 				        <div class="col-sm-3 col-xs-4">
 			                <label>{{pdv.nom}}</label>
 				        </div>
-				        <div class="col-sm-3 col-xs-4">
-	                         <button class="btn btn-success"  href="#listc" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
+				        <div class="col-sm-3 col-xs-12">
+	                         <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#listc" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
 				        </div>
-				        <div class="col-sm-3 col-xs-4">
-			                 <button class="btn btn-success"  href="#ajout" data-toggle="collapse"  (click)="ajoutercharges(i)">
+				        <div class="col-sm-3 col-xs-8">
+			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#ajout" data-toggle="collapse"  (click)="ajoutercharges(i)">
 			                 Ajouter Charge
 			                 </button>
 				        </div>
-				         <div class="col-sm-3 col-xs-4">
-	                         <button class="btn btn-success"  href="#listr" data-toggle="collapse"  (click)="listerrevenus(i)">Lister Revenus</button>
+				         <div class="col-sm-3 col-xs-12">
+	                         <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#listr" data-toggle="collapse"  (click)="listerrevenus(i)">Lister Revenus</button>
 				        </div>
 
 	                    <div class="col-sm-12 col-xs-6" >
@@ -115,6 +111,20 @@
                                     
                         </div>
 
+                        <div class="col-sm-12 col-xs-12" >
+                                 <div id="ajout" *ngIf="i==estselectionf">
+                                        <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
+                                            <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
+                                            <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
+                                            <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
+
+                                            <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
+                                        </form>
+                        </div>
+
+                        </div>
+
+
                            <div class="col-sm-12 col-xs-6" >
                                     
                                     <div id="listr" *ngIf="i==estselectionr">
@@ -166,37 +176,26 @@
                                     
                         </div>
 				        
-				        <div class="col-sm-12 col-xs-12" >
-				                 <div id="ajout" *ngIf="i==estselectionf">
-				                 		<form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
-										    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
-										    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
-										    <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
-
-							                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
-								        </form>
-				        </div>
-
-				    	</div>
-
+				        
 			    </div>	
 			    </div>	
 
 
 			    <div class="row tab-pane fade in" id="exploitations">
+
 			           <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
 				        <div class="col-sm-3 col-xs-4">
 			                <label>{{pdv.nom}}</label>
 				        </div>
-				        <div class="col-sm-3 col-xs-4">
+				        <div class="col-sm-3 col-xs-12">
 	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerventes(i)">Lister Ventes</button>
 				        </div>
 				      
 
 	                    <div class="col-sm-12 col-xs-6" >
                                     
-                                    <div id="exp" *ngIf="i==estselectionfr">
+                                    <div id="exp" *ngIf="i==estselectionfff">
                                         
                                            <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
@@ -246,60 +245,7 @@
                                     </div>
                                     
                         </div>
-
-                           <div class="col-sm-12 col-xs-6" >
-                                    
-                                    <div id="listr" *ngIf="i==estselectionr">
-                                        
-                                           <div class="panel-body">
-                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
-                            	<div class="row">
-                            		<div class="col-sm-12">
-                            			
-	                	  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="revenus|filtrerevenus:filtre" #fopa="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th colspan="3" style="padding-right: 3rem ;">
-                                            Rechercher :
-                                            <input class="form-control" [(ngModel)]="filtre"/>
-                                        </th>
-		                            </tr>
-                                    <tr>
-                                        <th><mfDefaultSorter by="date">Date</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="libelle">Libellé</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="service">Service</mfDefaultSorter></th>
-                                   </tr>
-                            
-                                </thead>
-                                <tbody *ngIf="this.revenus">
-                                <tr *ngFor="let revenus of fopa.data">
-                                    <td>{{revenus.date}}</td>
-                                    <td>{{revenus.libelle}}</td>
-                                    <td>{{revenus.montant}}</td>
-                                    <td>{{revenus.service}}</td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4">
-                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-
-                            </table>
-			                        </div>
-			                    </div>
-			                </div>
-			                            <!-- /.table-responsive -->
-                        </div>
-                                    </div>
-                                    
-                        </div>
-				        
-				    
-
+				   
 			    </div>	
 			    </div>	
 
@@ -310,16 +256,16 @@
 			                <label>{{pdv.nom}}</label>
 				        </div>
 				        <div class="boutonspersonnalisation">
-				        <div class="col-sm-3 col-xs-4">
-	                         <button  class="btn btn-success"  href="#ajoutservice" data-toggle="collapse"  (click)="ajouterservice(i)">Ajouter Service</button>
+				        <div class="col-sm-3 col-xs-12">
+	                         <button style="margin-bottom: 1rem;"  class="btn btn-success"  href="#ajoutservice" data-toggle="collapse"  (click)="ajouterservice(i)">Ajouter Service</button>
 				        </div>
-				        <div class="col-sm-3 col-xs-4">
-			                 <button class="btn btn-success"  href="#modifservice" data-toggle="collapse"  (click)="modifierservice(i)">
+				        <div class="col-sm-3 col-xs-8">
+			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#modifservice" data-toggle="collapse"  (click)="modifierservice(i)">
 			                 Modifier Service
 			                 </button>
 				        </div>
-				         <div class="col-sm-3 col-xs-4">
-	                         <button class="btn btn-success"  href="#supservice" data-toggle="collapse"  (click)="supprimerservice(i)">Supprimer Service</button>
+				         <div class="col-sm-3 col-xs-12">
+	                         <button  class="btn btn-success"  href="#supservice" data-toggle="collapse"  (click)="supprimerservice(i)">Supprimer Service</button>
 				        </div>
 				        </div>
 
@@ -327,7 +273,7 @@
                                     
                                     <div id="ajoutservice" *ngIf="i==estselectionas">
 				                 		<form style="margin-bottom: 2rem;" class="form-signin" (ngSubmit)="ajouterservice()" #exploitationForm="ngForm">
-				                 		<div class="row col-sm-3 col-xs-3" >
+				                 		<div class="row col-sm-3 col-xs-12" >
 										    <input type="text" [(ngModel)]="service"   name="service" id="service" class="form-control"  placeholder="ajouter un service" required>
 										
 										    <input type="text" [(ngModel)]="designations"   name="designations" id="designations" class="form-control" placeholder="désignation du service" required>
@@ -335,13 +281,13 @@
                                             <input type="text" [(ngModel)]="adesignations" *ngIf="i==montreautredesignation"   name="adesignations" id="adesignations" class="form-control" placeholder="autre désignation du service" required>
 
 										</div>
-										<div class="col-sm-3 col-xs-3" >
+										<div class="col-sm-3 col-xs-12" >
 										    
 										
 							                <button id="validservice" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!exploitationForm.form.valid" >Ajouter</button>
 
                                             <button id="autresdesignation" class="btn btn-lg btn-primary btn-block" type="
-                                            submit" (click)="autredesignation(i)">Autre désignation</button>
+                                            submit" [disabled]="!exploitationForm.form.valid" (click)="autredesignation(i)">Autre désignation</button>
 							             </div>
 								        </form>
 				       				 </div>

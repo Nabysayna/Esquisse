@@ -64,7 +64,7 @@ export class ComptabiliteComponent implements OnInit {
   estselection:number;
   estselectionr:number;
   estselectionf:number;
-  estselectionfr:number;
+  estselectionfff:number;
   estselectionas:number;
   estselectionms:number;
   estselectionss:number;
@@ -134,7 +134,7 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   listerventes(i){
-    this.estselectionfr = i;
+    this.estselectionfff = i;
 
   }
 
