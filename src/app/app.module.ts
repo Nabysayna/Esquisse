@@ -160,6 +160,8 @@ import { FiltrechargesPipe } from './pipes/filtrecharges.pipe';
 import { FiltrerevenusPipe } from './pipes/filtrerevenus.pipe';
 import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
 import { FiltresupservicePipe } from './pipes/filtresupservice.pipe';
+import { FiltreportefeuillePipe } from './pipes/filtreportefeuille.pipe';
+import { FiltrerelancePipe } from './pipes/filtrerelance.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -252,6 +254,8 @@ import { FiltresupservicePipe } from './pipes/filtresupservice.pipe';
     FiltrerevenusPipe,
     FiltreexploitationPipe,
     FiltresupservicePipe,
+    FiltreportefeuillePipe,
+    FiltrerelancePipe,
   ],
   imports: [
     BrowserModule,

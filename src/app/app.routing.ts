@@ -166,6 +166,7 @@ const appRoutes: Routes = [
                     { path: 'parametrage', component: AdminpdvParametrageComponent },
                     { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
                     { path: 'comptabilite', component: ComptabiliteComponent },
+                    { path: 'CRM', component: CrmComponent },
                     { path: 'changer-acces-pdv/:id', component: FormChangerAccessUserComponent },
                     { path: '', component: AdminpdvDashboardComponent }
                 ]

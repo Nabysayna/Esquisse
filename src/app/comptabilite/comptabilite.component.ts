@@ -41,12 +41,7 @@ class Exploitation{
   design:string;
 } 
 
-// class InfosPoint{
-//   nomPoint:string;
-//   chargesPoint:Charges[];
-//   revenusPoint:Revenus[];
 
-// }
 
 
 @Component({
