@@ -8,7 +8,6 @@ import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
-// import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import {DataTableModule} from "angular2-datatable";
 import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, TypeaheadModule} from 'ng2-bootstrap';
 import { AgmCoreModule } from '@agm/core';
@@ -160,6 +159,7 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
 import { FiltrechargesPipe } from './pipes/filtrecharges.pipe';
 import { FiltrerevenusPipe } from './pipes/filtrerevenus.pipe';
 import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
+import { FiltresupservicePipe } from './pipes/filtresupservice.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -251,6 +251,7 @@ import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
     FiltrechargesPipe,
     FiltrerevenusPipe,
     FiltreexploitationPipe,
+    FiltresupservicePipe,
   ],
   imports: [
     BrowserModule,

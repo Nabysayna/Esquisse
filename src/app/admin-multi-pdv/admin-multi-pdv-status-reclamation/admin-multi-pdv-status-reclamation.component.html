@@ -30,7 +30,7 @@
 	                    <div class="row">
 	                        <select class="form-control input-sm" [(ngModel)]="sortBy">
 	                            <option ngValue="datereclamation">Date réclamation</option>
-	                            <option ngValue="agent">Admin Pdv</option>
+	                            <option ngValue="adminpdv">Admin Pdv</option>
 	                            <option ngValue="pdv">Pdv</option>
 	                            <option ngValue="telephone">Téléphone</option>
 	                            <option ngValue="adresse">Adresse</option>
@@ -57,7 +57,7 @@
 	                <thead>
 	                <tr>
 	                    <th><mfDefaultSorter by="datereclamation">Date de reclamation</mfDefaultSorter></th>
-	                    <th><mfDefaultSorter by="agent">Admin Pdv</mfDefaultSorter></th>
+	                    <th><mfDefaultSorter by="adminpdv">Admin Pdv</mfDefaultSorter></th>
 	                    <th><mfDefaultSorter by="pdv">Pdv</mfDefaultSorter></th>
 	                    <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
 	                    <th><mfDefaultSorter by="adresse">Adresse</mfDefaultSorter></th>
@@ -68,8 +68,8 @@
 	                </thead>
 	                <tbody>
 	                <tr *ngFor="let item of mf.data">
-	                    <td>{{item.datereclamation}}</td>
-	                    <td>{{item.agent}}</td>
+	                    <td>{{item.datereclamation.date | date}}</td>
+	                    <td>{{item.adminpdv}}</td>
 	                    <td>{{item.pdv}}</td>
 	                    <td>{{item.telephone}}</td>
 	                    <td>{{item.adresse}}</td>
@@ -79,7 +79,7 @@
 							  	voir
 							</button>
 	                    </td>
-	                    <td>{{item.etatreclamation}}</td>
+	                    <td>{{item.etatreclamation==0?'Régle':'En cours'}}</td>
 	                </tr>
 	                </tbody>
 	                <tfoot>
