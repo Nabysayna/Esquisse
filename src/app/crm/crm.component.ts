@@ -15,9 +15,9 @@ class Portefeuille{
 } 
 
 class Relance{
-  nom:string;
-  prenom:string;
-  tel:number;
+  noms:string;
+  prenoms:string;
+  tels:number;
   service:string;
   echeance:string;
 } 
@@ -44,8 +44,8 @@ export class CrmComponent implements OnInit {
   	this.portefeuille= [{nom:"Ndiaye", prenom:"naby", tel:772222222, periodicite:"journalier", fidelite:8},
   						{nom:"ndiaye", prenom:"khady", tel:772233332, periodicite:"hebdomadaire", fidelite:1}];
 
-  	this.relance= [{nom:"Sarr", prenom:"fatou", tel:772222222, service:"assurance", echeance:"08/04/2017"},
-  						{nom:"khady", prenom:"ndiaye", tel:772233332, service:"commerce", echeance:"02/03/2017"}];
+  	this.relance= [{noms:"Sarr", prenoms:"fatou", tels:772222222, service:"assurance", echeance:"08/04/2017"},
+  						{noms:"khady", prenoms:"ndiaye", tels:772233332, service:"commerce", echeance:"02/03/2017"}];
 
   }
 
