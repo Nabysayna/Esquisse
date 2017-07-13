@@ -8,6 +8,7 @@ import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/
 import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/adminpdv-parametrage.component';
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
 import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
+import { AdminpdvStatusReclamationComponent } from './adminpdv/adminpdv-status-reclamation/adminpdv-status-reclamation.component';
 
 import { AdminmultipdvDashboardComponent } from './admin-multi-pdv/admin-multi-pdv-dashboard/admin-multi-pdv-dashboard.component';
 import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.component';
@@ -53,6 +54,8 @@ import { CoursierComponent } from './coursier/coursier.component';
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { CommercialComponent } from './commercial/commercial.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
+
+import { AdminpdvparametrecompteComponent } from './adminpdv/adminpdv-parametre-compte/adminpdv-parametre-compte.component';
 
   //
 
@@ -164,6 +167,8 @@ const appRoutes: Routes = [
                     { path: 'dashboard', component: AdminpdvDashboardComponent },
                     { path: 'monitoring', component: AdminpdvMonitoringComponent },
                     { path: 'parametrage', component: AdminpdvParametrageComponent },
+                    { path: 'parametrecompte', component: AdminpdvparametrecompteComponent },
+                    { path: 'reclamation', component: AdminpdvStatusReclamationComponent },
                     { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
                     { path: 'comptabilite', component: ComptabiliteComponent },
                     { path: 'changer-acces-pdv/:id', component: FormChangerAccessUserComponent },

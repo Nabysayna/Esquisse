@@ -54,11 +54,6 @@ export class AdminpdvMonitoringComponent implements OnInit {
       this.monitoringAdminpdvRecouvrement = adminpdvServiceWebList
     );
 
-    this.adminpdvServiceWeb.historiquereclamation('12345','azrrtt').then(adminpdvServiceWebList => 
-      this.monitoringAdminpdvReclamation = adminpdvServiceWebList
-    );
-
-
   }
 
 

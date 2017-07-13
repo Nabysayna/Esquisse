@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
+import {Color} from 'ng2-charts';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { AdminmultipdvNombredeReclamationAgentPdvVente }    from '../../models/adminmultipdv-dashboard-nrpv';
 import { AdminmultipdvPerformanceagent }    from '../../models/adminmultipdv-dashboard-pa';
@@ -18,78 +20,51 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   AdminmultipdvNombredereclamationagentpdvvente: AdminmultipdvNombredeReclamationAgentPdvVente;
   adminmultipdvDashboardPerformanceagent: AdminmultipdvPerformanceagent[];
   
-  constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb) {
-
+  @ViewChild('childModal') public childModal:ModalDirective;
+  public showChildModal():void {
+    this.childModal.show();
   }
+  public hideChildModal():void {
+    this.childModal.hide();
+  }
+  
+  constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb) {}
 
   ngOnInit(): void {
     this.adminmultipdvServiceWeb.performancesadminpdv('azrrtt').then(adminmultipdvServiceWebList => {
       console.log(adminmultipdvServiceWebList);
       this.adminmultpdvperformancesservices = adminmultipdvServiceWebList ;
-    } );
+      this.datasets = [{
+        data: this.adminmultpdvperformancesservices.montanttotal,
+        backgroundColor: ["green", "orange", "yellow", "red"]
+      }];
+    });
         
     this.nombredereclamationagentpdvvente();
     this.activiteservice("Nombre d'opérations par mois");
     this.performanceagent();
     
   }
+
+
   
-  public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData:number[] = [350, 450, 100];
-  public doughnutChartType:string = 'doughnut';
- 
-  // events
-  public doughnutChartClicked(e:any):void {
-    console.log(e);
-  }
- 
-  public doughnutChartHovered(e:any):void {
-    console.log(e);
+  public colorsEmptyObject: Array<Color> = [{}];
+  public datasets: any[];
+  public chartClicked(e:any):void { 
+    if (e.active[0]){
+      console.log(e.active[0]._model.label); 
+      this.showChildModal();
+    }
   }
 
-  // lineChart
-  public lineChartData:Array<any>;
-  public lineTilte:string;
-  public lineChartLabels:Array<any>;
-  public lineChartOptions:any = {
-    responsive: true
-  };
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
+
+  
  
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
-  }
- 
-  // events
-  public chartClicked(e:any):void {
-    console.log(e);
-  }
- 
-  public chartHovered(e:any):void {
-    console.log(e);
-  }
 
   public nombredereclamationagentpdvvente():void {
     this.adminmultipdvServiceWeb.nombredereclamationagentpdvvente('azrrtt').then(adminpdvServiceWebList => 
       this.AdminmultipdvNombredereclamationagentpdvvente = adminpdvServiceWebList.response 
     );
-  }
- 
-  public activiteservice(lineTitle):void {
-    this.adminmultipdvServiceWeb.activiteservices(lineTitle).then(adminpdvServiceWebList =>{
-      this.adminmultipdvActiviteservices = adminpdvServiceWebList;
-      this.lineChartData = this.adminmultipdvActiviteservices.datas;
-      this.lineChartLabels = this.adminmultipdvActiviteservices.dateactivite;     
-      this.lineTilte = this.adminmultipdvActiviteservices.typeactivite;     
-    });
   }
  
   public performanceagent():void {
@@ -98,14 +73,28 @@ export class AdminmultipdvDashboardComponent implements OnInit {
     );
   }
  
+  // lineChart
+  public lineChartData:Array<any>;
+  public lineTilte:string;
+  public lineChartLabels:Array<any>;
+  public lineChartOptions:any = { responsive: true };
+  public lineChartLegend:boolean = true;
+  public lineChartType:string = 'line';
+  public activiteservice(lineTitle):void {
+    this.adminmultipdvServiceWeb.activiteservices(lineTitle).then(adminpdvServiceWebList =>{
+      this.adminmultipdvActiviteservices = adminpdvServiceWebList;
+      this.lineChartData = this.adminmultipdvActiviteservices.datas;
+      this.lineChartLabels = this.adminmultipdvActiviteservices.dateactivite;     
+      this.lineTilte = this.adminmultipdvActiviteservices.typeactivite;     
+    });
+  }
   public activiteserviceparno():void {
     this.activiteservice("Nombre d'opérations par mois");
   }
- 
   public activiteserviceparmp():void {
     this.activiteservice("Montant perçus par mois");
   }
- 
+
   public activiteserviceparmd():void {
     this.activiteservice("Montant donnés par mois");
   }

@@ -18,13 +18,14 @@ export class AdminpdvServiceWeb {
 
   // private servicePort:string = 'http://51.254.200.129' ; 
 
-  private servicePort:string = 'http://localhost:8888' ; 
-
-  private servicePath:string = '/backecom/web/app.php/invest/adminpdv?wsdl' ;
+  private servicePort:string = 'http://localhost' ; 
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/invest/adminpdv?wsdl' ;
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 
   public responseJso : any;
   public resp : string  ;  
+
+  private token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 
   private soapService:SoapService;
   
@@ -174,11 +175,11 @@ export class AdminpdvServiceWeb {
       
   }
 
-  public historiquereclamation(token : string,type : string): Promise<AdminpdvReclamation[]>  {
+  public historiquereclamation(type : string): Promise<any>  {
     var method:string = 'historiquereclamation';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type};
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -193,7 +194,8 @@ export class AdminpdvServiceWeb {
       
   }
 
-  public listuserpdv(token : string,type : string): Promise<AdminpdvUserpdv[]>  {
+  
+  public listuserpdv(token : string,type : string): Promise<any>  {
     var method:string = 'listuserpdv';
     var parameters:{}[] = [];
 
