@@ -162,6 +162,9 @@ import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
 import { FiltresupservicePipe } from './pipes/filtresupservice.pipe';
 import { FiltreportefeuillePipe } from './pipes/filtreportefeuille.pipe';
 import { FiltrerelancePipe } from './pipes/filtrerelance.pipe';
+import { FiltrepromotionPipe } from './pipes/filtrepromotion.pipe';
+import { FiltreprospectionPipe } from './pipes/filtreprospection.pipe';
+import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -256,6 +259,9 @@ import { FiltrerelancePipe } from './pipes/filtrerelance.pipe';
     FiltresupservicePipe,
     FiltreportefeuillePipe,
     FiltrerelancePipe,
+    FiltrepromotionPipe,
+    FiltreprospectionPipe,
+    FiltresuivicommandePipe,
   ],
   imports: [
     BrowserModule,
