@@ -77,11 +77,11 @@ export class CrmComponent implements OnInit {
     this.promotion= [{noms:"Diagne", prenoms:"Awa", tels:772222222, periofidel:"journalier", services:"e-commerce"},
   						{noms:"Sall", prenoms:"Michelle", tels:772233332, periofidel:"3", services:"assurance"}];
 
-  	this.prospection= [{noms:"ka", prenoms:"Assane", tels:772222222, detail:"envoie d'argent"},
-  						{noms:"Sarr", prenoms:"Maguette", tels:772233332, detail:"paiement facture"}];
+  	this.prospection= [{noms:"ka", prenoms:"Assane", tels:772222222, detail:"envoie d'argent postcash"},
+  						{noms:"Sarr", prenoms:"Maguette", tels:772233332, detail:"paiement facture orange"}];
 
-    this.suivicommande= [{noms:"badiane", prenoms:"charly", pointderecup:"dimalaye villa 188E", mntcommande:20000, detail:"vente de chaussures homme", etat:"reçu"},
-  						{noms:"sané", prenoms:"jacob", pointderecup:"brioche dorée diamalaye", mntcommande:10000, detail:"vente maillot enfant", etat:"en attente"}];
+    this.suivicommande= [{noms:"badiane", prenoms:"charly", pointderecup:"dimalaye villa 188E", mntcommande:20000, detail:"vente de chaussures pour homme", etat:"reçu"},
+  						{noms:"sané", prenoms:"jacob", pointderecup:"brioche dorée diamalaye", mntcommande:10000, detail:"vente de maillots pour enfant", etat:"en attente"}];
 
 
 
