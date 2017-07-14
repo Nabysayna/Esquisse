@@ -1,3 +1,259 @@
-<p>
-  crm works!
-</p>
+<div id="page-wrapper">
+    <div class="row" >
+        <div class="col-sm-12">
+            <h1 class="page-header">Gestion Clientèle</h1> 
+               
+	            <div class="row" style="margin-bottom: 3rem;">	
+                    <div class="col-sm-offset-1 col-sm-10 col-xs-12">
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag"  href="#portefeuille" data-toggle="tab">Portefeuille</a>
+	                </div>
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#suivi" data-toggle="tab">Suivi</a></div>
+	               
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#prospection" data-toggle="tab">Prospection</a></div>
+
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#suivicommande" data-toggle="tab">Suivi Commandes</a></div>
+	               </div>	            
+	            </div>
+               
+
+            <div class="tab-content">
+
+             	 <div class="tab-pane fade in active col-sm-12 col-xs-3" id="portefeuille">
+
+            	 	
+		            	 	<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="portefeuille|filtreportefeuille:filtre" #fpf="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+		                                <thead>
+		                                    <tr>
+		                                        <th colspan="3" style="padding-right: 3rem ;">
+		                                            Rechercher :
+		                                            <input class="form-control" [(ngModel)]="filtre"/>
+		                                        </th>
+				                            </tr>
+		                                    <tr>
+		                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+		                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+		                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
+		                                        <th><mfDefaultSorter by="periodicite">Périodicité</mfDefaultSorter></th>
+		                                        <th><mfDefaultSorter by="fidelite">Fidélité</mfDefaultSorter></th>
+		                                   </tr>
+		                            
+		                                </thead>
+		                                <tbody *ngIf="this.portefeuille">
+		                                <tr *ngFor="let portefeuille of fpf.data">
+		                                    <td>{{portefeuille.nom}}</td>
+		                                    <td>{{portefeuille.prenom}}</td>
+		                                    <td>{{portefeuille.tel}}</td>
+		                                    <td>{{portefeuille.periodicite}}</td>
+		                                    <td>{{portefeuille.fidelite}}</td>
+		                                </tr>
+		                                </tbody>
+		                                <tfoot>
+		                                    <tr>
+		                                        <td colspan="4">
+		                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+		                                        </td>
+		                                    </tr>
+		                                </tfoot>
+
+		                    </table>
+		                   
+            	 </div>
+ 
+            	  <div class="tab-pane fade in col-sm-12 col-xs-3" id="suivi">
+
+            	  			<div style="margin-left: 30rem; margin-bottom: 3rem;" class="col-xs-6 col-xs-12">
+		            	 	 <button  href="#relance" data-toggle="tab" class="btn btn-primary" (click)="relanceMeth()">Relance</button>
+		            	 	 <button href="#promotion" data-toggle="tab" class="btn btn-primary" (click)="promotionMeth()">Promotion</button>
+		            	 	 </div>
+		            	 	 	<div class="tab-content">
+		            	 	  		<div class="tab-pane fade in col-sm-12 col-xs-12" id="relance">
+			            	 	  		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="relance|filtrerelance:filtre" #frla="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+			                                <thead>
+			                                    <tr>
+			                                        <th colspan="3" style="padding-right: 3rem ;">
+			                                            Rechercher :
+			                                            <input class="form-control" [(ngModel)]="filtre"/>
+			                                        </th>
+					                            </tr>
+			                                    <tr>
+			                                    	 <th><mfDefaultSorter>Choisir</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="noms">Nom</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="prenoms">Prénom</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="tels">Téléphone</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="service">Service</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="echeance">Echéance</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter >Action</mfDefaultSorter></th>
+			                                   </tr>
+			                            
+			                                </thead>
+			                                <tbody *ngIf="this.relance">
+			                                <tr *ngFor="let relance of frla.data">
+			                                	<td><input type="checkbox"></td>
+			                                    <td>{{relance.noms}}</td>
+			                                    <td>{{relance.prenoms}}</td>
+			                                    <td>{{relance.tels}}</td>
+			                                    <td>{{relance.service}}</td>
+			                                    <td>{{relance.echeance}}</td>
+			                                    <td><button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
+			                                    </td>
+			                                </tr>
+			                                </tbody>
+			                                <tfoot>
+			                                    <tr>
+			                                        <td colspan="4">
+			                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+			                                        </td>
+			                                    </tr>
+			                                </tfoot>
+
+			                    		</table>
+		            	 	  		
+		            				</div> 	  		
+		            				<div class="tab-pane fade in col-sm-12 col-xs-12" id="promotion">
+		            					<div style="margin-bottom: 3rem;">
+		            					 <label>Filtrer Par : <select class="form-control input-sm" >
+				                            <option>périodicité</option>
+				                            <option >fidélité</option>
+				                            </select>
+				                         </label>
+
+				                         <label>Service : <select class="form-control input-sm" >
+				                            <option>assurance</option>
+				                            <option >e-commerce</option>
+				                            </select>
+				                         </label>
+
+				                           <button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
+		            					</div>	
+			            	 	  		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="promotion|filtrepromotion:filtre" #fsc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+			                                <thead>
+			                                    <tr>
+			                                        <th colspan="3" style="padding-right: 3rem ;">
+			                                            Rechercher :
+			                                            <input class="form-control" [(ngModel)]="filtre"/>
+			                                        </th>
+					                            </tr>
+			                                    <tr>
+			                                        <th><mfDefaultSorter by="noms">Nom</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="prenoms">Prénom</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="tels">Téléphone</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="periofidel">Périodicité/Fidélité</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="services">Service</mfDefaultSorter></th>
+			                                        
+			                                   </tr>
+			                            
+			                                </thead>
+			                                <tbody *ngIf="this.promotion">
+			                                <tr *ngFor="let promotion of fsc.data">
+			                                    <td>{{promotion.noms}}</td>
+			                                    <td>{{promotion.prenoms}}</td>
+			                                    <td>{{promotion.tels}}</td>
+			                                    <td>{{promotion.periofidel}}</td>
+			                                    <td>{{promotion.service}}</td>
+			                                    
+			                                </tr>
+			                                </tbody>
+			                                <tfoot>
+			                                    <tr>
+			                                        <td colspan="4">
+			                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+			                                        </td>
+			                                    </tr>
+			                                </tfoot>
+
+			                    		</table>
+
+		            				</div>
+		            				</div>
+
+            	 </div>
+
+            	 <div class="tab-pane fade in col-sm-12 col-xs-3" id="prospection">
+		            	 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="prospection|filtreprospection:filtre" #fprs="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+					                                <thead>
+					                                    <tr>
+					                                        <th colspan="3" style="padding-right: 3rem ;">
+					                                            Rechercher :
+					                                            <input class="form-control" [(ngModel)]="filtre"/>
+					                                        </th>
+							                            </tr>
+					                                    <tr>
+					                                        <th><mfDefaultSorter by="noms">Nom</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="prenoms">Prénom</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="tels">Téléphone</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter>Détail</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter >Action</mfDefaultSorter></th>
+					                                        
+					                                   </tr>
+					                            
+					                                </thead>
+					                                <tbody *ngIf="this.prospection">
+					                                <tr *ngFor="let prospection of fprs.data">
+					                                    <td>{{prospection.noms}}</td>
+					                                    <td>{{prospection.prenoms}}</td>
+					                                    <td>{{prospection.tels}}</td>
+					                                    <td><button  class="btn btn-primary" (click)="detail()">Détails</button></td>
+					                                    <td><button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
+					                                    </td>
+					                                </tr>
+					                                </tbody>
+					                                <tfoot>
+					                                    <tr>
+					                                        <td colspan="4">
+					                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+					                                        </td>
+					                                    </tr>
+					                                </tfoot>
+
+					     </table>
+			    </div>
+			     <div class="tab-pane fade in col-sm-12 col-xs-3" id="suivicommande">
+					    <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="suivicommande|filtresuivicommande:filtre" #fpr="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+					                                <thead>
+					                                    <tr>
+					                                        <th colspan="3" style="padding-right: 3rem ;">
+					                                            Rechercher :
+					                                            <input class="form-control" [(ngModel)]="filtre"/>
+					                                        </th>
+							                            </tr>
+					                                    <tr>
+					                                        <th><mfDefaultSorter by="noms">Nom</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="prenoms">Prénom</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="pointderecup">Point de récupération</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="mntcommande">Montant de la commande</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="detail">Détails</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="etat">Etat</mfDefaultSorter></th>
+					                                        
+					                                   </tr>
+					                            
+					                                </thead>
+					                                <tbody *ngIf="this.suivicommande">
+					                                <tr *ngFor="let suivicommande of fpr.data">
+					                                    <td>{{suivicommande.noms}}</td>
+					                                    <td>{{suivicommande.prenoms}}</td>
+					                                    <td>{{suivicommande.pointderecup}}</td>
+					                                    <td>{{suivicommande.mntcommande}}</td>
+					                                    <td>{{suivicommande.detail}}</td>
+					                                    <td>{{suivicommande.etat}}</td>
+					                                    
+					                                </tr>
+					                                </tbody>
+					                                <tfoot>
+					                                    <tr>
+					                                        <td colspan="4">
+					                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+					                                        </td>
+					                                    </tr>
+					                                </tfoot>
+
+					    </table>
+				 </div>
+
+	        </div>
+
+	
+        </div>
+    </div>	
+</div>
+
+

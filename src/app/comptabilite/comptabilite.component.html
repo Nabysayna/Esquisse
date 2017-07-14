@@ -13,10 +13,8 @@
 	           
 	                <li><a href="#personnalisation" data-toggle="tab">Personnalisation</a></li>
 	               
-	            
 	            </ul>
                
-
             <div class="tab-content">
 
 			    <div class="tab-pane fade in active" id="caisse">
@@ -117,7 +115,7 @@
                                     <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
                                     <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
 
-                                    <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
+                                    <button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
                                 </form>
                         </div>
                                     
@@ -278,9 +276,9 @@
 										<div class="col-sm-3 col-xs-12" >
 										    
 										
-							                <button id="validservice" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!exploitationForm.form.valid" >Ajouter</button>
+							                <button id="validservice" class="btn btn-primary btn-block" type="submit" [disabled]="!exploitationForm.form.valid" >Ajouter</button>
 
-                                            <button id="autresdesignation" class="btn btn-lg btn-primary btn-block" type="
+                                            <button id="autresdesignation" class="btn btn-primary btn-block" type="
                                             submit" [disabled]="!exploitationForm.form.valid" (click)="autredesignation(i)">Autre désignation</button>
 							             </div>
 								        </form>
@@ -332,9 +330,9 @@
 										    <input name="services" type="text" [(ngModel)]="serviceamodifier().services" class="form-control"   required>
 										    <input name="design" type="text" [(ngModel)]="serviceamodifier().design" class="form-control"  required>
 
-							                <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!exploitationForm.form.valid" >Modifier</button>
+							                <button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!exploitationForm.form.valid" >Modifier</button>
 								        </form>
-				        			</div>
+				        	</div>
 				        	
                         </div>
 				        

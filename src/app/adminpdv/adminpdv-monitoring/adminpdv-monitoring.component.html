@@ -17,7 +17,7 @@
                             <p><strong>{{max}}</strong>FCFA</p>
                         </div>
                         <div class="col-sm-4">       
-                            <p><strong>Consomme {{ dynamic }}FCFA</strong></p>
+                            <p><strong>Etat Déposit {{ dynamic }}FCFA</strong></p>
                             <progressbar class="progress-striped active" [max]="max" [value]="dynamic" [type]="type">
                                 <i>{{ ( (dynamic * 100) / max ) }}%</i>
                             </progressbar>
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4>Consommation du deposit par service</h4>
@@ -67,99 +67,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Consommation du deposit par Point de vente</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Pdv</th>
-                                    <th>Adresse</th>
-                                    <th>Montant consomme</th>
-                                    <th>Commission</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let consommationdepositparpdv of monitoringAdminpdvConsommationDepositPdv; let i = index ">
-                                    <td>{{i + 1}}</td>
-                                    <td>{{ consommationdepositparpdv.pdv | uppercase }}</td>
-                                    <td>{{ consommationdepositparpdv.adresse }}</td>
-                                    <td>{{ consommationdepositparpdv.montantconsomme  }}</td>
-                                    <td>{{ consommationdepositparpdv.commission  }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">{{ "Total" | uppercase }}</td>
-                                    <td>2000000</td>
-                                    <td>200000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-9">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Historique des recouvrements</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Date</th>
-                                    <th>Pts de Vente</th>
-                                    <th>Montant consomme</th>
-                                    <th>Commission</th>
-                                    <th>Montant recouvre</th>
-                                    <th>Montant restant</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let recouvrementadminpdv of monitoringAdminpdvRecouvrement; let i = index ">
-                                    <td>{{i + 1}}</td>
-                                    <td>{{ recouvrementadminpdv.date  }}</td>
-                                    <td>{{ recouvrementadminpdv.pdv | uppercase }}</td>
-                                    <td>{{ recouvrementadminpdv.montantconsomme  }}</td>
-                                    <td>{{ recouvrementadminpdv.commission  }}</td>
-                                    <td>{{ recouvrementadminpdv.montantrecouvre  }}</td>
-                                    <td>{{ recouvrementadminpdv.montantrestant  }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Historique des réclamations</h4>
-                </div>
-                <div class="panel-body">
-                    <div *ngFor="let reclamationpdv of monitoringAdminpdvReclamation; let i = index ">
-                        <div>
-                            <strong class="pull-left" >{{ reclamationpdv.pdv | uppercase }}</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <br>
-                        <div>{{ reclamationpdv.reclamation }}</div>
-                        <hr>
                     </div>
                 </div>
             </div>
