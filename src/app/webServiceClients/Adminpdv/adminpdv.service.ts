@@ -18,13 +18,14 @@ export class AdminpdvServiceWeb {
 
   // private servicePort:string = 'http://51.254.200.129' ; 
 
-  private servicePort:string = 'http://localhost:8888' ; 
-
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
+  private servicePort:string = 'http://localhost' ; 
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/invest/adminpdv?wsdl' ;
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 
   public responseJso : any;
   public resp : string  ;  
+
+  private token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 
   private soapService:SoapService;
   
@@ -40,6 +41,44 @@ export class AdminpdvServiceWeb {
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
         this.soapService.localNameMode = true;
    }
+
+  public listuserpdv(token : string,type : string): Promise<any>  {
+    var method:string = 'listuserpdv';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, type: type} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['listuserpdv xmlns="urn:adminpdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'listuserpdvResponse').then(response=>{
+        var reponse = JSON.parse(response['listuserpdvResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public modifypdv(type: string, idpdv: number, modifydata: string): Promise<any>  {
+    var method:string = 'modifypdv';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, type: type, idpdv: idpdv, modifydata: modifydata} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['modifypdv xmlns="urn:adminpdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'modifypdvResponse').then(response=>{
+        var reponse = JSON.parse(response['modifypdvResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
 
   public montanttransfertservice(token : string,type : string): Promise<AdminpdvMontantTransferParService>  {
     var method:string = 'montanttransfertservice';
@@ -155,30 +194,11 @@ export class AdminpdvServiceWeb {
       
   }
 
-  public historiquerecouvrement(token : string,type : string): Promise<AdminpdvRecouvrement[]>  {
-    var method:string = 'historiquerecouvrement';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token:token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['historiquerecouvrement xmlns="urn:adminpdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'historiquerecouvrementResponse').then(response=>{
-        var reponse = JSON.parse(response['historiquerecouvrementResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
-  public historiquereclamation(token : string,type : string): Promise<AdminpdvReclamation[]>  {
+  public historiquereclamation(type : string): Promise<any>  {
     var method:string = 'historiquereclamation';
     var parameters:{}[] = [];
 
-    var reEspParams = {token:token, type: type} ;
+    var reEspParams = {token: this.token, type: type};
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -193,25 +213,7 @@ export class AdminpdvServiceWeb {
       
   }
 
-  public listuserpdv(token : string,type : string): Promise<AdminpdvUserpdv[]>  {
-    var method:string = 'listuserpdv';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token:token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['listuserpdv xmlns="urn:adminpdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'listuserpdvResponse').then(response=>{
-        var reponse = JSON.parse(response['listuserpdvResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
+  
   private envelopeBuilder(requestBody:string):string {
 
       return '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'+requestBody+'</soap:Body></soap:Envelope>' ;

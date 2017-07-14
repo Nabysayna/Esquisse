@@ -6,6 +6,8 @@ import { Location }  from '@angular/common';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
+import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/comptabilite.service';
+
 
 class PdvCaisse{
 	nom : string ;
@@ -82,10 +84,16 @@ export class ComptabiliteComponent implements OnInit {
   constructor(
          private location: Location,
          private route:ActivatedRoute,
-         private router: Router) { }
+         private router: Router,
+         private comptabiliteServiceWeb: ComptabiliteServiceWeb,
+
+  ) { }
 
   ngOnInit() {
 
+    this.comptabiliteServiceWeb.listeservice('azrrtt').then(adminmultipdvServiceWeb => {
+      console.log(adminmultipdvServiceWeb); 
+    });
     this.charges= [{ date: "03/03/2012", libelle: 'paiement électricité', montant: 2000000, service:"fonctionnement"},
                    { date: "04/06/2017", libelle: 'achat cartouche', montant: 1000000, service:"photocopie"}];
    

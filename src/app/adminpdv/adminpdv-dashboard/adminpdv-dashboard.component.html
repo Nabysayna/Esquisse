@@ -4,9 +4,78 @@
             <h1 class="page-header">Dashboard</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row" >
+        <div class="col-sm-4">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>Nouvelles Réclamations!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"><a [routerLink]="['/accueiladmmpdv', 'statusreclamation']" >Voir Details</a></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
 
-        <div class="col-lg-7 col-md-7">
+        <div class="col-sm-4">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">10</div>
+                            <div>Articles vendus en local!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"><a [routerLink]="['/accueiladmmpdv', 'statuspdv']" >Voir Details</a></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">10</div>
+                            <div>Articles vendus ecom!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Voir Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel panel-heading">
                     <h3>Performances des points de vente</h3>
@@ -20,15 +89,23 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="a">
                             <br>
-                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                {{ i + 1 }} - {{ performancepdv.fullname }} 
-                            </p>
+                            <!-- <div class="panel-body" *ngIf="this.adminpdvDashboardMontantTransfertParservices">
+                                <app-doughnut-chart 
+                                    [doughnutChartLabels]="this.adminpdvDashboardMontantTransfertParservices.typeservice" 
+                                    [doughnutChartData]="this.adminpdvDashboardMontantTransfertParservices.montanttotal" 
+                                ></app-doughnut-chart>
+                            </div> -->
+                            <div class="row" *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                <div class="col-sm-3">{{ i + 1 }} - {{ performancepdv.fullname }}</div>
+                                <div class="col-sm-4">{{ performancepdv.fullname }}</div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="b">
                             <br>
-                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                {{ i + 1 }} - {{ performancepdv.fullname }}
-                            </p>
+                            <div class="row" *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
+                                <div class="col-sm-4">{{ i + 1 }}</div>
+                                <div class="col-sm-4">{{ performancepdv.fullname }}</div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="c">
                             <br>
@@ -38,37 +115,6 @@
                         </div>
 
                   </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5 col-md-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4><i class="fa fa-bell fa-fw"></i> Notifications</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item"  *ngFor=" let notification of adminpdvDashboardNotifications; let i = index ">
-                            <i class="fa fa-comment fa-fw"></i>{{ notification.type  }}
-                            <span class="pull-right text-muted small"><em>Il y'a 4 minutes</em>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="col-dm-12 col-sm-12" >
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4><i class="fa fa-bar-chart-o fa-fw"></i> Montant total des transferts par service</h4>
-                </div>
-                <div class="panel-body" *ngIf="this.adminpdvDashboardMontantTransfertParservices">
-                    <app-doughnut-chart 
-                        [doughnutChartLabels]="this.adminpdvDashboardMontantTransfertParservices.typeservice" 
-                        [doughnutChartData]="this.adminpdvDashboardMontantTransfertParservices.montanttotal" 
-                    ></app-doughnut-chart>
                 </div>
             </div>
         </div>

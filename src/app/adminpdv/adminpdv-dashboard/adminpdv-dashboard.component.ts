@@ -22,9 +22,9 @@ export class AdminpdvDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true ;
+    // this.loading = true ;
     this.adminpdvServiceWeb.montanttransfertservice('12345','azrrtt').then(adminpdvServiceWebList => {this.adminpdvDashboardMontantTransfertParservices = adminpdvServiceWebList ;
-      this.loading = false} );
+      } );
     this.adminpdvServiceWeb.performancepdv('12345','azrrtt').then(adminpdvServiceWebList => this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList );
     this.adminpdvServiceWeb.notifications('12345','azrrtt').then(adminpdvServiceWebList => this.adminpdvDashboardNotifications = adminpdvServiceWebList );
   }
