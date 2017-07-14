@@ -27,13 +27,14 @@ class Promotion{
   prenoms:string;
   tels:number;
   periofidel:string;
-  service:string;
+  services:string;
 } 
 
 class Prospection{
   noms:string;
   prenoms:string;
   tels:number;
+  detail:string;
 } 
 
 class Suivicommande{
@@ -73,11 +74,11 @@ export class CrmComponent implements OnInit {
   	this.relance= [{noms:"Sarr", prenoms:"fatou", tels:772222222, service:"assurance", echeance:"08/04/2017"},
   						{noms:"khady", prenoms:"ndiaye", tels:772233332, service:"commerce", echeance:"02/03/2017"}];
 
-    this.promotion= [{noms:"Diagne", prenoms:"Awa", tels:772222222, periofidel:"journalier", service:"e-commerce"},
-  						{noms:"Sall", prenoms:"Michelle", tels:772233332, periofidel:"3", service:"assurance"}];
+    this.promotion= [{noms:"Diagne", prenoms:"Awa", tels:772222222, periofidel:"journalier", services:"e-commerce"},
+  						{noms:"Sall", prenoms:"Michelle", tels:772233332, periofidel:"3", services:"assurance"}];
 
-  	this.prospection= [{noms:"ka", prenoms:"Assane", tels:772222222},
-  						{noms:"Sarr", prenoms:"Maguette", tels:772233332}];
+  	this.prospection= [{noms:"ka", prenoms:"Assane", tels:772222222, detail:"envoie d'argent"},
+  						{noms:"Sarr", prenoms:"Maguette", tels:772233332, detail:"paiement facture"}];
 
     this.suivicommande= [{noms:"badiane", prenoms:"charly", pointderecup:"dimalaye villa 188E", mntcommande:20000, detail:"vente de chaussures homme", etat:"reçu"},
   						{noms:"sané", prenoms:"jacob", pointderecup:"brioche dorée diamalaye", mntcommande:10000, detail:"vente maillot enfant", etat:"en attente"}];
