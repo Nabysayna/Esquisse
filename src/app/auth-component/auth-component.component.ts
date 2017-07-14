@@ -18,6 +18,7 @@ export class AuthComponentComponent implements OnInit {
   loading = false ;
   phase1 = true ;
   fromSMS : string ;
+  backstring : string = "" ;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService) 
@@ -33,9 +34,10 @@ export class AuthComponentComponent implements OnInit {
     this.loading = true ;
     this.authenticationService.login(this.userName, this.userPwd).then(access=>
       {
-        if(access  == "granted"){
+        if(access  != "rejected"){
           this.loading = false ;
           this.phase1 = false ;
+          this.backstring = "Token d'authentification "+access ;
         }else{
           console.log("One the else statement") ;
           this.fakevalues = false ;

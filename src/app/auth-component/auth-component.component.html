@@ -26,6 +26,7 @@
 
                 <form class="form-signin" (ngSubmit)="authentificateBySMS()" #heroNextForm="ngForm">
                     <div [hidden]="this.phase2fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
+                    <div >{{backstring}}</div>
 
                     <input type="text" [(ngModel)]="this.fromSMS" name="fromSMS" id="fromSMS"  class="form-control" placeholder="SMS code" required autofocus>
 

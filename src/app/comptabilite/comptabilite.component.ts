@@ -61,10 +61,10 @@ export class ComptabiliteComponent implements OnInit {
   montantCharge : number ;
   service : string ;
   approvisionnement = "" ;
-  estselection:number;
+  estselectionne:number;
   estselectionr:number;
   estselectionf:number;
-  estselectionfr:number;
+  estselectionfff:number;
   estselectionas:number;
   estselectionms:number;
   estselectionss:number;
@@ -121,35 +121,35 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   listercharges(i){
-    this.estselection = i;
+    this.estselectionne = i;
   }
 
   listerrevenus(i){
-    this.estselectionr = i;
+    this.estselectionne = i;
   }
 
   ajoutercharges(i){
 
-    this.estselectionf = i;
+    this.estselectionne = i;
   }
 
   listerventes(i){
-    this.estselectionfr = i;
+    this.estselectionne = i;
 
   }
 
   ajouterservice(i){
-    this.estselectionas = i;
+    this.estselectionne = i;
 
   }
 
   modifierservice(i){
-    this.estselectionms = i;
+    this.estselectionne = i;
 
   }
 
   supprimerservice(i){
-    this.estselectionss = i;
+    this.estselectionne = i;
 
   }
   
