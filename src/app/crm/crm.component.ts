@@ -1,4 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
+import { Location }  from '@angular/common';
+
+import * as sha1 from 'js-sha1';
+import * as _ from "lodash";
+
+class Portefeuille{
+  nom:string;
+  prenom:string;
+  tel:number;
+  periodicite:string;
+  fidelite:number;
+} 
+
+class Relance{
+  noms:string;
+  prenoms:string;
+  tels:number;
+  service:string;
+  echeance:string;
+} 
 
 @Component({
   selector: 'app-crm',
@@ -6,10 +28,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crm.component.css']
 })
 export class CrmComponent implements OnInit {
+	portefeuille:Portefeuille[];
+	relance:Relance[];
 
-  constructor() { }
+  filtre ="";
+  nom="nom";
+  asc="asc";
+
+  constructor(
+  		 private location: Location,
+         private route:ActivatedRoute,
+         private router: Router) { }
 
   ngOnInit() {
+  	this.portefeuille= [{nom:"Ndiaye", prenom:"naby", tel:772222222, periodicite:"journalier", fidelite:8},
+  						{nom:"ndiaye", prenom:"khady", tel:772233332, periodicite:"hebdomadaire", fidelite:1}];
+
+  	this.relance= [{noms:"Sarr", prenoms:"fatou", tels:772222222, service:"assurance", echeance:"08/04/2017"},
+  						{noms:"khady", prenoms:"ndiaye", tels:772233332, service:"commerce", echeance:"02/03/2017"}];
+
   }
 
 }

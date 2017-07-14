@@ -66,20 +66,26 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <!-- <div class="modal-content"  *ngIf="majcaution">
+        <div class="modal-content"  *ngIf="userpdv">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Mettre à jour la caution de {{majcaution.adminpdv}}</h4>
+                <h4 class="modal-title" id="myModalLabel">Modification pwd de {{userpdv.pdv}}</h4>
             </div>
             <div class="modal-body">
-            	<label for="inputCaution">Nouvelle caution</label>
-          		<input id="inputCaution" name="inputCaution" type="number" placeholder="Nouvelle caution" class="form-control" required [(ngModel)]="inputCaution" #Caution="ngModel">
+            	<div class="row">
+            		<div class="col-sm-2">Nouveau Pwd</div>
+            		<input id="password" name="password" type="text" placeholder="Entrer Nouveau Pwd" class="col-sm-4" required [(ngModel)]="password" #Password="ngModel">	
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-2">Confirmer Pwd</div>
+            		<input id="confirmPassword" name="confirmPassword" type="text" placeholder="Entrer Confirmer Pwd" class="col-sm-4" required [(ngModel)]="confirmPassword" #ConfirmPassword="ngModel">	
+            	</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="idmodalferme" data-dismiss="modal" #closeBtn>Annuler</button>
                 <button type="button" (click)="validermaj(inputCaution)" [disabled]="!Caution.valid" class="btn btn-primary">Valider</button>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>
                             

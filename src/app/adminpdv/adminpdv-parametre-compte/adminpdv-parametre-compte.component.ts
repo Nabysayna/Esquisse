@@ -19,16 +19,24 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   public sortOrder = "desc";
 
   public monitoringAdminpdvUserpdv: any;
+  public userpdv: any;
+  public password:string;
+  public confirmPassword:string;
   loading = false ;
 
   constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) { }
 
   ngOnInit() {
     this.loading = true ;
+
     this.adminpdvServiceWeb.listuserpdv('12345','azrrtt').then(adminpdvServiceWebList => {
       console.log(adminpdvServiceWebList);
       this.monitoringAdminpdvUserpdv = adminpdvServiceWebList;
       this.loading = false ;
+    });
+
+    this.adminpdvServiceWeb.modifypdv('token', 1, 'pass').then(adminpdvServiceWebList => {
+      console.log(adminpdvServiceWebList);
     });
 
   }
@@ -46,7 +54,8 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   }
 
   public modif(item):void {
-
+    this.userpdv = item;
+    console.log(this.userpdv);
   }
 
   public validermodif():void {

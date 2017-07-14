@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { AdminpdvDeposit }    from '../../models/adminpdv-deposit';
 import { AdminpdvConsommationDepositService }    from '../../models/adminpdv-cds';
 import { AdminpdvConsommationDepositPdv }    from '../../models/adminpdv-cdpdv';
-import { AdminpdvRecouvrement }    from '../../models/adminpdv-recouvrement';
 import { AdminpdvReclamation }    from '../../models/adminpdv-reclamation';
 import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
@@ -19,7 +18,6 @@ export class AdminpdvMonitoringComponent implements OnInit {
   public monitoringAdminpdvDeposit: AdminpdvDeposit;
   public monitoringAdminpdvConsommationDepositService: AdminpdvConsommationDepositService[];
   public monitoringAdminpdvConsommationDepositPdv: AdminpdvConsommationDepositPdv[];
-  public monitoringAdminpdvRecouvrement: AdminpdvRecouvrement[];
   public monitoringAdminpdvReclamation: AdminpdvReclamation[];
   loading = false ;
 
@@ -50,9 +48,6 @@ export class AdminpdvMonitoringComponent implements OnInit {
       {this.monitoringAdminpdvConsommationDepositPdv = adminpdvServiceWebList ;
        this.loading = false });
 
-    this.adminpdvServiceWeb.historiquerecouvrement('12345','azrrtt').then(adminpdvServiceWebList => 
-      this.monitoringAdminpdvRecouvrement = adminpdvServiceWebList
-    );
 
   }
 

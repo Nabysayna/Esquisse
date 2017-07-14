@@ -57,7 +57,7 @@ import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/admin
 import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
 import { CommercialServiceWeb }    from './webServiceClients/Commercial/commercial.service';
-
+import { ComptabiliteServiceWeb } from '././webServiceClients/Comptabilite/comptabilite.service';
 
 /*-----------------*/
 /*      Routes     */
@@ -173,6 +173,9 @@ import { FiltrervPipe } from './pipes/filtrerv.pipe';
 import { FiltrechargesPipe } from './pipes/filtrecharges.pipe';
 import { FiltrerevenusPipe } from './pipes/filtrerevenus.pipe';
 import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
+import { FiltresupservicePipe } from './pipes/filtresupservice.pipe';
+import { FiltreportefeuillePipe } from './pipes/filtreportefeuille.pipe';
+import { FiltrerelancePipe } from './pipes/filtrerelance.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -270,9 +273,11 @@ import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
     FiltrechargesPipe,
     FiltrerevenusPipe,
     FiltreexploitationPipe,
-
     TablePerformnceAdminpdv,
     TablePerformnceAdminpdvPipe,
+    FiltresupservicePipe,
+    FiltreportefeuillePipe,
+    FiltrerelancePipe
   ],
   imports: [
     BrowserModule,
@@ -332,6 +337,7 @@ import { FiltreexploitationPipe } from './pipes/filtreexploitation.pipe';
       AuthenticationService,
       CommercialServiceWeb,
       AdminmultipdvServiceWeb,
+      ComptabiliteServiceWeb,
       AuthenticationService
   ],
   bootstrap: [AppComponent]
