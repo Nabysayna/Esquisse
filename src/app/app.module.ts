@@ -98,7 +98,6 @@ import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-mu
 import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
 import { AdminmultipdvStatusPdvComponent } from './admin-multi-pdv/admin-multi-pdv-status-pdv/admin-multi-pdv-status-pdv.component';
 import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
-import { AdminmultipdvStatusRecouvrementComponent } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.component';
 import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
 
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
@@ -164,7 +163,6 @@ import { AdminpdvparametrecomptePipe } from './adminpdv/adminpdv-parametre-compt
 import { AdminpdvStatusReclamationPipe } from './adminpdv/adminpdv-status-reclamation/adminpdv-status-reclamation.pipe';
 
 import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.pipe';
-import { AdminmultipdvStatusRecouvrementPipe } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.pipe';
 import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
 import { AdminmultipdvDemandeRetraitPipe } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
 
@@ -214,7 +212,6 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
     AdminmultipdvMonitoringComponent,
     AdminmultipdvStatusPdvComponent,
     AdminmultipdvStatusReclamationComponent,
-    AdminmultipdvStatusRecouvrementComponent,
     AdminmultipdvUpdateCautionComponent,    
 
     AdminpdvAidedecisionComponent,
@@ -259,7 +256,6 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
     FiltrervoperateursPipe,
 
     AdminmultipdvStatusReclamationPipe,
-    AdminmultipdvStatusRecouvrementPipe,
     AdminmultipdvUpdateCautionPipe,
     AdminmultipdvDemandeRetraitPipe,
     
