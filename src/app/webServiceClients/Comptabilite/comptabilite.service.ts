@@ -105,11 +105,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public modifierservice(type : string, nom : string, idservice : number): Promise<any>  {
+  public modifierservice(type : string, service : string, designations : string, idservice : number): Promise<any>  {
     var method:string = 'modifierservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, nom: nom, idservice: idservice} ;
+    var reEspParams = {token: this.token, type: type, service: service, designations: designations, idservice: idservice} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -180,11 +180,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public listeservice(type : string): Promise<any>  {
+  public listeservice(type : string, idpdv: number): Promise<any>  {
     var method:string = 'listeservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type} ;
+    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 

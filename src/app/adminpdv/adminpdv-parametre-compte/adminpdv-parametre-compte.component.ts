@@ -1,6 +1,5 @@
 import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
 
-import { AdminpdvUserpdv }    from '../../models/adminpdv-userpdv';
 import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
 
@@ -19,9 +18,10 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   public sortOrder = "desc";
 
   public monitoringAdminpdvUserpdv: any;
-  public userpdv: any;
+  public modifuserpdv: any;
   public password:string;
   public confirmPassword:string;
+  public errorConfirm:boolean = false;
   loading = false ;
 
   constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) { }
@@ -29,14 +29,10 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   ngOnInit() {
     this.loading = true ;
 
-    this.adminpdvServiceWeb.listuserpdv('12345','azrrtt').then(adminpdvServiceWebList => {
+    this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
       console.log(adminpdvServiceWebList);
       this.monitoringAdminpdvUserpdv = adminpdvServiceWebList;
       this.loading = false ;
-    });
-
-    this.adminpdvServiceWeb.modifypdv('token', 1, 'pass').then(adminpdvServiceWebList => {
-      console.log(adminpdvServiceWebList);
     });
 
   }
@@ -54,16 +50,31 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   }
 
   public modif(item):void {
-    this.userpdv = item;
-    console.log(this.userpdv);
+    this.modifuserpdv = item;
+    console.log(this.modifuserpdv);
   }
 
   public validermodif():void {
-
+    console.log(this.password +" "+ this.confirmPassword);
+    if(this.password == this.confirmPassword) {
+      this.adminpdvServiceWeb.modifypdv('token', this.modifuserpdv.idpdv, this.password).then(adminpdvServiceWebList => {
+        console.log(adminpdvServiceWebList);
+      });
+      this.password= null;
+      this.confirmPassword = null;
+      this.closeBtn.nativeElement.click();  
+    }
+    else{
+      this.errorConfirm = true;
+    }
+    
   }
 
-  public deconnectionsession(idpdv):void {
-    
+  public deconnectionsession(pdv):void {
+    console.log(pdv);
+    this.adminpdvServiceWeb.deconnectpdv('sfsdf', pdv.idpdv).then(adminpdvServiceWebList => {
+      console.log(adminpdvServiceWebList);
+    });
   }
 
 }

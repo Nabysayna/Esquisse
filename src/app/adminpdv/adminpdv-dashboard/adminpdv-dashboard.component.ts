@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AdminpdvMontantTransferParService }    from '../../models/adminpdv-mtps';
-import { AdminpdvPerformancepdv }    from '../../models/adminpdv-performancepdv';
-import { AdminpdvNotifications }    from '../../models/adminpdv-notifications';
 import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
 @Component({
@@ -12,9 +9,9 @@ import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.se
 })
 export class AdminpdvDashboardComponent implements OnInit {
 
-  adminpdvDashboardMontantTransfertParservices: AdminpdvMontantTransferParService;
-  adminpdvDashboardPerformancepdv: AdminpdvPerformancepdv[];
-  adminpdvDashboardNotifications: AdminpdvNotifications[];
+  adminpdvDashboardMontantTransfertParservices: any;
+  adminpdvDashboardPerformancepdv: any;
+  adminpdvDashboardNbreReclVente: any;
   loading = false ;
 
   constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) {
@@ -22,11 +19,19 @@ export class AdminpdvDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loading = true ;
-    this.adminpdvServiceWeb.montanttransfertservice('12345','azrrtt').then(adminpdvServiceWebList => {this.adminpdvDashboardMontantTransfertParservices = adminpdvServiceWebList ;
-      } );
-    this.adminpdvServiceWeb.performancepdv('12345','azrrtt').then(adminpdvServiceWebList => this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList );
-    this.adminpdvServiceWeb.notifications('12345','azrrtt').then(adminpdvServiceWebList => this.adminpdvDashboardNotifications = adminpdvServiceWebList );
+    this.adminpdvServiceWeb.nombredereclamationpdvvente('azrrtt').then(adminpdvServiceWebList => {
+      console.log(adminpdvServiceWebList);
+      this.adminpdvDashboardNbreReclVente = adminpdvServiceWebList.response ;
+    });
+    
+    this.adminpdvServiceWeb.montanttransfertservice('azrrtt').then(adminpdvServiceWebList => {
+      // console.log(adminpdvServiceWebList);
+      this.adminpdvDashboardMontantTransfertParservices = adminpdvServiceWebList ;
+    });
+    
+    this.adminpdvServiceWeb.performancepdv('azrrtt').then(adminpdvServiceWebList => {
+      // this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList 
+    });
   }
   
 

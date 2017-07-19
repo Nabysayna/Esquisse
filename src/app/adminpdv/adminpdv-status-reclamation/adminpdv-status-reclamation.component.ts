@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AdminmultipdvReclamation }    from '../../models/adminmultipdv-reclamation';
 import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
-// import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
 @Component({
   selector: 'app-adminpdv-status-reclamation',
@@ -16,14 +14,14 @@ export class AdminpdvStatusReclamationComponent implements OnInit {
   public sortBy = "datereclamation";
   public sortOrder = "asc";
 
-  public adminmultipdvReclamation: AdminmultipdvReclamation[];
+  public adminmultipdvReclamation: any;
 	loading = false ;
 
-	constructor(private adminmultipdvServiceWeb: AdminpdvServiceWeb) { }
+	constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) { }
 
   ngOnInit() {
     this.loading = true ;
-    this.adminmultipdvServiceWeb.historiquereclamation('azrrtt').then(adminmultipdvServiceWebList => {
+    this.adminpdvServiceWeb.historiquereclamation('azrrtt').then(adminmultipdvServiceWebList => {
       console.log(adminmultipdvServiceWebList.response); 
       this.adminmultipdvReclamation = adminmultipdvServiceWebList.response; 
     });

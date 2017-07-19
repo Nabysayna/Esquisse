@@ -87,7 +87,6 @@ import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercia
 import { NavbarTopComponent } from './navbars/navbar-top/navbar-top.component';
 
 import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/adminpdv-aidedecision.component';
-import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/adminpdv-parametrage.component';
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
 import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
 import { AdminpdvStatusReclamationComponent } from './adminpdv/adminpdv-status-reclamation/adminpdv-status-reclamation.component';
@@ -101,9 +100,6 @@ import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin
 import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
 
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
-
-import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
-import { TableCompteAccessComponent } from './tables/table-compte-access/table-compte-access.component';
 
 import { OrangeMoneyComponentComponent } from './orange-money-component/orange-money-component.component';
 import { TigoCashComponentComponent } from './tigo-cash-component/tigo-cash-component.component';
@@ -141,9 +137,6 @@ import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 
 import { GeomapComponentComponent } from './geomap-component/geomap-component.component';
 
-
-import { TablePerformnceAdminpdv } from './tables/table-performnce-adminpdv/table-performnce-adminpdv';
-import { TablePerformnceAdminpdvPipe } from './tables/table-performnce-adminpdv/table-performnce-adminpdv.pipe';
 
 /*-----------------*/
 /*      Pipes      */
@@ -215,7 +208,6 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
     AdminmultipdvUpdateCautionComponent,    
 
     AdminpdvAidedecisionComponent,
-    AdminpdvParametrageComponent,
     AdminpdvDashboardComponent,
     AdminpdvMonitoringComponent,
     AdminpdvStatusReclamationComponent,
@@ -224,8 +216,6 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
     GeomapComponentComponent,
     LoaderComponent,
     NavbarTopComponent,
-    FormChangerAccessUserComponent,
-    TableCompteAccessComponent,
     BarChartComponent,
     LineChartComponent,
     RadarChartComponent,
@@ -272,8 +262,6 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
     FiltrechargesPipe,
     FiltrerevenusPipe,
     FiltreexploitationPipe,
-    TablePerformnceAdminpdv,
-    TablePerformnceAdminpdvPipe,
     FiltresupservicePipe,
     FiltreportefeuillePipe,
     FiltrerelancePipe,
