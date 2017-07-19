@@ -11,7 +11,10 @@ import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/compta
 
 class PdvCaisse{
 	nom : string ;
-	caisse : number ;
+  caisse : number ;
+  prenom : number ;
+	id : number ;
+  idpdv:number;
 }
 
 class Charges{
@@ -39,10 +42,16 @@ class Exploitation{
 } 
 
  class Supservice{
+  idservice:number;
   services:string;
   design:string;
 } 
 
+class Designation{
+  name:string;
+  stock:number;
+  prixunitaire:number;
+}
 
 
 
@@ -56,7 +65,11 @@ export class ComptabiliteComponent implements OnInit {
   pdvCaisses : PdvCaisse[] ;
   libelleCharge : string ;
   montantCharge : number ;
+
   service : string ;
+  designationsService: Designation[] = [];
+  nbreDesignation:number = 0;
+
   approvisionnement = "" ;
   estselection:number;
   estselectionr:number;
@@ -67,18 +80,18 @@ export class ComptabiliteComponent implements OnInit {
   estselectionss:number;
   montreautredesignation:number;
   estselectionmods:number = -1;
+  
   charges:Charges[];
   revenus:Revenus[];
   exploitation:Exploitation[];
   supservice:Supservice[];
 
+  montantajoutecaisse:number;
+
 
   filtre ="";
   nom="nom";
   asc="asc";
-
-  // infoSuperviseur:InfosPoint[];
-  
 
 
   constructor(
@@ -91,38 +104,33 @@ export class ComptabiliteComponent implements OnInit {
 
   ngOnInit() {
 
-    this.comptabiliteServiceWeb.listeservice('azrrtt').then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+    this.comptabiliteServiceWeb.listecaisse('azrrtt').then(adminmultipdvServiceWeb => {
+      this.pdvCaisses = adminmultipdvServiceWeb.response; 
     });
-    this.charges= [{ date: "03/03/2012", libelle: 'paiement électricité', montant: 2000000, service:"fonctionnement"},
-                   { date: "04/06/2017", libelle: 'achat cartouche', montant: 1000000, service:"photocopie"}];
-   
-    this.revenus= [{ date: "03/03/2012", libelle: 'ventes de sac', montant: 20000, service:"commerce"},
-                   { date: "04/06/2017", libelle: 'ventes de chaussures homme', montant: 18000, service:"commerce"}];
-   
-    this.exploitation= [{ designation: "chaussures", stocki: 24, vente:12 , stockf:12, mnt:20000},
-                   {  designation: "sac", stocki:35 , vente:2 , stockf:33, mnt:15000}];
-
-    this.supservice= [{ services: "saisir avec word", design: "traitement de texte"},
-                   { services: "photocopie", design: "multiservice"}];  
-
-
-
-  	this.pdvCaisses = [{nom:"Fallou DIOP", caisse:20000}, {nom:"Khalifa GUEYE", caisse:500000}, {nom:"Naby DIOUF", caisse:10000}, {nom:"Moussa SYLL", caisse:1000}];
-    // let infosPoint={nomPoint:"Naby",chargesPoint:[{date:"12/12/2017", libelle:"retrait", montant:1200000, service:"postcash"}], revenusPoint:[{date:"11/01/2017", libelle:"ventes de sac", montant:20000}]};
-    // this.infoSuperviseur[0]=infosPoint;
-    // infosPoint={nomPoint:"Assane",chargesPoint:[{date:"12/12/2017", libelle:"envoie", montant:5200000, service:"tigocash"}], revenusPoint:[{date:"11/01/2017", libelle:"ventes de chaussures", montant:50000}]};
-    // this.infoSuperviseur[1]=infosPoint;
+    this.comptabiliteServiceWeb.listecharge('azrrtt').then(adminmultipdvServiceWeb => {
+      this.charges = adminmultipdvServiceWeb.response;
+    });
+    this.comptabiliteServiceWeb.listevente('azrrtt').then(adminmultipdvServiceWeb => {
+      this.exploitation = adminmultipdvServiceWeb.response;
+    });
+    this.comptabiliteServiceWeb.listerevenu('azrrtt').then(adminmultipdvServiceWeb => {
+      this.revenus = adminmultipdvServiceWeb.response;
+    });
+    
   }
 
   isActif(nomPdv : string) : boolean{
   	return (this.approvisionnement.indexOf("-"+nomPdv+"-")>-1) ;
   }
 
-  approvisionnercaisse(pdv : PdvCaisse){
+  approvisionnercaisse(idpdv: number){
   	this.approvisionnement="" ;
+    this.comptabiliteServiceWeb.approvisionner('azrrtt', idpdv, this.montantajoutecaisse).then(adminmultipdvServiceWeb => {
+      // console.log(adminmultipdvServiceWeb); 
+    });
   }
 
+  
   listercharges(i){
     this.estselection = i;
   }
@@ -132,30 +140,69 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   ajoutercharges(i){
-
     this.estselectionf = i;
+    console.log(i);
   }
+
+  validerajoutercharges(pdv){
+    this.comptabiliteServiceWeb.ajoutcharge('azrrtt', this.libelleCharge, pdv.idUser, this.service, this.montantCharge).then(adminmultipdvServiceWeb => {
+      // console.log(adminmultipdvServiceWeb); 
+    });
+  }
+
 
   listerventes(i){
     this.estselectionfff = i;
+  }
 
+  ajouterdesignation(){
+    this.designationsService.push(new Designation());
   }
 
   ajouterservice(i){
     this.estselectionas = i;
+    this.service = null;
+    this.designationsService = [];
+    this.designationsService.push(new Designation());
+  }
 
+  goBack() {
+    this.location.back();
   }
 
   modifierservice(i){
     this.estselectionms = i;
-
+    this.service = null;
+    this.designationsService = [];
+    this.comptabiliteServiceWeb.listeservice('azrrtt', this.pdvCaisses[i].id).then(adminmultipdvServiceWeb => {
+      this.supservice = adminmultipdvServiceWeb.response; 
+    });
   }
 
-  supprimerservice(i){
+  effacerunedesignation(i){
     this.estselectionss = i;
-
+    this.designationsService = this.designationsService.filter(item => item !==this.designationsService[i]);
   }
   
+  validerajouterservice(pdv:any){
+    this.comptabiliteServiceWeb.ajoutservice('azrrtt', this.service, pdv.idUser, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
+      // console.log(adminmultipdvServiceWeb); 
+    });
+  }
+
+  validermodifierservice(pdv:any){
+    this.comptabiliteServiceWeb.modifierservice('azrrtt', this.service, ""+JSON.stringify(this.designationsService), this.serviceamodifier().idservice).then(adminmultipdvServiceWeb => {
+      console.log(adminmultipdvServiceWeb); 
+    });
+  }
+ 
+  deleteservice(supservice:Supservice) {      
+    console.log(supservice);
+    this.comptabiliteServiceWeb.supprimerservice('azrrtt', supservice.idservice).then(adminmultipdvServiceWeb => {
+      // console.log(adminmultipdvServiceWeb); 
+    });
+  }
+
   serviceamodifier(){
     return this.supservice[this.estselectionmods];
   }
@@ -163,29 +210,12 @@ export class ComptabiliteComponent implements OnInit {
   modifyservice(i)
   {
     this.estselectionmods=i;
-
+    this.service = this.supservice[i].services;
+    this.designationsService = JSON.parse(this.supservice[i].design);
   }
   autredesignation(i){
     this.montreautredesignation=i;
   }
-  
 
-  ajtservice(){
-    // Envoyer
-  }
-// calculresultat(){}
- 
- deleteservice(supservice:Supservice) {      
-      for(var j=0; j<this.supservice.length; j++){
-        var ligne=this.supservice[j];
-         
-            if (ligne.services==supservice.services)
-            {
-              // console.log(JSON.stringify(ligne));
-              this.supservice.splice(j,1);
-              break;
-            }
-      
-  }
-}
+  
 }

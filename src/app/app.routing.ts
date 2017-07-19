@@ -5,7 +5,6 @@ import  { RouterModule, Routes} from '@angular/router' ;
 import { AuthGuard } from './_guards/auth.guard';
 
 import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/adminpdv-aidedecision.component';
-import { AdminpdvParametrageComponent } from './adminpdv/adminpdv-parametrage/adminpdv-parametrage.component';
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
 import { AdminpdvMonitoringComponent } from './adminpdv/adminpdv-monitoring/adminpdv-monitoring.component';
 import { AdminpdvStatusReclamationComponent } from './adminpdv/adminpdv-status-reclamation/adminpdv-status-reclamation.component';
@@ -15,10 +14,7 @@ import { AdminmultipdvDemandeRetraitComponent } from './admin-multi-pdv/admin-mu
 import { AdminmultipdvMonitoringComponent } from './admin-multi-pdv/admin-multi-pdv-monitoring/admin-multi-pdv-monitoring.component';
 import { AdminmultipdvStatusPdvComponent } from './admin-multi-pdv/admin-multi-pdv-status-pdv/admin-multi-pdv-status-pdv.component';
 import { AdminmultipdvStatusReclamationComponent } from './admin-multi-pdv/admin-multi-pdv-status-reclamation/admin-multi-pdv-status-reclamation.component';
-import { AdminmultipdvStatusRecouvrementComponent } from './admin-multi-pdv/admin-multi-pdv-status-recouvrement/admin-multi-pdv-status-recouvrement.component';
 import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.component';
-
-import { FormChangerAccessUserComponent } from './forms/form-changer-access-user/form-changer-access-user.component';
 
 
 import { ManagerComponent } from './manager/manager.component';
@@ -91,7 +87,6 @@ const appRoutes: Routes = [
                     { path: 'monitoring', component: AdminmultipdvMonitoringComponent },
                     { path: 'statuspdv', component: AdminmultipdvStatusPdvComponent },
                     { path: 'statusreclamation', component: AdminmultipdvStatusReclamationComponent },
-                    { path: 'statusrecouvrement', component: AdminmultipdvStatusRecouvrementComponent },
                     { path: 'demanderetrait', component: AdminmultipdvDemandeRetraitComponent },
                     { path: 'updatecaution', component: AdminmultipdvUpdateCautionComponent },
                     { path: '', component: AdminmultipdvDashboardComponent }
@@ -166,13 +161,11 @@ const appRoutes: Routes = [
                 children: [
                     { path: 'dashboard', component: AdminpdvDashboardComponent },
                     { path: 'monitoring', component: AdminpdvMonitoringComponent },
-                    { path: 'parametrage', component: AdminpdvParametrageComponent },
                     { path: 'parametrecompte', component: AdminpdvparametrecompteComponent },
                     { path: 'reclamation', component: AdminpdvStatusReclamationComponent },
                     { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
                     { path: 'comptabilite', component: ComptabiliteComponent },
                     { path: 'CRM', component: CrmComponent },
-                    { path: 'changer-acces-pdv/:id', component: FormChangerAccessUserComponent },
                     { path: '', component: AdminpdvDashboardComponent }
                 ]
             }

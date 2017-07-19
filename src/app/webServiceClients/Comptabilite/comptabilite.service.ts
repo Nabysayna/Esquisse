@@ -5,8 +5,8 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class ComptabiliteServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/invest/comptapdv?wsdl' ;
+  private servicePort:string = 'http://localhost' ; 
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/comptapdv?wsdl' ;
   private targetNamespace:string = 'urn:comptapdvwsdl' ;
 
   public responseJso : any;
@@ -29,6 +29,25 @@ export class ComptabiliteServiceWeb {
     this.soapService.localNameMode = true;
   }
 
+  public listevente(type : string): Promise<any>  {
+    var method:string = 'listevente';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, type: type} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams;
+
+    parameters['listevente xmlns="urn:comptapdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'listeventeResponse').then(response=>{
+        var reponse  = JSON.parse(response['listeventeResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
   public listecharge(type : string): Promise<any>  {
     var method:string = 'listecharge';
     var parameters:{}[] = [];
@@ -48,11 +67,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public ajoutcharge(type: string, libelle: string, detail: string, montant: number): Promise<any>  {
+  public ajoutcharge(type: string, libelle: string, idpdv: number, service: string, montant: number): Promise<any>  {
     var method:string = 'ajoutcharge';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, libelle: libelle, detail: detail, montant: montant} ;
+    var reEspParams = {token: this.token, type: type, libelle: libelle, idpdv: idpdv, service: service, montant: montant} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -86,11 +105,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public modifierservice(type : string, nom : string, idservice : number): Promise<any>  {
+  public modifierservice(type : string, service : string, designations : string, idservice : number): Promise<any>  {
     var method:string = 'modifierservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, nom: nom, idservice: idservice} ;
+    var reEspParams = {token: this.token, type: type, service: service, designations: designations, idservice: idservice} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -105,11 +124,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public ajoutservice(type : string, nom: string): Promise<any>  {
+  public ajoutservice(type : string, nom: string, idpdv: number, designations: string): Promise<any>  {
     var method:string = 'ajoutservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, nom: nom} ;
+    var reEspParams = {token: this.token, type: type, nom: nom, idpdv: idpdv, designations: designations} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -161,11 +180,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public listeservice(type : string): Promise<any>  {
+  public listeservice(type : string, idpdv: number): Promise<any>  {
     var method:string = 'listeservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type} ;
+    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
