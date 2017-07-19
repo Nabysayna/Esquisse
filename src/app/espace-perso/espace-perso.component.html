@@ -13,7 +13,6 @@
 			<a href="#cmdToDeliver" (click)="chargerCommandes('toDeliver')" class="btn " type="button" data-toggle="tab">Commandes à Livrer</a>
 		</div>	
 
-
 		<div class="col-sm-2">
 			<a href="#articles" class="btn " type="button" data-toggle="tab">Mes Articles</a>
 		</div>	
@@ -38,11 +37,11 @@
 		    <tr *ngFor="let ligneArticle of filtrerCatalogue()" >
 		        <td *ngFor="let article of ligneArticle">
 		        <div class="card" >
-				  <img class="card-img-top" src="http://51.254.200.129/backecom/server-backend-upload/uploads/{{article.nomImg}}"  alt="Card image cap" width="200" height="200">
+				  <img class="card-img-top" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}"  alt="Card image cap" width="200" height="200">
 				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
 				       [options]="this.options"
 				       (onUpload)="handleUpload($event)" 
-				       (beforeUpload)="beforeUpload($event)" src="http://51.254.200.129/backecom/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
+				       (beforeUpload)="beforeUpload($event)" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
 
 			   <div class="card-block">
 				    <h4 class="card-title">{{article.designation}}</h4>
@@ -222,6 +221,8 @@
 		    <div class="label">Image en cours de chargement ({{ uploadProgress }}%)</div>
 		  </div>
 		</div>
+
+			<input type="text" [(ngModel)]="this.categoriea"   name="categoriea" id="categoriea" class="form-control" placeholder="Catégorie de l'article" required>
 
 			<input type="text" [(ngModel)]="this.designationa"   name="designationa" id="designationa" class="form-control" placeholder="designation de l'article" required>
 

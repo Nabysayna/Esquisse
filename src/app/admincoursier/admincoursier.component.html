@@ -29,7 +29,8 @@
                                             <input class="form-control" [(ngModel)]="filtre"/>
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ;">
-                                        <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
+                                        <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER 
+                                        <select class="form-control input-sm" [(ngModel)]="coursier" >
                                             <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>
                                             </select>
                                         </label>

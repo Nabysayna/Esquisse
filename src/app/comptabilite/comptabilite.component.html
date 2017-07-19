@@ -177,17 +177,18 @@
 
 			           <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
-				        <div class="col-sm-3 col-xs-6">
+				        <div class="col-sm-3 col-xs-12">
 			                <label>{{pdv.nom}}</label>
 				        </div>
-				        <div class="col-sm-3 col-xs-6">
+				        <div class="col-sm-3 col-xs-12">
+				        <div class="col-sm-3 col-xs-12">
 	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerventes(i)">Consulter</button>
 				        </div>
 				      
 
 	                    <div class="col-sm-12 col-xs-12" *ngIf="i==estselectionne">
                                     
-                                    <div id="exp" >
+                             <div id="exp" >
                                         
                                            <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
@@ -239,7 +240,8 @@
                         </div>
 				   
 			    </div>	
-			    </div>	
+                </div>  
+                </div>  
 
 			    <div class="row tab-pane fade in" id="personnalisation">
 			         <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
@@ -374,8 +376,6 @@
 				       			 </div>
 
 				    	</div>
-
-			    </div>
 		            
 			    </div>
 

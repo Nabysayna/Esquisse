@@ -1,4 +1,4 @@
-<div class="row" id="ecomhome">
+<div class="row" id="ecomhome" >
   <div class="col-sm-4 extremite">
   	<a class="btn ecomBtn" href="#ecomcatalogue" data-toggle="tab">Catalogue</a>
   </div> 
@@ -21,15 +21,15 @@
         	<app-espace-perso></app-espace-perso>
 	    </div>
 
-      <div class="row tab-pane fade col-sm-12 col-xs-12" id="prisecom">
-            <form (ngSubmit)="demandeprt()" #dpret="ngForm">
+      <div class="row tab-pane fade col-sm-3 col-xs-12" id="prisecom">
+            <form (ngSubmit)="recupInfosCmd()" #cmdcode="ngForm">
 
-                <label class=" control-label">Saisissez le code du client </label>
+                <label class=" control-label">Code du client </label>
 
-            <input type="number" [(ngModel)]="this.mntp"   name="mntp" id="mntp" class="form-control" placeholder="montant demandé" required>
+            <input type="text" [(ngModel)]="codecmd"   name="codecmd" id="codecmd" class="form-control" placeholder="Code passé au client après commande." required>
 
-            <br><button class="btn btn-success" type="submit" [disabled]="!dpret.form.valid" >
-            Validation</button>
+            <button class="btn btn-success" type="submit" [disabled]="!cmdcode.form.valid" >
+            Valider</button>
             </form>
     </div>
 

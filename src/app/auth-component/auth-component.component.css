@@ -110,6 +110,44 @@
 
 }
 
+.figcontainer{    
+  display: block;
+}
+
+.figcontainer .btn{    
+    color: #fff;
+}
+
+.figureatag{
+    text-decoration: none ;
+    color: #fff;
+}
+
+.figureatag:hover{
+    text-decoration: none ;
+    color: #fff;
+}
+
+.circle {
+  display: inline-block;
+  background: white;
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+  margin: 0;
+  background: radial-gradient(circle at 1rem 1rem, #0F70B7, #000);
+}
+
+.circlesub{
+  display: inline-block;
+  background: white;
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+  margin: 0;
+  background: radial-gradient(circle at 1rem 1rem, #0FFFFF, #000);
+}
+
 #authcomponent{
 }
 

@@ -15,8 +15,21 @@ export class AuthComponentComponent implements OnInit {
   userPwd  = '' ; 
   fakevalues : boolean ;
   phase2fakevalues : boolean = true ;
+  saisietoken : string ;
   loading = false ;
   phase1 = true ;
+
+  chaine : string ;
+
+  l1: string ;
+  l2: string ; 
+  l3: string ;
+  l4: string ;
+  c1: string ;
+  c2: string ; 
+  c3: string ; 
+  c4: string ; 
+
   fromSMS : string ;
   backstring : string = "" ;
   constructor(
@@ -37,7 +50,17 @@ export class AuthComponentComponent implements OnInit {
         if(access  != "rejected"){
           this.loading = false ;
           this.phase1 = false ;
-          this.backstring = "Token d'authentification "+access ;
+          this.chaine = access ;
+          this.l1 =  this.chaine.split(" ")[0].split("--")[0] ;
+          this.l2 =  this.chaine.split(" ")[1].split("--")[0] ; 
+          this.l3 =  this.chaine.split(" ")[2].split("--")[0] ;
+          this.l4 =  this.chaine.split(" ")[3].split("--")[0] ;
+
+          this.c1 =  this.chaine.split(" ")[0].split("--")[1] ;
+          this.c2 =  this.chaine.split(" ")[1].split("--")[1]; 
+          this.c3 =  this.chaine.split(" ")[2].split("--")[1] ; 
+          this.c4 =  this.chaine.split(" ")[3].split("--")[1]; 
+
         }else{
           console.log("One the else statement") ;
           this.fakevalues = false ;

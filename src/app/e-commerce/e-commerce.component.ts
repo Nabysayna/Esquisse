@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ECommerceComponent implements OnInit {
-	mntp = 0 ;
+  codecmd = "" ;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  recupInfosCmd(){
+  	console.log("Récupèration des informations relatives à la présente commande.") ;
   }
 
 }

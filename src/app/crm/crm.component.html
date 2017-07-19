@@ -112,26 +112,26 @@
 		            				<div class="tab-pane fade in col-sm-12 col-xs-12" id="promotion">
 		            					<div style="margin-bottom: 3rem;">
 		            					 <label>Filtrer Par : <select class="form-control input-sm" >
-				                            <option>périodicité</option>
+				                            <option >périodicité</option>
 				                            <option >fidélité</option>
 				                            </select>
 				                         </label>
 
-				                         <label>Service : <select class="form-control input-sm" >
-				                            <option>assurance</option>
-				                            <option >e-commerce</option>
+				                         <label>Service : <select [(ngModel)]="filtre" name="Select service"class="form-control input-sm" >
+				                            <option value="assurance">assurance</option>
+				                            <option value="e-commerce">e-commerce</option>
 				                            </select>
 				                         </label>
 
 				                           <button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
 		            					</div>	
-			            	 	  		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="promotion|filtrepromotion:filtre" #fsc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+			            	 	  		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="promotion|filtrepromotion:filtre" #fprom="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 			                                <thead>
 			                                    <tr>
 			                                        <th colspan="3" style="padding-right: 3rem ;">
 			                                            Rechercher :
 			                                            <input class="form-control" [(ngModel)]="filtre"/>
-			                                        </th>
+			                                        </th>	
 					                            </tr>
 			                                    <tr>
 			                                        <th><mfDefaultSorter by="noms">Nom</mfDefaultSorter></th>
@@ -144,12 +144,12 @@
 			                            
 			                                </thead>
 			                                <tbody *ngIf="this.promotion">
-			                                <tr *ngFor="let promotion of fsc.data">
+			                                <tr *ngFor="let promotion of fprom.data">
 			                                    <td>{{promotion.noms}}</td>
 			                                    <td>{{promotion.prenoms}}</td>
 			                                    <td>{{promotion.tels}}</td>
 			                                    <td>{{promotion.periofidel}}</td>
-			                                    <td>{{promotion.service}}</td>
+			                                    <td>{{promotion.services}}</td>
 			                                    
 			                                </tr>
 			                                </tbody>
@@ -181,7 +181,7 @@
 					                                        <th><mfDefaultSorter by="noms">Nom</mfDefaultSorter></th>
 					                                        <th><mfDefaultSorter by="prenoms">Prénom</mfDefaultSorter></th>
 					                                        <th><mfDefaultSorter by="tels">Téléphone</mfDefaultSorter></th>
-					                                        <th><mfDefaultSorter>Détail</mfDefaultSorter></th>
+					                                        <th><mfDefaultSorter by="detail">Détail</mfDefaultSorter></th>
 					                                        <th><mfDefaultSorter >Action</mfDefaultSorter></th>
 					                                        
 					                                   </tr>
@@ -192,7 +192,7 @@
 					                                    <td>{{prospection.noms}}</td>
 					                                    <td>{{prospection.prenoms}}</td>
 					                                    <td>{{prospection.tels}}</td>
-					                                    <td><button  class="btn btn-primary" (click)="detail()">Détails</button></td>
+					                                    <td><button type="button" class="btn btn-primary" popover="{{prospection.detail}}" popoverTitle="Détails" triggers="focus">Détails</button></td>
 					                                    <td><button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
 					                                    </td>
 					                                </tr>
@@ -208,7 +208,7 @@
 					     </table>
 			    </div>
 			     <div class="tab-pane fade in col-sm-12 col-xs-3" id="suivicommande">
-					    <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="suivicommande|filtresuivicommande:filtre" #fpr="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+					    <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="suivicommande|filtresuivicommande:filtre" #fsc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 					                                <thead>
 					                                    <tr>
 					                                        <th colspan="3" style="padding-right: 3rem ;">
@@ -228,12 +228,12 @@
 					                            
 					                                </thead>
 					                                <tbody *ngIf="this.suivicommande">
-					                                <tr *ngFor="let suivicommande of fpr.data">
+					                                <tr *ngFor="let suivicommande of fsc.data">
 					                                    <td>{{suivicommande.noms}}</td>
 					                                    <td>{{suivicommande.prenoms}}</td>
 					                                    <td>{{suivicommande.pointderecup}}</td>
 					                                    <td>{{suivicommande.mntcommande}}</td>
-					                                    <td>{{suivicommande.detail}}</td>
+					                                    <td><button type="button" class="btn btn-primary" popover="{{suivicommande.detail}}" popoverTitle="Détails" triggers="focus">Détails</button></td>
 					                                    <td>{{suivicommande.etat}}</td>
 					                                    
 					                                </tr>

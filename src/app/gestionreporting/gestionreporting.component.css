@@ -6,18 +6,12 @@ input{
 }
 .nav-pills
 {
-    font-weight : bolder;
-    font-size: larger;
-    text-transform: uppercase;
-    padding-bottom: 30px;
-    margin-left: 200px;
+    margin-bottom: 3rem ;
 }
 .tab-content
 {
 
     border-right: 2px dotted #ccc;
-    font-weight : bolder;
-    font-size: larger;
 
 }
 #elec{
