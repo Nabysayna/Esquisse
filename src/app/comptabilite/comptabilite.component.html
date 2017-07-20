@@ -17,25 +17,24 @@
                
             <div class="tab-content">
 
-			    <div class="tab-pane fade in active" id="caisse">
-
-		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}">
-				        <div class="col-sm-3 col-xs-12">
-				                <label>{{pdv.nom}}</label>
-				        </div>
-				        <div class="col-sm-3 col-xs-12">
-				                <label>Fond de caisse : {{pdv.caisse}}</label>
-				        </div>
-				        <div class="col-sm-3 col-xs-12" *ngIf="!isActif(pdv.nom)">
-				                <button class="btn btn-success" (click)="approvisionnement=approvisionnement+'-'+pdv.nom+'-'">Approvisionner</button>
-				        </div>
-				        <div class="col-sm-3 col-xs-12" *ngIf="isActif(pdv.nom)">
-				                <input type="number" [(ngModel)]="montantajoutee"   name="caiss" class="form-control"  placeholder="Montant Approvisionnement" required>
-				        </div>
-				        <div class="col-sm-3 col-xs-12" *ngIf="isActif(pdv.nom)">
-				                <button class="btn btn-success" (click)="approvisionnercaisse(pdv.nom)">Valider</button>
-				        </div>
-			        </div>
+			    <div class="tab-pane fade in active" id="caisse" >
+                    <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}">
+                        <div class="col-sm-3 col-xs-12">
+                                <label>{{pdv.nom}}</label>
+                        </div>
+                        <div class="col-sm-3 col-xs-12">
+                                <label>Fond de caisse : {{pdv.caisse}}</label>
+                        </div>
+                        <div class="col-sm-3 col-xs-12" *ngIf="!isActif(pdv.nom)">
+                                <button class="btn btn-success" (click)="approvisionnement=approvisionnement+'-'+pdv.nom+'-'">Approvisionner</button>
+                        </div>
+                        <div class="col-sm-3 col-xs-12" *ngIf="isActif(pdv.nom)">
+                                <input type="number" [(ngModel)]="montantajoutecaisse"   name="caiss" class="form-control"  placeholder="Montant Approvisionnement" required>
+                        </div>
+                        <div class="col-sm-3 col-xs-12" *ngIf="isActif(pdv.nom)">
+                                <button class="btn btn-success" (click)="approvisionnercaisse(pdv.id)">Valider</button>
+                        </div>
+                    </div>
 			    </div>	
 
 
@@ -87,7 +86,7 @@
                                 </thead>
                                 <tbody *ngIf="this.charges">
                                 <tr *ngFor="let charges of fopad.data">
-                                    <td>{{charges.date}}</td>
+                                    <td>{{charges.dateAjout.date | date}}</td>
                                     <td>{{charges.libelle}}</td>
                                     <td>{{charges.montant}}</td>
                                     <td>{{charges.service}}</td>
@@ -105,7 +104,6 @@
 			                        </div>
 			                    </div>
 			                </div>
-			                            <!-- /.table-responsive -->
                         </div>
                         </div>
                                     
@@ -144,7 +142,7 @@
                                 </thead>
                                 <tbody *ngIf="this.revenus">
                                 <tr *ngFor="let revenus of fopa.data">
-                                    <td>{{revenus.date}}</td>
+                                    <td>{{revenus.date.date | date}}</td>
                                     <td>{{revenus.libelle}}</td>
                                     <td>{{revenus.montant}}</td>
                                     <td>{{revenus.service}}</td>
@@ -162,7 +160,6 @@
 			                        </div>
 			                    </div>
 			                </div>
-			                            <!-- /.table-responsive -->
                         </div>
                         </div>
 
@@ -328,7 +325,7 @@
                             </div>
                             <div *ngIf="estselectionmods!=-1" class="col-sm-6 col-xs-12" >
 
-				                 		<form class="form-signin" (ngSubmit)="ajtservice()" #exploitationForm="ngForm">
+				                 		<form class="form-signin" (ngSubmit)="validermodifierservice()" #exploitationForm="ngForm">
 										    <input name="services" type="text" [(ngModel)]="serviceamodifier().services" class="form-control"   required>
 										    <input name="design" type="text" [(ngModel)]="serviceamodifier().design" class="form-control"  required>
 
