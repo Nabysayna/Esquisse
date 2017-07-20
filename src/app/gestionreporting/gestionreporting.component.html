@@ -24,23 +24,39 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTables-example_length"><label>Show <select name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="dataTables-example_filter"><label>Search:<input class="form-control input-sm" aria-controls="dataTables-example" type="search" placeholder=""></label></div></div></div><div class="row"><div class="col-sm-12"><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
-                                <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Opérateur</th>
-                                    <th>Traitement</th>
-                                    <th>Montant</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>{{historiqueOperations.date}}</td>
-                                    <td>{{historiqueOperations.operateur}}</td>
-                                    <td>{{historiqueOperations.traitement}}</td>
-                                    <td>{{historiqueOperations.montant}}</td>
-                                </tr></tbody>
-                            </table></div></div><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li tabindex="0" class="paginate_button previous disabled" id="dataTables-example_previous" aria-controls="dataTables-example"><a href="#">Previous</a></li><li tabindex="0" class="paginate_button active" aria-controls="dataTables-example"><a href="#">1</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">2</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">3</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">4</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">5</a></li><li tabindex="0" class="paginate_button " aria-controls="dataTables-example"><a href="#">6</a></li><li tabindex="0" class="paginate_button next" id="dataTables-example_next" aria-controls="dataTables-example"><a href="#">Next</a></li></ul></div></div></div></div>
+                           <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="historiqueOperations|filtrehistoriqueOperations:filtre" #fho="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3" style="padding-right: 3rem ;">
+                                                    Rechercher :
+                                                    <input class="form-control" [(ngModel)]="filtre"/>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th><mfDefaultSorter by="date">Date</mfDefaultSorter></th>
+                                                <th><mfDefaultSorter by="operateur">Opérateur</mfDefaultSorter></th>
+                                                <th><mfDefaultSorter by="traitement">Traitement</mfDefaultSorter></th>
+                                                <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                                           </tr>
+                                    
+                                        </thead>
+                                        <tbody *ngIf="this.historiqueOperations">
+                                        <tr *ngFor="let historiqueOperations of fho.data">
+                                            <td>{{historiqueOperations.date}}</td>
+                                            <td>{{historiqueOperations.operateur}}</td>
+                                            <td>{{historiqueOperations.traitement}}</td>
+                                            <td>{{historiqueOperations.montant}}</td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <mfBootstrapPaginator ></mfBootstrapPaginator>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+
+                            </table>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -72,9 +88,17 @@
                         <div class="col-sm-12 col-xs-12">
                         <form class="form-signin" (ngSubmit)="validvente()" #validvente="ngForm">
                                            
-                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required></div> 
-                                            <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
-                                           <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
+                                           <div  class="col-sm-3 col-xs-12"> <label>Service : <select class="form-control input-sm" >
+                                            <option>assurance</option>
+                                            <option>e-commerce</option>
+                                            </select>
+                                            </label></div>
+                                            <div  class="col-sm-3 col-xs-12"> <label>Désignation : <select class="form-control input-sm" >
+                                            <option>assurance maladie</option>
+                                            <option>ventes</option>
+                                            </select>
+                                         </label></div>
+                                           <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="qte"   name="qte" id="qte" class="form-control" placeholder="quantité" required></div>
 
                                             <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validvente.form.valid" >Valider</button>
                                             </div>
@@ -92,6 +116,11 @@
                         <div class="col-sm-12 col-xs-12">
                        <form class="form-signin" (ngSubmit)="validreclamation()" #validreclamation="ngForm">
                                            <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujetreclam"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
+                                           <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Service : <select class="form-control input-sm" >
+                                            <option>assurance</option>
+                                            <option>e-commerce</option>
+                                            </select>
+                                         </label></div>
                                             <input type="number" [(ngModel)]="descripreclam"   name="descrip" id="descrip" class="form-control" placeholder="description réclamation" required>
 
                                             <div class="col-sm-3 col-xs-12" ><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validreclamation.form.valid" >Envoyer</button></div>

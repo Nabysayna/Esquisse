@@ -170,6 +170,7 @@ import { FiltrerelancePipe } from './pipes/filtrerelance.pipe';
 import { FiltrepromotionPipe } from './pipes/filtrepromotion.pipe';
 import { FiltreprospectionPipe } from './pipes/filtreprospection.pipe';
 import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
+import { FiltrehistoriqueOperationsPipe } from './pipes/filtrehistorique-operations.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -267,7 +268,8 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
     FiltrerelancePipe,
     FiltrepromotionPipe,
     FiltreprospectionPipe,
-    FiltresuivicommandePipe
+    FiltresuivicommandePipe,
+    FiltrehistoriqueOperationsPipe
   ],
   imports: [
     BrowserModule,
