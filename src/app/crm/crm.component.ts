@@ -6,45 +6,11 @@ import { Location }  from '@angular/common';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
-class Portefeuille{
-  nom:string;
-  prenom:string;
-  tel:number;
-  periodicite:string;
-  fidelite:number;
-} 
+import { CrmServiceWeb, Portefeuille, Relance, Promotion, Prospection, Suivicommande } from '../webServiceClients/Crm/crm.service';
 
-class Relance{
-  noms:string;
-  prenoms:string;
-  tels:number;
-  service:string;
-  echeance:string;
-} 
 
-class Promotion{
-  noms:string;
-  prenoms:string;
-  tels:number;
-  periofidel:string;
-  services:string;
-} 
 
-class Prospection{
-  noms:string;
-  prenoms:string;
-  tels:number;
-  detail:string;
-} 
 
-class Suivicommande{
-  noms:string;
-  prenoms:string;
-  pointderecup:string;
-  mntcommande:number;
-  detail:string;
-  etat:string;
- }
 
 @Component({
   selector: 'app-crm',
@@ -52,46 +18,90 @@ class Suivicommande{
   styleUrls: ['./crm.component.css']
 })
 export class CrmComponent implements OnInit {
-	portefeuille:Portefeuille[];
-	relance:Relance[];
-	promotion:Promotion[];
-	prospection:Prospection[];
-	suivicommande:Suivicommande[];
+	public relance:Relance[];
+	public promotion:Promotion[];
+	public prospection:Prospection[];
+  public suivicommande:Suivicommande[];
+	public portefeuille:Portefeuille[];
+	private crmServiceWeb:CrmServiceWeb = new CrmServiceWeb();
+    token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+
 
   filtre ="";
   nom="nom";
   asc="asc";
 
+
   constructor(
   		 private location: Location,
          private route:ActivatedRoute,
-         private router: Router) { }
+         private router: Router
+         ) { }
 
   ngOnInit() {
-  	this.portefeuille= [{nom:"Ndiaye", prenom:"naby", tel:772222222, periodicite:"journalier", fidelite:8},
-  						{nom:"ndiaye", prenom:"khady", tel:772233332, periodicite:"hebdomadaire", fidelite:1}];
 
-  	this.relance= [{noms:"Sarr", prenoms:"fatou", tels:772222222, service:"assurance", echeance:"08/04/2017"},
-  						{noms:"khady", prenoms:"ndiaye", tels:772233332, service:"commerce", echeance:"02/03/2017"}];
-
-    this.promotion= [{noms:"Diagne", prenoms:"Awa", tels:772222222, periofidel:"journalier", services:"e-commerce"},
-  						{noms:"Sall", prenoms:"Michelle", tels:772233332, periofidel:"3", services:"assurance"}];
-
-  	this.prospection= [{noms:"ka", prenoms:"Assane", tels:772222222, detail:"envoie d'argent postcash"},
-  						{noms:"Sarr", prenoms:"Maguette", tels:772233332, detail:"paiement facture orange"}];
-
-    this.suivicommande= [{noms:"badiane", prenoms:"charly", pointderecup:"dimalaye villa 188E", mntcommande:20000, detail:"vente de chaussures pour homme", etat:"reçu"},
-  						{noms:"sané", prenoms:"jacob", pointderecup:"brioche dorée diamalaye", mntcommande:10000, detail:"vente de maillots pour enfant", etat:"en attente"}];
+      
 
 
+  	this.crmServiceWeb.portefeuille(this.token).then(crmserviceList => {
+        this.portefeuille = crmserviceList;
+        console.log(JSON.stringify(this.portefeuille));
+      });
+
+    
+    
+  }
+
+  relanceMeth(){
+  	
+  	this.crmServiceWeb.relance(this.token).then(crmserviceList => {
+        this.relance = crmserviceList;
+        console.log( JSON.stringify(this.relance));
+      });
 
   }
 
-  relanceMeth(){}
+  promotionMeth(){
+  	this.crmServiceWeb.promotion(this.token).then(crmserviceList => {
+		        this.promotion = crmserviceList;
+		        console.log(JSON.stringify(this.promotion));
+		      });
+  }
 
-  promotionMeth(){}
+  getNom(infosop : string ){
+  	return JSON.parse(infosop).nom ;
+  }
+
+  getPrenom(infosop:string){
+  	return JSON.parse(infosop).prenom;
+  }
+
+  getTelephone(infosop:string){
+  	return JSON.parse(infosop).tel;
+  }
+
+
+ 
 
   envoyersms(){}
+
+  prospect(){ 
+
+    this.crmServiceWeb.prospection(this.token).then(crmserviceList => {
+        this.prospection = crmserviceList;
+        console.log(JSON.stringify(this.prospection));
+      });
+
+  }
+
+  commandes(){
+    this.crmServiceWeb.suivicommande(this.token).then(crmserviceList => {
+        this.suivicommande = crmserviceList;
+        console.log(JSON.stringify(this.suivicommande));
+      });
+
+
+  }
 
   detail(){}
 
