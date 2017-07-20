@@ -29,11 +29,11 @@ export class ComptabiliteServiceWeb {
     this.soapService.localNameMode = true;
   }
 
-  public listevente(type : string): Promise<any>  {
+  public listevente(type : string, idpdv: number): Promise<any>  {
     var method:string = 'listevente';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type} ;
+    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams;
 
@@ -48,11 +48,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public listecharge(type : string): Promise<any>  {
+  public listecharge(type : string, idpdv: number): Promise<any>  {
     var method:string = 'listecharge';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type} ;
+    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -199,11 +199,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public listerevenu(type : string): Promise<any>  {
+  public listerevenu(type : string, idpdv: number): Promise<any>  {
     var method:string = 'listerevenu';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type} ;
+    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
