@@ -107,8 +107,8 @@
                         </div>
                         </div>
                                     
-                         <div id="ajout" class="tab-pane fade in">
-                                <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
+                         <div id="ajout" class="tab-pane fade in col-sm-6 col-xs-12">
+                                <form class="form-signin" (ngSubmit)="validerajoutercharges(pdv)" #chargeForm="ngForm">
                                     <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
                                     <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
                                     <input type="text" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
@@ -253,17 +253,17 @@
 				        </div>
 				        <div class="boutonspersonnalisation">
     				        <div class="col-sm-3 col-xs-12">
-    	                         <button style="margin-bottom: 1rem;"  class="btn btn-success"  href="#ajoutservice" data-toggle="collapse"  (click)="ajouterservice(i)">Ajouter Service</button>
+    	                         <button style="margin-bottom: 1rem;"  class="btn btn-success"  href="#ajoutservice" data-toggle="tab"  (click)="ajouterservice(i)">Ajouter Service</button>
     				        </div>
     				        <div class="col-sm-3 col-xs-8">
-    			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#modifservice" data-toggle="collapse"  (click)="modifierservice(i)">Lister Service</button>
+    			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#modifservice" data-toggle="tab"  (click)="modifierservice(i)">Lister Service</button>
     				        </div>
 				         </div>
 
 	                    <div class="col-sm-12 col-xs-12 tab-content" *ngIf="i==estselectionne">
                                     
 
-                                    <div id="ajoutservice" *ngIf="i==estselectionas">
+                                    <div id="ajoutservice" class="row tab-pane fade in">
 				                 		<form style="margin-bottom: 2rem;" class="form-signin" (ngSubmit)="validerajouterservice(pdv)" #exploitationForm="ngForm">
 
                                             <div class="row">
@@ -290,8 +290,7 @@
 								        </form>
 				       				 </div>
                                     
-                        </div>
-                        <div id="modifservice" *ngIf="i==estselectionms">
+                        <div id="modifservice" class="row tab-pane fade in">
                            <div class="col-sm-4 col-xs-12" >
                                     
                                    
