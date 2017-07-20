@@ -103,7 +103,7 @@ export class ComptabiliteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.comptabiliteServiceWeb.listecaisse('azrrtt').then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.listecaisse().then(adminmultipdvServiceWeb => {
       this.pdvCaisses = adminmultipdvServiceWeb.response; 
     });
   }
@@ -114,7 +114,7 @@ export class ComptabiliteComponent implements OnInit {
 
   approvisionnercaisse(idpdv: number){
   	this.approvisionnement="" ;
-    this.comptabiliteServiceWeb.approvisionner('azrrtt', idpdv, this.montantajoutecaisse).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.approvisionner(idpdv, this.montantajoutecaisse).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }
@@ -122,14 +122,14 @@ export class ComptabiliteComponent implements OnInit {
   
   listercharges(i){
     this.estselection = i;
-    this.comptabiliteServiceWeb.listecharge('azrrtt', this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.listecharge(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
       this.charges = adminmultipdvServiceWeb.response; 
     });
   }
 
   listerrevenus(i){
     this.estselectionr = i;
-    this.comptabiliteServiceWeb.listerevenu('azrrtt', this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.listerevenu(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
       this.revenus = adminmultipdvServiceWeb.response;
     });
   }
@@ -139,7 +139,8 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   validerajoutercharges(pdv){
-    this.comptabiliteServiceWeb.ajoutcharge('azrrtt', this.libelleCharge, pdv.idUser, this.service, this.montantCharge).then(adminmultipdvServiceWeb => {
+    console.log(pdv);
+    this.comptabiliteServiceWeb.ajoutcharge(this.libelleCharge, pdv.idUser, 'tes', this.montantCharge).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }
@@ -147,7 +148,7 @@ export class ComptabiliteComponent implements OnInit {
 
   listerventes(i){
     this.estselectionfff = i;
-    this.comptabiliteServiceWeb.listevente('azrrtt', this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.listevente(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
       this.exploitation = adminmultipdvServiceWeb.response;
     }); 
   }
@@ -171,7 +172,7 @@ export class ComptabiliteComponent implements OnInit {
     this.estselectionms = i;
     this.service = null;
     this.designationsService = [];
-    this.comptabiliteServiceWeb.listeservice('azrrtt', this.pdvCaisses[i].id).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.listeservice(this.pdvCaisses[i].id).then(adminmultipdvServiceWeb => {
       this.supservice = adminmultipdvServiceWeb.response; 
     });
   }
@@ -182,20 +183,20 @@ export class ComptabiliteComponent implements OnInit {
   }
   
   validerajouterservice(pdv:any){
-    this.comptabiliteServiceWeb.ajoutservice('azrrtt', this.service, pdv.idUser, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.ajoutservice(this.service, pdv.idUser, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }
 
   validermodifierservice(pdv:any){
-    this.comptabiliteServiceWeb.modifierservice('azrrtt', this.service, ""+JSON.stringify(this.designationsService), this.serviceamodifier().idservice).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.modifierservice(this.service, ""+JSON.stringify(this.designationsService), this.serviceamodifier().idservice).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }
  
   deleteservice(supservice:Supservice) {      
     console.log(supservice);
-    this.comptabiliteServiceWeb.supprimerservice('azrrtt', supservice.idservice).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.supprimerservice(supservice.idservice).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }

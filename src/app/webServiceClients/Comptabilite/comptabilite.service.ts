@@ -5,8 +5,8 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class ComptabiliteServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/comptapdv?wsdl' ;
+  private servicePort:string = 'http://localhost' ; 
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/comptapdv?wsdl' ;
   private targetNamespace:string = 'urn:comptapdvwsdl' ;
 
   public responseJso : any;
@@ -29,11 +29,11 @@ export class ComptabiliteServiceWeb {
     this.soapService.localNameMode = true;
   }
 
-  public listevente(type : string, idpdv: number): Promise<any>  {
+  public listevente(idpdv: number): Promise<any>  {
     var method:string = 'listevente';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
+    var reEspParams = {token: this.token, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams;
 
@@ -48,11 +48,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public listecharge(type : string, idpdv: number): Promise<any>  {
+  public listecharge(idpdv: number): Promise<any>  {
     var method:string = 'listecharge';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
+    var reEspParams = {token: this.token, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -67,11 +67,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public ajoutcharge(type: string, libelle: string, idpdv: number, service: string, montant: number): Promise<any>  {
+  public ajoutcharge(libelle: string, idpdv: number, service: string, montant: number): Promise<any>  {
     var method:string = 'ajoutcharge';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, libelle: libelle, idpdv: idpdv, service: service, montant: montant} ;
+    var reEspParams = {token: this.token, libelle: libelle, idpdv: idpdv, service: service, montant: montant} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -86,11 +86,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public supprimerservice(type : string, idsupprimer: number): Promise<any>  {
+  public supprimerservice(idsupprimer: number): Promise<any>  {
     var method:string = 'supprimerservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idsupprimer: idsupprimer} ;
+    var reEspParams = {token: this.token, idsupprimer: idsupprimer} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -105,11 +105,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public modifierservice(type : string, service : string, designations : string, idservice : number): Promise<any>  {
+  public modifierservice(service : string, designations : string, idservice : number): Promise<any>  {
     var method:string = 'modifierservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, service: service, designations: designations, idservice: idservice} ;
+    var reEspParams = {token: this.token, service: service, designations: designations, idservice: idservice} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -124,11 +124,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public ajoutservice(type : string, nom: string, idpdv: number, designations: string): Promise<any>  {
+  public ajoutservice(nom: string, idpdv: number, designations: string): Promise<any>  {
     var method:string = 'ajoutservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, nom: nom, idpdv: idpdv, designations: designations} ;
+    var reEspParams = {token: this.token, nom: nom, idpdv: idpdv, designations: designations} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -143,11 +143,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public approvisionner(type : string, idpdv: number, montant: number): Promise<any>  {
+  public approvisionner(idpdv: number, montant: number): Promise<any>  {
     var method:string = 'approvisionner';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idpdv: idpdv, montant: montant} ;
+    var reEspParams = {token: this.token, idpdv: idpdv, montant: montant} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -161,11 +161,11 @@ export class ComptabiliteServiceWeb {
     });   
   }
 
-  public listecaisse(type : string): Promise<any>  {
+  public listecaisse(): Promise<any>  {
     var method:string = 'listecaisse';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type} ;
+    var reEspParams = {token: this.token} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -180,11 +180,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public listeservice(type : string, idpdv: number): Promise<any>  {
+  public listeservice(idpdv: number): Promise<any>  {
     var method:string = 'listeservice';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
+    var reEspParams = {token: this.token, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -199,11 +199,11 @@ export class ComptabiliteServiceWeb {
       
   }
 
-  public listerevenu(type : string, idpdv: number): Promise<any>  {
+  public listerevenu(idpdv: number): Promise<any>  {
     var method:string = 'listerevenu';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idpdv: idpdv} ;
+    var reEspParams = {token: this.token, idpdv: idpdv} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
