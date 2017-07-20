@@ -14,6 +14,7 @@ class PdvCaisse{
   caisse : number ;
   prenom : number ;
 	id : number ;
+  idpdv:number;
 }
 
 class Charges{
@@ -46,6 +47,11 @@ class Exploitation{
   design:string;
 } 
 
+class Designation{
+  name:string;
+  stock:number;
+  prixunitaire:number;
+}
 
 
 
@@ -61,8 +67,8 @@ export class ComptabiliteComponent implements OnInit {
   montantCharge : number ;
 
   service : string ;
-  designations: string;
-  adesignations: string;
+  designationsService: Designation[] = [];
+  nbreDesignation:number = 0;
 
   approvisionnement = "" ;
   estselectionne:number;
@@ -74,6 +80,7 @@ export class ComptabiliteComponent implements OnInit {
   estselectionss:number;
   montreautredesignation:number;
   estselectionmods:number = -1;
+  
   charges:Charges[];
   revenus:Revenus[];
   exploitation:Exploitation[];
@@ -97,9 +104,6 @@ export class ComptabiliteComponent implements OnInit {
 
   ngOnInit() {
 
-    this.comptabiliteServiceWeb.listeservice('azrrtt').then(adminmultipdvServiceWeb => {
-      this.supservice = adminmultipdvServiceWeb.response; 
-    });
     this.comptabiliteServiceWeb.listecaisse('azrrtt').then(adminmultipdvServiceWeb => {
       this.pdvCaisses = adminmultipdvServiceWeb.response; 
     });
@@ -122,7 +126,7 @@ export class ComptabiliteComponent implements OnInit {
   approvisionnercaisse(idpdv: number){
   	this.approvisionnement="" ;
     this.comptabiliteServiceWeb.approvisionner('azrrtt', idpdv, this.montantajoutecaisse).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
 
@@ -136,80 +140,62 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   ajoutercharges(i){
-<<<<<<< HEAD
-
-    this.estselectionne = i;
-=======
     this.estselectionf = i;
     console.log(i);
->>>>>>> 5ae6851d8d8416742ec6549fceadceb45e84b410
   }
 
   validerajoutercharges(pdv){
     this.comptabiliteServiceWeb.ajoutcharge('azrrtt', this.libelleCharge, pdv.idUser, this.service, this.montantCharge).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
 
 
   listerventes(i){
-<<<<<<< HEAD
     this.estselectionne = i;
-
   }
 
-  ajouterservice(i){
-    this.estselectionne = i;
-
-  }
-
-  modifierservice(i){
-    this.estselectionne = i;
-
-=======
-    this.estselectionfff = i;
+  ajouterdesignation(){
+    this.designationsService.push(new Designation());
   }
 
   ajouterservice(i){
     this.estselectionas = i;
+    this.service = null;
+    this.designationsService = [];
+    this.designationsService.push(new Designation());
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   modifierservice(i){
     this.estselectionms = i;
->>>>>>> 5ae6851d8d8416742ec6549fceadceb45e84b410
   }
 
   supprimerservice(i){
     this.estselectionne = i;
-
-  }
-  
-  serviceamodifier(){
-    return this.supservice[this.estselectionmods];
-  }
-
-  modifyservice(i)
-  {
-    this.estselectionmods=i;
-
-  }
-  autredesignation(i){
-    this.montreautredesignation=i;
-  }
-
-  validerajouterservice(pdv:any){
-    console.log(pdv);
-    let designation = this.designations;
-    if( this.adesignations != undefined){
-      designation = designation +'--'+ this.adesignations;
-    }
-    this.comptabiliteServiceWeb.ajoutservice('azrrtt', this.service, pdv.idUser, designation).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+    this.service = null;
+    this.designationsService = [];
+    this.comptabiliteServiceWeb.listeservice('azrrtt', this.pdvCaisses[i].id).then(adminmultipdvServiceWeb => {
+      this.supservice = adminmultipdvServiceWeb.response; 
     });
   }
 
-  validermodifierservice(){
-    this.comptabiliteServiceWeb.modifierservice('azrrtt', this.serviceamodifier().services, this.serviceamodifier().idservice).then(adminmultipdvServiceWeb => {
+  effacerunedesignation(i){
+    this.estselectionss = i;
+    this.designationsService = this.designationsService.filter(item => item !==this.designationsService[i]);
+  }
+  
+  validerajouterservice(pdv:any){
+    this.comptabiliteServiceWeb.ajoutservice('azrrtt', this.service, pdv.idUser, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
+      // console.log(adminmultipdvServiceWeb); 
+    });
+  }
+
+  validermodifierservice(pdv:any){
+    this.comptabiliteServiceWeb.modifierservice('azrrtt', this.service, ""+JSON.stringify(this.designationsService), this.serviceamodifier().idservice).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }
@@ -217,8 +203,23 @@ export class ComptabiliteComponent implements OnInit {
   deleteservice(supservice:Supservice) {      
     console.log(supservice);
     this.comptabiliteServiceWeb.supprimerservice('azrrtt', supservice.idservice).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
 
+  serviceamodifier(){
+    return this.supservice[this.estselectionmods];
+  }
+
+  modifyservice(i)
+  {
+    this.estselectionmods=i;
+    this.service = this.supservice[i].services;
+    this.designationsService = JSON.parse(this.supservice[i].design);
+  }
+  autredesignation(i){
+    this.montreautredesignation=i;
+  }
+
+  
 }
