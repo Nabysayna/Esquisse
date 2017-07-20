@@ -23,12 +23,6 @@ export class AdminpdvMonitoringComponent implements OnInit {
       this.monitoringAdminpdvDeposit = adminpdvServiceWebList; 
     });
 
-    this.adminpdvServiceWeb.consommationdepositservice('azrrtt').then(adminpdvServiceWebList => {
-      console.log(adminpdvServiceWebList); 
-      this.monitoringAdminpdvConsommationDepositService = adminpdvServiceWebList;
-    });
-
-
   }
 
 

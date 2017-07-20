@@ -24,13 +24,9 @@ export class AdminpdvDashboardComponent implements OnInit {
       this.adminpdvDashboardNbreReclVente = adminpdvServiceWebList.response ;
     });
     
-    this.adminpdvServiceWeb.montanttransfertservice('azrrtt').then(adminpdvServiceWebList => {
-      // console.log(adminpdvServiceWebList);
-      this.adminpdvDashboardMontantTransfertParservices = adminpdvServiceWebList ;
-    });
-    
     this.adminpdvServiceWeb.performancepdv('azrrtt').then(adminpdvServiceWebList => {
-      // this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList 
+      console.log(adminpdvServiceWebList); 
+      this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList; 
     });
   }
   

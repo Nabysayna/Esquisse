@@ -33,7 +33,26 @@ export class AdminpdvServiceWeb {
   }
 
 
-  public deconnectpdv(type : string, idpdv: number): Promise<any>  {
+  public deconnectpdv(idpdv: number): Promise<any>  {
+    var method:string = 'deconnectpdv';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, idpdv: idpdv};
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['deconnectpdv xmlns="urn:adminpdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'deconnectpdvResponse').then(response=>{
+        var reponse = JSON.parse(response['deconnectpdvResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public detailperformancepdv(type: string, idpdv: number): Promise<any>  {
     var method:string = 'deconnectpdv';
     var parameters:{}[] = [];
 
@@ -89,11 +108,11 @@ export class AdminpdvServiceWeb {
     });   
       
   }
-  public modifypdv(type: string, idpdv: number, modifydata: string): Promise<any>  {
+  public modifypdv( idpdv: number, modifydata: string): Promise<any>  {
     var method:string = 'modifypdv';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, type: type, idpdv: idpdv, modifydata: modifydata} ;
+    var reEspParams = {token: this.token, idpdv: idpdv, modifydata: modifydata} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
@@ -146,25 +165,6 @@ export class AdminpdvServiceWeb {
       
   }
 
-  public montanttransfertservice(type : string): Promise<any>  {
-    var method:string = 'montanttransfertservice';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['montanttransfertservice xmlns="urn:adminpdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'montanttransfertserviceResponse').then(response=>{
-        var reponse = JSON.parse(response['montanttransfertserviceResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
   public performancepdv(type : string): Promise<any>  {
     var method:string = 'performancepdv';
     var parameters:{}[] = [];
@@ -197,44 +197,6 @@ export class AdminpdvServiceWeb {
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'notificationsResponse').then(response=>{
         var reponse = JSON.parse(response['notificationsResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
-  public consommationdepositservice(type : string): Promise<any>  {
-    var method:string = 'consommationdepositservice';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['consommationdepositservice xmlns="urn:adminpdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'consommationdepositserviceResponse').then(response=>{
-        var reponse = JSON.parse(response['consommationdepositserviceResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
-  public consommationdepositpdv(type : string): Promise<any>  {
-    var method:string = 'consommationdepositpdv';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['consommationdepositpdv xmlns="urn:adminpdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'consommationdepositpdvResponse').then(response=>{
-        var reponse = JSON.parse(response['consommationdepositpdvResponse'].return.$);
         resolve(reponse) ;
       }); 
     });   
