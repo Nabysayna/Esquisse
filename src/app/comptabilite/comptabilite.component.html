@@ -111,7 +111,7 @@
                                 <form class="form-signin" (ngSubmit)="ajouterCharge()" #chargeForm="ngForm">
                                     <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
                                     <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
-                                    <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
+                                    <input type="text" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
 
                                     <button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
                                 </form>
@@ -174,15 +174,18 @@
 
 			           <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
-				        <div class="col-sm-3 col-xs-12">
-			                <label>{{pdv.nom}}</label>
-				        </div>
-				        <div class="col-sm-3 col-xs-12">
-				        <div class="col-sm-3 col-xs-12">
-	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerventes(i)">Consulter</button>
-				        </div>
-				      
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-12">
+        			                <label>{{pdv.nom}}</label>
+        				        </div>
+        				        <div class="col-sm-3 col-xs-12">
+        	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerventes(i)">Consulter</button>
+                                </div>
+                                <div class="col-sm-3 col-xs-12"></div>
+                            </div>
 
+                        <div class="row">
 	                    <div class="col-sm-12 col-xs-12" *ngIf="i==estselectionne">
                                     
                              <div id="exp" >
@@ -232,9 +235,11 @@
 			                </div>
 			                            <!-- /.table-responsive -->
                         </div>
-                                    </div>
+                            </div>
                                     
                         </div>
+                    </div>
+
 				   
 			    </div>	
                 </div>  

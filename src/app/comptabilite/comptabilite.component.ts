@@ -107,16 +107,7 @@ export class ComptabiliteComponent implements OnInit {
     this.comptabiliteServiceWeb.listecaisse('azrrtt').then(adminmultipdvServiceWeb => {
       this.pdvCaisses = adminmultipdvServiceWeb.response; 
     });
-    this.comptabiliteServiceWeb.listecharge('azrrtt').then(adminmultipdvServiceWeb => {
-      this.charges = adminmultipdvServiceWeb.response;
-    });
-    this.comptabiliteServiceWeb.listevente('azrrtt').then(adminmultipdvServiceWeb => {
-      this.exploitation = adminmultipdvServiceWeb.response;
-    });
-    this.comptabiliteServiceWeb.listerevenu('azrrtt').then(adminmultipdvServiceWeb => {
-      this.revenus = adminmultipdvServiceWeb.response;
-    });
-    
+   
   }
 
   isActif(nomPdv : string) : boolean{
@@ -133,10 +124,16 @@ export class ComptabiliteComponent implements OnInit {
   
   listercharges(i){
     this.estselectionne = i;
+    this.comptabiliteServiceWeb.listecharge('azrrtt').then(adminmultipdvServiceWeb => {
+      this.charges = adminmultipdvServiceWeb.response;
+    });
   }
 
   listerrevenus(i){
     this.estselectionne = i;
+    this.comptabiliteServiceWeb.listerevenu('azrrtt').then(adminmultipdvServiceWeb => {
+      this.revenus = adminmultipdvServiceWeb.response;
+    });
   }
 
   ajoutercharges(i){
@@ -145,7 +142,7 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   validerajoutercharges(pdv){
-    this.comptabiliteServiceWeb.ajoutcharge('azrrtt', this.libelleCharge, pdv.idUser, this.service, this.montantCharge).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.ajoutcharge('azrrtt', this.libelleCharge, pdv.idpdv, this.service, this.montantCharge).then(adminmultipdvServiceWeb => {
       // console.log(adminmultipdvServiceWeb); 
     });
   }
@@ -153,6 +150,9 @@ export class ComptabiliteComponent implements OnInit {
 
   listerventes(i){
     this.estselectionne = i;
+    this.comptabiliteServiceWeb.listevente('azrrtt').then(adminmultipdvServiceWeb => {
+      this.exploitation = adminmultipdvServiceWeb.response;
+    });
   }
 
   ajouterdesignation(){

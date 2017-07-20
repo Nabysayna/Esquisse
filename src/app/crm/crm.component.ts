@@ -24,7 +24,8 @@ export class CrmComponent implements OnInit {
   public suivicommande:Suivicommande[];
 	public portefeuille:Portefeuille[];
 	private crmServiceWeb:CrmServiceWeb = new CrmServiceWeb();
-    token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+  loading = false ;
 
 
   filtre ="";
@@ -39,27 +40,32 @@ export class CrmComponent implements OnInit {
          ) { }
 
   ngOnInit() {
+      this.loading = true ;
+
     this.crmServiceWeb.portefeuille(this.token).then(crmserviceList => {
         this.portefeuille = crmserviceList;
-        console.log(JSON.stringify(this.portefeuille));
+        this.loading = false ;
       });  
   }
 
 
 
   relanceMeth(){
+    this.loading = true ;
   	
   	this.crmServiceWeb.relance(this.token).then(crmserviceList => {
         this.relance = crmserviceList;
-        console.log( JSON.stringify(this.relance));
+        this.loading = false ;
       });
 
   }
 
   promotionMeth(){
+      this.loading = true ;
+
   	this.crmServiceWeb.promotion(this.token).then(crmserviceList => {
 		        this.promotion = crmserviceList;
-		        console.log(JSON.stringify(this.promotion));
+	          this.loading = false ;
 		      });
   }
 
@@ -79,17 +85,20 @@ export class CrmComponent implements OnInit {
   envoyersms(){}
 
   prospect(){ 
+      this.loading = true ;
 
     this.crmServiceWeb.prospection(this.token).then(crmserviceList => {
         this.prospection = crmserviceList;
-        console.log(JSON.stringify(this.prospection));
+          this.loading = false ;
       });
   }
 
   commandes(){
+      this.loading = true ;
+
     this.crmServiceWeb.suivicommande(this.token).then(crmserviceList => {
         this.suivicommande = crmserviceList;
-        console.log(JSON.stringify(this.suivicommande));
+          this.loading = false ;
       });
   }
 
