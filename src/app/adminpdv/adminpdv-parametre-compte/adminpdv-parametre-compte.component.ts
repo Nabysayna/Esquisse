@@ -57,7 +57,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   public validermodif():void {
     console.log(this.password +" "+ this.confirmPassword);
     if(this.password == this.confirmPassword) {
-      this.adminpdvServiceWeb.modifypdv('token', this.modifuserpdv.idpdv, this.password).then(adminpdvServiceWebList => {
+      this.adminpdvServiceWeb.modifypdv(this.modifuserpdv.idpdv, this.password).then(adminpdvServiceWebList => {
         console.log(adminpdvServiceWebList);
       });
       this.password= null;
@@ -72,7 +72,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
 
   public deconnectionsession(pdv):void {
     console.log(pdv);
-    this.adminpdvServiceWeb.deconnectpdv('sfsdf', pdv.idpdv).then(adminpdvServiceWebList => {
+    this.adminpdvServiceWeb.deconnectpdv(pdv.idpdv).then(adminpdvServiceWebList => {
       console.log(adminpdvServiceWebList);
     });
   }
