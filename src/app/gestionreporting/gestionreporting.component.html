@@ -1,6 +1,6 @@
 <div class="col-sm-12">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading" >
             GESTION & REPORTING
         </div>
         <!-- /.panel-heading -->
@@ -9,9 +9,9 @@
             <ul class="nav nav-pills">
                 <li class="active"><a href="#historique" data-toggle="tab">Historique des Opérations</a>
                 </li>
-                <li><a id="elec" href="#charges" data-toggle="tab">Charges</a>
+                <li><a id="elec" href="#charges" data-toggle="tab">Dépenses</a>
                 </li>
-                <li><a id="elec" href="#ventes" data-toggle="tab">Ventes</a>
+                <li><a id="elec" href="#ventes" data-toggle="tab">Recettes</a>
                 </li>
                 <li><a id="elec" href="#reclamation" data-toggle="tab">Réclamations</a>
                 </li>
@@ -58,7 +58,7 @@
                                             <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
                                            <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
 
-                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validCharge.form.valid" >Valider</button></div>
+                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!validCharge.form.valid" >Valider</button></div>
                                         </form>
                     
                     </div>
@@ -76,7 +76,7 @@
                                             <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
                                            <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
 
-                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validvente.form.valid" >Valider</button>
+                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" [disabled]="!validvente.form.valid" >Valider</button>
                                             </div>
                         </form>
                     </div>
@@ -94,7 +94,7 @@
                                            <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujetreclam"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
                                             <input type="number" [(ngModel)]="descripreclam"   name="descrip" id="descrip" class="form-control" placeholder="description réclamation" required>
 
-                                            <div class="col-sm-3 col-xs-12" ><button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!validreclamation.form.valid" >Envoyer</button></div>
+                                            <div class="col-sm-3 col-xs-12" ><button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!validreclamation.form.valid" >Envoyer</button></div>
                         </form>
                         
                     </div>

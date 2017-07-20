@@ -4,14 +4,14 @@
             <h1 class="page-header">Gestion Clientèle</h1> 
                
 	            <div class="row" style="margin-bottom: 3rem;">
-                    <div class="col-sm-offset-2 col-sm-8 col-xs-12">
-	                <div class="col-sm-3 col-xs-6"><a class="active" href="#portefeuille" data-toggle="tab">Portefeuille</a>
+                    <div class="col-sm-offset-1 col-sm-10 col-xs-12">
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#portefeuille" data-toggle="tab">Portefeuille</a>
 	                </div>
-	                <div class="col-sm-3 col-xs-6"><a href="#suivi" data-toggle="tab">Suivi</a></div>
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#suivi" data-toggle="tab">Suivi</a></div>
 	               
-	                <div class="col-sm-3 col-xs-6"><a href="#prospection" data-toggle="tab" (click)="prospect()">Prospection</a></div>
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#prospection" data-toggle="tab" (click)="prospect()">Prospection</a></div>
 	           
-	                <div class="col-sm-3 col-xs-6"><a href="#suivicommande" data-toggle="tab" (click)="commandes()">Suivi Commandes</a></div>
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#suivicommande" data-toggle="tab" (click)="commandes()">Suivi Commandes</a></div>
 	               </div>
 	            
 	            </div>
@@ -255,6 +255,11 @@
 	
         </div>
     </div>	
+
+</div>
+
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
 </div>
 
 

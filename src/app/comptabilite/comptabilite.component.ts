@@ -71,7 +71,7 @@ export class ComptabiliteComponent implements OnInit {
   nbreDesignation:number = 0;
 
   approvisionnement = "" ;
-  estselection:number;
+  estselectionne:number = -1;
   estselectionr:number;
   estselectionf:number;
   estselectionfff:number;
@@ -121,7 +121,8 @@ export class ComptabiliteComponent implements OnInit {
 
   
   listercharges(i){
-    this.estselection = i;
+
+    this.estselectionne = i ;
     this.comptabiliteServiceWeb.listecharge(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
       this.charges = adminmultipdvServiceWeb.response; 
     });
@@ -129,6 +130,7 @@ export class ComptabiliteComponent implements OnInit {
 
   listerrevenus(i){
     this.estselectionr = i;
+    this.estselectionne = i ;
     this.comptabiliteServiceWeb.listerevenu(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
       this.revenus = adminmultipdvServiceWeb.response;
     });
@@ -136,6 +138,7 @@ export class ComptabiliteComponent implements OnInit {
 
   ajoutercharges(i){
     this.estselectionf = i;
+    this.estselectionne = i ;
   }
 
   validerajoutercharges(pdv){
@@ -146,6 +149,7 @@ export class ComptabiliteComponent implements OnInit {
 
 
   listerventes(i){
+    this.estselectionne = i ;
     this.estselectionfff = i;
     this.comptabiliteServiceWeb.listevente(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
       this.exploitation = adminmultipdvServiceWeb.response;
@@ -157,6 +161,7 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   ajouterservice(i){
+    this.estselectionne = i ;
     this.estselectionas = i;
     this.service = null;
     this.designationsService = [];
@@ -168,7 +173,12 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   modifierservice(i){
+    this.estselectionne = i ;
     this.estselectionms = i;
+  }
+
+  supprimerservice(i){
+    this.estselectionne = i;
     this.service = null;
     this.designationsService = [];
     this.comptabiliteServiceWeb.listeservice(this.pdvCaisses[i].id).then(adminmultipdvServiceWeb => {
@@ -177,6 +187,7 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   effacerunedesignation(i){
+    this.estselectionne = i ;
     this.estselectionss = i;
     this.designationsService = this.designationsService.filter(item => item !==this.designationsService[i]);
   }
@@ -206,11 +217,13 @@ export class ComptabiliteComponent implements OnInit {
 
   modifyservice(i)
   {
+    this.estselectionne = i ;
     this.estselectionmods=i;
     this.service = this.supservice[i].services;
     this.designationsService = JSON.parse(this.supservice[i].design);
   }
   autredesignation(i){
+    this.estselectionne = i ;
     this.montreautredesignation=i;
   }
 

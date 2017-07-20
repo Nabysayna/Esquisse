@@ -30,6 +30,39 @@
 	margin-bottom: 2rem;
 }
 
+.activeatag.active {
+	padding: 1rem ;
+	background-color: #286090 ;
+	border-radius: 4px 4px 4px 4px ;
+	color : white;
+	text-decoration: none;
+}
+
+.activeatag:visited{
+	padding: 1rem ;
+	background-color: transparent !important;
+	color : #286090;
+	border-radius: 4px 4px 4px 4px ;
+	text-decoration: none;
+}
+
+
+.activeatag:active {
+	padding: 1rem ;
+	background-color: #286090 ;
+	border-radius: 4px 4px 4px 4px ;
+	color : white;
+	text-decoration: none;
+}
+
+.activeatag:focus {
+	padding: 1rem ;
+	background-color: #286090 ;
+	border-radius: 4px 4px 4px 4px ;
+	color : white;
+	text-decoration: none;
+}
+
 #validcharge{
 	margin-left: 1rem ;
 }

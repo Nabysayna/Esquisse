@@ -1,4 +1,4 @@
-<div class="row" id="ecomhome">
+<div class="row" id="ecomhome" >
   <div class="col-sm-4 extremite">
   	<a class="btn ecomBtn" href="#ecomcatalogue" data-toggle="tab">Catalogue</a>
   </div> 
@@ -21,16 +21,19 @@
         	<app-espace-perso></app-espace-perso>
 	    </div>
 
-      <div class="row tab-pane fade col-sm-12 col-xs-12" id="prisecom">
-            <form (ngSubmit)="demandeprt()" #dpret="ngForm">
+      <div class="row tab-pane fade col-sm-offset-2 col-sm-8 col-xs-12" style="margin-top: 3rem ; background-color:#f8f8f8;" id="prisecom">
 
-                <label class=" control-label">Saisissez le code du client </label>
+      <div class="col-sm-3 col-xs-12" style="text-align: right; padding-top : 1.5rem ;">
+                <label class=" control-label">Code du client </label>
+      </div>
 
-            <input type="number" [(ngModel)]="this.mntp"   name="mntp" id="mntp" class="form-control" placeholder="montant demandé" required>
-
-            <br><button class="btn btn-success" type="submit" [disabled]="!dpret.form.valid" >
-            Validation</button>
-            </form>
+      <div class="col-sm-6 col-xs-12" style="text-align: center;">
+            <input type="text" [(ngModel)]="codecmd"   name="codecmd" id="codecmd" class="form-control" placeholder="Code passé au client après commande." required>
+      </div>
+      <div class="col-sm-3 col-xs-12" style="text-align: left; padding-top : 1rem ;">
+            <button class="btn btn-success" (click)="recupInfosCmd()"  >
+            Valider</button>
+      </div>
     </div>
 
 </div>

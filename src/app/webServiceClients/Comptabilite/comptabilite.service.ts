@@ -6,7 +6,7 @@ import {SoapService} from "../../soap.service";
 export class ComptabiliteServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/comptapdv?wsdl' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/comptapdv?wsdl' ;
   private targetNamespace:string = 'urn:comptapdvwsdl' ;
 
   public responseJso : any;
