@@ -139,8 +139,7 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   validerajoutercharges(pdv){
-    console.log(pdv);
-    this.comptabiliteServiceWeb.ajoutcharge(this.libelleCharge, pdv.idUser, 'tes', this.montantCharge).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.ajoutcharge(this.libelleCharge, pdv.idpdv, this.service, this.montantCharge).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }
@@ -183,7 +182,7 @@ export class ComptabiliteComponent implements OnInit {
   }
   
   validerajouterservice(pdv:any){
-    this.comptabiliteServiceWeb.ajoutservice(this.service, pdv.idUser, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.ajoutservice(this.service, pdv.idpdv, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
       console.log(adminmultipdvServiceWeb); 
     });
   }
