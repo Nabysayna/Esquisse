@@ -13,10 +13,8 @@
 	           
 	                <li><a href="#personnalisation" data-toggle="tab">Personnalisation</a></li>
 	               
-	            
 	            </ul>
                
-
             <div class="tab-content">
 
 			    <div class="tab-pane fade in active" id="caisse" >
@@ -45,25 +43,27 @@
 		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
 				        <div class="col-sm-3 col-xs-4">
-			                <label>{{pdv.nom}}</label>
+			                <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.nom}} </label> </button>
 				        </div>
 				        <div class="col-sm-3 col-xs-12">
-	                         <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#listc" data-toggle="collapse"  (click)="listercharges(i)">Lister Charges</button>
+	                         <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#listc" data-toggle="tab"  (click)="listercharges(i)">Lister Charges</button>
 				        </div>
 				        <div class="col-sm-3 col-xs-8">
-			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#ajout" data-toggle="collapse"  (click)="ajoutercharges(i)">
+			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#ajout" data-toggle="tab"  (click)="ajoutercharges(i)">
 			                 Ajouter Charge
 			                 </button>
 				        </div>
 				         <div class="col-sm-3 col-xs-12">
-	                         <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#listr" data-toggle="collapse"  (click)="listerrevenus(i)">Lister Revenus</button>
+	                         <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#listr" data-toggle="tab"  (click)="listerrevenus(i)">Lister Revenus</button>
 				        </div>
 
-	                    <div class="col-sm-12 col-xs-6" >
+	                    <div class="col-sm-12 col-xs-12 tab-content" *ngIf="i==estselectionne">
                                     
-                                    <div id="listc" *ngIf="i==estselection">
-                                        
-                                           <div class="panel-body">
+                        <div id="vide">
+                        </div>
+
+                            <div id="listc"  class="tab-pane fade in" >    
+                            <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
                             	<div class="row">
                             		<div class="col-sm-12">
@@ -105,27 +105,19 @@
 			                    </div>
 			                </div>
                         </div>
-                                    </div>
+                        </div>
                                     
+                         <div id="ajout" class="tab-pane fade in col-sm-6 col-xs-12">
+                                <form class="form-signin" (ngSubmit)="validerajoutercharges(pdv)" #chargeForm="ngForm">
+                                    <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
+                                    <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
+                                    <input type="text" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
+
+                                    <button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
+                                </form>
                         </div>
-
-                        <div class="col-sm-12 col-xs-12" >
-                                 <div id="ajout" *ngIf="i==estselectionf">
-                                        <form class="form-signin" (ngSubmit)="validerajoutercharges(pdv)" #chargeForm="ngForm">
-                                            <input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required>
-                                            <input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required>
-                                            <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required>
-
-                                            <button id="validcharge" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!chargeForm.form.valid" >Enregister</button>
-                                        </form>
-                        </div>
-
-                        </div>
-
-
-                           <div class="col-sm-12 col-xs-6" >
                                     
-                                    <div id="listr" *ngIf="i==estselectionr">
+                        <div id="listr" class="tab-pane fade in" >
                                         
                                            <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
@@ -169,12 +161,12 @@
 			                    </div>
 			                </div>
                         </div>
-                                    </div>
+                        </div>
+
+                        </div>
                                     
                         </div>
 				        
-				        
-			    </div>	
 			    </div>	
 
 
@@ -182,17 +174,21 @@
 
 			           <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
-				        <div class="col-sm-3 col-xs-4">
-			                <label>{{pdv.nom}}</label>
-				        </div>
-				        <div class="col-sm-3 col-xs-12">
-	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerventes(i)">Consulter</button>
-				        </div>
-				      
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-12">
+        			                <label>{{pdv.nom}}</label>
+        				        </div>
+        				        <div class="col-sm-3 col-xs-12">
+        	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerventes(i)">Consulter</button>
+                                </div>
+                                <div class="col-sm-3 col-xs-12"></div>
+                            </div>
 
-	                    <div class="col-sm-12 col-xs-6" >
+                        <div class="row">
+	                    <div class="col-sm-12 col-xs-12" *ngIf="i==estselectionne">
                                     
-                                    <div id="exp" *ngIf="i==estselectionfff">
+                             <div id="exp" >
                                         
                                            <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dataTables-example_wrapper">
@@ -239,31 +235,35 @@
 			                </div>
 			                            <!-- /.table-responsive -->
                         </div>
-                                    </div>
+                            </div>
                                     
                         </div>
+                    </div>
+
 				   
 			    </div>	
-			    </div>	
+                </div>  
+                </div>  
 
 			    <div class="row tab-pane fade in" id="personnalisation">
 			         <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
-				        <div class="col-sm-3 col-xs-4">
-			                <label>{{pdv.nom}}</label>
+				        <div class="col-sm-3 col-xs-6">
+                            <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.nom}} </label> </button>
 				        </div>
 				        <div class="boutonspersonnalisation">
     				        <div class="col-sm-3 col-xs-12">
-    	                         <button style="margin-bottom: 1rem;"  class="btn btn-success"  href="#ajoutservice" data-toggle="collapse"  (click)="ajouterservice(i)">Ajouter Service</button>
+    	                         <button style="margin-bottom: 1rem;"  class="btn btn-success"  href="#ajoutservice" data-toggle="tab"  (click)="ajouterservice(i)">Ajouter Service</button>
     				        </div>
     				        <div class="col-sm-3 col-xs-8">
-    			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#modifservice" data-toggle="collapse"  (click)="modifierservice(i)">Lister Service</button>
+    			                 <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#modifservice" data-toggle="tab"  (click)="modifierservice(i)">Lister Service</button>
     				        </div>
 				         </div>
 
-	                    <div class="col-sm-12 col-xs-6" >
+	                    <div class="col-sm-12 col-xs-12 tab-content" *ngIf="i==estselectionne">
                                     
-                                    <div id="ajoutservice" *ngIf="i==estselectionas">
+
+                                    <div id="ajoutservice" class="row tab-pane fade in">
 				                 		<form style="margin-bottom: 2rem;" class="form-signin" (ngSubmit)="validerajouterservice(pdv)" #exploitationForm="ngForm">
 
                                             <div class="row">
@@ -286,11 +286,11 @@
                                             <div class="row text-center">
                                                 <button id="validservice" class="btn btn-primary" type="submit" [disabled]="!exploitationForm.form.valid" >Ajouter</button>
                                             </div>
+
 								        </form>
 				       				 </div>
                                     
-                        </div>
-                        <div id="modifservice" *ngIf="i==estselectionms">
+                        <div id="modifservice" class="row tab-pane fade in">
                            <div class="col-sm-4 col-xs-12" >
                                     
                                    

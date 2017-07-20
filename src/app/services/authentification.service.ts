@@ -24,9 +24,9 @@ export class AuthenticationService {
       return new Promise( (resolve, reject)=> {
             this.authentiService.authentifier(email, password).then( response => { 
                 console.log("Reponse du serveur : "+response) ;
-                if( response == 'true' ){
+                if( response != 'false' ){
                     console.log("Has been granted by the server") ;
-                    resolve("granted");
+                    resolve(response);
                 } else {
                     resolve("rejected");
 

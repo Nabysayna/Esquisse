@@ -19,14 +19,29 @@
                         Login</button>
                     
                 </form>
-
+                
             </div>
 
             <div class="account-wall" *ngIf="!phase1">
 
+                <div style="text-align: center;" class="figcontainer">
+                    <figure class="circle"> <a class="figureatag" (click)="saisietoken='1'" class="btn"><b>{{l1}}</b></a> </figure>    
+                    <figure class="circle"> <a class="figureatag" (click)="saisietoken='2'" class="btn"><b>{{l2}}</b></a> </figure>
+                    <figure class="circle"> <a class="figureatag" (click)="saisietoken='3'" class="btn"><b>{{l3}}</b></a> </figure>
+                    <figure class="circle"> <a class="figureatag" (click)="saisietoken='4'" class="btn"><b>{{l4}}</b></a> </figure>
+                </div>
+                <div style="text-align: center;" class="figcontainer" *ngIf="saisietoken" id="tokencolmn">
+                    <figure class="circlesub" *ngIf="saisietoken=='1'"> <a class="figureatag" href="#"><b>{{c1}}</b></a> </figure>    
+                    <figure class="circlesub" *ngIf="saisietoken=='2'"> <a class="figureatag" href="#"><b>{{c2}}</b></a> </figure>
+                    <figure class="circlesub" *ngIf="saisietoken=='3'"> <a class="figureatag" href="#"><b>{{c3}}</b></a> </figure>
+                    <figure class="circlesub" *ngIf="saisietoken=='4'"> <a class="figureatag" href="#"><b>{{c4}}</b></a> </figure>
+                </div>
+
                 <form class="form-signin" (ngSubmit)="authentificateBySMS()" #heroNextForm="ngForm">
                     <div [hidden]="this.phase2fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
 
+<!--                     <div >{{backstring}}</div>
+ -->
                     <input type="text" [(ngModel)]="this.fromSMS" name="fromSMS" id="fromSMS"  class="form-control" placeholder="SMS code" required autofocus>
 
                     <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!heroNextForm.form.valid" >Se Connecter</button>

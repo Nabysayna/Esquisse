@@ -41,6 +41,7 @@ export class EspacePersoComponent implements OnInit {
 
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   nomImage : string ;
+  categoriea : string ;
   designationa: string;
   descriptiona: string ;
   prixa:number;
@@ -78,9 +79,16 @@ export class EspacePersoComponent implements OnInit {
       		for (var i=0; i<ligne.length; i++)
       			if (ligne[i].nomImg==article.nomImg)
       			{
-      				console.log(JSON.stringify(ligne[i]));
-      				ligne.splice(i,1);
-      				break;
+              this.loading = true ;
+              let artcle = JSON.stringify(ligne[i]) ;
+              let params = { article: artcle ,token: this.token } ;
+              this.ecomCaller.supprimerArticle(params).then( response =>
+                {
+                  console.log("Le serveur a répondu : "+response) ;
+                  ligne.splice(i,1);
+                  this.loading = false ;
+                });              
+                break;
       			}
       }
   }
@@ -122,7 +130,7 @@ export class EspacePersoComponent implements OnInit {
   ajouter(){ 
     this.loading = true ;
 
-      let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName }
+      let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName, categorie:this.categoriea }
       this.ecomCaller.ajouterArticle(params).then( response =>
         {
           console.log("Le serveur a répondu : "+response) ;
@@ -212,13 +220,25 @@ export class EspacePersoComponent implements OnInit {
   enregArticle(article: Article){
    this.modif="";
    this.modifart="";
-   for(var j=0; j<this.articles.length; j++){
+
+    this.loading = true ;
+
+   for(var j=0; j<this.articles.length; j++){ 
     var ligne=this.articles[j];
       for (var i=0; i<ligne.length; i++)
         if (ligne[i].nomImg==article.nomImg)
         {
-          console.log("Nom image générée : "+this.uploadFile.generatedName) ;
-          ligne[i].nomImg = this.uploadFile.originalName ;
+          if(!(this.uploadFile === undefined)){
+            console.log("Nom image générée : "+this.uploadFile.generatedName) ;
+            ligne[i].nomImg = this.uploadFile.generatedName ;
+          }
+        let artcle = JSON.stringify(ligne[i]) ;
+        let params = { article: artcle ,token: this.token } ;
+        this.ecomCaller.modifierArticle(params).then( response =>
+          {
+            console.log("Le serveur a répondu : "+response) ;
+            this.loading = false ;
+          });              
           break;
         }
     }
@@ -233,14 +253,13 @@ export class EspacePersoComponent implements OnInit {
   hasBaseDropZoneOver: boolean = false;
 
   options: Object = {
-    url: 'http://51.254.200.129/backecom/server-backend-upload/index.php'
+    url: 'http://localhost/EsquisseBackEnd/server-backend-upload/index.php'
   };
 
   sizeLimit = 2000000;
 
   handleUpload(data): void {
       this.zone.run(() => {this.uploadProgress = data.progress.percent;});
-
       if (data.response) {
       data = JSON.parse(data.response);
       this.uploadFile = data;

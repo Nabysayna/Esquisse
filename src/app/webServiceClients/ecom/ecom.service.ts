@@ -47,8 +47,8 @@ export class EcomServiceWeb {
   // private servicePath:string = '/backecom/web/app.php/invest/ecommerce?wsdl' ;
 
 
-  private servicePort:string = 'http://localhost:8888' ;
- private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
+  private servicePort:string = 'http://localhost' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 
   public responseJso : any ;
@@ -127,7 +127,45 @@ export class EcomServiceWeb {
       }); 
     });      
   }
+ 
 
+  public supprimerArticle(requestParams:{}) : Promise<string> {
+    var method:string = 'supprimerArticle'; 
+    var parameters:{}[] = []; 
+    var reEspParams = requestParams ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    return new Promise( (resolve, reject) => {
+      parameters['supprimerArticle xmlns="urn:ecommercewsdl#"'] = params ;
+
+      this.soapService.post(method, parameters, 'supprimerArticleResponse').then(response=>{
+        let wSresponse = response['supprimerArticleResponse'].return.$ ;
+        console.log("reponse brute from articles Web Service "+wSresponse ) ;
+        resolve(wSresponse) ;
+      }); 
+    });      
+  }
+
+
+
+  public modifierArticle(requestParams:{}) : Promise<string> {
+    var method:string = 'modifierArticle'; 
+    var parameters:{}[] = []; 
+    var reEspParams = requestParams ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    return new Promise( (resolve, reject) => {
+      parameters['modifierArticle xmlns="urn:ecommercewsdl#"'] = params ;
+
+      this.soapService.post(method, parameters, 'modifierArticleResponse').then(response=>{
+        let wSresponse = response['modifierArticleResponse'].return.$ ;
+        console.log("reponse brute from articles Web Service "+wSresponse ) ;
+        resolve(wSresponse) ;
+      }); 
+    });      
+  }
 
   public fournirCommandes(requestParams:{}) : Promise<string> {
     var method:string = 'fournirCommandes'; 
@@ -146,7 +184,6 @@ export class EcomServiceWeb {
       }); 
     });      
   }
-
 
 
   public listeArticles(token : string, type:string) : Promise<Article[]> {
