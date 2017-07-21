@@ -23,8 +23,6 @@ import { EnvoicashService, PaiecashService } from './joni-joni-component/joniser
 import { AchatJulaService} from './postcash/postservices';
 import { ReglSenelecService} from './postcash/postservices';
 import { AchatCodeWoyofalService} from './postcash/postservices';
-import { HistoriqueOperationsService} from './gestionreporting/gestionservice';
-import { ArretCaisseService} from './gestionreporting/gestionservice';
 import { DemandePretService} from './demandepret/demandeservice';
 import { RechargeVitfeService} from './joni-joni-component/joniservices';
 import { RechargeCarteService} from './joni-joni-component/joniservices';
@@ -170,7 +168,7 @@ import { FiltrerelancePipe } from './pipes/filtrerelance.pipe';
 import { FiltrepromotionPipe } from './pipes/filtrepromotion.pipe';
 import { FiltreprospectionPipe } from './pipes/filtreprospection.pipe';
 import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
-import { FiltrehistoriqueOperationsPipe } from './pipes/filtrehistorique-operations.pipe';
+import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -269,7 +267,7 @@ import { FiltrehistoriqueOperationsPipe } from './pipes/filtrehistorique-operati
     FiltrepromotionPipe,
     FiltreprospectionPipe,
     FiltresuivicommandePipe,
-    FiltrehistoriqueOperationsPipe
+    FiltregestionreportingPipe
   ],
   imports: [
     BrowserModule,
@@ -306,8 +304,6 @@ import { FiltrehistoriqueOperationsPipe } from './pipes/filtrehistorique-operati
       RechargeEspeceService,
       RechargeVitfeService,
       DemandePretService,
-      ArretCaisseService,
-      HistoriqueOperationsService,
       AchatCodeWoyofalService,
       ReglSenelecService,
       AchatJulaService,

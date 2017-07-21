@@ -42,10 +42,7 @@ export class CrmComponent implements OnInit {
   ngOnInit() {
       this.loading = true ;
 
-    this.crmServiceWeb.portefeuille(this.token).then(crmserviceList => {
-        this.portefeuille = crmserviceList;
-        this.loading = false ;
-      });  
+   
   }
 
 
@@ -103,6 +100,16 @@ export class CrmComponent implements OnInit {
   }
 
   detail(){}
+
+  prtfller(){
+    this.loading = true ;
+    
+
+    this.crmServiceWeb.portefeuille(this.token).then(crmserviceList => {
+        this.portefeuille = crmserviceList;
+        this.loading = false ;
+      });
+  }
 
 
 }

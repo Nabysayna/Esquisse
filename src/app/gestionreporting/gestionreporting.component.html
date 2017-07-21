@@ -7,7 +7,7 @@
         <div class="panel-body">
             <!-- Nav tabs -->
             <ul class="nav nav-pills">
-                <li class="active"><a href="#historique" data-toggle="tab">Historique des Opérations</a>
+                <li class="active"><a href="#historique" data-toggle="tab" (click)="histop()">Historique des Opérations</a>
                 </li>
                 <li><a id="elec" href="#charges" data-toggle="tab">Dépenses</a>
                 </li>
@@ -24,7 +24,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                           <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="historiqueOperations|filtrehistoriqueOperations:filtre" #fho="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                           <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="gestionreporting|filtregestionreporting:filtre" #fho="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th colspan="3" style="padding-right: 3rem ;">
@@ -40,12 +40,12 @@
                                            </tr>
                                     
                                         </thead>
-                                        <tbody *ngIf="this.historiqueOperations">
-                                        <tr *ngFor="let historiqueOperations of fho.data">
-                                            <td>{{historiqueOperations.date}}</td>
-                                            <td>{{historiqueOperations.operateur}}</td>
-                                            <td>{{historiqueOperations.traitement}}</td>
-                                            <td>{{historiqueOperations.montant}}</td>
+                                        <tbody *ngIf="this.gestionreporting">
+                                        <tr *ngFor="let gestionreporting of fho.data">
+                                            <td>{{gestionreporting.date}}</td>
+                                            <td>{{gestionreporting.operateur}}</td>
+                                            <td>{{gestionreporting.traitement}}</td>
+                                            <td>{{gestionreporting.montant}}</td>
                                         </tr>
                                         </tbody>
                                         <tfoot>
