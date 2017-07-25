@@ -147,8 +147,6 @@ export class EcomServiceWeb {
     });      
   }
 
-
-
   public modifierArticle(requestParams:{}) : Promise<string> {
     var method:string = 'modifierArticle'; 
     var parameters:{}[] = []; 
@@ -166,6 +164,25 @@ export class EcomServiceWeb {
       }); 
     });      
   }
+
+  public prendreCommande(requestParams:{}) : Promise<string> {
+    var method:string = 'prendreCommande'; 
+    var parameters:{}[] = []; 
+    var reEspParams = requestParams ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    return new Promise( (resolve, reject) => {
+      parameters['prendreCommande xmlns="urn:ecommercewsdl#"'] = params ;
+
+      this.soapService.post(method, parameters, 'prendreCommandeResponse').then(response=>{
+        let wSresponse = response['prendreCommandeResponse'].return.$ ;
+        console.log("reponse brute from articles Web Service "+wSresponse ) ;
+        resolve(wSresponse) ;
+      }); 
+    });      
+  }
+
 
   public fournirCommandes(requestParams:{}) : Promise<string> {
     var method:string = 'fournirCommandes'; 
