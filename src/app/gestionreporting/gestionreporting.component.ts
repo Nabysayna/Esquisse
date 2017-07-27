@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import { Location }               from '@angular/common';
-import {HistoriqueOperations} from '../gestionreporting/gestionmodels';
-import {HistoriqueOperationsService} from '../gestionreporting/gestionservice';
-import {ArretCaisse} from '../gestionreporting/gestionmodels';
-import {ArretCaisseService} from '../gestionreporting/gestionservice';
+
+import * as sha1 from 'js-sha1';
+import * as _ from "lodash";
+
+import {GestionreportingServiceWeb} from '../webServiceClients/Gestionreporting/gestionreporting.service';
+
+export class Gestionreporting{
+                          date:string;
+                          operateur:string;
+                          traitement:string;
+                          montant:number;
+                        } 
+
 
 import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/comptabilite.service';
 
@@ -16,15 +25,19 @@ import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/compta
 })
 export class GestionreportingComponent implements OnInit {
 
+  public gestionreporting:Gestionreporting[];
 
-    historiqueOperations:HistoriqueOperations;
-    arretCaisse:ArretCaisse;
+  private gestionreportingServiceWeb:GestionreportingServiceWeb = new GestionreportingServiceWeb();
+  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+  loading = false ;
+
+    nom="";
+    asc="";
+    filtre:"";
 
     caisseEtat: any;
 
   constructor(
-  	 private arretCaisseService:ArretCaisseService,
-  	 private historiqueOperationsService:HistoriqueOperationsService,
      private location: Location,
   	 private route:ActivatedRoute,
 
@@ -33,16 +46,18 @@ export class GestionreportingComponent implements OnInit {
 
   ngOnInit():void {
 
-    this.route.params.subscribe( (params : Params) => { 
-      this.historiqueOperations = this.historiqueOperationsService.getHistoriqueOperations(5);
-    });
-
-     this.route.params.subscribe( (params : Params) => { 
-      this.arretCaisse = this.arretCaisseService.getArretCaisse(5);
-    });
-
 
   }
+
+  histop(){
+     this.loading = true ;
+
+        this.gestionreportingServiceWeb.gestionreporting(this.token).then(gestreportserviceList => {
+        this.gestionreporting = gestreportserviceList;
+        console.log(JSON.stringify(this.gestionreporting));
+        this.loading = false ;
+      });
+      }
 
 
   etatcaisse(){

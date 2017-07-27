@@ -46,8 +46,8 @@ export class Suivicommande{
 @Injectable()
 export class CrmServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/crm?wsdl' ;
+  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/crm?wsdl' ;
 
   private targetNamespace:string = 'urn:crmwsdl' ;
 
