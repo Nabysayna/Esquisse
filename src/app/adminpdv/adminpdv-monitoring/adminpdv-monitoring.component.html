@@ -24,43 +24,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Consommation du deposit par service</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Service</th>
-                                    <th>Montant consomme</th>
-                                    <th>Commission</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor=" let consommationdepositparservicetype of monitoringAdminpdvConsommationDepositService; let i = index ">
-                                    <td>{{i + 1}}</td>
-                                    <td>{{ consommationdepositparservicetype.service  }}</td>
-                                    <td>{{ consommationdepositparservicetype.montantconsomme  }}</td>
-                                    <td>{{ consommationdepositparservicetype.commission  }}</td>
-                                </tr>
-                                <tr>
-                                    <td>-</td>
-                                    <td>{{ "Total" | uppercase }}</td>
-                                    <td>2000000</td>
-                                    <td>200000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div *ngIf="this.loading">

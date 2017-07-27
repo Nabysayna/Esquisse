@@ -15,6 +15,8 @@
                 </li>
                 <li><a id="elec" href="#reclamation" data-toggle="tab">Réclamations</a>
                 </li>
+                <li><a id="elec" href="#approvisionnement"  (click)="etatcaisse()" data-toggle="tab">Caisse</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="historique">
@@ -80,8 +82,8 @@
                     </div>
                     </div>
                 </div>    
-                    <div class="tab-pane fade" id="ventes">
-                        <div class="panel">
+                <div class="tab-pane fade" id="ventes">
+                    <div class="panel">
                         <div id="hop2" class="panel-heading">
                           Vente
                         </div>
@@ -105,14 +107,13 @@
                         </form>
                     </div>
                     </div>
-                    </div>
+                </div>
                       
-                    <div class="tab-pane fade" id="reclamation">
+                <div class="tab-pane fade" id="reclamation">
                     <div class="panel">
                         <div id="hop3" class="panel-heading">
                             Réclamation
                         </div>
-
                         <div class="col-sm-12 col-xs-12">
                        <form class="form-signin" (ngSubmit)="validreclamation()" #validreclamation="ngForm">
                                            <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujetreclam"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
@@ -129,8 +130,17 @@
                     </div>
                     
                     </div>
+                </div>
+                <div class="tab-pane fade" id="approvisionnement">
+                    <div class="panel">
+                        <div id="hop3" class="panel-heading">Etat de ma caisse</div>
+                        <div class="col-sm-12 col-xs-12" *ngIf="caisseEtat">
+                            <p>Solde total {{caisseEtat.soldeOuvert}}F CFA - Montant Maxi autoriser {{caisseEtat.soldeFermet}}F CFA</p>
+                            <p *ngIf="caisseEtat.etat==0">Nouvelle approvision de {{caisseEtat.soldeOuvert}} <button (click)="validerapprovision(caisseEtat.id)">Valider</button></p>
+                        </div>
                     </div>
                 </div>
-            </div> 
-        </div>
-  </div>
+            </div>
+        </div> 
+    </div>
+</div>
