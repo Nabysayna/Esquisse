@@ -39,13 +39,7 @@ export class CrmComponent implements OnInit {
          private router: Router
          ) { }
 
-  ngOnInit() {
-      this.loading = true ;
-
-   
-  }
-
-
+  ngOnInit() { }
 
   relanceMeth(){
     this.loading = true ;

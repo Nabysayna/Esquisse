@@ -16,7 +16,7 @@ export class GestionreportingServiceWeb {
 
 
 
-  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/gestionreporting?wsdl' ;
 
   private targetNamespace:string = 'urn:gestionreportingwsdl' ;

@@ -15,7 +15,7 @@ export class Commande {
   public id:number;
   public quantite:number;
   public designation:string;
-  public prixUnitaire:number ;
+  public montant:number ;
   public tel:number;
   public fullName:string;
   public adress:string = "" ;
@@ -47,7 +47,7 @@ export class EcomServiceWeb {
   // private servicePath:string = '/backecom/web/app.php/invest/ecommerce?wsdl' ;
 
 
-  private servicePort:string = 'http://localhost:8888' ;
+  private servicePort:string = 'http://localhost' ;
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 
@@ -223,6 +223,26 @@ export class EcomServiceWeb {
       });      
   }
 
+  public listerCategorie(token : string) : Promise<string[]> {
+
+      var method:string = 'listerCategorie'; 
+      var parameters:{}[] = []; 
+
+      var reEspParams = {token:token} ;
+      var params:{}[] = [] ; 
+      params["params"] = reEspParams ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['listerCategorie xmlns="urn:ecommercewsdl#"'] = params ;
+
+        this.soapService.post(method, parameters, 'listerCategorieResponse').then(response=>{
+          this.responseJsoFWS = JSON.parse(response['listerCategorieResponse'].return.$);
+          console.log("reponse brute from articles Web Service "+JSON.stringify(this.responseJsoFWS[0]) ) ;
+          resolve(this.responseJsoFWS) ;
+        }); 
+      });      
+  }
+  
   public listerCommandes(token : string, typeListe : string) : Promise<Commande[]> {
 
       var method:string = 'listercommande'; 

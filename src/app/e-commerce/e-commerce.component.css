@@ -1,3 +1,8 @@
+td, th{
+    padding-left: 3rem ;
+    padding-right: 3rem ;
+}
+
 .extremite{
 	text-align: center ;
 }
@@ -18,4 +23,10 @@
 
 #ecomhome{
 	margin-left: 2rem; 
+}
+
+#cmdInformer{
+    padding-left: 30%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
