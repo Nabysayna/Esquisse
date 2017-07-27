@@ -9,6 +9,11 @@ export class Gestionreporting{
                           montant:number;
                         } 
 
+export class Servicepoint{
+                          nom:string;
+                          designations:string;  
+                        } 
+
 
 
 @Injectable()
@@ -58,6 +63,85 @@ export class GestionreportingServiceWeb {
               }); 
             });     
   }
+
+
+   public servicepoint(token:string) : Promise<Servicepoint[]> {
+
+             var method:string = 'servicepoint';
+            var parameters:{}[] = [];
+            var reEspParams = {token:token} ;
+
+            parameters['servicepoint xmlns="urn:servicepointwsdl#"'] = reEspParams;
+                
+
+            
+            return new Promise( (resolve, reject) => {
+              this.soapService.post(method, parameters, 'servicepointResponse').then(response=>{
+                var reponse:Servicepoint[] = JSON.parse(response['servicepointResponse'].return.$);
+                resolve(reponse) ;
+              }); 
+            });     
+  }
+
+  public ajoutdepense(token:string, libelle: string, service: string, montant: number): Promise<any>  {
+    var method:string = 'ajoutdepense';
+    var parameters:{}[] = [];
+
+    var reEspParams = { token:token, libelle: libelle, service: service, montant: montant} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['ajoutdepense xmlns="urn:ajoutdepensewsdl#"'] = params;
+    
+    console.log(libelle+ " "+service +" "+montant);
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'ajoutdepenseResponse').then(response=>{
+        var reponse  = JSON.parse(response['ajoutdepenseResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public reclamation(token:string, sujet: string, nomservice: string, message: string): Promise<any>  {
+    var method:string = 'reclamation';
+    var parameters:{}[] = [];
+
+    var reEspParams = { token:token, sujet: sujet, nomservice: nomservice, message: message} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['reclamation xmlns="urn:reclamationwsdl#"'] = params;
+    
+    console.log(sujet+ " "+nomservice +" "+message);
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'reclamationResponse').then(response=>{
+        var reponse  = JSON.parse(response['reclamationResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public vente(token:string, designation: string, servicevente: string, quantite:number): Promise<any>  {
+    var method:string = 'vente';
+    var parameters:{}[] = [];
+
+    var reEspParams = { token:token, servicevente: servicevente, designation: designation, quantite:quantite} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['vente xmlns="urn:ventewsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'venteResponse').then(response=>{
+        var reponse  = JSON.parse(response['venteResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
 
   private envelopeBuilder(requestBody:string):string {
       return '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'+requestBody+'</soap:Body></soap:Envelope>' ;

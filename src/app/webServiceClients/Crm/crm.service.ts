@@ -42,6 +42,14 @@ export class Suivicommande{
                           etat:string;
                          }
 
+                         
+
+export class Servicepoint{
+                          nom:string;
+                          designations:string;  
+                        } 
+
+
 
 @Injectable()
 export class CrmServiceWeb {
@@ -157,6 +165,25 @@ export class CrmServiceWeb {
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'suivicommandeResponse').then(response=>{
                 var reponse:Suivicommande[] = JSON.parse(response['suivicommandeResponse'].return.$);
+                resolve(reponse) ;
+              }); 
+            });     
+  }
+
+
+   public servicepoint(token:string) : Promise<Servicepoint[]> {
+
+             var method:string = 'servicepoint';
+            var parameters:{}[] = [];
+            var reEspParams = {token:token} ;
+
+            parameters['servicepoint xmlns="urn:servicepointwsdl#"'] = reEspParams;
+                
+
+            
+            return new Promise( (resolve, reject) => {
+              this.soapService.post(method, parameters, 'servicepointResponse').then(response=>{
+                var reponse:Servicepoint[] = JSON.parse(response['servicepointResponse'].return.$);
                 resolve(reponse) ;
               }); 
             });     

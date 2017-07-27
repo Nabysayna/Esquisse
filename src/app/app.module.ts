@@ -23,7 +23,6 @@ import { EnvoicashService, PaiecashService } from './joni-joni-component/joniser
 import { AchatJulaService} from './postcash/postservices';
 import { ReglSenelecService} from './postcash/postservices';
 import { AchatCodeWoyofalService} from './postcash/postservices';
-import { DemandePretService} from './demandepret/demandeservice';
 import { RechargeVitfeService} from './joni-joni-component/joniservices';
 import { RechargeCarteService} from './joni-joni-component/joniservices';
 import { RechargeEspeceService} from './postcash/postservices';
@@ -55,7 +54,11 @@ import { AdminmultipdvServiceWeb } from './webServiceClients/Adminmultipdv/admin
 import { EcomServiceWeb } from './webServiceClients/ecom/ecom.service';
 import { AuthenticationService }    from './services/authentification.service';
 import { CommercialServiceWeb }    from './webServiceClients/Commercial/commercial.service';
-import { ComptabiliteServiceWeb } from '././webServiceClients/Comptabilite/comptabilite.service';
+import { ComptabiliteServiceWeb } from './webServiceClients/Comptabilite/comptabilite.service';
+import {GestionreportingServiceWeb} from './webServiceClients/Gestionreporting/gestionreporting.service';
+import {DemandepretServiceWeb} from './webServiceClients/Demandepret/demandepret.service';
+import {CrmServiceWeb} from './webServiceClients/Crm/crm.service';
+
 
 /*-----------------*/
 /*      Routes     */
@@ -303,7 +306,6 @@ import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe'
       RechargeCarteService,
       RechargeEspeceService,
       RechargeVitfeService,
-      DemandePretService,
       AchatCodeWoyofalService,
       ReglSenelecService,
       AchatJulaService,
@@ -326,7 +328,10 @@ import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe'
       CommercialServiceWeb,
       AdminmultipdvServiceWeb,
       ComptabiliteServiceWeb,
-      AuthenticationService
+      GestionreportingServiceWeb,
+      AuthenticationService,
+      CrmServiceWeb,
+      DemandepretServiceWeb
   ],
   bootstrap: [AppComponent]
 })
