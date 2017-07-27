@@ -26,7 +26,7 @@ export class AdminpdvDashboardComponent implements OnInit {
     
     this.adminpdvServiceWeb.performancepdv('azrrtt').then(adminpdvServiceWebList => {
       console.log(adminpdvServiceWebList); 
-      this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList; 
+      this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList.response; 
     });
   }
   

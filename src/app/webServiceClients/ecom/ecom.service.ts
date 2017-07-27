@@ -48,7 +48,7 @@ export class EcomServiceWeb {
 
 
   private servicePort:string = 'http://localhost' ;
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 
   public responseJso : any ;

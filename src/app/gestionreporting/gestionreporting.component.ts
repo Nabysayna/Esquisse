@@ -6,6 +6,9 @@ import {HistoriqueOperationsService} from '../gestionreporting/gestionservice';
 import {ArretCaisse} from '../gestionreporting/gestionmodels';
 import {ArretCaisseService} from '../gestionreporting/gestionservice';
 
+import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/comptabilite.service';
+
+
 @Component({
   selector: 'app-gestionreporting',
   templateUrl: './gestionreporting.component.html',
@@ -17,11 +20,15 @@ export class GestionreportingComponent implements OnInit {
     historiqueOperations:HistoriqueOperations;
     arretCaisse:ArretCaisse;
 
+    caisseEtat: any;
+
   constructor(
   	 private arretCaisseService:ArretCaisseService,
   	 private historiqueOperationsService:HistoriqueOperationsService,
      private location: Location,
-  	 private route:ActivatedRoute
+  	 private route:ActivatedRoute,
+
+     private comptabiliteServiceWeb: ComptabiliteServiceWeb,
   	) {}
 
   ngOnInit():void {
@@ -38,6 +45,19 @@ export class GestionreportingComponent implements OnInit {
   }
 
 
+  etatcaisse(){
+    console.log('test');
+    this.comptabiliteServiceWeb.etatcaisse().then(adminmultipdvServiceWeb => {
+      this.caisseEtat = adminmultipdvServiceWeb.response;
+      console.log(adminmultipdvServiceWeb.response); 
+    });
+  }
+
+  validerapprovision(idcaisse){
+    this.comptabiliteServiceWeb.validerapprovisionn(idcaisse).then(adminmultipdvServiceWeb => {
+      console.log(adminmultipdvServiceWeb.response); 
+    });
+  }
 
 }
 
