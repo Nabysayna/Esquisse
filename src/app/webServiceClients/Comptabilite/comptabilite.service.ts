@@ -199,6 +199,44 @@ export class ComptabiliteServiceWeb {
       
   }
 
+  public etatcaisse(): Promise<any>  {
+    var method:string = 'etatcaisse';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['etatcaisse xmlns="urn:comptapdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'etatcaisseResponse').then(response=>{
+        var reponse  = JSON.parse(response['etatcaisseResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public validerapprovisionn(idcaisse: number): Promise<any>  {
+    var method:string = 'validerapprovisionn';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, idcaisse: idcaisse} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['validerapprovisionn xmlns="urn:comptapdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'validerapprovisionnResponse').then(response=>{
+        var reponse  = JSON.parse(response['validerapprovisionnResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
   public listerevenu(idpdv: number): Promise<any>  {
     var method:string = 'listerevenu';
     var parameters:{}[] = [];

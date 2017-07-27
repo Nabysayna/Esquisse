@@ -88,16 +88,31 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="a">
-                            <br>
-                            <!-- <div class="panel-body" *ngIf="this.adminpdvDashboardMontantTransfertParservices">
-                                <app-doughnut-chart 
-                                    [doughnutChartLabels]="this.adminpdvDashboardMontantTransfertParservices.typeservice" 
-                                    [doughnutChartData]="this.adminpdvDashboardMontantTransfertParservices.montanttotal" 
-                                ></app-doughnut-chart>
-                            </div> -->
-                            <div class="row" *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                <div class="col-sm-3">{{ i + 1 }} - {{ performancepdv.fullname }}</div>
-                                <div class="col-sm-4">{{ performancepdv.fullname }}</div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-5">
+                                    <div class="panel panel-default table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Pdv</th>
+                                                <th>Telephone</th>
+                                                <th>Recette</th>
+                                                <th>Option</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let item of adminpdvDashboardPerformancepdv; let i = index ">
+                                                <td>{{i + 1}}</td>
+                                                <td>{{item.fullname}}</td>
+                                                <td>{{item.telephone}}</td>
+                                                <td>{{item.montanttotal}}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-danger">Détail</button></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="b">

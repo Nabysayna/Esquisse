@@ -148,6 +148,10 @@
   background: radial-gradient(circle at 1rem 1rem, #0FFFFF, #000);
 }
 
+#over-account-wall{
+  height: 70rem !important;
+}
+
 #authcomponent{
 }
 

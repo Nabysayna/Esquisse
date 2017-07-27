@@ -75,7 +75,7 @@
 
                                     <tr>
                                         <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
@@ -87,7 +87,7 @@
                                 <tbody *ngIf="this.listeCommande" >
 	                                <tr *ngFor="let commande of listCmds.data">
 	                                    <td>{{commande.designation}}</td>
-	                                    <td>{{commande.prixUnitaire}}</td>
+	                                    <td>{{commande.montant}}</td>
 	                                    <td>{{commande.quantite}}</td>
 	                                    <td>{{commande.dateCommande}}</td>
 	                                    <td>{{commande.fullName}}</td>
@@ -101,7 +101,7 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
-                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10]" ></mfBootstrapPaginator>
+                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -110,7 +110,7 @@
 		    </div>
 
 			<div class="row tab-pane col-sm-12 col-xs-12 fade" id="cmdToDeliver">
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmds="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmdsincoming="mfDataTable"  [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
  
                                     <tr>
@@ -122,7 +122,7 @@
 
                                     <tr>
                                         <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
@@ -132,9 +132,9 @@
                             
                                 </thead>
                                 <tbody *ngIf="this.listeCommande" >
-	                                <tr *ngFor="let commande of listCmds.data">
+	                                <tr *ngFor="let commande of listCmdsincoming.data">
 	                                    <td>{{commande.designation}}</td>
-	                                    <td>{{commande.prixUnitaire}}</td>
+	                                    <td>{{commande.montant}}</td>
 	                                    <td>{{commande.quantite}}</td>
 	                                    <td>{{commande.dateCommande}}</td>
 	                                    <td>{{commande.fullName}}</td>
@@ -148,7 +148,7 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
-                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10]" ></mfBootstrapPaginator>
+                                            <mfBootstrapPaginator></mfBootstrapPaginator>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -160,7 +160,7 @@
 		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ventes">
 			<div class="panel-body">
 
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmds="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmdsoutgoing="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
  
                                     <tr>
@@ -181,7 +181,7 @@
                             
                                 </thead>
                                 <tbody *ngIf="this.listeCommande" >
-	                                <tr *ngFor="let commande of listCmds.data">
+	                                <tr *ngFor="let commande of listCmdsoutgoing.data">
 	                                    <td>{{commande.designation}}</td>
 	                                    <td>{{commande.prixUnitaire}}</td>
 	                                    <td>{{commande.quantite}}</td>
@@ -204,37 +204,53 @@
                
 	    </div>
 
-		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ajout">
-			
-			<input type="file"
-       ngFileSelect
-       [options]="options"
-       (onUpload)="handleUpload($event)"
-       (beforeUpload)="beforeUpload($event)">
+		<div class="row tab-pane col-sm-12 col-xs-12 fade" id="ajout">
 
-		<div *ngIf="uploadFile">
-		Progress: {{ uploadProgress }}%
-		</div>
-		<div *ngIf="uploadFile">
-		  <div class="ui indicating blue progress">
-		    <div class="bar" [style.width]="uploadProgress + '%'"></div>
-		    <div class="label">Image en cours de chargement ({{ uploadProgress }}%)</div>
-		  </div>
-		</div>
+			<div class="col-sm-4 col-xs-12">
+			   <img class="card-img-top" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{newImage}}"  alt="Card image cap" width="200" height="200">
 
-			<input type="text" [(ngModel)]="this.categoriea"   name="categoriea" id="categoriea" class="form-control" placeholder="Catégorie de l'article" required>
+			   <input type="file"
+		       ngFileSelect
+		       [options]="options"
+		       (onUpload)="handleUpload($event)"
+		       (beforeUpload)="beforeUpload($event)">
+<!-- 
+				<div *ngIf="uploadFile">
+				Progress: {{ uploadProgress }}%
+				</div>
+				<div *ngIf="uploadFile">
+				  <div class="ui indicating blue progress">
+				    <div class="bar" [style.width]="uploadProgress + '%'"></div>
+				    <div class="label">Image en cours de chargement ({{ uploadProgress }}%)</div>
+				  </div>
+				</div>
+ -->			  	
+			</div>			
 
-			<input type="text" [(ngModel)]="this.designationa"   name="designationa" id="designationa" class="form-control" placeholder="designation de l'article" required>
+			<div class="col-sm-6 col-xs-12">
+<!-- 				<input type="text" [(ngModel)]="this.categoriea"   name="categoriea" id="categoriea" class="form-control" placeholder="Catégorie de l'article" required> -->
 
-			<input type="text" [(ngModel)]="this.descriptiona"   name="descriptiona" id="descriptiona" class="form-control" placeholder="Petite description de l'article" required>
+                <select class="form-control input-sm" style="margin-left: 1rem ;" [(ngModel)]="categoriea" >
+                    <option >--- Catégroie ---</option>
+                    <option *ngFor="let categorie of categories">{{categorie}}</option>
+                </select>		
 
-            <input type="number" [(ngModel)]="this.prixa"   name="prixa" id="prixa" class="form-control" placeholder="prix de l'article" required>
+				<input type="text" [(ngModel)]="this.designationa"   name="designationa" id="designationa" class="form-control" placeholder="designation de l'article" required>
 
-            <input type="number" [(ngModel)]="this.stocka"   name="stocka" id="stocka" class="form-control" placeholder="Quantité en stock" required>
+				<input type="text" [(ngModel)]="this.descriptiona"   name="descriptiona" id="descriptiona" class="form-control" placeholder="Petite description de l'article" required>
 
-			 <button class="btn btn-success" type="button"(click)="ajouter()">Ajouter</button>
+	            <input type="number" [(ngModel)]="this.prixa"   name="prixa" id="prixa" class="form-control" placeholder="prix de l'article" required>
 
-			  <button type="reset" class="btn btn-danger">Annuler</button>
+	            <input type="number" [(ngModel)]="this.stocka"   name="stocka" id="stocka" class="form-control" placeholder="Quantité en stock" required>
+
+				 <button class="btn btn-success" type="button"(click)="ajouter()">Ajouter</button>
+
+				  <button type="reset" class="btn btn-danger">Annuler</button>
+			</div>			
+
+
+
+
 	</div>
 
 <div *ngIf="this.loading">

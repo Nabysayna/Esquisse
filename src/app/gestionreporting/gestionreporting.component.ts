@@ -20,6 +20,9 @@ export class Servicepoint{
                         } 
 
 
+import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/comptabilite.service';
+
+
 @Component({
   selector: 'app-gestionreporting',
   templateUrl: './gestionreporting.component.html',
@@ -48,10 +51,14 @@ export class GestionreportingComponent implements OnInit {
     asc="";
     filtre:"";
 
+    caisseEtat: any;
+
   constructor(
      private location: Location,
      private route:ActivatedRoute,
-  	 private gestionreportingServiceWeb:GestionreportingServiceWeb
+  	 private gestionreportingServiceWeb:GestionreportingServiceWeb,
+     private comptabiliteServiceWeb:ComptabiliteServiceWeb
+
   	) {}
 
   ngOnInit() {
@@ -143,6 +150,19 @@ export class GestionreportingComponent implements OnInit {
       }
 
 
+  etatcaisse(){
+    console.log('test');
+    this.comptabiliteServiceWeb.etatcaisse().then(adminmultipdvServiceWeb => {
+      this.caisseEtat = adminmultipdvServiceWeb.response;
+      console.log(adminmultipdvServiceWeb.response); 
+    });
+  }
+
+  validerapprovision(idcaisse){
+    this.comptabiliteServiceWeb.validerapprovisionn(idcaisse).then(adminmultipdvServiceWeb => {
+      console.log(adminmultipdvServiceWeb.response); 
+    });
+  }
 
 }
 

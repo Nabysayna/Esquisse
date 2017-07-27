@@ -1,9 +1,13 @@
-.bg
-{
-    background:  url(assets/bga.png)   ;
 
+html{
+	background-color: white ;
 }
 
 input{	 
 	margin: 1rem !important;
+}
+
+.bg
+{
+    background:  url(assets/bga.png)   ;
 }

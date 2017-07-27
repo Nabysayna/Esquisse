@@ -1,3 +1,15 @@
+#currentUser {
+    background-color: #337ab7 !important ;
+    border-color: #e7e7e7 !important;
+    color : white !important;
+}
+#currentUser:hover{  
+    background-color: #fff !important;
+    border-color: #337ab7 !important;
+    color : #337ab7 !important ;
+}
+
+
 #disconnect-btn{
 	background-color: transparent;
 }
