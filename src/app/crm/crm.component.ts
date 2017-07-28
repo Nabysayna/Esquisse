@@ -40,7 +40,7 @@ export class CrmComponent implements OnInit {
          private crmServiceWeb:CrmServiceWeb
          ) { }
 
-<<<<<<< HEAD
+
   ngOnInit() {
      
       this.crmServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
@@ -51,10 +51,6 @@ export class CrmComponent implements OnInit {
    
   }
 
-
-=======
-  ngOnInit() { }
->>>>>>> 2b3f2002e0a8d5b53abb0566a844bec056012ad6
 
   relanceMeth(){
     this.loading = true ;
