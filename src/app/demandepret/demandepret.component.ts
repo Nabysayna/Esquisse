@@ -5,12 +5,8 @@ import { Location }               from '@angular/common';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
-import {DemandepretServiceWeb} from '../webServiceClients/Demandepret/demandepret.service';
+import {DemandepretServiceWeb, Demandepret} from '../webServiceClients/Demandepret/demandepret.service';
 
-
-export class Demandepret{
-                              plafond:number;
-                        } 
 
 @Component({
   selector: 'app-demandepret',

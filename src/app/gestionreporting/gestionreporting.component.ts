@@ -5,19 +5,7 @@ import { Location }               from '@angular/common';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
-import {GestionreportingServiceWeb} from '../webServiceClients/Gestionreporting/gestionreporting.service';
-
-export class Gestionreporting{
-                          date:string;
-                          operateur:string;
-                          traitement:string;
-                          montant:number;
-                        } 
-
-export class Servicepoint{
-                          nom:string;
-                          designations:string;  
-                        } 
+import {GestionreportingServiceWeb, Gestionreporting, Servicepoint} from '../webServiceClients/Gestionreporting/gestionreporting.service';
 
 
 import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/comptabilite.service';

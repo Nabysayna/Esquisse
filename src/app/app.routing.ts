@@ -50,6 +50,8 @@ import { CoursierComponent } from './coursier/coursier.component';
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { CommercialComponent } from './commercial/commercial.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
+import { ConsulterpretComponent } from './consulterpret/consulterpret.component';
+
 
 import { AdminpdvparametrecompteComponent } from './adminpdv/adminpdv-parametre-compte/adminpdv-parametre-compte.component';
 
@@ -88,8 +90,7 @@ const appRoutes: Routes = [
                     { path: 'statuspdv', component: AdminmultipdvStatusPdvComponent },
                     { path: 'statusreclamation', component: AdminmultipdvStatusReclamationComponent },
                     { path: 'demanderetrait', component: AdminmultipdvDemandeRetraitComponent },
-                    { path: 'updatecaution', component: AdminmultipdvUpdateCautionComponent },
-                    { path: '', component: AdminmultipdvDashboardComponent }
+                    { path: 'updatecaution', component: AdminmultipdvUpdateCautionComponent }
                 ]
             }
         ]
@@ -166,6 +167,7 @@ const appRoutes: Routes = [
                     { path: 'aidedecision', component: AdminpdvAidedecisionComponent },
                     { path: 'comptabilite', component: ComptabiliteComponent },
                     { path: 'CRM', component: CrmComponent },
+                    { path: 'consulterpret', component: ConsulterpretComponent },
                     { path: '', component: AdminpdvDashboardComponent }
                 ]
             }

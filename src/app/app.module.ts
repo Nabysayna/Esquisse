@@ -172,6 +172,7 @@ import { FiltrepromotionPipe } from './pipes/filtrepromotion.pipe';
 import { FiltreprospectionPipe } from './pipes/filtreprospection.pipe';
 import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
 import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe';
+import { ConsulterpretComponent } from './consulterpret/consulterpret.component';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -270,7 +271,8 @@ import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe'
     FiltrepromotionPipe,
     FiltreprospectionPipe,
     FiltresuivicommandePipe,
-    FiltregestionreportingPipe
+    FiltregestionreportingPipe,
+    ConsulterpretComponent
   ],
   imports: [
     BrowserModule,

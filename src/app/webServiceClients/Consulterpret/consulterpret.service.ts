@@ -2,21 +2,21 @@
 import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 
-export class Demandepret{
-                              plafond:number;
+export class Consulterpret{
+                              montantdemande:number;
                         } 
 
 
 
 @Injectable()
-export class DemandepretServiceWeb {
+export class ConsulterpretServiceWeb {
 
 
 
   private servicePort:string = 'http://localhost:8888' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/demandepret?wsdl' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/consulterpret?wsdl' ;
 
-  private targetNamespace:string = 'urn:demandepretwsdl' ;
+  private targetNamespace:string = 'urn:consulterpretwsdl' ;
 
   public responseJso : any ;
   public resp : string ;
@@ -38,46 +38,24 @@ export class DemandepretServiceWeb {
   }
 
 
-   public demandepret(token:string) : Promise<Demandepret[]> {
+   public consulterpret(token:string) : Promise<Consulterpret[]> {
 
-             var method:string = 'demandepret';
+             var method:string = 'consulterpret';
             var parameters:{}[] = [];
             var reEspParams = {token:token} ;
 
-            parameters['demandepret xmlns="urn:demandepretwsdl#"'] = reEspParams;
+            parameters['consulterpret xmlns="urn:consulterpretwsdl#"'] = reEspParams;
                 
 
             
             return new Promise( (resolve, reject) => {
-              this.soapService.post(method, parameters, 'demandepretResponse').then(response=>{
-                var reponse:Demandepret[] = JSON.parse(response['demandepretResponse'].return.$);
+              this.soapService.post(method, parameters, 'consulterpretResponse').then(response=>{
+                var reponse:Consulterpret[] = JSON.parse(response['consulterpretResponse'].return.$);
                 resolve(reponse) ;
               }); 
             });     
   }
 
-
- 
-
-  public ajoutdemandepret(token:string, montantdemande: number): Promise<any>  { 
-    var method:string = 'ajoutdemandepret';
-    var parameters:{}[] = [];
-
-    var reEspParams = { token:token, montantdemande: montantdemande} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['ajoutdemandepret xmlns="urn:ajoutdemandepretwsdl#"'] = params;
-    
-    console.log(montantdemande);
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'ajoutdemandepretResponse').then(response=>{
-        var reponse  = JSON.parse(response['ajoutdemandepretResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
 
   private envelopeBuilder(requestBody:string):string {
       return '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'+requestBody+'</soap:Body></soap:Envelope>' ;
