@@ -119,21 +119,14 @@
                         <div id="hop3" class="panel-heading">
                             Réclamation
                         </div>
-<<<<<<< HEAD
+
                         <div class="col-sm-12 col-xs-12" >
                                            <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujet"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
                                            <div class="col-sm-3 col-xs-12">
                                             <select class="form-control input-sm" [(ngModel)]="nomservice" style="margin-top: 1rem;" >
                                             <option>---Choisir le service concerné---</option>
                                             <option  *ngFor="let nomservice of servicepoint">{{nomservice.nom}}</option>
-=======
-                        <div class="col-sm-12 col-xs-12">
-                       <form class="form-signin" (ngSubmit)="validreclamation()" #validreclamation="ngForm">
-                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujetreclam"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
-                                           <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Service : <select class="form-control input-sm" >
-                                            <option>assurance</option>
-                                            <option>e-commerce</option>
->>>>>>> 2b3f2002e0a8d5b53abb0566a844bec056012ad6
+
                                             </select>
                                             </div>
                                             <input type="text" [(ngModel)]="message"   name="descrip" id="descrip" class="form-control" placeholder="description de votre réclamation" required>
@@ -152,7 +145,6 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div> 
         </div>
   </div>
@@ -160,10 +152,3 @@
   <div *ngIf="this.loading">
     <app-loader></app-loader>    
 </div>
-
-=======
-            </div>
-        </div> 
-    </div>
-</div>
->>>>>>> 2b3f2002e0a8d5b53abb0566a844bec056012ad6
