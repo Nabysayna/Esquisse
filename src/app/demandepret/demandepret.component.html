@@ -1,28 +1,22 @@
-<div class="col-lg-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            DEMANDE DE PRÊT
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-            <!-- Nav tabs -->
-            <form (ngSubmit)="demandeprt()" #dpret="ngForm">
-                <div >
-                Le montant demandé doit être compris entre 0.FCFA &  {{dmdprt.plafond}}.FCFA  
-                </div>
 
-            <input type="number" [(ngModel)]="mntp"   name="mntp" id="mntp" class="form-control" placeholder="montant demandé" required>
-
-            <br><button class="btn btn-success" type="submit" [disabled]="!dpret.form.valid" >
-            Envoyer</button>
-            <button class="btn btn-danger" [disabled]="!dpret.form.valid" type="reset">
-                Annuler</button>
-
-                </form>
-        </div>
-
-    </div>
-</div>
+<div class="col-lg-12" >
+                        <div class="panel">
+                        <div class="panel-heading">
+                            DEMANDE DE PRÊT
+                        </div>
+                        
+                         <div class="col-sm-6 col-xs-12" >
+                                           <div *ngFor="let demande of demandepret">
+                                            Le montant demandé doit être inférieur à  {{demande.plafond}}.FCFA  
+                                            </div>
+                                            <input type="number" [(ngModel)]="montantdemande"   name="montantdemande" id="montantdemande" class="form-control" placeholder="Montant demandé" required>
+                                            <button (click)="demandeprt()" id="validcharge"  class="btn btn-success" >Demander</button>
+                                            <button  class="btn btn-danger" type="reset" >Annuler</button>
+                    
+                    
+                    </div>
+                    </div>
+                </div>    
 
 <div *ngIf="this.loading">
     <app-loader></app-loader>    

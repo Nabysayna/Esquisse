@@ -59,25 +59,25 @@ export class DemandepretServiceWeb {
 
  
 
-  // public reclamation(token:string, sujet: string, nomservice: string, message: string): Promise<any>  {
-  //   var method:string = 'reclamation';
-  //   var parameters:{}[] = [];
+  public ajoutdemandepret(token:string, montantdemande: number): Promise<any>  {
+    var method:string = 'ajoutdemandepret';
+    var parameters:{}[] = [];
 
-  //   var reEspParams = { token:token, sujet: sujet, nomservice: nomservice, message: message} ;
-  //   var params:{}[] = [] ; 
-  //   params["params"] = reEspParams ;
+    var reEspParams = { token:token, montantdemande: montantdemande} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
 
-  //   parameters['reclamation xmlns="urn:reclamationwsdl#"'] = params;
+    parameters['ajoutdemandepret xmlns="urn:ajoutdemandepretwsdl#"'] = params;
     
-  //   console.log(sujet+ " "+nomservice +" "+message);
-  //   return new Promise( (resolve, reject) => {
-  //     this.soapService.post(method, parameters, 'reclamationResponse').then(response=>{
-  //       var reponse  = JSON.parse(response['reclamationResponse'].return.$);
-  //       resolve(reponse) ;
-  //     }); 
-  //   });   
+    console.log(montantdemande);
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'ajoutdemandepretResponse').then(response=>{
+        var reponse  = JSON.parse(response['ajoutdemandepretResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
       
-  // }
+  }
 
   private envelopeBuilder(requestBody:string):string {
       return '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>'+requestBody+'</soap:Body></soap:Envelope>' ;

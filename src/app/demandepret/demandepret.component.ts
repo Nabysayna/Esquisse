@@ -22,6 +22,7 @@ export class DemandepretComponent implements OnInit {
 	public demandepret:Demandepret[];
    token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
+  montantdemande:number;
 
 
   constructor(
@@ -42,6 +43,15 @@ export class DemandepretComponent implements OnInit {
   }
 
   demandeprt() {
+
+        this.loading = true ;  
+       this.demandepretServiceWeb.ajoutdemandepret(this.token,this.montantdemande).then(gestionreportingServiceWeb => {
+        this.loading = false ;
+
+       });
+        
+        this.montantdemande = 0 ;
+        
   } 
   
 }
