@@ -10,6 +10,7 @@ import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import {DataTableModule} from "angular2-datatable";
 import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, ModalModule, TypeaheadModule} from 'ng2-bootstrap';
+
 import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
 
@@ -169,6 +170,7 @@ import { FiltrepromotionPipe } from './pipes/filtrepromotion.pipe';
 import { FiltreprospectionPipe } from './pipes/filtreprospection.pipe';
 import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
 import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe';
+import { SelfprovidedfilterPipe } from './pipes/selfprovidedfilter.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -267,7 +269,8 @@ import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe'
     FiltrepromotionPipe,
     FiltreprospectionPipe,
     FiltresuivicommandePipe,
-    FiltregestionreportingPipe
+    FiltregestionreportingPipe,
+    SelfprovidedfilterPipe
   ],
   imports: [
     BrowserModule,

@@ -13,12 +13,10 @@ class Article {
 
 export class Commande {
   public id:number;
-  public quantite:number;
-  public designation:string;
+  public orderedArticles:string;
   public montant:number ;
   public tel:number;
   public fullName:string;
-  public adress:string = "" ;
   public dateCommande:string;
 }
 
@@ -243,7 +241,7 @@ export class EcomServiceWeb {
       });      
   }
   
-  public listerCommandes(token : string, typeListe : string) : Promise<Commande[]> {
+  public listerCommandes(token : string, typeListe : string) : Promise<any> {
 
       var method:string = 'listercommande'; 
       var parameters:{}[] = []; 
@@ -254,7 +252,7 @@ export class EcomServiceWeb {
       return new Promise( (resolve, reject) => {
         parameters['listercommande xmlns="urn:ecommercewsdl#"'] = params ;
         this.soapService.post(method, parameters, 'listercommandeResponse').then(response=>{
-          let responseJsoFWS : Commande[] = JSON.parse(response['listercommandeResponse'].return.$);
+          let responseJsoFWS = response['listercommandeResponse'].return.$;
           console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
           resolve(responseJsoFWS) ;
         }); 

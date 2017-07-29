@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap/modal';
+
 import { EcomServiceWeb, Commande } from '../webServiceClients/ecom/ecom.service';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
+
 
 @Component({
   selector: 'app-e-commerce',
   templateUrl: './e-commerce.component.html',
   styleUrls: ['./e-commerce.component.css']
 })
-
 export class ECommerceComponent implements OnInit {
   codecmd = "" ;
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
@@ -19,7 +21,7 @@ export class ECommerceComponent implements OnInit {
   postcmd = false ;
   prenom : string ;
   nom : string ;
-  designation : string ;
+  orderedArticles : string ;
   qte : number ;
   montant : number ;
 
@@ -41,19 +43,18 @@ export class ECommerceComponent implements OnInit {
     let requiredInfo = "infocmd#"+this.codecmd ;
     let paramObj={token : this.token, article : requiredInfo} ;
     this.ecomCaller.prendreCommande(paramObj).then( response =>
-      { 
-        response = response.replace(/WSServerBundle/gi,"") ;
-        response = response.replace(/\\Entity\\/gi,"") ;
-        response = response.replace(/Tmpcommande/gi,"") ;
-        response = response.replace(/\\u0000/gi,"") ;
-        response = response.replace(/\\/gi,"") ;
+      {
 
-        this.infosCommande = JSON.parse(response) ;
+
+        console.log("######################################################") ;
+
+
+       this.infosCommande = JSON.parse(response)[0] ;
         this.prenom = this.infosCommande.prenomclient ;
         this.nom  = this.infosCommande.nomclient ;
-        this.designation = this.infosCommande.designation ;
-        this.qte = this.infosCommande.qte ;
-        this.montant = this.infosCommande.mntcmd ;
+        this.orderedArticles = this.infosCommande.orderedArticles ;
+        this.montant = this.infosCommande.montant ;  
+
         this.loading = false ;
         this.inforecvd = true ;
       }); 
@@ -66,17 +67,21 @@ export class ECommerceComponent implements OnInit {
     let paramObj={token : this.token, article : requiredInfo} ;
     this.ecomCaller.prendreCommande(paramObj).then( response =>
       { 
-        response = response.replace(/WSServerBundle/gi,"") ;
-        response = response.replace(/\\Entity\\/gi,"") ;
-        response = response.replace(/Commandes/gi,"") ;
-        response = response.replace(/\\u0000/gi,"") ;
-        response = response.replace(/\\/gi,"") ;
-
-        this.infosCommande = JSON.parse(response) ;
+        console.log("Reponse serveur :::: "+response) ;
         this.codecmd = "";
         this.loading = false ;
         this.postcmd = true ;
       }); 
+  }
+
+  @ViewChild('childModal') public childModal:ModalDirective;
+ 
+  public showChildModal():void {
+    this.childModal.show();
+  }
+ 
+  public hideChildModal():void {
+    this.childModal.hide();
   }
 
 

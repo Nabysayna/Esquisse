@@ -130,6 +130,7 @@ export class TntComponent implements OnInit {
       {
         if(response=="ok"){
          this.verifierNumValide = false ;
+         this.verifierNumInputValide = true;
          this.loading = false ; 
         }
 
