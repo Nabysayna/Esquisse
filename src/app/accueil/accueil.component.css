@@ -102,19 +102,11 @@ body {
     margin-top: 3rem ;
 }
 
-@media screen and (max-width:480px) {
-    
-    #haut {
-       margin-left: 0px;
-    }
-    .navbar-header{
-        background-color: #337ab7 ;
-        color : white ;
-    }
-
-    .navbar-header button{
-        margin-right: 4rem ;
-        border : 0px ;
-    }
+@media screen and (max-width:640px) {
+ 
+ #leftsidemenu{
+    height:100%;
+ }
+   
 }
-        
+       

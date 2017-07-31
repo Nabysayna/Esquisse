@@ -95,7 +95,11 @@
 			                                    <td>{{ getTelephone(relance.infosoperation) }}</td>
 			                                    <td>{{relance.typeoperation}}</td>
 			                                    <td>{{relance.echeance.date}}</td>
-			                                    <td><button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
+			                                    <td><button type="button" class="btn btn-primary btn-sm" (click)="sms()">SMS
+			                                    	</button>
+			                                    	<button type="button" class="btn btn-primary btn-sm" (click)="appel()">	
+			                                    	APPEL</button>
+			                                    	<button type="button" class="btn btn-primary btn-sm" (click)="mail()">EMAIL</button>
 			                                    </td>
 			                                </tr>
 			                                </tbody>
@@ -119,8 +123,8 @@
 				                         </label>
 
 				                         <label>Service : <select class="form-control input-sm" >
-				                            <option>assurance</option>
-				                            <option >e-commerce</option>
+				                            <option>---Choisir un service---</option>
+                                            <option  *ngFor="let srv of servicepoint">{{srv.nom}}</option>
 				                            </select>
 				                         </label>
 
@@ -193,8 +197,8 @@
 					                                    <td>{{prospection.nom}}</td>
 					                                    <td>{{prospection.prenom}}</td>
 					                                    <td>{{prospection.telephone}}</td>
-					                                    <td><button type="button" class="btn btn-primary" popover="" popoverTitle="Détails" triggers="focus">Détails</button></td>
-					                                    <td><button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
+					                                    <td><button type="button" class="btn btn-primary" popover="retrait d'argent" popoverTitle="Détails" triggers="focus">Détails</button></td>
+					                                    <td><button  class="btn btn-primary" (click)="sms()">SMS</button>
 					                                    </td>
 					                                </tr>
 					                                </tbody>

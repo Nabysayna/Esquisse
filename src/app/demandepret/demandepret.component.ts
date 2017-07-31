@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import { Location }               from '@angular/common';
-import {DemandePret} from '../demandepret/demandemodels';
-import {DemandePretService} from '../demandepret/demandeservice';
+
+import * as sha1 from 'js-sha1';
+import * as _ from "lodash";
+
+import {DemandepretServiceWeb, Demandepret} from '../webServiceClients/Demandepret/demandepret.service';
+
 
 @Component({
   selector: 'app-demandepret',
@@ -11,24 +15,39 @@ import {DemandePretService} from '../demandepret/demandeservice';
 })
 export class DemandepretComponent implements OnInit {
 
-	demandePret:DemandePret;
-    mntp : number ;
+	public demandepret:Demandepret[];
+   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+  loading = false ;
+  montantdemande:number;
 
 
   constructor(
   	
-  	 private demandePretService:DemandePretService,
+  	 private demandepretServiceWeb:DemandepretServiceWeb,
      private location: Location,
   	 private route:ActivatedRoute) { }
 
   ngOnInit() {
 
-  	 this.route.params.subscribe( (params : Params) => { 
-      this.demandePret = this.demandePretService.getDemandePret(5);
-    });
+        this.demandepretServiceWeb.demandepret(this.token).then(demandepretserviceList => {
+        this.demandepret = demandepretserviceList;
+        console.log(JSON.stringify(this.demandepret));
+        this.loading = false ;
+      });
+
+  	
   }
 
   demandeprt() {
+
+        this.loading = true ;  
+       this.demandepretServiceWeb.ajoutdemandepret(this.token,this.montantdemande).then(gestionreportingServiceWeb => {
+        this.loading = false ;
+
+       });
+        
+        this.montantdemande = 0 ;
+        
   } 
   
 }

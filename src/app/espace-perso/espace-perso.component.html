@@ -77,7 +77,7 @@
                                         <th><mfDefaultSorter by="index">#</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Client</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
                                         <th>Réception</th>
                                    </tr>
@@ -122,7 +122,7 @@
                                         <th><mfDefaultSorter by="index">#</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Client</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
                                         <th>Réception</th>
                                    </tr>
@@ -132,9 +132,9 @@
 	                                <tr *ngFor="let commande of listCmds.data ; let i = index; ">
 	                                    <td>{{i+1}}</td>
 	                                    <td>{{commande.montant}}</td>
-	                                    <td>{{commande.dateCommande}}</td>
-	                                    <td>{{commande.fullName}}</td>
-	                                    <td>{{commande.tel}}</td>
+	                                    <td>{{commande.dateCommande.date.substring(0,19)}}</td>
+	                                    <td>{{commande.prenomclient + " "+ commande.nomclient}}</td>
+	                                    <td>{{commande.telephoneclient}}</td>
 	                                    <td>
 	                                    	<button *ngIf="!cmdFournis(commande.id)" class="btn btn-success" (click)="fournir(commande.id)">Fourni</button>
 	                                    	<span *ngIf="cmdFournis(commande.id)"><i class="fa fa-check" aria-hidden="true"></i></span>
@@ -174,7 +174,7 @@
                                         <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Vente</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fullName">Nom Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Client</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
                                    </tr>
                             

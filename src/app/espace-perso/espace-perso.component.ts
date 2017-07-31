@@ -258,7 +258,16 @@ export class EspacePersoComponent implements OnInit {
   }
 
   annulArticle(){
-    location.reload();
+    this.loading = true ;
+    this.ecomCaller.listeArticles(this.token, 'perso').then( response =>
+      {
+        this.articles = _.chunk(response, 5) ;
+        this.listarticles = response;
+        this.loading = false ;
+      });  
+    this.modif=""; 
+    this.modifart="";
+ 
   }
 
   detailsCurrentCommande() : newCommande[]{

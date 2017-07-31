@@ -59,6 +59,8 @@
                                         </tfoot>
 
                             </table>
+
+                            <div class="col-sm-3 col-xs-3" ><button class=" btn btn-primary btn-block"  OnClick="javascript:window.print()">Imprimer</button></div>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
@@ -71,13 +73,16 @@
                         </div>
                         
                          <div class="col-sm-12 col-xs-12" >
-                                        <form class="form-signin" (ngSubmit)="validCharge()" #validCharge="ngForm">
                                            <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="libelleCharge"   name="libelle" id="libelle" class="form-control"  placeholder="Libelle charge" required></div> 
                                             <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
-                                           <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="service"   name="service" id="montant" class="form-control" placeholder="Service concerné" required></div>
+                                           <div class="col-sm-3 col-xs-12">
+                                            <select class="form-control input-sm" [(ngModel)]="service" style="margin-top: 1rem;" >
+                                            <option>---Choisir le service concerné---</option>
+                                            <option  *ngFor="let service of servicepoint">{{service.nom}}</option>
+                                            </select>
+                                            </div>
 
-                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!validCharge.form.valid" >Valider</button></div>
-                                        </form>
+                                            <div class="col-sm-3 col-xs-12"><button (click)="validCharge()" id="validcharge" class="btn btn-primary btn-block" >Ajouter</button></div>
                     
                     </div>
                     </div>
@@ -87,25 +92,25 @@
                         <div id="hop2" class="panel-heading">
                           Vente
                         </div>
+                        
                         <div class="col-sm-12 col-xs-12">
-                        <form class="form-signin" (ngSubmit)="validvente()" #validvente="ngForm">
                                            
-                                           <div  class="col-sm-3 col-xs-12"> <label>Service : <select class="form-control input-sm" >
-                                            <option>assurance</option>
-                                            <option>e-commerce</option>
-                                            </select>
-                                            </label></div>
-                                            <div  class="col-sm-3 col-xs-12"> <label>Désignation : <select class="form-control input-sm" >
-                                            <option>assurance maladie</option>
-                                            <option>ventes</option>
-                                            </select>
-                                         </label></div>
-                                           <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="qte"   name="qte" id="qte" class="form-control" placeholder="quantité" required></div>
+                               <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Service : <select class="form-control input-sm" [(ngModel)]="servicevente" >
+                               <option>---Faites un choix---</option>
+                                <option  *ngFor="let srv of servicepoint">{{srv.nom}}</option>
+                                </select>
+                                </label></div>
+                                <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Désignation : 
+                                <select class="form-control input-sm" [(ngModel)]="designation" >
+                                <option>---Faites un choix---</option>
+                                <option  *ngFor="let designation of getDesignations()">{{ designation }}</option>
+                                </select>
+                             </label></div>
+                               <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="quantite"   name="qte" id="qte" class="form-control" placeholder="quantité" required></div>
 
-                                            <div class="col-sm-3 col-xs-12"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" [disabled]="!validvente.form.valid" >Valider</button>
-                                            </div>
-                        </form>
-                    </div>
+                                <div class="col-sm-3 col-xs-12" style="margin-top: 1rem;"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" (click)="validvente()">Valider</button>
+                                </div>
+                        </div>
                     </div>
                 </div>
                       
@@ -114,33 +119,36 @@
                         <div id="hop3" class="panel-heading">
                             Réclamation
                         </div>
-                        <div class="col-sm-12 col-xs-12">
-                       <form class="form-signin" (ngSubmit)="validreclamation()" #validreclamation="ngForm">
-                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujetreclam"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
-                                           <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Service : <select class="form-control input-sm" >
-                                            <option>assurance</option>
-                                            <option>e-commerce</option>
-                                            </select>
-                                         </label></div>
-                                            <input type="number" [(ngModel)]="descripreclam"   name="descrip" id="descrip" class="form-control" placeholder="description réclamation" required>
 
-                                            <div class="col-sm-3 col-xs-12" ><button id="validcharge" class="btn btn-primary btn-block" type="submit" [disabled]="!validreclamation.form.valid" >Envoyer</button></div>
-                        </form>
-                        
+                        <div class="col-sm-12 col-xs-12" >
+                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujet"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
+                                           <div class="col-sm-3 col-xs-12">
+                                            <select class="form-control input-sm" [(ngModel)]="nomservice" style="margin-top: 1rem;" >
+                                            <option>---Choisir le service concerné---</option>
+                                            <option  *ngFor="let nomservice of servicepoint">{{nomservice.nom}}</option>
+
+                                            </select>
+                                            </div>
+                                            <input type="text" [(ngModel)]="message"   name="descrip" id="descrip" class="form-control" placeholder="description de votre réclamation" required>
+                                            <div class="col-sm-3 col-xs-12"><button (click)="validreclamation()" id="validerreclamation" class="btn btn-primary btn-block" >Envoyer</button></div>
+                    
                     </div>
                     
                     </div>
                 </div>
                 <div class="tab-pane fade" id="approvisionnement">
                     <div class="panel">
-                        <div id="hop3" class="panel-heading">Etat de ma caisse</div>
+                        <h2 style="color : #337ab7 ;" id="hop3" class="panel-heading">Etat de la caisse</h2>
                         <div class="col-sm-12 col-xs-12" *ngIf="caisseEtat">
-                            <p>Solde total {{caisseEtat.soldeOuvert}}F CFA - Montant Maxi autoriser {{caisseEtat.soldeFermet}}F CFA</p>
-                            <p *ngIf="caisseEtat.etat==0">Nouvelle approvision de {{caisseEtat.soldeOuvert}} <button (click)="validerapprovision(caisseEtat.id)">Valider</button></p>
+                            <h3>Solde caisse : {{caisseEtat.soldeFermet}}.FCFA </h3>
+                            <p *ngIf="caisseEtat.etat==0">Nouvelle approvision de {{caisseEtat.soldeOuvert - caisseEtat.soldeFermet}} <button class="btn btn-success" (click)="validerapprovision(caisseEtat.id)">Valider</button></p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div> 
-    </div>
+            </div> 
+        </div>
+  </div>
+
+  <div *ngIf="this.loading">
+    <app-loader></app-loader>    
 </div>

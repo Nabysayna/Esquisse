@@ -6,7 +6,7 @@ import { Location }  from '@angular/common';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
-import { CrmServiceWeb, Portefeuille, Relance, Promotion, Prospection, Suivicommande } from '../webServiceClients/Crm/crm.service';
+import { CrmServiceWeb, Portefeuille, Relance, Promotion, Prospection, Suivicommande, Servicepoint } from '../webServiceClients/Crm/crm.service';
 
 
 
@@ -23,7 +23,7 @@ export class CrmComponent implements OnInit {
 	public prospection:Prospection[];
   public suivicommande:Suivicommande[];
 	public portefeuille:Portefeuille[];
-	private crmServiceWeb:CrmServiceWeb = new CrmServiceWeb();
+  public servicepoint:Servicepoint[];
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
 
@@ -34,12 +34,24 @@ export class CrmComponent implements OnInit {
 
 
   constructor(
-  		 private location: Location,
+  		   private location: Location,
          private route:ActivatedRoute,
-         private router: Router
+         private router: Router,
+         private crmServiceWeb:CrmServiceWeb
          ) { }
 
-  ngOnInit() { }
+
+  ngOnInit() {
+     
+      this.crmServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
+        this.servicepoint = serviceptserviceList;
+//        console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
+        console.log("reponse du serveur "+this.servicepoint);
+        this.loading = false ;
+      });
+   
+  }
+
 
   relanceMeth(){
     this.loading = true ;
@@ -72,9 +84,6 @@ export class CrmComponent implements OnInit {
   	return JSON.parse(infosop).tel;
   }
 
-
-  envoyersms(){}
-
   prospect(){ 
       this.loading = true ;
 
@@ -93,9 +102,7 @@ export class CrmComponent implements OnInit {
       });
   }
 
-  detail(){}
-
-  prtfller(){
+  prtflle(){
     this.loading = true ;
     
 
@@ -104,6 +111,18 @@ export class CrmComponent implements OnInit {
         this.loading = false ;
       });
   }
+
+   mail(){}
+
+   sms(){}
+
+   appel(){}
+
+
+  detail(){}
+
+  envoyersms(){}
+
 
 
 }
