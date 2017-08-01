@@ -73,7 +73,7 @@ const appRoutes: Routes = [
                {path: 'DEMANDEPRET', component: DemandepretComponent},
                {path: 'GESTIONREPORTING', component: GestionreportingComponent},
                 {path: 'EXPRESSO', component: ExpressoComponent},
-                 {path: 'TNT BY BBS INVEST', component: TntComponent},
+                 {path: 'TNT BY EXCAF', component: TntComponent},
                  {path: 'SOLDE DU COMPTE', component: SoldecompteComponent},
                {path: 'RECUS/:id', component: RecusComponent}
 

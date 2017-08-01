@@ -138,10 +138,10 @@
                 </div>
                 <div class="tab-pane fade" id="approvisionnement">
                     <div class="panel">
-                        <div id="hop3" class="panel-heading">Etat de ma caisse</div>
+                        <h2 style="color : #337ab7 ;" id="hop3" class="panel-heading">Etat de la caisse</h2>
                         <div class="col-sm-12 col-xs-12" *ngIf="caisseEtat">
-                            <p>Le solde total est de : {{caisseEtat.soldeOuvert}}.FCFA et le montant Maximum autorisé est : {{caisseEtat.soldeFermet}}F CFA</p>
-                            <p *ngIf="caisseEtat.etat==0">Nouvelle approvision de {{caisseEtat.soldeOuvert}} <button (click)="validerapprovision(caisseEtat.id)">Valider</button></p>
+                            <h3>Solde caisse : {{caisseEtat.soldeFermet}}.FCFA </h3>
+                            <p *ngIf="caisseEtat.etat==0">Nouvelle approvision de {{caisseEtat.soldeOuvert - caisseEtat.soldeFermet}} <button class="btn btn-success" (click)="validerapprovision(caisseEtat.id)">Valider</button></p>
                         </div>
                     </div>
                 </div>

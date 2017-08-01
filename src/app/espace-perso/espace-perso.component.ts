@@ -1,4 +1,6 @@
-import { Component, OnInit, NgZone} from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, Input } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap/modal';
+
 import { EcomServiceWeb, Commande } from '../webServiceClients/ecom/ecom.service';
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
@@ -22,6 +24,16 @@ export class Vente {
   public dateVente:string;
 }
 
+export class newCommande{
+  public idarticle:number ;
+  public qte: number ;
+  public prix: number ;
+  public montant:number ;
+  public designation: string ;
+  public description: string ;
+  public imagelink: string ;
+  public pourvoyeur: number
+}
 
 
 @Component({
@@ -29,13 +41,12 @@ export class Vente {
   templateUrl: './espace-perso.component.html', 
   styleUrls: ['./espace-perso.component.css']
 })
-
-
 export class EspacePersoComponent implements OnInit {
 
   articles:Article[][];
   ecomCaller: EcomServiceWeb;
   loading = false ;
+  coderecept : string ;
   listeCommande : Commande[] ;
   listarticles : Article[] ;
   newImage = "imagevide.jpg" ;
@@ -49,6 +60,9 @@ export class EspacePersoComponent implements OnInit {
   stocka:number;
   modif:string="-";
   modifart:string;
+  orderedArticles : string ;
+  nbrePieds : number ;
+  smart : string ;
 
   uploadProgress: number;
   zone: NgZone;
@@ -148,6 +162,9 @@ export class EspacePersoComponent implements OnInit {
           this.descriptiona="";
           this.prixa=0 ;
           this.stocka=0;
+          this.uploadFile.generatedName = null ;
+          this.uploadFile.originalName = null ;
+          this.newImage = "imagevide.jpg" ;
           this.loading = false ;
         }); 
   }
@@ -157,8 +174,14 @@ export class EspacePersoComponent implements OnInit {
     this.loading = true ;
     this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
       {
-        //console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
-        this.listeCommande = response ;
+        this.listeCommande = null ;
+        console.log("Le serveur a répondu : "+JSON.stringify(JSON.parse(response).order)) ;
+        if(typeListe=='toDeliver'){
+          this.smart =  JSON.parse(response).borom ;
+          this.listeCommande = JSON.parse(response).order ;        
+        }
+        else
+          this.listeCommande =  JSON.parse(response) ;
         this.loading = false ;
       });    
 
@@ -235,8 +258,27 @@ export class EspacePersoComponent implements OnInit {
   }
 
   annulArticle(){
-    location.reload();
+    this.loading = true ;
+    this.ecomCaller.listeArticles(this.token, 'perso').then( response =>
+      {
+        this.articles = _.chunk(response, 5) ;
+        this.listarticles = response;
+        this.loading = false ;
+      });  
+    this.modif=""; 
+    this.modifart="";
+ 
   }
+
+  detailsCurrentCommande() : newCommande[]{
+    if(this.orderedArticles){
+      console.log("Detail articles commandés: "+this.orderedArticles) ;
+      let tabOrder : newCommande[] = JSON.parse(this.orderedArticles) ;
+      return tabOrder ;
+    }
+    return [] ;
+  }
+
 
  uploadFile: any;
   hasBaseDropZoneOver: boolean = true;
@@ -267,7 +309,23 @@ export class EspacePersoComponent implements OnInit {
       alert('Le fichier est trop lourd!');
     }
       console.log("Pre Upload Image name "+this.newImage) ;
-
   }
+
+  @ViewChild('childModal') public childModal:ModalDirective;
+ 
+  public showChildModal(ordereddArticles):void {
+    this.orderedArticles = ordereddArticles ;
+    if(JSON.parse(this.orderedArticles).length%3 == 0)
+      this.nbrePieds = JSON.parse(this.orderedArticles).length/3 ;
+    else
+      this.nbrePieds = JSON.parse(this.orderedArticles).length/3 + 1;
+    this.childModal.show();
+  }
+ 
+  public hideChildModal():void {
+    this.childModal.hide();
+  }
+
+
 
 }

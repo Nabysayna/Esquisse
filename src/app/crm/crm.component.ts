@@ -45,7 +45,8 @@ export class CrmComponent implements OnInit {
      
       this.crmServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
         this.servicepoint = serviceptserviceList;
-        console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
+//        console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
+        console.log("reponse du serveur "+this.servicepoint);
         this.loading = false ;
       });
    
