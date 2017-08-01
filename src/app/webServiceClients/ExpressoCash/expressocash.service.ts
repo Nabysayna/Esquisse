@@ -6,7 +6,7 @@ import {SoapService} from "../../soap.service";
 export class ExpressoCashWebService {
 
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/expressocash?wsdl' ;
 
   private targetNamespace:string = 'urn:expressocashwsdl' ;
