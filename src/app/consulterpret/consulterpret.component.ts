@@ -18,11 +18,11 @@ import {ConsulterpretServiceWeb, Consulterpret} from '../webServiceClients/consu
 })
 export class ConsulterpretComponent implements OnInit {
 
-	 public consulterpret:Consulterpret[];
+	   public consulterpret:Consulterpret[];
   	 private consulterpretServiceWeb = new ConsulterpretServiceWeb;
-   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
-  loading = false ;
-  montantconsulter:number;
+	  token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
+	  loading = false ;
+	  montantconsulter:number;
 
   constructor(
      private location: Location,

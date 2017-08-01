@@ -13,6 +13,7 @@ export class Servicepoint{
                           nom:string;
                           designations:string;  
                         } 
+                        
 
 
 
