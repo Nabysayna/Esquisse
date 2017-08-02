@@ -35,7 +35,6 @@ export class CommercialServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/commercial?wsdl' ;
-
   private targetNamespace:string = 'urn:commercialwsdl' ;
 
   public responseJso : any ;

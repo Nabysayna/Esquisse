@@ -111,6 +111,15 @@
                                 <div class="col-sm-3 col-xs-12" style="margin-top: 1rem;"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" (click)="validvente()">Valider</button>
                                 </div>
                         </div>
+                        <div class="col-sm-12 col-xs-12" *ngIf="servicevente=='assurance'">
+                                           <div class="col-sm-3 col-xs-12"><input type="date" [(ngModel)]="datedebut"   name="datedebut" id="datedebut" class="form-control"  placeholder="date début assurance" required></div> 
+                                            <div class="col-sm-3 col-xs-12"><input type="date" [(ngModel)]="datefin"   name="datefin" id="datefin" class="form-control" placeholder="date fin assurance" required></div>
+                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="noma"   name="noma" id="noma" class="form-control" placeholder="nom client" required></div>
+                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="nom"   name="prenoma" id="prenoma" class="form-control" placeholder="prénom client" required></div>
+                                            <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="telephonea"   name="telephonea" id="telephonea" class="form-control" placeholder="téléphone client" required></div>
+                                            <div class="col-sm-3 col-xs-12"><button style="margin-top: 1rem;" (click)="enregistrerassurance()" id="enregistrerassurance" class="btn btn-primary btn-block" >Enregistrer</button></div>
+                    
+                    </div>
                     </div>
                 </div>
                       
@@ -121,7 +130,7 @@
                         </div>
 
                         <div class="col-sm-12 col-xs-12" >
-                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="sujet"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
+                                           <div class="col-sm-3 col-xs-12" style="margin-left: -2rem;"><input type="text" [(ngModel)]="sujet"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
                                            <div class="col-sm-3 col-xs-12">
                                             <select class="form-control input-sm" [(ngModel)]="nomservice" style="margin-top: 1rem;" >
                                             <option>---Choisir le service concerné---</option>
@@ -129,8 +138,8 @@
 
                                             </select>
                                             </div>
-                                            <input type="text" [(ngModel)]="message"   name="descrip" id="descrip" class="form-control" placeholder="description de votre réclamation" required>
-                                            <div class="col-sm-3 col-xs-12"><button (click)="validreclamation()" id="validerreclamation" class="btn btn-primary btn-block" >Envoyer</button></div>
+                                            <textarea type="text" [(ngModel)]="message"   name="descrip" id="descrip" class="form-control" placeholder="description de votre réclamation" required></textarea> 
+                                            <div class="col-sm-3 col-xs-12"><button style="margin-top: 2rem;" (click)="validreclamation()" id="validerreclamation" class="btn btn-primary btn-block" >Envoyer</button></div>
                     
                     </div>
                     
@@ -138,7 +147,7 @@
                 </div>
                 <div class="tab-pane fade" id="approvisionnement">
                     <div class="panel">
-                        <h2 style="color : #337ab7 ;" id="hop3" class="panel-heading">Etat de la caisse</h2>
+                        <h4 style="color : #337ab7 ;" id="hop3" class="panel-heading">Etat de la caisse</h4>
                         <div class="col-sm-12 col-xs-12" *ngIf="caisseEtat">
                             <h3>Solde caisse : {{caisseEtat.soldeFermet}}.FCFA </h3>
                             <p *ngIf="caisseEtat.etat==0">Nouvelle approvision de {{caisseEtat.soldeOuvert - caisseEtat.soldeFermet}} <button class="btn btn-success" (click)="validerapprovision(caisseEtat.id)">Valider</button></p>
