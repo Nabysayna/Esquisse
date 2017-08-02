@@ -198,19 +198,23 @@
                                                                                 <input class="form-control" [(ngModel)]="filtre"/>
                                                                             </div>
                                                                             <div class="col-sm-7 col-xs-12">
-                                                                                Rechercher : <div class="btn-group">
-                                                                                  <label class="btn btn-primary" (click)="estcheckModel('jour')">Par Jour</label>
-                                                                                  <label class="btn btn-primary" (click)="estcheckModel('annee')">Par Année</label>
-                                                                                  <label class="btn btn-primary" (click)="estcheckModel('intervalle')">Par Intervalle</label>
+                                                                                <div class="row">
+                                                                                  <label class="btn btn-primary" (click)="estcheckModel('jour'); listerexploitationrecherche(pdv.idpdv);">Par Jour</label>&nbsp;
+                                                                                  <label class="btn btn-primary" (click)="estcheckModel('annee'); listerexploitationrechercheannee(pdv.idpdv);">Par Année</label>&nbsp;
+                                                                                  <label class="btn btn-primary" (click)="estcheckModel('intervalle'); listerexploitationrecherche(pdv.idpdv);">Par Intervalle</label>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="btn-group" *ngIf="checkModel.intervalle">
                                                                                         de <input type="date" name="intervalledateinit" [(ngModel)]="selectionintervalledateinit" /> à <input type="date" name="intervalleddatefinal" [(ngModel)]="selectionintervalleddatefinal" />
-                                                                                        <button (click)="dateintervalleModel()" >rechercher</button>
+                                                                                        <button (click)="listerexploitationintervalle(pdv.idpdv)" >rechercher</button>
                                                                                     </div>
-                                                                                    <input *ngIf="checkModel.jour" type="date" [(ngModel)]="selectionjour" name="jour" />
+                                                                                    <div class="form-group" *ngIf="checkModel.jour" >
+                                                                                        <input type="date" [(ngModel)]="selectionjour" name="jour" />
+                                                                                        <button (click)="listerexploitationparjour(pdv.idpdv)" >rechercher</button>
+                                                                                    </div>
                                                                                     <div class="form-group" *ngIf="checkModel.annee" >
                                                                                       <select class="form-control" id="sel1" [(ngModel)]="selectionannee">
+                                                                                        <option>2016</option>
                                                                                         <option>2017</option>
                                                                                         <option>2018</option>
                                                                                         <option>2019</option>
@@ -218,8 +222,8 @@
                                                                                         <option>2021</option>
                                                                                         <option>2022</option>
                                                                                       </select>
+                                                                                      <button (click)="listerexploitationrechercheannee(pdv.idpdv)" >rechercher</button>
                                                                                     </div>
-                                                                                
                                                                                 </div>
                                                                             </div>
                                                                             
@@ -236,7 +240,7 @@
                                                                </tr>
                                                             </thead>
                                                             <tbody *ngIf="this.exploitation">
-                                                            <tr *ngFor="let exploitation of fopd.data  | filtredateparjour : selectionjour  | filtredateparannee : selectionannee  | filtredateintervalle : selectionintervalle">
+                                                            <tr *ngFor="let exploitation of fopd.data">
                                                                 <td>{{exploitation.dateajout.date | date }}</td>
                                                                 <td>{{exploitation.designation}}</td>
                                                                 <td>{{exploitation.stocki}}</td>

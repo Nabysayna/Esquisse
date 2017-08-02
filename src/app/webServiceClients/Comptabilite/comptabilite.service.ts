@@ -46,11 +46,11 @@ export class ComptabiliteServiceWeb {
     });   
   }
 
-  public exploitation(idpdv: number): Promise<any>  {
+  public exploitation(idpdv: number, type:string, infotype:string): Promise<any>  {
     var method:string = 'exploitation';
     var parameters:{}[] = [];
 
-    var reEspParams = {token: this.token, idpdv: idpdv} ;
+    var reEspParams = {token: this.token, idpdv: idpdv, type: type, infotype: infotype} ;
     var params:{}[] = [] ; 
     params["params"] = reEspParams;
 
