@@ -14,7 +14,7 @@ export class DemandepretServiceWeb {
 
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/demandepret?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/demandepret?wsdl' ;
 
   private targetNamespace:string = 'urn:demandepretwsdl' ;
 

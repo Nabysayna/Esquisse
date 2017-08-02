@@ -7,7 +7,7 @@ export class PostCashWebService {
 
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
 
   private targetNamespace:string = 'urn:postcashwsdl' ;
 

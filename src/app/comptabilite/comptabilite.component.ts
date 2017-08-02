@@ -9,11 +9,17 @@ import * as _ from "lodash";
 import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/comptabilite.service';
 
 
+class UserExploitation{
+  nom : string;
+  prenom : number;
+  idpdv:number;
+}
+
 class PdvCaisse{
-	nom : string ;
+  nom : string ;
   caisse : number ;
   prenom : number ;
-	id : number ;
+  id : number ;
   idpdv:number;
 }
 
@@ -34,6 +40,7 @@ class Revenus{
 }
 
 class Exploitation{
+  dateajout:string;
   designation:string;
   stocki:number;
   vente:number;
@@ -80,15 +87,27 @@ export class ComptabiliteComponent implements OnInit {
   estselectionss:number;
   montreautredesignation:number;
   estselectionmods:number = -1;
+
+  estclickeJour = true;
+  estclickeAnnee = false;
+  estclickeIntervalle = false;
   
   charges:Charges[];
   revenus:Revenus[];
   exploitation:Exploitation[];
   supservice:Supservice[];
 
+  usersExploitation:UserExploitation[];
+  
   montantajoutecaisse:number;
 
-
+  public checkModel:any = {jour: true, annee: false, intervalle: false};
+  selectionannee:string;
+  selectionjour:string;
+  selectionintervalledateinit:string;
+  selectionintervalleddatefinal:string;
+  selectionintervalle:string;
+  
   filtre ="";
   nom="nom";
   asc="asc";
@@ -102,12 +121,61 @@ export class ComptabiliteComponent implements OnInit {
 
   ) { }
 
+  
+
   ngOnInit() {
     this.comptabiliteServiceWeb.listecaisse().then(adminmultipdvServiceWeb => {
       this.pdvCaisses = adminmultipdvServiceWeb.response; 
     });
   }
 
+  dateintervalleModel(){
+    if(this.selectionintervalledateinit && this.selectionintervalleddatefinal){
+      this.selectionintervalle = this.selectionintervalledateinit+" "+this.selectionintervalleddatefinal;
+    }
+  }
+
+  estcheckModel(type: string){
+    if(type == 'jour'){
+      this.checkModel.jour = true;
+      this.checkModel.annee = false;
+      this.checkModel.intervalle = false;
+      
+      this.selectionannee = "";
+      this.selectionintervalledateinit = "";
+      this.selectionintervalleddatefinal = "";
+    }
+    else if(type == 'annee'){
+      this.checkModel.jour = false;
+      this.checkModel.annee = true;
+      this.checkModel.intervalle = false;
+    
+      this.selectionjour = "";
+      this.selectionannee = "2017";
+      this.selectionintervalledateinit = "";
+      this.selectionintervalleddatefinal = "";
+    }
+    else if(type == 'intervalle'){
+      this.checkModel.jour = false;
+      this.checkModel.annee = false;
+      this.checkModel.intervalle = true;
+    
+      this.selectionjour = "";
+      this.selectionannee = "";
+    }
+    else{
+      this.checkModel.jour = true;
+      this.checkModel.annee = false;
+      this.checkModel.intervalle = false;
+    
+      this.selectionjour = "";
+      this.selectionannee = "";
+      this.selectionintervalledateinit = "";
+      this.selectionintervalleddatefinal = "";
+    }
+    this.selectionintervalle="";
+  }
+  
   isActif(nomPdv : string) : boolean{
   	return (this.approvisionnement.indexOf("-"+nomPdv+"-")>-1) ;
   }
@@ -148,13 +216,22 @@ export class ComptabiliteComponent implements OnInit {
   }
 
 
-  listerventes(i){
+  listeruserexploitation(){
+    this.comptabiliteServiceWeb.userexploitation().then(adminmultipdvServiceWeb => {
+      this.usersExploitation = adminmultipdvServiceWeb.response; 
+      console.log(this.usersExploitation); 
+    });
+  }
+
+  listerexploitation(i){
+    this.estcheckModel("");
     this.estselectionne = i ;
     this.estselectionfff = i;
-    this.comptabiliteServiceWeb.listevente(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
+    this.comptabiliteServiceWeb.exploitation(this.usersExploitation[i].idpdv).then(adminmultipdvServiceWeb => {
       this.exploitation = adminmultipdvServiceWeb.response;
-    }); 
+    });
   }
+
 
   ajouterdesignation(){
     this.designationsService.push(new Designation());
