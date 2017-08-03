@@ -30,8 +30,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
     this.loading = true ;
 
     this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
-      console.log(adminpdvServiceWebList);
-      this.monitoringAdminpdvUserpdv = adminpdvServiceWebList;
+      this.monitoringAdminpdvUserpdv = adminpdvServiceWebList.response;
       this.loading = false ;
     });
 

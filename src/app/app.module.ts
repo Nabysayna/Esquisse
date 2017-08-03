@@ -161,6 +161,9 @@ import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-mult
 import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
 import { AdminmultipdvDemandeRetraitPipe } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
 
+import { FiltredateintervallePipe } from './pipes/filtredateintervalle.pipe';
+import { FiltredateparanneePipe } from './pipes/filtredateparannee.pipe';
+import { FiltredateparjourPipe } from './pipes/filtredateparjour.pipe';
 import { FiltrefichierPipe } from './pipes/filtrefichier.pipe';
 import { FiltrervPipe } from './pipes/filtrerv.pipe';
 import { FiltrechargesPipe } from './pipes/filtrecharges.pipe';
@@ -175,6 +178,11 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
 import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe';
 import { SelfprovidedfilterPipe } from './pipes/selfprovidedfilter.pipe';
 import { ConsulterpretComponent } from './consulterpret/consulterpret.component';
+import { SuppliedarticlesPipe } from './pipes/suppliedarticles.pipe';
+import { FiltrezonepdrPipe } from './pipes/filtrezonepdr.pipe';
+import { FiltresouszonepdrPipe } from './pipes/filtresouszonepdr.pipe';
+import { FiltresouszonesupplierPipe } from './pipes/filtresouszonesupplier.pipe';
+import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -249,6 +257,9 @@ import { ConsulterpretComponent } from './consulterpret/consulterpret.component'
     PipeCommandePipe,
     FiltreoperateursPipe,
     FiltrervoperateursPipe,
+    FiltredateintervallePipe,
+    FiltredateparjourPipe,
+    FiltredateparanneePipe,
 
     AdminmultipdvStatusReclamationPipe,
     AdminmultipdvUpdateCautionPipe,
@@ -275,7 +286,12 @@ import { ConsulterpretComponent } from './consulterpret/consulterpret.component'
     FiltresuivicommandePipe,
     FiltregestionreportingPipe,
     SelfprovidedfilterPipe,
-    ConsulterpretComponent
+    ConsulterpretComponent,
+    SuppliedarticlesPipe,
+    FiltrezonepdrPipe,
+    FiltresouszonepdrPipe,
+    FiltresouszonesupplierPipe,
+    FiltrezonesupplierPipe
   ],
   imports: [
     BrowserModule,

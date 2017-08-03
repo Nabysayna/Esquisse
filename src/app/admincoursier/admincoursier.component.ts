@@ -8,33 +8,10 @@ import { EcomServiceWeb, Commande, Coursier } from '../webServiceClients/ecom/ec
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
-
-class Commandealiv {
-	id:number;
-	nom:string;
-	prenom:string;
-	tel:string;
-	adr:string;
-	prod:string;
-	prix:number;
-	choix:boolean;
-	
-	}
-	
 class CmCheck{
 	id:number;
 	isChecked:boolean;	
 }
-	class Recouvr {
-	id:number;
-	nom:string;
-	prenom:string;
-	tel:string;
-	adr:string;
-	montant:number;
-	choix:boolean;
-	
-	}
 
 @Component({
   selector: 'app-admincoursier',
@@ -43,7 +20,6 @@ class CmCheck{
 })
 export class AdmincoursierComponent implements OnInit {
 
-	recouvrement:Recouvr[];
 	commandearecup:Commande[];
 	commandealivrer:Commande[];
 	coursier="" ;
@@ -54,8 +30,8 @@ export class AdmincoursierComponent implements OnInit {
 	token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 	filtre="";
 
-	zones : string[] =  ['Dakar','Pikine','Rufisque','Yoff','Guédiawaye','Parcelles Assainies'] ;
-
+	zones : string[] =  [] ;
+	zone : string ;
 	nom = "nom" ;
 	asc = "asc" ;
 
@@ -67,36 +43,35 @@ export class AdmincoursierComponent implements OnInit {
 		     private router: Router) { }
 
 	ngOnInit(){
-
-	this.recouvrement= [{ id: 5, nom: 'ndiaye', prenom: 'naby', tel:"771111111", adr: "parcelles u24",  montant:200000, choix:false},
-	{ id: 2, nom: 'sarr', prenom: 'marieme', tel:"774444444", adr: "djily mbaye",  montant:350000, choix:false}];
-		
 		this.loading = true ;
 		this.ecomCaller.listerCoursier(this.token).then( response =>
 		  {
-		    console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
 		    this.loading = false ;
 		    this.coursiers = response; 
 		  });     
 
 	}
 
-	assigner(){
 
-/*		for (var i = this.commandearecup.length - 1; i >= 0; i--) {
-			if ( _.find(this.checker, { 'id': this.commandearecup[i].id}) ) 
-				console.log(JSON.stringify(this.commandearecup[i]));
-		} */
+/** Assigner récupèration depuis fournisseur */
 
+	assignerfourn(){
 		for (var i = this.commandealivrer.length - 1; i >= 0; i--) {
 			if ( _.find(this.checker, { 'id': this.commandealivrer[i].id}) ) 
-				console.log(JSON.stringify(this.commandealivrer[i]));
+				console.log("Commandes assignées à : "+this.coursier);
+				//console.log(JSON.stringify(this.commandealivrer[i]));
 		}
+	}
 
-/*		for (var i = this.recouvrement.length - 1; i >= 0; i--) {
-			if ( _.find(this.checker, { 'id': this.recouvrement[i].id}) ) 
-				console.log(JSON.stringify(this.recouvrement[i]));
-		} */
+
+/** Assigner livraison vers point de récupèration */
+
+	assignerpdr(){
+		for (var i = this.commandearecup.length - 1; i >= 0; i--) {
+			if ( _.find(this.checker, { 'id': this.commandearecup[i].id}) ) 
+				console.log("Commandes assignées à : "+this.coursier);
+//				console.log(JSON.stringify(this.commandearecup[i]));
+		}
 	}
 
 	checkThisCmd(isChecked : boolean, cmdId : number){
@@ -107,28 +82,92 @@ export class AdmincoursierComponent implements OnInit {
 			this.checker = _.filter( this.checker, function(o) { return o.id!=cmdId } );
 	}
 
+/** Commandes à récuperer chez les fournisseur*/
 
 	chargerCommandesDeliver(typeListe : string){
 		this.loading = true ;
 		this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
 		  {
-		    //console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
-		    this.commandearecup = response ;
+		    this.commandealivrer = JSON.parse(response) ;
+		    let mergedTabs = [] ; 
+		    for(var i =  this.commandealivrer.length - 1; i >= 0; i--){
+		    	mergedTabs = mergedTabs.concat( JSON.parse(this.commandealivrer[i].orderedArticles) ) ;
+		    }
+
+		    for(var i =  mergedTabs.length - 1; i >= 0; i--){
+		    	if( this.zones.indexOf(mergedTabs[i].zone)==-1 )
+			    	this.zones.push(mergedTabs[i].zone) ;
+		    } 
+
 		    this.loading = false ;
 		  });     
 	}
 
+
+	getOrderedArticle(orderedArticles){
+		return JSON.parse(orderedArticles) ;
+	}
+
+	getSousZonesSupplier(){
+		let souszones : string[] = [] ;
+		if(this.zone){
+			if(this.commandealivrer){
+			    for(var i =  this.commandealivrer.length - 1; i >= 0; i--){
+			    	let orderdArticles = JSON.parse(this.commandealivrer[i].orderedArticles) ;
+				    for(var j =  orderdArticles.length - 1; j >= 0; j--){
+				    	if(orderdArticles[j].zone==this.zone)
+				    		if( souszones.indexOf(orderdArticles[j].souszone)==-1 ){
+				    			souszones.push(orderdArticles[j].souszone) ; 
+			    		}
+					}
+				}
+			}
+		}
+		return souszones ;
+	}
+
+	getSousZonesRecPoint(){
+		let souszones : string[] = [] ;
+		if(this.zone){
+			if(this.commandearecup){
+			    for(var i =  this.commandearecup.length - 1; i >= 0; i--){
+			    	if(JSON.parse(this.commandearecup[i].pointderecuperation).zone==this.zone)
+			    		if( souszones.indexOf(JSON.parse(this.commandearecup[i].pointderecuperation).souszone)==-1 ){
+			    		souszones.push(JSON.parse(this.commandearecup[i].pointderecuperation).souszone) ; 
+			    	}
+				}
+			}
+
+		}
+
+		return souszones ;
+	}
+
+/** Commandes à acheminer aux point de récupèration*/
 
 	chargerCommandesRecep(typeListe : string){
 		this.loading = true ;
 		this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
 		  {
-		    //console.log("Le serveur a répondu : "+JSON.stringify(response)) ;
-		    this.commandealivrer = response ;
+		    this.commandearecup = JSON.parse(response) ;
+		    let mergedTabs = [] ; 
+		    for(var i =  this.commandearecup.length - 1; i >= 0; i--){
+		    	mergedTabs = mergedTabs.concat( JSON.parse(this.commandearecup[i].orderedArticles) ) ;
+		    	let pdr = JSON.parse(this.commandearecup[i].pointderecuperation) ;
+		    	if( this.zones.indexOf(pdr.zone)==-1 )
+			    	this.zones.push(pdr.zone) ;
+		    }
+
 		    this.loading = false ;
 		  });     
 	}
 
+	getAdressFournisseur(){
+	}
+
+	getAdressLivraison(pointderecuperation){
+		return JSON.parse(pointderecuperation).address ;
+	}
 
 }
 

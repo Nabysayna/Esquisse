@@ -9,11 +9,17 @@ import * as _ from "lodash";
 import { ComptabiliteServiceWeb } from '../webServiceClients/Comptabilite/comptabilite.service';
 
 
+class UserExploitation{
+  nom : string;
+  prenom : number;
+  idpdv:number;
+}
+
 class PdvCaisse{
-	nom : string ;
+  nom : string ;
   caisse : number ;
   prenom : number ;
-	id : number ;
+  id : number ;
   idpdv:number;
 }
 
@@ -34,6 +40,7 @@ class Revenus{
 }
 
 class Exploitation{
+  dateajout:string;
   designation:string;
   stocki:number;
   vente:number;
@@ -80,15 +87,27 @@ export class ComptabiliteComponent implements OnInit {
   estselectionss:number;
   montreautredesignation:number;
   estselectionmods:number = -1;
+
+  estclickeJour = true;
+  estclickeAnnee = false;
+  estclickeIntervalle = false;
   
   charges:Charges[];
   revenus:Revenus[];
   exploitation:Exploitation[];
   supservice:Supservice[];
 
+  usersExploitation:UserExploitation[];
+  
   montantajoutecaisse:number;
 
-
+  public checkModel:any = {jour: true, annee: false, intervalle: false};
+  selectionannee:string;
+  selectionjour:string;
+  selectionintervalledateinit:string;
+  selectionintervalleddatefinal:string;
+  selectionintervalle:string;
+  
   filtre ="";
   nom="nom";
   asc="asc";
@@ -102,12 +121,54 @@ export class ComptabiliteComponent implements OnInit {
 
   ) { }
 
+
   ngOnInit() {
     this.comptabiliteServiceWeb.listecaisse().then(adminmultipdvServiceWeb => {
       this.pdvCaisses = adminmultipdvServiceWeb.response; 
     });
   }
 
+  estcheckModel(type: string){
+    if(type == 'jour'){
+      this.checkModel.jour = true;
+      this.checkModel.annee = false;
+      this.checkModel.intervalle = false;
+      
+      this.selectionannee = "";
+      this.selectionintervalledateinit = "";
+      this.selectionintervalleddatefinal = "";
+    }
+    else if(type == 'annee'){
+      this.checkModel.jour = false;
+      this.checkModel.annee = true;
+      this.checkModel.intervalle = false;
+    
+      this.selectionjour = "";
+      this.selectionannee = "2017";
+      this.selectionintervalledateinit = "";
+      this.selectionintervalleddatefinal = "";
+    }
+    else if(type == 'intervalle'){
+      this.checkModel.jour = false;
+      this.checkModel.annee = false;
+      this.checkModel.intervalle = true;
+    
+      this.selectionjour = "";
+      this.selectionannee = "";
+    }
+    else{
+      this.checkModel.jour = true;
+      this.checkModel.annee = false;
+      this.checkModel.intervalle = false;
+    
+      this.selectionjour = "";
+      this.selectionannee = "";
+      this.selectionintervalledateinit = "";
+      this.selectionintervalleddatefinal = "";
+    }
+    this.selectionintervalle="";
+  }
+  
   isActif(nomPdv : string) : boolean{
   	return (this.approvisionnement.indexOf("-"+nomPdv+"-")>-1) ;
   }
@@ -115,13 +176,11 @@ export class ComptabiliteComponent implements OnInit {
   approvisionnercaisse(idpdv: number){
   	this.approvisionnement="" ;
     this.comptabiliteServiceWeb.approvisionner(idpdv, this.montantajoutecaisse).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
-
   
   listercharges(i){
-
     this.estselectionne = i ;
     this.comptabiliteServiceWeb.listecharge(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
       this.charges = adminmultipdvServiceWeb.response; 
@@ -143,17 +202,60 @@ export class ComptabiliteComponent implements OnInit {
 
   validerajoutercharges(pdv){
     this.comptabiliteServiceWeb.ajoutcharge(this.libelleCharge, pdv.idpdv, this.service, this.montantCharge).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
 
+  listeruserexploitation(){
+    this.comptabiliteServiceWeb.userexploitation().then(adminmultipdvServiceWeb => {
+      this.usersExploitation = adminmultipdvServiceWeb.response; 
+    });
+  }
 
-  listerventes(i){
+  listerexploitation(i){
+    this.estcheckModel("");
     this.estselectionne = i ;
     this.estselectionfff = i;
-    this.comptabiliteServiceWeb.listevente(this.pdvCaisses[i].idpdv).then(adminmultipdvServiceWeb => {
+    let datenow = ((new Date()).toJSON()).split("T",2)[0];
+    this.comptabiliteServiceWeb.exploitation(this.usersExploitation[i].idpdv, "jour", datenow).then(adminmultipdvServiceWeb => {
       this.exploitation = adminmultipdvServiceWeb.response;
-    }); 
+    });
+  }
+
+  listerexploitationrecherche(idpdv){
+    let datenow = ((new Date()).toJSON()).split("T",2)[0];
+    this.comptabiliteServiceWeb.exploitation(idpdv, "jour", datenow).then(adminmultipdvServiceWeb => {
+      this.exploitation = adminmultipdvServiceWeb.response;
+    });
+  }
+
+  listerexploitationrechercheannee(idpdv){
+    this.comptabiliteServiceWeb.exploitation(idpdv, "annee", this.selectionannee).then(adminmultipdvServiceWeb => {
+      this.exploitation = adminmultipdvServiceWeb.response;
+    });
+  }
+
+  listerexploitationparjour(idpdv){
+    if(this.selectionjour != ""){
+      this.comptabiliteServiceWeb.exploitation(idpdv, "jour", this.selectionjour).then(adminmultipdvServiceWeb => {
+        this.exploitation = adminmultipdvServiceWeb.response;
+      });
+    }
+  }
+
+  listerexploitationparannee(idpdv){
+    this.comptabiliteServiceWeb.exploitation(idpdv, "annee", this.selectionannee).then(adminmultipdvServiceWeb => {
+      this.exploitation = adminmultipdvServiceWeb.response;
+    });
+  }
+
+  listerexploitationintervalle(idpdv){
+    if(this.selectionintervalledateinit && this.selectionintervalleddatefinal){
+      this.selectionintervalle = this.selectionintervalledateinit+" "+this.selectionintervalleddatefinal;
+      this.comptabiliteServiceWeb.exploitation(idpdv, "intervalle", this.selectionintervalle).then(adminmultipdvServiceWeb => {
+        this.exploitation = adminmultipdvServiceWeb.response;
+      });
+    }
   }
 
   ajouterdesignation(){
@@ -194,20 +296,20 @@ export class ComptabiliteComponent implements OnInit {
   
   validerajouterservice(pdv:any){
     this.comptabiliteServiceWeb.ajoutservice(this.service, pdv.idpdv, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
 
   validermodifierservice(pdv:any){
     this.comptabiliteServiceWeb.modifierservice(this.service, ""+JSON.stringify(this.designationsService), this.serviceamodifier().idservice).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
  
   deleteservice(supservice:Supservice) {      
-    console.log(supservice);
+    // console.log(supservice);
     this.comptabiliteServiceWeb.supprimerservice(supservice.idservice).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb); 
+      // console.log(adminmultipdvServiceWeb); 
     });
   }
 

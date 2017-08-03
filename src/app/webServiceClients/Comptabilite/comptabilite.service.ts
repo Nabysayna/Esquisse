@@ -5,7 +5,7 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class ComptabiliteServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/comptapdv?wsdl' ;
   private targetNamespace:string = 'urn:comptapdvwsdl' ;
 
@@ -27,6 +27,42 @@ export class ComptabiliteServiceWeb {
     this.soapService.envelopeBuilder = this.envelopeBuilder;
     this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
     this.soapService.localNameMode = true;
+  }
+
+  public userexploitation(): Promise<any>  {
+    var method:string = 'userexploitation';
+    var parameters:{}[] = [];
+    var reEspParams = {token: this.token} ;
+    var params:{}[] = [] ; 
+
+    params["params"] = reEspParams;
+    parameters['userexploitation xmlns="urn:comptapdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'userexploitationResponse').then(response=>{
+        var reponse  = JSON.parse(response['userexploitationResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+  }
+
+  public exploitation(idpdv: number, type:string, infotype:string): Promise<any>  {
+    var method:string = 'exploitation';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, idpdv: idpdv, type: type, infotype: infotype} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams;
+
+    parameters['exploitation xmlns="urn:comptapdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'exploitationResponse').then(response=>{
+        var reponse  = JSON.parse(response['exploitationResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
   }
 
   public listevente(idpdv: number): Promise<any>  {

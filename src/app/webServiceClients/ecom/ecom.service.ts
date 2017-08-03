@@ -16,6 +16,7 @@ export class Commande {
   public orderedArticles:string;
   public montant:number ;
   public tel:number;
+  public pointderecuperation : string ; 
   public fullName:string;
   public dateCommande:string;
 }
@@ -41,11 +42,7 @@ export class Coursier{
 export class EcomServiceWeb {
 
 
-  // private servicePort:string = 'http://51.254.200.129' ; 
-  // private servicePath:string = '/backecom/web/app.php/invest/ecommerce?wsdl' ;
-
-
-  private servicePort:string = 'http://localhost:8888' ;
+  private servicePort:string = 'http://localhost' ;
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 

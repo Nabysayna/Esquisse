@@ -40,17 +40,13 @@ export class AuthenticationService {
       return new Promise( (resolve, reject)=> {
             this.authentiService.authentifierParCodeSMS(smsCode).then( response => { 
                 var resp:AuthResponse=response ;
-                console.log("Reponse du serveur : "+resp.reponse) ;
                 if( resp.reponse.toString()== "true" ){
                     this.baseToken = sha1(resp.baseToken+sha1("bay3k00_f1_n10un") );
-                    console.log("Base token "+this.baseToken) ;
                     this.email = resp.prenom;
                     this.accessLevel = resp.accessLevel;
                     this.authorizedApis = resp.authorizedApis;
 
                     sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, baseToken: this.baseToken, authorizedApis:this.authorizedApis, accessLevel:this.accessLevel}));
-                    console.log("Current user is : "+sessionStorage.getItem('currentUser'));
-                    console.log(this.baseToken);
                     resolve(this.accessLevel);
                 } else {
                     resolve(0);

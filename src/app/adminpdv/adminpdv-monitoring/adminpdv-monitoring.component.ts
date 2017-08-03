@@ -18,9 +18,8 @@ export class AdminpdvMonitoringComponent implements OnInit {
   constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) { }
 
   ngOnInit() {
-    // this.loading = true ;
     this.adminpdvServiceWeb.bilandeposit('azrrtt').then(adminpdvServiceWebList => {
-      this.monitoringAdminpdvDeposit = adminpdvServiceWebList; 
+      this.monitoringAdminpdvDeposit = adminpdvServiceWebList.response; 
     });
 
   }
