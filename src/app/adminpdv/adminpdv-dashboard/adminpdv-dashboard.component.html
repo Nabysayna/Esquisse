@@ -78,58 +78,42 @@
         <div class="col-sm-12 col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel panel-heading">
-                    <h3>Performances des points de vente</h3>
+                    <label class="btn btn-danger" (click)="estcheckPerformance('journee')">La journée</label>&nbsp;
+                    <label class="btn btn-danger" (click)="estcheckPerformance('semaine')" >La semaine</label>&nbsp;
+                    <label class="btn btn-danger" (click)="estcheckPerformance('mois')" >Le mois</label>
+                    <h3>Performances des points de vente {{ typeperformance }}.</h3>
                 </div>
                 <div class="panel-body">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#a" data-toggle="tab">La journée</a></li>
-                        <li><a href="#b" data-toggle="tab">La semaine</a></li>
-                        <li><a href="#c" data-toggle="tab">Le mois</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="a">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-5">
-                                    <div class="panel panel-default table-responsive">
-                                        <table class="table table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Pdv</th>
-                                                <th>Telephone</th>
-                                                <th>Recette</th>
-                                                <th>Option</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr *ngFor="let item of adminpdvDashboardPerformancepdv; let i = index ">
-                                                <td>{{i + 1}}</td>
-                                                <td>{{item.fullname}}</td>
-                                                <td>{{item.telephone}}</td>
-                                                <td>{{item.montanttotal}}</td>
-                                                <td class="text-center"><button type="button" class="btn btn-danger">Détail</button></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5">
+                            <div class="panel panel-default table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Pdv</th>
+                                            <th>Telephone</th>
+                                            <th>Recette</th>
+                                            <th>Option</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of adminpdvDashboardPerformancepdv; let i = index ">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{item.fullname}}</td>
+                                            <td>{{item.telephone}}</td>
+                                            <td>{{item.montanttotal}}</td>
+                                            <td class="text-center"><button type="button"  (click)="estdetailPerformance(item)" class="btn btn-danger">Détail</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="b">
-                            <br>
-                            <div class="row" *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                <div class="col-sm-4">{{ i + 1 }}</div>
-                                <div class="col-sm-4">{{ performancepdv.fullname }}</div>
-                            </div>
+                        <div class="col-xs-12 col-sm-7" *ngIf="detailperformancepdv">
+                            <h3><strong>{{ detailperformancepdv.fullname }}</strong> Meilleur pdv</h3>
+                            <p>{{ detailperformancepdv.montanttotal }}</p>
                         </div>
-                        <div class="tab-pane fade" id="c">
-                            <br>
-                            <p *ngFor=" let performancepdv of adminpdvDashboardPerformancepdv; let i = index ">
-                                {{ i + 1 }} - {{ performancepdv.fullname }}
-                            </p>
-                        </div>
-
-                  </div>
+                    </div>
                 </div>
             </div>
         </div>

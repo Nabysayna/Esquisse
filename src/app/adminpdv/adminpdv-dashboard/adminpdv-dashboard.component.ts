@@ -13,6 +13,9 @@ export class AdminpdvDashboardComponent implements OnInit {
   adminpdvDashboardPerformancepdv: any;
   adminpdvDashboardNbreReclVente: any;
   loading = false ;
+  public checkPerformance:any = {journee: true, semaine: false, mois: false};
+  typeperformance:string = " de la journée";
+  detailperformancepdv:any;
 
   constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) {
 
@@ -24,10 +27,49 @@ export class AdminpdvDashboardComponent implements OnInit {
       this.adminpdvDashboardNbreReclVente = adminpdvServiceWebList.response ;
     });
     
-    this.adminpdvServiceWeb.performancepdv('azrrtt').then(adminpdvServiceWebList => {
-      console.log(adminpdvServiceWebList); 
-      this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList.response; 
-    });
+    this.estcheckPerformance('journee');
+  }
+
+  estcheckPerformance(type: string){
+    if(type == 'journee'){
+      this.checkPerformance.journee = true;
+      this.checkPerformance.semaine = false;
+      this.checkPerformance.mois = false;
+      this.typeperformance = "de la journée";
+
+      this.adminpdvServiceWeb.performancepdv('journee').then(adminpdvServiceWebList => {
+        console.log(adminpdvServiceWebList); 
+        this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList.response;
+        this.detailperformancepdv = this.adminpdvDashboardPerformancepdv[0]; 
+      });
+
+    }
+    else if(type == 'semaine'){
+      this.checkPerformance.journee = false;
+      this.checkPerformance.semaine = true;
+      this.checkPerformance.mois = false;
+      this.typeperformance = "de la semaine";
+      this.adminpdvServiceWeb.performancepdv('semaine').then(adminpdvServiceWebList => {
+        console.log(adminpdvServiceWebList); 
+        this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList.response;
+        this.detailperformancepdv = this.adminpdvDashboardPerformancepdv[0]; 
+      });
+    }
+    else if(type == 'mois'){
+      this.checkPerformance.journee = false;
+      this.checkPerformance.semaine = false;
+      this.checkPerformance.mois = true;
+      this.typeperformance = "du mois";
+      this.adminpdvServiceWeb.performancepdv('mois').then(adminpdvServiceWebList => {
+        console.log(adminpdvServiceWebList); 
+        this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList.response;
+        this.detailperformancepdv = this.adminpdvDashboardPerformancepdv[0]; 
+      });
+    }
+  }
+
+  estdetailPerformance(pdv:any){
+    this.detailperformancepdv = pdv;
   }
   
 

@@ -14,8 +14,7 @@ export class ConsulterpretServiceWeb {
 
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/consulterpret?wsdl' ;
-
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/consulterpret?wsdl' ;
   private targetNamespace:string = 'urn:consulterpretwsdl' ;
 
   public responseJso : any ;

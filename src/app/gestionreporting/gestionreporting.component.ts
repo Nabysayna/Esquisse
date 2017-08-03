@@ -31,7 +31,13 @@ export class GestionreportingComponent implements OnInit {
   quantite:number;
   designation:string;
   servicevente:string;
+  datedebut:Date;
+  datefin:Date;
+  noma:string;
+  prenoma:string;
+  telephonea:number;
   choosenServiceName : string ;
+  estselectassuranceform:boolean=false;
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
 
@@ -53,7 +59,7 @@ export class GestionreportingComponent implements OnInit {
 
         this.gestionreportingServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
         this.servicepoint = serviceptserviceList;
-        console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
+        // console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
         this.loading = false ;
       });
   }
@@ -87,7 +93,7 @@ export class GestionreportingComponent implements OnInit {
 
         this.gestionreportingServiceWeb.gestionreporting(this.token).then(gestreportserviceList => {
         this.gestionreporting = gestreportserviceList;
-        console.log(JSON.stringify(this.gestionreporting));
+        // console.log(JSON.stringify(this.gestionreporting));
         this.loading = false ;
       });
       
@@ -96,7 +102,7 @@ export class GestionreportingComponent implements OnInit {
       validCharge(){
        this.loading = true ;  
        this.gestionreportingServiceWeb.ajoutdepense(this.token,this.libelleCharge, this.service, this.montantCharge).then(gestionreportingServiceWeb => {
-       console.log(gestionreportingServiceWeb); 
+       // console.log(gestionreportingServiceWeb); 
         this.loading = false ;
 
        });
@@ -111,7 +117,7 @@ export class GestionreportingComponent implements OnInit {
 
         this.loading = true ;  
        this.gestionreportingServiceWeb.reclamation(this.token,this.sujet, this.nomservice, this.message).then(gestionreportingServiceWeb => {
-       console.log(gestionreportingServiceWeb); 
+       // console.log(gestionreportingServiceWeb); 
         this.loading = false ;
 
        });
@@ -125,7 +131,7 @@ export class GestionreportingComponent implements OnInit {
       validvente(){
          this.loading = true ;  
        this.gestionreportingServiceWeb.vente(this.token,this.designation, this.servicevente, this.quantite).then(gestionreportingServiceWeb => {
-       console.log(gestionreportingServiceWeb); 
+       // console.log(gestionreportingServiceWeb); 
         this.loading = false ;
 
        });
@@ -139,18 +145,20 @@ export class GestionreportingComponent implements OnInit {
 
 
   etatcaisse(){
-    console.log('test');
+    
     this.comptabiliteServiceWeb.etatcaisse().then(adminmultipdvServiceWeb => {
       this.caisseEtat = adminmultipdvServiceWeb.response;
-      console.log(adminmultipdvServiceWeb.response); 
+      // console.log(adminmultipdvServiceWeb.response); 
     });
   }
 
   validerapprovision(idcaisse){
     this.comptabiliteServiceWeb.validerapprovisionn(idcaisse).then(adminmultipdvServiceWeb => {
-      console.log(adminmultipdvServiceWeb.response); 
+      // console.log(adminmultipdvServiceWeb.response); 
     });
   }
+
+  enregistrerassurance(){}
 
 }
 
