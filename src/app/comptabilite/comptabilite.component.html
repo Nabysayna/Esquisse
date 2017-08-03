@@ -296,10 +296,10 @@
                                             <div class="row">
                                                 <div class="col-sm-8 col-xs-12 form-group">
                                                     <div *ngFor="let designation of designationsService; let i = index;" class="row">
-                                                        <label  class="col-sm-2">Désignation {{i+1}}</label>
+                                                        <label  class="col-sm-2">Produit {{i+1}}</label>
                                                         <input type="text" name="name-{{i}}" [(ngModel)]="designationsService[i].name" class="col-sm-4" placeholder="Entre la désignation" required>
-                                                        <input type="number" name="stock-{{i}}" [(ngModel)]="designationsService[i].stock" class="col-sm-2" placeholder="nombre stock" required>
-                                                        <input type="number" name="prix-{{i}}" [(ngModel)]="designationsService[i].prixunitaire" class="col-sm-2" placeholder="prix unitaire" required>
+                                                        <input type="number" name="stock-{{i}}" [(ngModel)]="designationsService[i].stock" class="col-sm-2" placeholder="Stock" required>
+                                                        <input type="number" name="prix-{{i}}" [(ngModel)]="designationsService[i].prixunitaire" class="col-sm-2" placeholder="Prix" required>
                                                     </div>
                                                 </div>
                                                 <button class="col-sm-3 btn btn-primary" name="autresdesignation" [disabled]="!exploitationForm.form.valid" (click)="ajouterdesignation()">Autre désignation</button>

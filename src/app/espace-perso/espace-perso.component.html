@@ -63,7 +63,7 @@
 	    </div>
 
 			<div class="row tab-pane col-sm-12 col-xs-12 fade" id="waitingCmd">
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmds="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmdswtg="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
  
                                     <tr>
@@ -84,7 +84,7 @@
                             
                                 </thead>
                                 <tbody *ngIf="this.listeCommande" >
-	                                <tr *ngFor="let commande of listCmds.data ; let i = index; ">
+	                                <tr *ngFor="let commande of listCmdswtg.data ; let i = index; ">
 	                                    <td>{{i+1}}</td>
 	                                    <td>{{commande.montant}}</td>
 	                                    <td>{{commande.dateCommande}}</td>
@@ -108,7 +108,7 @@
 		    </div>
 
 			<div class="row tab-pane col-sm-12 col-xs-12 fade" id="cmdToDeliver">
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmdsincoming="mfDataTable"  [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre | suppliedarticles : smart" #listCmdsincoming="mfDataTable"  [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
  
                                     <tr>
@@ -129,7 +129,7 @@
                             
                                 </thead>
                                 <tbody *ngIf="this.listeCommande" >
-	                                <tr *ngFor="let commande of listCmds.data ; let i = index; ">
+	                                <tr *ngFor="let commande of listCmdsincoming.data ; let i = index; ">
 	                                    <td>{{i+1}}</td>
 	                                    <td>{{commande.montant}}</td>
 	                                    <td>{{commande.dateCommande.date.substring(0,19)}}</td>
@@ -229,7 +229,7 @@
 			<div class="col-sm-6 col-xs-12">
 
                 <select class="form-control input-sm" style="margin-left: 1rem ;" [(ngModel)]="categoriea" >
-                    <option >--- Catégroie ---</option>
+                    <option >--- Catégorie ---</option>
                     <option *ngFor="let categorie of categories">{{categorie}}</option>
                 </select>		
 

@@ -175,7 +175,6 @@ export class EspacePersoComponent implements OnInit {
     this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
       {
         this.listeCommande = null ;
-        console.log("Le serveur a répondu : "+JSON.stringify(JSON.parse(response).order)) ;
         if(typeListe=='toDeliver'){
           this.smart =  JSON.parse(response).borom ;
           this.listeCommande = JSON.parse(response).order ;        
@@ -271,8 +270,8 @@ export class EspacePersoComponent implements OnInit {
   }
 
   detailsCurrentCommande() : newCommande[]{
+
     if(this.orderedArticles){
-      console.log("Detail articles commandés: "+this.orderedArticles) ;
       let tabOrder : newCommande[] = JSON.parse(this.orderedArticles) ;
       return tabOrder ;
     }

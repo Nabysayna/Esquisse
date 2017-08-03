@@ -8,89 +8,18 @@
         <div class="panel-body">
             <!-- Nav tabs -->  
             <ul class="nav nav-pills">
-                <li class="active"><a href="#home-pills" data-toggle="tab">Recouvrement</a>
+                <li><a id="elec" href="#dispatchDelivering" data-toggle="tab" (click)="chargerCommandesDeliver('dispatchDelivering')">Commandes à récupérer chez fournisseur</a>
                 </li>
-                <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="chargerCommandesDeliver('dispatchDelivering')">Commandes à Récupérer</a>
-                </li>
-                <li><a href="#messages-pills" (click)="chargerCommandesRecep('dispatchReception')" data-toggle="tab">Commandes à Livrer</a>
+                <li><a href="#dispatchReception" (click)="chargerCommandesRecep('dispatchReception')" data-toggle="tab">Commandes à Livrer</a>
                 </li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-                <div class="tab-pane fade col-sm-12 col-xs-12 in active" id="home-pills">
-                <div class="panel-body">
-                           
-                             <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="recouvrement |filtrerecouvrement:filtre" #rcvrc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th colspan="3" style="padding-right: 3rem ;">
-                                            Rechercher :
-                                            <input class="form-control" [(ngModel)]="filtre"/>
-                                        </th>
-                                        <th colspan="2" style="padding-right: 3rem ;">
-                                        <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER 
-                                        <select class="form-control input-sm" [(ngModel)]="coursier" >
-                                            <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>
-                                            </select>
-                                        </label>
-                                        <button class="btn btn-success" (click)="assigner()">Assigner</button>
-                                        </th>
-                                        <th colspan="2" style="padding-right: 3rem ; text-align: center ;"> 
-                                            <label>Zone <select class="form-control input-sm" >
-                                                <option >Dakar</option>
-                                                <option >Pikine</option>
-                                                <option >Rufisque</option>
-                                                <option >Yoff</option>
-                                                <option >Guédiawaye</option>
-                                                <option >Parcelles</option>
-                                                </select>
-                                            </label>
-                                        </th>
-                                    </tr>
 
-
-                                    <tr>
-
-                                        <th><mfDefaultSorter >Choisir</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="adr">Adresse</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
-                                   </tr>
-                            
-                                </thead>
-                                <tbody *ngIf="this.recouvrement">
-                                <tr *ngFor="let recouvrement of rcvrc.data">
-                                    <input type="checkbox" [(ngModel)]="recouvrement.choix">
-                                    <td>{{recouvrement.nom}}</td>
-                                    <td>{{recouvrement.prenom}}</td>
-                                    <td>{{recouvrement.tel}}</td>
-                                    <td>{{recouvrement.adr}}</td>
-                                    <td>{{recouvrement.montant}}</td>
-
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4">
-                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-
-                            </table>
-                        </div>
-                       
-               
-                   
-                   
-                </div>
-                <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
-               
-                           
-                             <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandearecup |filtrerecommandearecup:filtre" #carc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                <div class="tab-pane fade col-sm-12 col-xs-12" id="dispatchDelivering">
+                         
+                             <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandealivrer |pipeCommande:filtre" #listCmdswtg="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
  
                                     <tr>
@@ -100,42 +29,49 @@
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ;">
                                         <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
+                                            <option></option>
                                             <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>                                         
                                             </select>
                                         </label>
-                                        <button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                        <button class="btn btn-success" (click)="assignerfourn()">Assigner</button>
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ; text-align: center ;"> 
-                                            <label>Zone <select class="form-control input-sm" >
+                                            <label>Zone <select class="form-control input-sm" [(ngModel)]="zone" >
+                                                <option></option>
                                                 <option *ngFor="let zone of zones">{{zone}}</option>
+                                                </select>
+                                            </label>
+                                            <label>Sous-zone <select class="form-control input-sm" [(ngModel)]="souszone" >
+                                                <option></option>
+                                                <option *ngFor="let souszone of getSousZonesSupplier()">{{souszone}}</option>
                                                 </select>
                                             </label>
                                         </th>
                                     </tr>
-
                                     <tr>
-                                        <th>#</th>
-                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fullName">Nom Fournisseur</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="index">#</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="index">Désign. Commande</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Désign. Article</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="adress">Adresse Fournisseur</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="address">Adresse Fournisseur</mfDefaultSorter></th>
                                    </tr>
                             
-                                </thead>
-                                <tbody *ngIf="this.commandearecup">
-                                <tr *ngFor="let commandearecup of carc.data">
-                                    <td><input type="checkbox" #checkbox (change)="checkThisCmd(checkbox.checked,commandearecup.id)" ></td>
-                                    <td>{{commandearecup.designation}}</td>
-                                    <td>{{commandearecup.prixUnitaire}}</td>
-                                    <td>{{commandearecup.quantite}}</td>
-                                    <td>{{commandearecup.fullName}}</td>
-                                    <td>{{commandearecup.dateCommande}}</td>
-                                    <td>{{commandearecup.adress}}</td>
-
-                                </tr>
-                                </tbody>
+                                </thead >
+                                <ng-container *ngIf="this.commandealivrer" >
+                                    <tbody *ngFor="let commande of listCmdswtg.data ; let i = index; ">
+                                        <tr *ngFor="let orderedArticle of getOrderedArticle(commande.orderedArticles) |filtrezonesupplier : zone |filtresouszonesupplier : souszone;">
+                                        <td><input type="checkbox" #checkbox (change)="checkThisCmd(checkbox.checked,commande.id)" ></td>
+                                            <td>{{ "CMD-"+commande.id.toString() }}</td>
+                                            <td>{{ "ART-"+orderedArticle.idarticle.toString() }}</td>
+                                            <td>{{commande.dateCommande}}</td>
+                                            <td>{{commande.fullName}}</td>
+                                            <td>{{commande.tel}}</td>
+                                            <td>{{orderedArticle.address}}</td>
+                                        </tr>
+                                    </tbody>
+                                </ng-container>
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
@@ -150,9 +86,9 @@
                 </div>
 
 
-                <div class="tab-pane fade col-sm-12 col-xs-12" id="messages-pills">  
+                <div class="tab-pane fade col-sm-12 col-xs-12" id="dispatchReception">  
 
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandealivrer |filtrerecommandealivrer:filtre" #cal="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="commandearecup |pipeCommande:filtre |filtrezonepdr : zone |filtresouszonepdr : souszone" #cal="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
                                <thead>
                                     <tr>
                                         <th colspan="3" style="padding-right: 3rem ;">
@@ -161,44 +97,44 @@
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ;">
                                         <label style="padding-left: 4rem; margin-right: 5rem;">COURSIER <select class="form-control input-sm" [(ngModel)]="coursier" >
+                                            <option></option>
                                             <option *ngFor="let coursier of coursiers">{{coursier.prenom}} &nbsp;{{coursier.nom}}</option>
                                             </select>
                                         </label>
-                                        <button class="btn btn-success" (click)="assigner()">Assigner</button>
+                                        <button class="btn btn-success" (click)="assignerpdr()">Assigner</button>
                                         </th>
                                         <th colspan="2" style="padding-right: 3rem ; text-align: center ;"> 
-                                            <label>Zone <select class="form-control input-sm" >
-                                                <option >Dakar</option>
-                                                <option >Pikine</option>
-                                                <option >Rufisque</option>
-                                                <option >Yoff</option>
-                                                <option >Guédiawaye</option>
-                                                <option >Parcelles</option>
+                                            <label>Zone <select class="form-control input-sm" [(ngModel)]="zone">
+                                                <option></option>
+                                                <option *ngFor="let zone of zones">{{zone}}</option>
+                                                </select>
+                                            </label>
+                                            <label>Sous-zone <select class="form-control input-sm" [(ngModel)]="souszone">
+                                                <option></option>
+                                                <option *ngFor="let souszone of getSousZonesRecPoint()">{{souszone}}</option>
                                                 </select>
                                             </label>
                                         </th>
                                     </tr>
 
                                     <tr>
-                                        <th>#</th>
-                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fullName">Nom Fournisseur</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="index">#</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Commande</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="adress">Adresse Fournisseur</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fullName">Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="address">Adresse de livraison</mfDefaultSorter></th>
                                    </tr>
-                            
                                 </thead>
-                                <tbody *ngIf="this.commandealivrer">
-                                <tr *ngFor="let commandealivrer of cal.data">
-                                    <td><input type="checkbox" #checkbox (change)="checkThisCmd(checkbox.checked,commandealivrer.id)" ></td>
-                                    <td>{{commandealivrer.designation}}</td>
-                                    <td>{{commandealivrer.prixUnitaire}}</td>
-                                    <td>{{commandealivrer.quantite}}</td>
-                                    <td>{{commandealivrer.fullName}}</td>
-                                    <td>{{commandealivrer.dateCommande}}</td>
-                                    <td>{{commandealivrer.adress}}</td>
+
+                                <tbody *ngIf="this.commandearecup">
+                                <tr *ngFor="let commandearecup of cal.data">
+                                    <td><input type="checkbox" #checkbox (change)="checkThisCmd(checkbox.checked,commandearecup.id)" ></td>
+                                        <td>{{commandearecup.montant}}</td>
+                                        <td>{{commandearecup.dateCommande}}</td>
+                                        <td>{{commandearecup.fullName}}</td>
+                                        <td>{{commandearecup.tel}}</td>
+                                        <td>{{getAdressLivraison(commandearecup.pointderecuperation)}}</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
