@@ -21,7 +21,7 @@ export class Servicepoint{
 export class GestionreportingServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/gestionreporting?wsdl' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/gestionreporting?wsdl' ;
   private targetNamespace:string = 'urn:gestionreportingwsdl' ;
 
   public responseJso : any ;

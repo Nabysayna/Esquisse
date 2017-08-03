@@ -55,7 +55,7 @@ export class Servicepoint{
 export class CrmServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/crm?wsdl' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/crm?wsdl' ;
   private targetNamespace:string = 'urn:crmwsdl' ;
 
   public responseJso : any ;

@@ -15,7 +15,7 @@ import { AdminmultipdvDepositInitialConsommeParService }    from '../../models/a
 export class AdminmultipdvServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl' ;  
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl' ;  
   private targetNamespace:string = 'urn:adminmultipdvwsdl' ;
 
   public responseJso : any;
