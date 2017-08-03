@@ -175,6 +175,11 @@ import { FiltresuivicommandePipe } from './pipes/filtresuivicommande.pipe';
 import { FiltregestionreportingPipe } from './pipes/filtregestionreporting.pipe';
 import { SelfprovidedfilterPipe } from './pipes/selfprovidedfilter.pipe';
 import { ConsulterpretComponent } from './consulterpret/consulterpret.component';
+import { SuppliedarticlesPipe } from './pipes/suppliedarticles.pipe';
+import { FiltrezonepdrPipe } from './pipes/filtrezonepdr.pipe';
+import { FiltresouszonepdrPipe } from './pipes/filtresouszonepdr.pipe';
+import { FiltresouszonesupplierPipe } from './pipes/filtresouszonesupplier.pipe';
+import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -275,7 +280,12 @@ import { ConsulterpretComponent } from './consulterpret/consulterpret.component'
     FiltresuivicommandePipe,
     FiltregestionreportingPipe,
     SelfprovidedfilterPipe,
-    ConsulterpretComponent
+    ConsulterpretComponent,
+    SuppliedarticlesPipe,
+    FiltrezonepdrPipe,
+    FiltresouszonepdrPipe,
+    FiltresouszonesupplierPipe,
+    FiltrezonesupplierPipe
   ],
   imports: [
     BrowserModule,

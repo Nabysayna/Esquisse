@@ -16,6 +16,7 @@ export class Commande {
   public orderedArticles:string;
   public montant:number ;
   public tel:number;
+  public pointderecuperation : string ; 
   public fullName:string;
   public dateCommande:string;
 }

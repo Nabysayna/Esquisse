@@ -78,7 +78,6 @@ export class AuthentificationServiceWeb {
 
       var parame:{}[] = [] ;
       var user = {token:token, hdeconnexion:"345"} ;
-      console.log("Token Utilisateur "+user.token+" H deconnexion "+user.hdeconnexion);
       parame["user"] = user ;
       return new Promise( (resolve, reject) => {
         parameters['deconnexion xmlns="urn:authwsdl#"'] = parame ;
@@ -92,7 +91,6 @@ export class AuthentificationServiceWeb {
   public setParameters( tryLogin: string, tryPwd: string):{}[] {
       var parameters:{}[] = [] ;
       var user = {login:tryLogin, pwd:tryPwd} ;
-      console.log("Utilisateur "+user.login+" Mot de pass "+user.pwd);
       parameters["user"] = user ;
 
       return parameters ;
