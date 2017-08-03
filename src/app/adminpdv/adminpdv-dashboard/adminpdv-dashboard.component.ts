@@ -49,6 +49,7 @@ export class AdminpdvDashboardComponent implements OnInit {
       this.checkPerformance.semaine = true;
       this.checkPerformance.mois = false;
       this.typeperformance = "de la semaine";
+
       this.adminpdvServiceWeb.performancepdv('semaine').then(adminpdvServiceWebList => {
         console.log(adminpdvServiceWebList); 
         this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList.response;
@@ -60,6 +61,7 @@ export class AdminpdvDashboardComponent implements OnInit {
       this.checkPerformance.semaine = false;
       this.checkPerformance.mois = true;
       this.typeperformance = "du mois";
+      
       this.adminpdvServiceWeb.performancepdv('mois').then(adminpdvServiceWebList => {
         console.log(adminpdvServiceWebList); 
         this.adminpdvDashboardPerformancepdv = adminpdvServiceWebList.response;
