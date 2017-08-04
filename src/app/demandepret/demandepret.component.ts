@@ -17,8 +17,8 @@ export class DemandepretComponent implements OnInit {
 
 	public demandepret:Demandepret[];
    token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
-  loading = false ;
-  montantdemande:number;
+    loading = false ;
+    montantdemande:number;
 
 
   constructor(

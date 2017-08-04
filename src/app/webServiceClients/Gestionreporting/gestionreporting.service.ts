@@ -20,7 +20,7 @@ export class Servicepoint{
 @Injectable()
 export class GestionreportingServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/gestionreporting?wsdl' ;
   private targetNamespace:string = 'urn:gestionreportingwsdl' ;
 

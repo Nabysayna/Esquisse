@@ -35,7 +35,7 @@ export class GestionreportingComponent implements OnInit {
   datefin:any;
   noma:string;
   prenoma:string;
-  telephonea:number;
+  telephonea:string;
   choosenServiceName : string ;
   estselectassuranceform:boolean=false;
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
@@ -57,6 +57,7 @@ export class GestionreportingComponent implements OnInit {
 
   ngOnInit() {
 
+        this.loading = true ;
         this.gestionreportingServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
         this.servicepoint = serviceptserviceList;
         // console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
@@ -130,6 +131,12 @@ export class GestionreportingComponent implements OnInit {
 
       validvente(){
          this.loading = true ;  
+         if(this.servicevente.toLowerCase()=='assurance'.toLowerCase())
+         {
+            let tempdesignation=this.designation;
+            this.designation=JSON.stringify({desig:tempdesignation, nom:this.noma, prenom:this.prenoma, telephone:this.telephonea, datedebut:this.datedebut.toString(), datefin:this.datefin.toString()})
+            console.log("Obj designé "+this.designation); 
+         }
        this.gestionreportingServiceWeb.vente(this.token,this.designation, this.servicevente, this.quantite).then(gestionreportingServiceWeb => {
        // console.log(gestionreportingServiceWeb); 
         this.loading = false ;
@@ -139,6 +146,11 @@ export class GestionreportingComponent implements OnInit {
         this.designation = "" ;
         this.servicevente = "" ;
         this.quantite=0;
+        this.datedebut="";
+        this.datefin="";
+        this.noma="";
+        this.telephonea="";
+        this.prenoma="";
 
 
       }
