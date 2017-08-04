@@ -161,6 +161,7 @@ import { AdminmultipdvStatusReclamationPipe } from './admin-multi-pdv/admin-mult
 import { AdminmultipdvUpdateCautionPipe } from './admin-multi-pdv/admin-multi-pdv-update-caution/admin-multi-pdv-update-caution.pipe';
 import { AdminmultipdvDemandeRetraitPipe } from './admin-multi-pdv/admin-multi-pdv-demande-retrait/admin-multi-pdv-demande-retrait.pipe';
 
+import { FilterAdminmultperformancePipe } from './pipes/filterAdminmultperformance.pipe';
 import { FiltredateintervallePipe } from './pipes/filtredateintervalle.pipe';
 import { FiltredateparanneePipe } from './pipes/filtredateparannee.pipe';
 import { FiltredateparjourPipe } from './pipes/filtredateparjour.pipe';
@@ -260,6 +261,7 @@ import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
     FiltredateintervallePipe,
     FiltredateparjourPipe,
     FiltredateparanneePipe,
+    FilterAdminmultperformancePipe,
 
     AdminmultipdvStatusReclamationPipe,
     AdminmultipdvUpdateCautionPipe,

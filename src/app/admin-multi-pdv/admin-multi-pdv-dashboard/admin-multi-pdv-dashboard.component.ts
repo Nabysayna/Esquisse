@@ -2,9 +2,7 @@ import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
 import {Color} from 'ng2-charts';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
-import { AdminmultipdvMajcaution }    from '../../models/adminmultipdv-majcaution';
 import { AdminmultipdvNombredeReclamationAgentPdvVente }    from '../../models/adminmultipdv-dashboard-nrpv';
-import { AdminmultipdvPerformanceagent }    from '../../models/adminmultipdv-dashboard-pa';
 import { AdminmultipdvActiviteservices }    from '../../models/adminmultipdv-dashboard-as';
 import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
 
@@ -26,7 +24,6 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   loading = false ;
   adminmultipdvActiviteservices: any;
   AdminmultipdvNombredereclamationagentpdvvente: AdminmultipdvNombredeReclamationAgentPdvVente;
-  adminmultipdvDashboardPerformanceagent: AdminmultipdvPerformanceagent[];
 
   public checkPerformance:any = {journee: true, semaine: false, mois: false};
   typeperformance:string = " dans la journée";
@@ -44,11 +41,9 @@ export class AdminmultipdvDashboardComponent implements OnInit {
 
   public filterQuery = "";
   public rowsOnPage = 10;
-  public sortBy = "adminpdv";
+  public sortBy = "fullname";
   public sortOrder = "desc";
-  public adminmultipdvMajcaution: AdminmultipdvMajcaution[];
-  inputCaution: number;
-  majcaution:AdminmultipdvMajcaution;
+  public performancesadminclasserbylotbydate:any
   
 
   constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb) {}
@@ -140,13 +135,14 @@ export class AdminmultipdvDashboardComponent implements OnInit {
     console.log(type+' '+lot);
     
     this.loading = true ;
-    this.adminmultipdvServiceWeb.listmajcautions('azrrtt').then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.performancesadminclasserbylotbydate(lot, type).then(adminmultipdvServiceWebList => {
+      console.log('performancesadminclasserbylotbydate');
       console.log(adminmultipdvServiceWebList);
       if(adminmultipdvServiceWebList.errorCode == 1){
-        this.adminmultipdvMajcaution = adminmultipdvServiceWebList.response; 
+        this.performancesadminclasserbylotbydate = adminmultipdvServiceWebList.response; 
       }
       else{
-       this.adminmultipdvMajcaution = []; 
+       this.performancesadminclasserbylotbydate = []; 
       }
       this.loading = false ;
     });

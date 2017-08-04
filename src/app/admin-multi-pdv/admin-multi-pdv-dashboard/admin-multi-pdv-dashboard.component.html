@@ -184,26 +184,24 @@
                     </div>
                 </div>
                 <div class="panel panel-default table-responsive"  style="background-color: white">
-                    <table class="table table-striped" [mfData]="adminmultipdvMajcaution | dataFilterAdminmultipdvUpdateCaution : filterQuery" #mf="mfDataTable"
+                    <table class="table table-striped" [mfData]="performancesadminclasserbylotbydate | datafilterAdminmultperformance : filterQuery" #mf="mfDataTable"
                            [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th><mfDefaultSorter by="adminpdv">Admin pdv</mfDefaultSorter></th>
+                            <th><mfDefaultSorter by="fullname">Admin pdv</mfDefaultSorter></th>
                             <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
-                            <th><mfDefaultSorter by="adresse">Adresse</mfDefaultSorter></th>
-                            <th><mfDefaultSorter by="cautioninitiale">Caution initiale</mfDefaultSorter></th>
-                            <th><mfDefaultSorter by="montantconsomme">Montant consommé</mfDefaultSorter></th>
+                            <th><mfDefaultSorter by="montanttotal">Recette</mfDefaultSorter></th>
+                            <th>Option</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr *ngFor="let item of mf.data; let i = index ">
                             <td>{{ i + 1  }}</td>
-                            <td>{{item.adminpdv}}</td>
+                            <td>{{item.fullname}}</td>
                             <td>{{item.telephone}}</td>
-                            <td>{{item.adresse}}</td>
-                            <td>{{item.cautioninitiale}}</td>
-                            <td>{{item.montantconsomme}}</td>
+                            <td>{{item.montanttotal}}</td>
+                            <td><button>Détail</button></td>
                         </tr>
                         </tbody>
                         <tfoot>
