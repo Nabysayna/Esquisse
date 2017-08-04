@@ -31,8 +31,8 @@ export class GestionreportingComponent implements OnInit {
   quantite:number;
   designation:string;
   servicevente:string;
-  datedebut:Date;
-  datefin:Date;
+  datedebut:any;
+  datefin:any;
   noma:string;
   prenoma:string;
   telephonea:number;
@@ -93,7 +93,7 @@ export class GestionreportingComponent implements OnInit {
 
         this.gestionreportingServiceWeb.gestionreporting(this.token).then(gestreportserviceList => {
         this.gestionreporting = gestreportserviceList;
-        // console.log(JSON.stringify(this.gestionreporting));
+        console.log(this.gestionreporting);
         this.loading = false ;
       });
       
