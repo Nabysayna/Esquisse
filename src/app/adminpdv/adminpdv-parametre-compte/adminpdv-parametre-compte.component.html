@@ -46,7 +46,7 @@
 	                    	<button type="button" class="btn btn-outline btn-warning" (click)="modif(item)" data-toggle="modal" data-target="#myModalModifUser">Modifier</button>
 	                    </td>
 	                    <td>
-	                    	{{item.isconnect==true?'Connecté':'Déconnecté'}}
+	                    	{{item.isconnect?'Connecté':'Déconnecté'}}
 	                    </td>
 	                    <td>
 	                    	<button type="button" *ngIf="item.isconnect" class="btn btn-outline btn-danger" (click)="deconnectionsession(item)">Déconnecter</button>
