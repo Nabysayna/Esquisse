@@ -241,6 +241,22 @@ export class AdminmultipdvServiceWeb {
     });   
   }
 
+  public detailperformancesadminclasserbydate(idadminpdv: number, typedate : string): Promise<any>  {
+    var method:string = 'detailperformancesadminclasserbydate';
+    var parameters:{}[] = [];
+    var reEspParams = {token: this.token, idadminpdv: idadminpdv, typedate: typedate} ;
+    var params:{}[] = [] ; 
+
+    params["params"] = reEspParams ;
+    parameters['detailperformancesadminclasserbydate xmlns="urn:adminmultipdvwsdl#"'] = params;
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'detailperformancesadminclasserbydateResponse').then(response=>{
+        var reponse = JSON.parse(response['detailperformancesadminclasserbydateResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+  }
+
   public listmap(type : string): Promise<any>  {
     var method:string = 'listmap';
     var parameters:{}[] = [];

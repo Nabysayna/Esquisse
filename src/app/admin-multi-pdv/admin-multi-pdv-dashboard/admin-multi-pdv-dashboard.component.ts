@@ -24,6 +24,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   loading = false ;
   adminmultipdvActiviteservices: any;
   AdminmultipdvNombredereclamationagentpdvvente: AdminmultipdvNombredeReclamationAgentPdvVente;
+  detailAdminPerformance:any;
 
   public checkPerformance:any = {journee: true, semaine: false, mois: false};
   typeperformance:string = " dans la journée";
@@ -149,7 +150,28 @@ export class AdminmultipdvDashboardComponent implements OnInit {
 
   }
   
- 
+  
+  public detailperformancesadminclasserbydate(idadminpdv: number){
+    let type:string="";
+    if (this.checkPerformance.journee) {
+      type = "journee";
+    }
+    if (this.checkPerformance.semaine) {
+      type = "semaine";
+    }
+    if (this.checkPerformance.mois) {
+      type = "mois";
+    }
+    this.adminmultipdvServiceWeb.detailperformancesadminclasserbydate(idadminpdv, type).then(adminmultipdvServiceWebList => {
+      if(adminmultipdvServiceWebList.errorCode == 1){
+        console.log(adminmultipdvServiceWebList); 
+      }
+      else{
+       this.performancesadminclasserbylotbydate = []; 
+      }
+    });
+  }
+   
   public activiteserviceparno():void {
     this.activiteservice("Nombre d'opérations par mois");
   }
