@@ -8,6 +8,8 @@ export class AdminpdvServiceWeb {
 
   private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
+
+  
   private targetNamespace:string = 'urn:adminpdvwsdl' ;
 
   public responseJso : any;
@@ -51,18 +53,18 @@ export class AdminpdvServiceWeb {
   }
 
   public detailperformancepdv(type: string, idpdv: number): Promise<any>  {
-    var method:string = 'deconnectpdv';
+    var method:string = 'detailperformancepdv';
     var parameters:{}[] = [];
 
     var reEspParams = {token: this.token, type: type, idpdv: idpdv};
     var params:{}[] = [] ; 
     params["params"] = reEspParams ;
 
-    parameters['deconnectpdv xmlns="urn:adminpdvwsdl#"'] = params;
+    parameters['detailperformancepdv xmlns="urn:adminpdvwsdl#"'] = params;
     
     return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'deconnectpdvResponse').then(response=>{
-        var reponse = JSON.parse(response['deconnectpdvResponse'].return.$);
+      this.soapService.post(method, parameters, 'detailperformancepdvResponse').then(response=>{
+        var reponse = JSON.parse(response['detailperformancepdvResponse'].return.$);
         resolve(reponse) ;
       }); 
     });   

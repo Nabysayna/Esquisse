@@ -31,7 +31,7 @@ export class TntServiceWeb {
 
   private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl' ;
-  private targetNamespace:string = 'urn:tntwsdl' ;
+private targetNamespace:string = 'urn:tntwsdl' ;
 
   public responseJso : any ;
   public resp : string ;

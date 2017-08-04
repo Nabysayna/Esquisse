@@ -14,6 +14,7 @@ import { AdminmultipdvDepositInitialConsommeParService }    from '../../models/a
 @Injectable()
 export class AdminmultipdvServiceWeb {
 
+
   private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl' ;  
   private targetNamespace:string = 'urn:adminmultipdvwsdl' ;
@@ -36,25 +37,6 @@ export class AdminmultipdvServiceWeb {
     this.soapService.envelopeBuilder = this.envelopeBuilder;
     this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
     this.soapService.localNameMode = true;
-  }
-
-  public nombredereclamationagentpdvvente(type : string): Promise<any>  {
-    var method:string = 'nombredereclamationagentpdvvente';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['nombredereclamationagentpdvvente xmlns="urn:adminmultipdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'nombredereclamationagentpdvventeResponse').then(response=>{
-        var reponse  = JSON.parse(response['nombredereclamationagentpdvventeResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
   }
 
   public bilandeposit(type : string): Promise<any>  {
@@ -95,44 +77,6 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public performanceagent(type : string): Promise<AdminmultipdvPerformanceagent[]>  {
-    var method:string = 'performanceagent';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['performanceagent xmlns="urn:adminmultipdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'performanceagentResponse').then(response=>{
-        var reponse = JSON.parse(response['performanceagentResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
-  public historiquerecouvrement(type : string): Promise<AdminmultipdvRecouvrement[]>  {
-    var method:string = 'historiquerecouvrement';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['historiquerecouvrement xmlns="urn:adminmultipdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'historiquerecouvrementResponse').then(response=>{
-        var reponse = JSON.parse(response['historiquerecouvrementResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
   public historiquereclamation(type : string): Promise<any>  {
     var method:string = 'historiquereclamation';
     var parameters:{}[] = [];
@@ -146,44 +90,6 @@ export class AdminmultipdvServiceWeb {
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'historiquereclamationResponse').then(response=>{
         var reponse = JSON.parse(response['historiquereclamationResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
-  public listmap(type : string): Promise<any>  {
-    var method:string = 'listmap';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['listmap xmlns="urn:adminmultipdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'listmapResponse').then(response=>{
-        var reponse = JSON.parse(response['listmapResponse'].return.$);
-        resolve(reponse) ;
-      }); 
-    });   
-      
-  }
-
-  public activiteservices(type : string): Promise<AdminmultipdvActiviteservices>  {
-    var method:string = 'activiteservices';
-    var parameters:{}[] = [];
-
-    var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
-    params["params"] = reEspParams ;
-
-    parameters['activiteservices xmlns="urn:adminmultipdvwsdl#"'] = params;
-    
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'activiteservicesResponse').then(response=>{
-        var reponse = JSON.parse(response['activiteservicesResponse'].return.$);
         resolve(reponse) ;
       }); 
     });   
@@ -266,20 +172,109 @@ export class AdminmultipdvServiceWeb {
       
   }
 
-  public performancesadminpdv(type : string): Promise<any>  {
-    var method:string = 'performancesadminpdv';
+  public nombredereclamationagentpdvvente(type : string): Promise<any>  {
+    var method:string = 'nombredereclamationagentpdvvente';
     var parameters:{}[] = [];
+
     var reEspParams = {token: this.token, type: type} ;
     var params:{}[] = [] ; 
-
     params["params"] = reEspParams ;
-    parameters['performancesadminpdv xmlns="urn:adminmultipdvwsdl#"'] = params;
+
+    parameters['nombredereclamationagentpdvvente xmlns="urn:adminmultipdvwsdl#"'] = params;
+    
     return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'performancesadminpdvResponse').then(response=>{
-        var reponse = JSON.parse(response['performancesadminpdvResponse'].return.$);
+      this.soapService.post(method, parameters, 'nombredereclamationagentpdvventeResponse').then(response=>{
+        var reponse  = JSON.parse(response['nombredereclamationagentpdvventeResponse'].return.$);
         resolve(reponse) ;
       }); 
     });   
+      
+  }
+
+  public activiteservices(type : string): Promise<any>  {
+    var method:string = 'activiteservices';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, type: type} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['activiteservices xmlns="urn:adminmultipdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'activiteservicesResponse').then(response=>{
+        var reponse = JSON.parse(response['activiteservicesResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
+  }
+
+  public performancesadminclasserbydate(typedate : string): Promise<any>  {
+    var method:string = 'performancesadminclasserbydate';
+    var parameters:{}[] = [];
+    var reEspParams = {token: this.token, typedate: typedate} ;
+    var params:{}[] = [] ; 
+
+    params["params"] = reEspParams ;
+    parameters['performancesadminclasserbydate xmlns="urn:adminmultipdvwsdl#"'] = params;
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'performancesadminclasserbydateResponse').then(response=>{
+        var reponse = JSON.parse(response['performancesadminclasserbydateResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+  }
+
+  public performancesadminclasserbylotbydate(typelot: string, typedate : string): Promise<any>  {
+    var method:string = 'performancesadminclasserbylotbydate';
+    var parameters:{}[] = [];
+    var reEspParams = {token: this.token, typelot: typelot, typedate: typedate} ;
+    var params:{}[] = [] ; 
+
+    params["params"] = reEspParams ;
+    parameters['performancesadminclasserbylotbydate xmlns="urn:adminmultipdvwsdl#"'] = params;
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'performancesadminclasserbylotbydateResponse').then(response=>{
+        var reponse = JSON.parse(response['performancesadminclasserbylotbydateResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+  }
+
+  public detailperformancesadminclasserbydate(idadminpdv: number, typedate : string): Promise<any>  {
+    var method:string = 'detailperformancesadminclasserbydate';
+    var parameters:{}[] = [];
+    var reEspParams = {token: this.token, idadminpdv: idadminpdv, typedate: typedate} ;
+    var params:{}[] = [] ; 
+
+    params["params"] = reEspParams ;
+    parameters['detailperformancesadminclasserbydate xmlns="urn:adminmultipdvwsdl#"'] = params;
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'detailperformancesadminclasserbydateResponse').then(response=>{
+        var reponse = JSON.parse(response['detailperformancesadminclasserbydateResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+  }
+
+  public listmap(type : string): Promise<any>  {
+    var method:string = 'listmap';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, type: type} ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    parameters['listmap xmlns="urn:adminmultipdvwsdl#"'] = params;
+    
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'listmapResponse').then(response=>{
+        var reponse = JSON.parse(response['listmapResponse'].return.$);
+        resolve(reponse) ;
+      }); 
+    });   
+      
   }
 
   private envelopeBuilder(requestBody:string):string {
