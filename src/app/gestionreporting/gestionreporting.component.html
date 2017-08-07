@@ -95,29 +95,33 @@
                         
                         <div class="col-sm-12 col-xs-12">
                                            
-                               <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Service : <select class="form-control input-sm" [(ngModel)]="servicevente" >
+                               <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Service </label><select class="form-control input-sm" [(ngModel)]="servicevente" >
                                <option>---Faites un choix---</option>
                                 <option  *ngFor="let srv of servicepoint">{{srv.nom}}</option>
                                 </select>
-                                </label></div>
-                                <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Désignation : 
-                                <select class="form-control input-sm" [(ngModel)]="designation" >
+                                </div>
+                                <div  class="col-sm-3 col-xs-12" style="margin-top: -1rem;"> <label>Désignation  
+                                </label><select class="form-control input-sm" [(ngModel)]="designation" >
                                 <option>---Faites un choix---</option>
                                 <option  *ngFor="let designation of getDesignations()">{{ designation }}</option>
                                 </select>
-                             </label></div>
+                             </div>
                                <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="quantite"   name="qte" id="qte" class="form-control" placeholder="quantité" required></div>
 
-                                <div class="col-sm-3 col-xs-12" style="margin-top: 1rem;"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" (click)="validvente()">Valider</button>
+                                <div class="col-sm-3 col-xs-12" style="margin-top: 1rem;" *ngIf="servicevente!='assurance'"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" (click)="validvente()">Valider</button>
                                 </div>
                         </div>
-                        <div class="col-sm-12 col-xs-12" *ngIf="servicevente=='assurance'">
-                                           <div class="col-sm-3 col-xs-12"><input type="date" [(ngModel)]="datedebut"   name="datedebut" id="datedebut" class="form-control"  placeholder="date début assurance" required></div> 
-                                            <div class="col-sm-3 col-xs-12"><input type="date" [(ngModel)]="datefin"   name="datefin" id="datefin" class="form-control" placeholder="date fin assurance" required></div>
-                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="noma"   name="noma" id="noma" class="form-control" placeholder="nom client" required></div>
-                                           <div class="col-sm-3 col-xs-12"><input type="text" [(ngModel)]="nom"   name="prenoma" id="prenoma" class="form-control" placeholder="prénom client" required></div>
-                                            <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="telephonea"   name="telephonea" id="telephonea" class="form-control" placeholder="téléphone client" required></div>
-                                            <div class="col-sm-3 col-xs-12"><button style="margin-top: 1rem;" (click)="enregistrerassurance()" id="enregistrerassurance" class="btn btn-primary btn-block" >Enregistrer</button></div>
+                        <div class="col-sm-12 col-xs-12" *ngIf="servicevente=='assurance'" style="margin-top: 1rem">
+                                           <div class="col-sm-3 col-xs-12" style="margin-left: -1rem;"><label style="margin-left: 2rem;">Date début assurance </label><input type="date" [(ngModel)]="datedebut"   name="datedebut" id="datedebut" class="form-control"  placeholder="date début assurance" required>
+                                            <div><label style="margin-left: 2rem;">Date fin assurance </label><input type="date" [(ngModel)]="datefin"   name="datefin" id="datefin" class="form-control" placeholder="date fin assurance" required></div></div>
+                                           <div class="col-sm-3 col-xs-12"><label style="margin-left: 2rem;">
+                                               Nom client
+                                           </label><input type="text" [(ngModel)]="noma"   name="noma" id="noma" class="form-control" required>
+                                           <div><label style="margin-left: 2rem;">Prenom client</label><input type="text" [(ngModel)]="prenoma"   name="prenoma" id="prenoma" class="form-control" required></div></div>
+                                            <div class="col-sm-3 col-xs-12"><label style="margin-left: 2rem;">
+                                                Téléphone client
+                                            </label><input type="string" [(ngModel)]="telephonea"   name="telephonea" id="telephonea" class="form-control" required>
+                                            <div><button style="margin-top: 4.5rem; margin-left: 1rem;" (click)="validvente()" id="enregistrerassurance" class="btn btn-primary btn-block" >Enregistrer</button></div></div>
                     
                     </div>
                     </div>

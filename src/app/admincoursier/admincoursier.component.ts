@@ -8,10 +8,7 @@ import { EcomServiceWeb, Commande, Coursier } from '../webServiceClients/ecom/ec
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
-class CmCheck{
-	id:number;
-	isChecked:boolean;	
-}
+
 
 @Component({
   selector: 'app-admincoursier',
@@ -22,11 +19,12 @@ export class AdmincoursierComponent implements OnInit {
 
 	commandearecup:Commande[];
 	commandealivrer:Commande[];
-	coursier="" ;
+	coursier : any ;
 	coursiers : Coursier[] ;
 	ecomCaller: EcomServiceWeb = new EcomServiceWeb();
 	loading = false ;
 	listeCommande : Commande[] ;
+    mergedTabs = [] ; 
 	token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 	filtre="";
 
@@ -35,7 +33,8 @@ export class AdmincoursierComponent implements OnInit {
 	nom = "nom" ;
 	asc = "asc" ;
 
-	checker : CmCheck[] = [] ;
+	checkerFromSupp : any[] =[] ;
+	checkerToPdR : any[] =[];
 
 	constructor(
 			   private location: Location,
@@ -56,47 +55,67 @@ export class AdmincoursierComponent implements OnInit {
 /** Assigner récupèration depuis fournisseur */
 
 	assignerfourn(){
-		for (var i = this.commandealivrer.length - 1; i >= 0; i--) {
-			if ( _.find(this.checker, { 'id': this.commandealivrer[i].id}) ) 
-				console.log("Commandes assignées à : "+this.coursier);
-				//console.log(JSON.stringify(this.commandealivrer[i]));
-		}
+	    this.loading = true ;
+		let requestedValue = {token:this.token, type:"fromSuppliers", detail:this.checkerFromSupp, coursier:this.coursier } ;
+
+		console.log( "Request parameters :"+JSON.stringify(requestedValue) ) ;
+		this.ecomCaller.assignerCourse(requestedValue).then( response =>
+		  {
+		  	console.log( "Réponse post Assignation "+response ) ;
+		    this.loading = false ;
+		  }); 
 	}
 
 
 /** Assigner livraison vers point de récupèration */
 
 	assignerpdr(){
-		for (var i = this.commandearecup.length - 1; i >= 0; i--) {
-			if ( _.find(this.checker, { 'id': this.commandearecup[i].id}) ) 
-				console.log("Commandes assignées à : "+this.coursier);
-//				console.log(JSON.stringify(this.commandearecup[i]));
-		}
+	    this.loading = true ;
+		let requestedValue = {token:this.token, type:"ToPdR", detail:this.checkerToPdR, coursier:this.coursier } ;
+
+		console.log( "Request parameters :"+JSON.stringify(requestedValue) ) ;
+		this.ecomCaller.assignerCourse(requestedValue).then( response =>
+		  {
+		  	console.log( "Réponse post Assignation "+response ) ;
+		    this.loading = false ;
+		  }); 
 	}
 
-	checkThisCmd(isChecked : boolean, cmdId : number){
+	checkThisCmdFromSupp( isChecked:boolean, cmdId:number, artcleId:number, article:any ){
 		if(isChecked){
-			this.checker.push({id : cmdId, isChecked : isChecked})
+			this.checkerFromSupp.push( {idCmd :cmdId, idArt :artcleId, art :article,  isChecked : isChecked} ) ;
 		}else
-		if ( _.find(this.checker, { 'id': cmdId}) ) 
-			this.checker = _.filter( this.checker, function(o) { return o.id!=cmdId } );
+		if ( _.find( this.checkerFromSupp, { 'idCmd': cmdId, 'idArt':artcleId } ) ) 
+			this.checkerFromSupp = _.filter( this.checkerFromSupp, function(o) { return (o.idCmd!=cmdId || o.idArt!=artcleId) } );
 	}
 
-/** Commandes à récuperer chez les fournisseur*/
+	checkThisCmdToPdR( isChecked:boolean, cmdId:number, cmd:any ){
+		if(isChecked){
+			this.checkerToPdR.push( {idCmd :cmdId, cmd :cmd,  isChecked : isChecked} ) ;
+		}else
+		if ( _.find( this.checkerToPdR, { 'idCmd': cmdId } ) ) 
+			this.checkerToPdR = _.filter( this.checkerToPdR, function(o) { return o.idCmd!=cmdId } );
+	}
+
+
+
+/** Commandes à récuperer chez les fournisseur */
 
 	chargerCommandesDeliver(typeListe : string){
 		this.loading = true ;
 		this.ecomCaller.listerCommandes(this.token, typeListe).then( response =>
 		  {
 		    this.commandealivrer = JSON.parse(response) ;
-		    let mergedTabs = [] ; 
 		    for(var i =  this.commandealivrer.length - 1; i >= 0; i--){
-		    	mergedTabs = mergedTabs.concat( JSON.parse(this.commandealivrer[i].orderedArticles) ) ;
+		    	let orderedarticles = JSON.parse(this.commandealivrer[i].orderedArticles) ;
+			    for(var j = orderedarticles.length - 1; j >= 0; j--){ 
+			    	this.mergedTabs.push( {cmdid:this.commandealivrer[i].id, fullName:this.commandealivrer[i].fullName, dateCommande:this.commandealivrer[i].dateCommande, tel:this.commandealivrer[i].tel, article : orderedarticles[j]} ) ;
+			    }
 		    }
 
-		    for(var i =  mergedTabs.length - 1; i >= 0; i--){
-		    	if( this.zones.indexOf(mergedTabs[i].zone)==-1 )
-			    	this.zones.push(mergedTabs[i].zone) ;
+		    for(var i =  this.mergedTabs.length - 1; i >= 0; i--){
+		    	if( this.zones.indexOf(this.mergedTabs[i].article.zone)==-1 )
+			    	this.zones.push(this.mergedTabs[i].article.zone) ;
 		    } 
 
 		    this.loading = false ;
@@ -137,13 +156,11 @@ export class AdmincoursierComponent implements OnInit {
 			    	}
 				}
 			}
-
 		}
-
 		return souszones ;
 	}
 
-/** Commandes à acheminer aux point de récupèration*/
+/** Commandes à acheminer aux point de récupèration */
 
 	chargerCommandesRecep(typeListe : string){
 		this.loading = true ;
