@@ -184,6 +184,8 @@ import { FiltrezonepdrPipe } from './pipes/filtrezonepdr.pipe';
 import { FiltresouszonepdrPipe } from './pipes/filtresouszonepdr.pipe';
 import { FiltresouszonesupplierPipe } from './pipes/filtresouszonesupplier.pipe';
 import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
+import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pipe';
+
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -262,6 +264,7 @@ import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
     FiltredateparjourPipe,
     FiltredateparanneePipe,
     FilterAdminmultperformancePipe,
+    FiltrecataloguecommandePipe,
 
     AdminmultipdvStatusReclamationPipe,
     AdminmultipdvUpdateCautionPipe,
