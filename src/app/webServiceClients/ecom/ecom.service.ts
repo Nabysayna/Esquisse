@@ -160,6 +160,26 @@ export class EcomServiceWeb {
     });      
   }
 
+
+  public assignerCourse(requestedValue:{}) : Promise<string> {
+    var method:string = 'assignerCourse'; 
+    var parameters:{}[] = []; 
+    var reEspParams = requestedValue ;
+    var params:{}[] = [] ; 
+    params["params"] = reEspParams ;
+
+    return new Promise( (resolve, reject) => {
+      parameters['ajoutcommande xmlns="urn:ecommercewsdl#"'] = params ;
+
+      this.soapService.post(method, parameters, 'assignerCourseResponse').then(response=>{
+        let wSresponse = response['assignerCourseResponse'].return.$ ;
+        console.log("reponse brute from articles Web Service "+wSresponse ) ;
+        resolve(wSresponse) ;
+      }); 
+    });      
+  }
+
+
   public prendreCommande(requestParams:{}) : Promise<string> {
     var method:string = 'prendreCommande'; 
     var parameters:{}[] = []; 
@@ -237,6 +257,9 @@ export class EcomServiceWeb {
         }); 
       });      
   }
+
+
+
   
   public listerCommandes(token : string, typeListe : string) : Promise<any> {
 
