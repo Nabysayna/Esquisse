@@ -9,7 +9,7 @@ import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import {DataTableModule} from "angular2-datatable";
-import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, ModalModule, TypeaheadModule} from 'ng2-bootstrap';
+import { AlertModule, TabsModule, CollapseModule, ProgressbarModule, PopoverModule, ModalModule, TypeaheadModule, PaginationModule, AccordionModule} from 'ng2-bootstrap';
 
 import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
@@ -310,6 +310,9 @@ import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
     ProgressbarModule.forRoot(),
     TypeaheadModule.forRoot(),
     PopoverModule.forRoot(),
+    PaginationModule.forRoot(),
+    AccordionModule.forRoot(),
+    AlertModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC-2WxSYvBmnQ0HgUYU7fWxCyY_itypwn8'
     })
