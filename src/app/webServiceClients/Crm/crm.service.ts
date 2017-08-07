@@ -54,9 +54,9 @@ export class Servicepoint{
 @Injectable()
 export class CrmServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/crm?wsdl' ;
-  private targetNamespace:string = 'urn:crmwsdl' ;
+ private targetNamespace:string = 'urn:crmwsdl' ;
 
   public responseJso : any ;
   public resp : string ;

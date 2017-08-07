@@ -1,7 +1,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Mise à jour cautions</h1>
+            <h1 class="page-header">Paramétrage des comptes</h1>
         </div>
     </div>
 
@@ -46,7 +46,7 @@
 	                    	<button type="button" class="btn btn-outline btn-warning" (click)="modif(item)" data-toggle="modal" data-target="#myModalModifUser">Modifier</button>
 	                    </td>
 	                    <td>
-	                    	{{item.isconnect==true?'Connecté':'Déconnecté'}}
+	                    	{{item.isconnect?'Connecté':'Déconnecté'}}
 	                    </td>
 	                    <td>
 	                    	<button type="button" *ngIf="item.isconnect" class="btn btn-outline btn-danger" (click)="deconnectionsession(item)">Déconnecter</button>

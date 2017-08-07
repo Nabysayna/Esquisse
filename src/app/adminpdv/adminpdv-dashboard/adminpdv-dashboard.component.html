@@ -110,8 +110,27 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-7" *ngIf="detailperformancepdv">
-                            <h3><strong>{{ detailperformancepdv.fullname }}</strong> Meilleur pdv</h3>
-                            <p>{{ detailperformancepdv.montanttotal }}</p>
+                            <h3><strong>{{ performancepdv.fullname }}</strong></h3>
+                            <div class="panel panel-default table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Operateur</th>
+                                            <th>Traitement</th>
+                                            <th>Montant</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of detailperformancepdv; let i = index ">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{item.operateur}}</td>
+                                            <td>{{item.traitement}}</td>
+                                            <td>{{item.montant}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

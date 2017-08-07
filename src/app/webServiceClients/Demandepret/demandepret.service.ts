@@ -11,9 +11,9 @@ export class Demandepret{
 @Injectable()
 export class DemandepretServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/demandepret?wsdl' ;
-  private targetNamespace:string = 'urn:demandepretwsdl' ;
+ private targetNamespace:string = 'urn:demandepretwsdl' ;
 
   public responseJso : any ;
   public resp : string ;

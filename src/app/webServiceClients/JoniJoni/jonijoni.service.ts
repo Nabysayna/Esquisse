@@ -6,9 +6,9 @@ import {SoapService} from "../../soap.service";
 export class JoniJoniWebService {
 
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/jonijoni?wsdl' ;
-  private targetNamespace:string = 'urn:jonijoniwsdl' ;
+ private targetNamespace:string = 'urn:jonijoniwsdl' ;
 
   public responseJso : any;
   public resp : string  ;  

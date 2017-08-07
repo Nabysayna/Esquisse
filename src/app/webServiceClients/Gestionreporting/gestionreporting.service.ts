@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
 
 export class Gestionreporting{
-                          date:string;
+                          dateoperation:any;
                           operateur:string;
                           traitement:string;
                           montant:number;
@@ -20,9 +20,9 @@ export class Servicepoint{
 @Injectable()
 export class GestionreportingServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
+  private servicePort:string = 'http://localhost:8888' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/gestionreporting?wsdl' ;
-  private targetNamespace:string = 'urn:gestionreportingwsdl' ;
+private targetNamespace:string = 'urn:gestionreportingwsdl' ;
 
   public responseJso : any ;
   public resp : string ;
@@ -53,7 +53,7 @@ export class GestionreportingServiceWeb {
             parameters['gestionreporting xmlns="urn:gestionreportingwsdl#"'] = reEspParams;
                 
 
-            
+                     
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'gestionreportingResponse').then(response=>{
                 var reponse:Gestionreporting[] = JSON.parse(response['gestionreportingResponse'].return.$);
