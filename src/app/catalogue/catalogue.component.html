@@ -1,6 +1,9 @@
 
 <div class="panel-body" [ngClass]="{'arriere-plan' : saisieInfosClient}">
 
+    <div class="row">
+    	<button>Voir Panier</button>
+    </div>
 	<input type="search" class="form-control input-sm" 
   	   [(ngModel)]="this.filtre"
        [typeahead]="this.listarticles"
@@ -8,7 +11,7 @@
        typeaheadGroupField="prix"
         placeholder="Rechercher" aria-controls="dataTables-example">
  
-      <div class="dataTable_wrapper">
+    <div class="dataTable_wrapper">
   		<table id="dataTables-example">     
             <thead>
             </thead>

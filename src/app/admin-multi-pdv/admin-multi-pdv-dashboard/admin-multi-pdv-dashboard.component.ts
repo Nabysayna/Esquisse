@@ -29,7 +29,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   public checkPerformance:any = {journee: true, semaine: false, mois: false};
   typeperformance:string = " dans la journée";
   detailperformancepdv:any;
-  performancepdv:any;
+  performanceadminpdv:any;
 
   
   @ViewChild('childModal') public childModal:ModalDirective;
@@ -38,6 +38,8 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   }
   public hideChildModal():void {
     this.childModal.hide();
+    this.detailperformancepdv = null;
+    this.performanceadminpdv = null;
   }
 
   public filterQuery = "";
@@ -99,7 +101,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       this.typeperformance = "dans la journée";
 
       this.detailperformancepdv = null;
-      this.performancepdv = null;
+      this.performanceadminpdv = null;
     }
     else if(type == 'semaine'){
       this.checkPerformance.journee = false;
@@ -108,7 +110,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       this.typeperformance = "dans la semaine";
 
       this.detailperformancepdv = null;
-      this.performancepdv = null;
+      this.performanceadminpdv = null;
     }
     else if(type == 'mois'){
       this.checkPerformance.journee = false;
@@ -117,7 +119,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       this.typeperformance = "dans le mois";
       
       this.detailperformancepdv = null;
-      this.performancepdv = null;
+      this.performanceadminpdv = null;
     }
     this.performancesadminclasserbydate(type);
   }
@@ -151,7 +153,8 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   }
   
   
-  public detailperformancesadminclasserbydate(idadminpdv: number){
+  public detailperformancesadminclasserbydate(adminpdv: any){
+    this.performanceadminpdv = adminpdv;
     let type:string="";
     if (this.checkPerformance.journee) {
       type = "journee";
@@ -162,12 +165,13 @@ export class AdminmultipdvDashboardComponent implements OnInit {
     if (this.checkPerformance.mois) {
       type = "mois";
     }
-    this.adminmultipdvServiceWeb.detailperformancesadminclasserbydate(idadminpdv, type).then(adminmultipdvServiceWebList => {
+    this.adminmultipdvServiceWeb.detailperformancesadminclasserbydate(adminpdv.idadminpdv, type).then(adminmultipdvServiceWebList => {
       if(adminmultipdvServiceWebList.errorCode == 1){
-        console.log(adminmultipdvServiceWebList); 
+        console.log(this.detailperformancepdv); 
+        this.detailperformancepdv = adminmultipdvServiceWebList.response;
       }
       else{
-       this.performancesadminclasserbylotbydate = []; 
+       this.detailperformancepdv = null; 
       }
     });
   }
