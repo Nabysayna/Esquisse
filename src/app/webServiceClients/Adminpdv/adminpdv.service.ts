@@ -6,7 +6,7 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class AdminpdvServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
+  private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
 
   
