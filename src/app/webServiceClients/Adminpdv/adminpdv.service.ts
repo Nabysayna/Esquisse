@@ -7,7 +7,7 @@ import {SoapService} from "../../soap.service";
 export class AdminpdvServiceWeb {
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/adminpdv?wsdl' ;
 
   
   private targetNamespace:string = 'urn:adminpdvwsdl' ;

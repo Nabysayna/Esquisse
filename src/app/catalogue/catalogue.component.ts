@@ -172,8 +172,9 @@ export class CatalogueComponent implements OnInit {
       telephoneclient: this.telephone, 
       emailclient: this.email 
     };
+    this.loading = true ;
     this.ecomCaller.commander(params).then( response => {
-      console.log("Le serveur a répondu : "+response) ;
+      this.loading = false ;
     });  
     this.hideChildModalCommand();
     this.orderedarticles = [];
