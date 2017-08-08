@@ -7,7 +7,7 @@ export class JoniJoniWebService {
 
 
   private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/jonijoni?wsdl' ;
+  private servicePath:string = '/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/jonijoni?wsdl' ;
  private targetNamespace:string = 'urn:jonijoniwsdl' ;
 
   public responseJso : any;

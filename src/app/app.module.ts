@@ -9,7 +9,7 @@ import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
 import { Ng2UploaderModule } from 'ng2-uploader';
 import {DataTableModule} from "angular2-datatable";
-import { TabsModule, CollapseModule, ProgressbarModule, PopoverModule, ModalModule, TypeaheadModule} from 'ng2-bootstrap';
+import { AlertModule, TabsModule, CollapseModule, ProgressbarModule, PopoverModule, ModalModule, TypeaheadModule, PaginationModule, AccordionModule} from 'ng2-bootstrap';
 
 import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
@@ -184,6 +184,8 @@ import { FiltrezonepdrPipe } from './pipes/filtrezonepdr.pipe';
 import { FiltresouszonepdrPipe } from './pipes/filtresouszonepdr.pipe';
 import { FiltresouszonesupplierPipe } from './pipes/filtresouszonesupplier.pipe';
 import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
+import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pipe';
+
 
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -262,6 +264,7 @@ import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
     FiltredateparjourPipe,
     FiltredateparanneePipe,
     FilterAdminmultperformancePipe,
+    FiltrecataloguecommandePipe,
 
     AdminmultipdvStatusReclamationPipe,
     AdminmultipdvUpdateCautionPipe,
@@ -310,6 +313,9 @@ import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
     ProgressbarModule.forRoot(),
     TypeaheadModule.forRoot(),
     PopoverModule.forRoot(),
+    PaginationModule.forRoot(),
+    AccordionModule.forRoot(),
+    AlertModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC-2WxSYvBmnQ0HgUYU7fWxCyY_itypwn8'
     })
