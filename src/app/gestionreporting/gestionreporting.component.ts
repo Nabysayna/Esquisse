@@ -30,7 +30,7 @@ export class GestionreportingComponent implements OnInit {
   message:string;
   quantite:number;
   designation:string;
-  servicevente:string;
+  servicevente:string = "";
   datedebut:any;
   datefin:any;
   noma:string;
@@ -137,6 +137,9 @@ export class GestionreportingComponent implements OnInit {
             this.designation=JSON.stringify({desig:tempdesignation, nom:this.noma, prenom:this.prenoma, telephone:this.telephonea, datedebut:this.datedebut.toString(), datefin:this.datefin.toString()})
             console.log("Obj designé "+this.designation); 
          }
+
+        console.log("Paramètres : "+this.token+" "+this.designation+" "+this.servicevente+" "+this.quantite.toString() ); 
+
        this.gestionreportingServiceWeb.vente(this.token,this.designation, this.servicevente, this.quantite).then(gestionreportingServiceWeb => {
        // console.log(gestionreportingServiceWeb); 
         this.loading = false ;

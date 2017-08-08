@@ -19,8 +19,8 @@
 
 			    <div class="tab-pane fade in active" id="caisse" >
                     <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}">
-                        <div class="col-sm-3 col-xs-12">
-                                <label>{{pdv.prenom}} {{pdv.nom}}</label>
+                        <div class="col-sm-3 col-xs-4">
+                            <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.prenom+" "+pdv.nom}} </label> </button>
                         </div>
                         <div class="col-sm-3 col-xs-12">
                                 <label>Fond de caisse : {{pdv.caisse}}</label>
@@ -34,6 +34,8 @@
                         <div class="col-sm-3 col-xs-12" *ngIf="isActif(pdv.nom)">
                                 <button class="btn btn-success" (click)="approvisionnercaisse(pdv.id)">Valider</button>
                         </div>
+                        <div id="vide">
+                        </div>
                     </div>
 			    </div>	
 
@@ -43,7 +45,7 @@
 		            <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
 				        <div class="col-sm-3 col-xs-4">
-			                <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.nom}} </label> </button>
+			                <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.prenom+" "+pdv.nom}} </label> </button>
 				        </div>
 				        <div class="col-sm-3 col-xs-12">
 	                         <button style="margin-bottom: 1rem;" class="btn btn-success"  href="#listc" data-toggle="tab"  (click)="listercharges(i)">Lister Charges</button>
@@ -86,7 +88,7 @@
                                 </thead>
                                 <tbody *ngIf="this.charges">
                                 <tr *ngFor="let charges of fopad.data">
-                                    <td>{{charges.dateAjout.date | date}}</td>
+                                    <td>{{charges.dateajout.date | date}}</td>
                                     <td>{{charges.libelle}}</td>
                                     <td>{{charges.montant}}</td>
                                     <td>{{charges.service}}</td>
@@ -174,7 +176,7 @@
                         <div class="col-sm-12 col-xs-12">
                             <div class="row">
                                 <div class="col-sm-3 col-xs-12">
-        			                <label>{{pdv.nom}}</label>
+        			                <label>{{pdv.prenom+" "+pdv.nom}}</label>
         				        </div>
         				        <div class="col-sm-3 col-xs-12">
         	                         <button class="btn btn-success"  href="#exp" data-toggle="collapse"  (click)="listerexploitation(i)">Consulter</button>
@@ -270,7 +272,7 @@
 			         <div class="row blockcaisse" *ngFor="let pdv of pdvCaisses; let i = index; let isOdd = odd" [ngClass]="{'colored-caisse' : !isOdd}" >
 
 				        <div class="col-sm-3 col-xs-6">
-                            <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.nom}} </label> </button>
+                            <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.prenom+" "+pdv.nom}} </label> </button>
 				        </div>
 				        <div class="boutonspersonnalisation">
     				        <div class="col-sm-3 col-xs-12">
@@ -360,8 +362,8 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <div *ngFor="let designation of designationsService; let i = index;" class="row">
-                                                <label  class="col-sm-2">Désignation {{i+1}}</label>
-                                                <input type="text" name="nameModif-{{i}}" [(ngModel)]="designationsService[i].name" class="col-sm-4" placeholder="Entre la désignation" required>
+                                                <label  class="col-sm-2">Produit {{i+1}}</label>
+                                                <input type="text" name="nameModif-{{i}}" [(ngModel)]="designationsService[i].name" class="col-sm-4" placeholder="Entre le produit" required>
                                                 <input type="number" name="stockModif-{{i}}" [(ngModel)]="designationsService[i].stock" class="col-sm-2" placeholder="nombre stock" required>
                                                 <input type="number" name="prixModif-{{i}}" [(ngModel)]="designationsService[i].prixunitaire" class="col-sm-2" placeholder="prix unitaire" required>
                                                 <button type="button" (click)="effacerunedesignation(i)" class="btn btn-danger btn-circle">
@@ -372,8 +374,8 @@
                                         <button class="col-sm-3 btn btn-primary" name="autresdesignationModif" [disabled]="!exploitationFormModif.form.valid" (click)="ajouterdesignation()">Ajouter désignation</button>
                                     </div>
                                     <div class="row text-center">
-                                        <button id="validservice" class="btn btn-primary" type="submit" [disabled]="!exploitationFormModif.form.valid" >Modifier</button>
-                                        <button class="btn btn-primary" type="submit" (click)="goBack()" >Annuler</button>
+                                        <button id="validservice" class="btn btn-primary" type="submit" [disabled]="!exploitationFormModif.form.valid" >Enregistrer</button>
+                                        <button class="btn btn-primary" type="submit" (click)="estselectionmods=-1" >Annuler</button>
                                     </div>
                                 </form>
 				        	</div>
@@ -390,4 +392,6 @@
     </div>	
 </div>
 
-
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>

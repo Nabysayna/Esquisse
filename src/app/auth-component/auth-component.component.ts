@@ -62,7 +62,6 @@ export class AuthComponentComponent implements OnInit {
           this.c4 =  this.chaine.split(" ")[3].split("--")[1]; 
 
         }else{
-          console.log("One the else statement") ;
           this.fakevalues = false ;
           this.userName = ''  ; 
           this.userPwd  = '' ; 
@@ -72,7 +71,6 @@ export class AuthComponentComponent implements OnInit {
   }
 
   authentificateBySMS(){
-
     this.loading = true ;
     this.authenticationService.loginPhase2(this.fromSMS).then( access=>
       { 
@@ -104,10 +102,8 @@ export class AuthComponentComponent implements OnInit {
                 if ( access === 4 ){
                   this.router.navigate(['/ADMINCOURSIER']);              
                 }else{
-                  console.log("One the else statement") ;
-                  this.fakevalues = false ;
-                  this.userName = ''  ; 
-                  this.userPwd  = '' ; 
+                  this.phase2fakevalues = false ;
+                  this.fromSMS = ''  ; 
               }  
 
         this.loading = false ; 

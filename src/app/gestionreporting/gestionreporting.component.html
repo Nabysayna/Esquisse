@@ -36,7 +36,7 @@
                                             </tr>
                                             <tr>
                                                 <th><mfDefaultSorter by="date">Date</mfDefaultSorter></th>
-                                                <th><mfDefaultSorter by="operateur">Opérateur</mfDefaultSorter></th>
+                                                <th><mfDefaultSorter by="operateur">Service</mfDefaultSorter></th>
                                                 <th><mfDefaultSorter by="traitement">Traitement</mfDefaultSorter></th>
                                                 <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
                                            </tr>
@@ -44,7 +44,7 @@
                                         </thead>
                                         <tbody *ngIf="this.gestionreporting">
                                         <tr *ngFor="let gestionreporting of fho.data">
-                                            <td>{{gestionreporting.dateoperation}}</td>
+                                            <td>{{gestionreporting.dateoperation.date.substring(0,19)}}</td>
                                             <td>{{gestionreporting.operateur}}</td>
                                             <td>{{gestionreporting.traitement}}</td>
                                             <td>{{gestionreporting.montant}}</td>
@@ -69,7 +69,7 @@
                 <div class="tab-pane fade" id="charges">
                         <div class="panel">
                         <div id="hop" class="panel-heading">
-                            Charge
+                            <h4>Enregistrer une dépense</h4>
                         </div>
                         
                          <div class="col-sm-12 col-xs-12" >
@@ -90,7 +90,7 @@
                 <div class="tab-pane fade" id="ventes">
                     <div class="panel">
                         <div id="hop2" class="panel-heading">
-                          Vente
+                            <h4>Enregistrer une Recette</h4>
                         </div>
                         
                         <div class="col-sm-12 col-xs-12">
@@ -108,10 +108,10 @@
                              </div>
                                <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="quantite"   name="qte" id="qte" class="form-control" placeholder="quantité" required></div>
 
-                                <div class="col-sm-3 col-xs-12" style="margin-top: 1rem;" *ngIf="servicevente!='assurance'"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" (click)="validvente()">Valider</button>
+                                <div class="col-sm-3 col-xs-12" style="margin-top: 1rem;" *ngIf="servicevente.toLowerCase()!='assurance'"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" (click)="validvente()">Valider</button>
                                 </div>
                         </div>
-                        <div class="col-sm-12 col-xs-12" *ngIf="servicevente=='assurance'" style="margin-top: 1rem">
+                        <div class="col-sm-12 col-xs-12" *ngIf="servicevente.toLowerCase()=='assurance'" style="margin-top: 1rem">
                                            <div class="col-sm-3 col-xs-12" style="margin-left: -1rem;"><label style="margin-left: 2rem;">Date début assurance </label><input type="date" [(ngModel)]="datedebut"   name="datedebut" id="datedebut" class="form-control"  placeholder="date début assurance" required>
                                             <div><label style="margin-left: 2rem;">Date fin assurance </label><input type="date" [(ngModel)]="datefin"   name="datefin" id="datefin" class="form-control" placeholder="date fin assurance" required></div></div>
                                            <div class="col-sm-3 col-xs-12"><label style="margin-left: 2rem;">
@@ -130,7 +130,7 @@
                 <div class="tab-pane fade" id="reclamation">
                     <div class="panel">
                         <div id="hop3" class="panel-heading">
-                            Réclamation
+                            <h4>Faire une Réclamation</h4>
                         </div>
 
                         <div class="col-sm-12 col-xs-12" >
