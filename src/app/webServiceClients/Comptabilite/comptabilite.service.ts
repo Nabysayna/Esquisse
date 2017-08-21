@@ -5,8 +5,8 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class ComptabiliteServiceWeb {
 
-  private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/comptapdv?wsdl' ;
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/comptapdv?wsdl' ;
   private targetNamespace:string = 'urn:comptapdvwsdl' ;
 
   public responseJso : any;
