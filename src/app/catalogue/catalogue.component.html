@@ -23,7 +23,7 @@
 						<tbody>
 							<tr *ngFor="let ordered of orderedarticles; let i = index;" >
 								<td class="cart_product">
-									<a><img src="http://51.254.200.129/EsquisseBackEnd/server-backend-upload/uploads/{{ordered.nomImg}}" alt="" height="150" ></a>
+									<a><img src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{ordered.nomImg}}" alt="" height="150" ></a>
 								</td>
 								<td class="cart_description">
 									<h4>{{ordered.designation}}</h4>
@@ -89,9 +89,9 @@
 						    <i class="glyphicon glyphicon-remove" (click)="initialiserreseach()"></i> Aucune article disponible pour ce nom
 						</div>
 					</div>
-					<div class="col-sm-3" *ngFor="let article of listarticles | filtrecataloguecommande : filterQuery" >
+					<div class="col-sm-3" *ngFor="let article of listarticles | filtrecataloguecommande : filterQuery | paginate: { itemsPerPage: 12, currentPage: p }" >
 	                    <div class="well well-sm">
-	                        <img class="card-img-top" src="http://51.254.200.129/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" height="200" width="200">
+	                        <img class="card-img-top" src="http://localhost/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" height="200" width="200">
 	                        <div class="text-center">
 	                            <h4 class="card-title">{{article.designation}}</h4>
 								<p class="card-text">Prix:{{article.prix}}.FCFA</p>
@@ -99,6 +99,9 @@
 	                        </div>
 	                    </div>
 	                </div>
+				</div>
+				<div class="row text-center">
+					<pagination-controls class="my-pagination" previousLabel="Précedant" nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
 				</div>
 				
     </div>

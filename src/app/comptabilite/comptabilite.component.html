@@ -296,15 +296,23 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-8 col-xs-12 form-group">
-                                                    <div *ngFor="let designation of designationsService; let i = index;" class="row">
-                                                        <label  class="col-sm-2">Produit {{i+1}}</label>
-                                                        <input type="text" name="name-{{i}}" [(ngModel)]="designationsService[i].name" class="col-sm-4" placeholder="Désignation" required>
+                                                <div class="col-sm-10 col-xs-12 form-group">
+                                                    <div *ngFor="let designation of designationsService; let i = index; " 
+                                                        class="row" >
+
+                                                        <label  class="col-sm-1">Produit {{i+1}}</label>
+
+                                                        <input type="text" name="name-{{i}}" [(ngModel)]="designationsService[i].name" class="col-sm-3" placeholder="Désignation" required>
+
                                                         <input type="number" name="stock-{{i}}" [(ngModel)]="designationsService[i].stock" class="col-sm-2" placeholder="Stock" required>
-                                                        <input type="number" name="prix-{{i}}" [(ngModel)]="designationsService[i].prixunitaire" class="col-sm-2" placeholder="Prix" required>
+
+                                                        <input type="number" name="prixachat-{{i}}" [(ngModel)]="designationsService[i].prixAchat" class="col-sm-2" placeholder="Prix Achat" required>
+
+                                                        <input type="number" name="prix-{{i}}" [(ngModel)]="designationsService[i].prixunitaire" class="col-sm-2" placeholder="Prix de vente" style="margin-left: -3rem ;" required>
+
                                                     </div>
                                                 </div>
-                                                <button class="col-sm-3 btn btn-primary" name="autresdesignation" [disabled]="!exploitationForm.form.valid" (click)="ajouterdesignation()">Autre produit</button>
+                                                <button class="col-sm-2 btn btn-primary" name="autresdesignation" [disabled]="!exploitationForm.form.valid" (click)="ajouterdesignation()">Autre produit</button>
                                             </div>
                                             <div class="row text-center">
                                                 <button id="validservice" class="btn btn-primary" type="submit" [disabled]="!exploitationForm.form.valid" >Ajouter</button>
@@ -313,7 +321,7 @@
 								        </form>
 				       				 </div>
                                     
-                        <div id="modifservice" class="row tab-pane fade in">
+                        <div id="modifservice" class="row tab-pane fade in" >
                            <div class="col-sm-4 col-xs-12" >
                                     
                                    
@@ -337,7 +345,7 @@
                                         <td>{{supservice.services}}</td>
                                         <td>
                                             <button name="modif-{{j}}" type="button" (click)="modifyservice(j)">Modifier</button>
-                                            <button name="delete-{{j}}" type="button" (click)="deleteservice(supservice)">Supprimer</button>
+                                            <button name="delete-{{j}}" type="button" (click)="deleteservice(supservice,pdv)">Supprimer</button>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -360,18 +368,19 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group">
-                                            <div *ngFor="let designation of designationsService; let i = index;" class="row">
-                                                <label  class="col-sm-2">Produit {{i+1}}</label>
-                                                <input type="text" name="nameModif-{{i}}" [(ngModel)]="designationsService[i].name" class="col-sm-4" placeholder="Entre le produit" required>
+                                        <div class="form-group col-sm-12 col-xs-12">
+                                            <div *ngFor="let designation of designationsService; let i = index; " class="row">
+                                                <!-- <label  class="col-sm-1">Produit {{i+1}}</label> -->
+                                                <input type="text" name="nameModif-{{i}}" [(ngModel)]="designationsService[i].name" class="col-sm-3" placeholder="Entre le produit" required>
                                                 <input type="number" name="stockModif-{{i}}" [(ngModel)]="designationsService[i].stock" class="col-sm-2" placeholder="nombre stock" required>
+                                                <input type="number" name="prixachat-{{i}}" [(ngModel)]="designationsService[i].prixAchat" class="col-sm-2" placeholder="Prix Achat produit" required>
                                                 <input type="number" name="prixModif-{{i}}" [(ngModel)]="designationsService[i].prixunitaire" class="col-sm-2" placeholder="prix unitaire" required>
                                                 <button type="button" (click)="effacerunedesignation(i)" class="btn btn-danger btn-circle">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                        <button class="col-sm-3 btn btn-primary" name="autresdesignationModif" [disabled]="!exploitationFormModif.form.valid" (click)="ajouterdesignation()">Ajouter désignation</button>
+                                        <button class="col-sm-3 col-xs-12 btn btn-primary" name="autresdesignationModif" [disabled]="!exploitationFormModif.form.valid" (click)="ajouterdesignation()" >Ajouter désignation</button>
                                     </div>
                                     <div class="row text-center">
                                         <button id="validservice" class="btn btn-primary" type="submit" [disabled]="!exploitationFormModif.form.valid" >Enregistrer</button>

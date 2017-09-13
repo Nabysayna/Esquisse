@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 	
-//  registredAPIs : string [] = ['POSTECASH','JONI JONI', 'ORANGE MONEY', 'TIGO CASH', 'EXPRESSO', 'TNT BY BBS INVEST'] ;
-  registredAPIs : string [] = ['POSTECASH', 'TNT BY EXCAF'] ;
+  registredAPIs : string [] = ['POSTECASH','JONI JONI', 'ORANGE MONEY', 'TIGO CASH', 'EXPRESSO', 'TNT BY EXCAF'] ;
+  //registredAPIs : string [] = ['POSTECASH', 'TNT BY EXCAF'] ;
   authorisedToUseCRM = false ;
   
   constructor() {   }

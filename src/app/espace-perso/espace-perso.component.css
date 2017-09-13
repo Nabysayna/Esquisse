@@ -3,3 +3,8 @@
 	margin-bottom : 2rem !important ; 
 	margin-right : 1rem ; 
 }
+
+.badge{
+	padding-top: 8px ;
+	padding-bottom: 3px !important;
+}

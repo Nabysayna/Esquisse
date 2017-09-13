@@ -50,7 +50,8 @@ export class AuthComponentComponent implements OnInit {
         if(access  != "rejected"){
           this.loading = false ;
           this.phase1 = false ;
-          this.chaine = access ;
+/*          this.chaine = access ;
+
           this.l1 =  this.chaine.split(" ")[0].split("--")[0] ;
           this.l2 =  this.chaine.split(" ")[1].split("--")[0] ; 
           this.l3 =  this.chaine.split(" ")[2].split("--")[0] ;
@@ -60,6 +61,7 @@ export class AuthComponentComponent implements OnInit {
           this.c2 =  this.chaine.split(" ")[1].split("--")[1]; 
           this.c3 =  this.chaine.split(" ")[2].split("--")[1] ; 
           this.c4 =  this.chaine.split(" ")[3].split("--")[1]; 
+*/
 
         }else{
           this.fakevalues = false ;

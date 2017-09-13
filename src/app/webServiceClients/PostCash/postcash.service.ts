@@ -5,10 +5,15 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class PostCashWebService {
 
-
+/*
   private servicePort:string = 'http://51.254.200.129' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/postcash?wsdl' ;
- private targetNamespace:string = 'urn:postcashwsdl' ;
+*/
+
+  private servicePort:string = 'http://localhost' ; 
+  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
+
+  private targetNamespace:string = 'urn:postcashwsdl' ;
 
   public responseJso : any;
   public resp : string  ;  

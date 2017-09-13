@@ -60,11 +60,6 @@ export class PostcashComponent implements OnInit {
     ) { }
 
     ngOnInit():void {
-
-      this.postcashwebservice.histotransactmarchand('2017/03/06','2017/03/07').then(postcashwebserviceList => {
-        console.log(postcashwebserviceList);
-      });
-
     }
 
     validrechargementespece(){

@@ -5,7 +5,7 @@
                
 	            <div class="row" style="margin-bottom: 3rem;">
                     <div class="col-sm-offset-1 col-sm-10 col-xs-12">
-	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#portefeuille" data-toggle="tab" (click)="prtflle()">Portefeuille</a>
+	                <div class="col-sm-3 col-xs-6"><a class="activeatag active" href="#portefeuille" data-toggle="tab" (click)="prtflle()">Portefeuille</a>
 	                </div>
 	                <div class="col-sm-3 col-xs-6"><a class="activeatag" href="#suivi" data-toggle="tab">Suivi</a></div>
 	               
@@ -21,7 +21,8 @@
 
              	 <div class="tab-pane fade in active col-sm-12 col-xs-3" id="portefeuille">
 
-            	 	
+            	 			<div class="badge">Portefeuille</div>
+
 		            	 	<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="portefeuille|filtreportefeuille:filtre" #fpf="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 		                                <thead>
 		                                    <tr>
@@ -34,7 +35,6 @@
 		                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
 		                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
 		                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-		                                        <th><mfDefaultSorter by="periodicite">Périodicité</mfDefaultSorter></th>
 		                                        <th><mfDefaultSorter by="fidelite">Fidélité</mfDefaultSorter></th>
 		                                   </tr>
 		                            
@@ -44,7 +44,6 @@
 		                                    <td>{{portefeuille.nom}}</td>
 		                                    <td>{{portefeuille.prenom}}</td>
 		                                    <td>{{portefeuille.telephone}}</td>
-		                                    <td>{{portefeuille.periodicite}}</td>
 		                                    <td>{{portefeuille.fidelite}}</td>
 		                                </tr>
 		                                </tbody>
@@ -63,11 +62,14 @@
             	  <div class="tab-pane fade in col-sm-12 col-xs-3" id="suivi">
 
             	  			<div style="margin-left: 30rem; margin-bottom: 3rem;" class="col-xs-6 col-xs-12">
+
 		            	 	 <button  href="#relance" data-toggle="tab" class="btn btn-primary" (click)="relanceMeth()">Relance</button>
 		            	 	 <button href="#promotion" data-toggle="tab" class="btn btn-primary" (click)="promotionMeth()">Promotion</button>
 		            	 	 </div>
 		            	 	 	<div class="tab-content">
 		            	 	  		<div class="tab-pane fade in col-sm-12 col-xs-12" id="relance">
+
+			            	 			<div class="badge">Relance</div>
 			            	 	  		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="relance|filtrerelance:filtre" #frla="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 			                                <thead>
 			                                    <tr>
@@ -75,27 +77,32 @@
 			                                            Rechercher :
 			                                            <input class="form-control" [(ngModel)]="filtre"/>
 			                                        </th>
+			                                        <th colspan="2" style="padding-right: 3rem ;">
+							                           <button  class="btn btn-primary" (click)="envoyersmsRelance()">Envoyer sms</button>
+			                                        </th>
 					                            </tr>
 			                                    <tr>
-			                                    	 <th><mfDefaultSorter>Choisir</mfDefaultSorter></th>
+			                                    	 <th><mfDefaultSorter by="index">Choisir</mfDefaultSorter></th>
 			                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
 			                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-			                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-			                                        <th><mfDefaultSorter by="service">Service</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="telephone">Téléphone</mfDefaultSorter></th>
+			                                        <th><mfDefaultSorter by="nomservice">Service</mfDefaultSorter></th>
 			                                        <th><mfDefaultSorter by="echeance">Echéance</mfDefaultSorter></th>
 			                                        <th><mfDefaultSorter >Action</mfDefaultSorter></th>
 			                                   </tr>
 			                            
 			                                </thead>
 			                                <tbody *ngIf="this.relance">
-			                                <tr *ngFor="let relance of frla.data">
-			                                	<td><input type="checkbox"></td>
-			                                    <td>{{ getNom(relance.infosoperation) }}</td>
-			                                    <td>{{ getPrenom(relance.infosoperation) }}</td>
-			                                    <td>{{ getTelephone(relance.infosoperation) }}</td>
-			                                    <td>{{relance.typeoperation}}</td>
+			                                <tr *ngFor="let relance of frla.data ; let i = index ">
+			                                	<td> 
+			                                	<input type="checkbox" #checkbox (change)="checkThisForRelance(checkbox.checked,relance,i)">
+			                                	</td>
+			                                    <td>{{ relance.nom }}</td>
+			                                    <td>{{ relance.prenom }}</td>
+			                                    <td>{{ relance.telephone }}</td>
+			                                    <td>{{relance.nomservice}}</td>
 			                                    <td>{{relance.echeance.date}}</td>
-			                                    <td><button type="button" class="btn btn-primary btn-sm" (click)="sms()">SMS
+			                                    <td><button type="button" class="btn btn-primary btn-sm" (click)="sms(relance.telephone)">SMS
 			                                    	</button>
 			                                    	<button type="button" class="btn btn-primary btn-sm" (click)="appel()">	
 			                                    	APPEL</button>
@@ -115,6 +122,8 @@
 		            	 	  		
 		            				</div> 	  		
 		            				<div class="tab-pane fade in col-sm-12 col-xs-12" id="promotion">
+
+			            	 			<div class="badge">Promotion</div>
 		            					<div style="margin-bottom: 3rem;">
 		            					 <label>Filtrer Par : <select class="form-control input-sm" >
 				                            <option>périodicité</option>
@@ -128,7 +137,7 @@
 				                            </select>
 				                         </label>
 
-				                           <button  class="btn btn-primary" (click)="envoyersms()">Envoyer sms</button>
+				                           <button  class="btn btn-primary" (click)="showChildModal('promo')">Envoyer sms</button>
 		            					</div>	
 			            	 	  		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="promotion|filtrepromotion:filtre" #fpr="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 			                                <thead>
@@ -138,7 +147,8 @@
 			                                            <input class="form-control" [(ngModel)]="filtre"/>
 			                                        </th>
 					                            </tr>
-			                                    <tr>
+	  		                                    <tr>
+   		                                    	    <th><mfDefaultSorter by="index">Choisir</mfDefaultSorter></th>
 			                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
 			                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
 			                                        <th><mfDefaultSorter by="telephone">Téléphone</mfDefaultSorter></th>
@@ -149,7 +159,10 @@
 			                            
 			                                </thead>
 			                                <tbody *ngIf="this.promotion">
-			                                <tr *ngFor="let promotion of fpr.data">
+			                                <tr *ngFor="let promotion of fpr.data ; let i = index ">
+			                                	<td>
+			                                	<input type="checkbox" #checkboxprom (change)="checkThisForPromo(checkboxprom.checked,promotion,i)">
+			                                	</td>
 			                                    <td>{{promotion.nom}}</td>
 			                                    <td>{{promotion.prenom}}</td>
 			                                    <td>{{promotion.telephone}}</td>
@@ -174,6 +187,9 @@
             	 </div>
 
             	 <div class="tab-pane fade in col-sm-12 col-xs-3" id="prospection" >
+
+        	 			 <div class="badge">Prospection</div>
+
 		            	 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="prospection|filtreprospection:filtre" #fprs="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 					                                <thead>
 					                                    <tr>
@@ -198,7 +214,7 @@
 					                                    <td>{{prospection.prenom}}</td>
 					                                    <td>{{prospection.telephone}}</td>
 					                                    <td><button type="button" class="btn btn-primary" popover="retrait d'argent" popoverTitle="Détails" triggers="focus">Détails</button></td>
-					                                    <td><button  class="btn btn-primary" (click)="sms()">SMS</button>
+					                                    <td><button  class="btn btn-primary" (click)="sms(prospection.telephone)">SMS</button>
 					                                    </td>
 					                                </tr>
 					                                </tbody>
@@ -213,6 +229,9 @@
 					     </table>
 			    </div>
 			     <div class="tab-pane fade in col-sm-12 col-xs-3" id="suivicommande">
+
+        	 			<div class="badge">Suivi commandes</div>
+
 					    <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="suivicommande|filtresuivicommande:filtre" #fsc="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 					                                <thead>
 					                                    <tr>
@@ -236,7 +255,7 @@
 					                                <tr *ngFor="let suivicommande of fsc.data">
 					                                    <td>{{suivicommande.nomclient}}</td>
 					                                    <td>{{suivicommande.prenomclient}}</td>
-					                                    <td>{{suivicommande.pointderecuperation}}</td>
+					                                    <td>{{getAddressRecup(suivicommande.pointderecuperation)}}</td>
 					                                    <td>{{suivicommande.montantcommande}}</td>
 					                                    <td><button type="button" class="btn btn-primary" popover="{{suivicommande.detail}}" popoverTitle="Détails" triggers="focus">Détails</button></td>
 					                                    <td>{{suivicommande.etat}}</td>
@@ -261,6 +280,29 @@
     </div>	
 
 </div>
+	<div bsModal #childModal="bs-modal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		 <div class="modal-dialog modal-lg">
+		    <div class="modal-content" >
+		      <div class="modal-header">
+				<button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+				    <span aria-hidden="true">&times;</span>
+		        </button>
+	            <h4 class="modal-title" id="myModalLabel">Envoi SMS</h4>
+		      </div>
+		      <div class="modal-body" style="height : 37rem">
+					<div class="col-sm-12 col-xs-12">
+
+						<textarea style="margin-bottom: 3rem; " rows="4"  type="text" [(ngModel)]='message' class="form-control input-sm"  placeholder="Entrez le message que vous voulez envoyer ici ..." required cols="20"></textarea>
+						 <a class="btn btn-success" type="button" (click)="envoyersmsPromo()">Envoyer</a>
+
+						  <a type="reset" class="btn btn-danger"  (click)="annuler()">Annuler</a>
+					</div>		
+				</div>	
+
+	     	  </div>
+
+	    </div>			
+     </div>	
 
 <div *ngIf="this.loading">
     <app-loader></app-loader>    

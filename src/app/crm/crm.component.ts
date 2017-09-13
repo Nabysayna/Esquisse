@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import {ActivatedRoute, Params} from '@angular/router';
 import { Location }  from '@angular/common';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import * as sha1 from 'js-sha1';
 import * as _ from "lodash";
 
 import { CrmServiceWeb, Portefeuille, Relance, Promotion, Prospection, Suivicommande, Servicepoint } from '../webServiceClients/Crm/crm.service';
-
-
-
 
 
 @Component({
@@ -18,7 +16,7 @@ import { CrmServiceWeb, Portefeuille, Relance, Promotion, Prospection, Suivicomm
   styleUrls: ['./crm.component.css']
 })
 export class CrmComponent implements OnInit {
-	public relance:Relance[];
+	public relance:any[];
 	public promotion:Promotion[];
 	public prospection:Prospection[];
   public suivicommande:Suivicommande[];
@@ -26,12 +24,19 @@ export class CrmComponent implements OnInit {
   public servicepoint:Servicepoint[];
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
+  message  : string = '' ;
 
+  filtreSuiviCmd ="";
+  filtreProspect ="";
+  filtrePromo ="";
+  filtreRel ="";
+  filtrePortFeuil ="";
 
-  filtre ="";
   nom="nom";
   asc="asc";
 
+  checkerRelance : any[] = [] ;
+  checkerPromo : any[] = []  ;
 
   constructor(
   		   private location: Location,
@@ -42,20 +47,20 @@ export class CrmComponent implements OnInit {
 
 
   ngOnInit() {
-     
+    this.loading = true ;     
       this.crmServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
         this.servicepoint = serviceptserviceList;
-//        console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
-        console.log("reponse du serveur "+this.servicepoint);
-        this.loading = false ;
+        this.crmServiceWeb.portefeuille(this.token).then(crmserviceList => {
+            this.portefeuille = crmserviceList;
+            this.loading = false ;
+          });
       });
-   
   }
 
 
   relanceMeth(){
     this.loading = true ;
-  	
+  	this.checkerRelance = [] ;
   	this.crmServiceWeb.relance(this.token).then(crmserviceList => {
         this.relance = crmserviceList;
         this.loading = false ;
@@ -64,8 +69,8 @@ export class CrmComponent implements OnInit {
   }
 
   promotionMeth(){
-      this.loading = true ;
-
+    this.loading = true ;
+    this.checkerPromo = [] ;
   	this.crmServiceWeb.promotion(this.token).then(crmserviceList => {
 		        this.promotion = crmserviceList;
 	          this.loading = false ;
@@ -104,25 +109,87 @@ export class CrmComponent implements OnInit {
 
   prtflle(){
     this.loading = true ;
-    
-
     this.crmServiceWeb.portefeuille(this.token).then(crmserviceList => {
         this.portefeuille = crmserviceList;
         this.loading = false ;
       });
   }
 
+  checkThisForRelance( isChecked:boolean, customer:any, index ){
+    if(isChecked){
+      this.checkerRelance.push( {unicity :index, customer} ) ;
+    }else
+    if ( _.find( this.checkerRelance, { 'unicity': index } ) ) 
+      this.checkerRelance = _.filter( this.checkerRelance, function(o) { return (o.unicity!=index) } );
+  }
+
+  checkThisForPromo( isChecked:boolean, customer:any, index ){
+    if(isChecked){
+      this.checkerPromo.push( {unicity :index, customer} ) ;
+    }else
+    if ( _.find( this.checkerPromo, { 'unicity': index } ) ) 
+      this.checkerPromo = _.filter( this.checkerPromo, function(o) { return (o.unicity!=index) } );
+  }
+
+  getAddressRecup(pointderecuperation){
+    return JSON.parse(pointderecuperation).address ;
+  }
+
    mail(){}
 
-   sms(){}
+   sms(telephone){
+    let destinataire = '+221'+telephone ; 
+    this.crmServiceWeb.sendSms(this.token, destinataire, 'Natt yonnekaayou bataakhal gui ci CRM bi').then(crmserviceList => {
+      console.log("SMS Sent with status "+crmserviceList) ;
+      });
+   }
 
    appel(){}
 
 
   detail(){}
 
-  envoyersms(){}
+  envoyersmsPromo(){   
+    let destinataires : string ;
+    destinataires = '+221'+this.checkerPromo[0].customer.telephone ;
+    
+    for( var i=1 ; i<this.checkerPromo.length ; i++ ){  
+      destinataires = destinataires+'#+221'+this.checkerPromo[i].customer.telephone ;
+    }
 
+    this.crmServiceWeb.sendSms(this.token, destinataires, this.message).then(crmserviceList => {
+      console.log("SMS Sent") ;
+      });
+
+  }
+
+  envoyersmsRelance(){   
+    let destinataires : string ;
+    destinataires = '+221'+this.checkerRelance[0].customer.telephone ;
+    for( var i=1 ; i<this.checkerRelance.length ; i++ ){
+      destinataires = destinataires+'#+221'+this.checkerRelance[i].customer.telephone ;
+    }
+
+    this.crmServiceWeb.sendSms(this.token, destinataires, 'Natt yonnekaayou bataakhal gui ci CRM bi').then(crmserviceList => {
+      console.log("SMS Sent WITH STATUS "+crmserviceList) ;
+      });
+  }
+
+
+  tester(){
+    console.log("Checker activated!") ;
+  }
+
+
+  @ViewChild('childModal') public childModal:ModalDirective;
+ 
+  public showChildModal(typeSuivi):void {
+    this.childModal.show();
+  }
+ 
+  public hideChildModal():void {
+    this.childModal.hide();
+  }
 
 
 }
