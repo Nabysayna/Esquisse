@@ -49,6 +49,7 @@ export class EspacePersoComponent implements OnInit {
   ecomCaller: EcomServiceWeb;
   loading = false ;
   coderecept : string ;
+  listeVentes : any[] ;
   listeCommande : Commande[] ;
   listarticles : Article[] ;
   newImage = "imagevide.jpg" ;
@@ -215,11 +216,17 @@ export class EspacePersoComponent implements OnInit {
           this.listeCommande =  JSON.parse(response) ;
         this.loading = false ;
       });    
-
   }
 
   chargerVentes(){
-   }
+    this.loading = true ;
+    this.ecomCaller.listerVentes(this.token).then( response =>
+      {
+        this.listeVentes = [] ;
+        this.listeVentes =  response ;
+        this.loading = false ;
+      });    
+  }
 
 
   receptionner(idCommande : number){

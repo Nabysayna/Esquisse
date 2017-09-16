@@ -65,7 +65,8 @@
 
 		            	 	 <button  href="#relance" data-toggle="tab" class="btn btn-primary" (click)="relanceMeth()">Relance</button>
 		            	 	 <button href="#promotion" data-toggle="tab" class="btn btn-primary" (click)="promotionMeth()">Promotion</button>
-		            	 	 </div>
+
+		            	    </div>
 		            	 	 	<div class="tab-content">
 		            	 	  		<div class="tab-pane fade in col-sm-12 col-xs-12" id="relance">
 
@@ -78,7 +79,7 @@
 			                                            <input class="form-control" [(ngModel)]="filtre"/>
 			                                        </th>
 			                                        <th colspan="2" style="padding-right: 3rem ;">
-							                           <button  class="btn btn-primary" (click)="envoyersmsRelance()">Envoyer sms</button>
+							                           <button  class="btn btn-primary" (click)="showChildModal('relancegroupe','')">Envoyer sms</button>
 			                                        </th>
 					                            </tr>
 			                                    <tr>
@@ -102,7 +103,7 @@
 			                                    <td>{{ relance.telephone }}</td>
 			                                    <td>{{relance.nomservice}}</td>
 			                                    <td>{{relance.echeance.date}}</td>
-			                                    <td><button type="button" class="btn btn-primary btn-sm" (click)="sms(relance.telephone)">SMS
+			                                    <td><button type="button" class="btn btn-primary btn-sm" (click)="showChildModal('single',relance.telephone)">SMS
 			                                    	</button>
 			                                    	<button type="button" class="btn btn-primary btn-sm" (click)="appel()">	
 			                                    	APPEL</button>
@@ -125,19 +126,19 @@
 
 			            	 			<div class="badge">Promotion</div>
 		            					<div style="margin-bottom: 3rem;">
-		            					 <label>Filtrer Par : <select class="form-control input-sm" >
+		            					 <label>Filtrer Par :<!--  <select class="form-control input-sm" >
 				                            <option>périodicité</option>
 				                            <option >fidélité</option>
-				                            </select>
+				                            </select> -->
 				                         </label>
 
-				                         <label>Service : <select class="form-control input-sm" >
-				                            <option>---Choisir un service---</option>
+				                         <label>Service : <select class="form-control input-sm" [(ngModel)]="filtreService">
+				                            <option></option>
                                             <option  *ngFor="let srv of servicepoint">{{srv.nom}}</option>
 				                            </select>
 				                         </label>
 
-				                           <button  class="btn btn-primary" (click)="showChildModal('promo')">Envoyer sms</button>
+				                           <button  class="btn btn-primary" (click)="showChildModal('promogroupe','')">Envoyer sms</button>
 		            					</div>	
 			            	 	  		<table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="promotion|filtrepromotion:filtre" #fpr="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
 			                                <thead>
@@ -191,40 +192,40 @@
         	 			 <div class="badge">Prospection</div>
 
 		            	 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="prospection|filtreprospection:filtre" #fprs="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="nom" [(mfSortOrder)]="asc" style="width: 100%;">
-					                                <thead>
-					                                    <tr>
-					                                        <th colspan="3" style="padding-right: 3rem ;">
-					                                            Rechercher :
-					                                            <input class="form-control" [(ngModel)]="filtre"/>
-					                                        </th>
-							                            </tr>
-					                                    <tr>
-					                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
-					                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-					                                        <th><mfDefaultSorter by="telephone">Téléphone</mfDefaultSorter></th>
-					                                        <th><mfDefaultSorter by="infovente">Détail</mfDefaultSorter></th>
-					                                        <th><mfDefaultSorter >Action</mfDefaultSorter></th>
-					                                        
-					                                   </tr>
-					                            
-					                                </thead>
-					                                <tbody *ngIf="this.prospection">
-					                                <tr *ngFor="let prospection of fprs.data">
-					                                    <td>{{prospection.nom}}</td>
-					                                    <td>{{prospection.prenom}}</td>
-					                                    <td>{{prospection.telephone}}</td>
-					                                    <td><button type="button" class="btn btn-primary" popover="retrait d'argent" popoverTitle="Détails" triggers="focus">Détails</button></td>
-					                                    <td><button  class="btn btn-primary" (click)="sms(prospection.telephone)">SMS</button>
-					                                    </td>
-					                                </tr>
-					                                </tbody>
-					                                <tfoot>
-					                                    <tr>
-					                                        <td colspan="4">
-					                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
-					                                        </td>
-					                                    </tr>
-					                                </tfoot>
+	                            <thead>
+	                                <tr>
+	                                    <th colspan="3" style="padding-right: 3rem ;">
+	                                        Rechercher :
+	                                        <input class="form-control" [(ngModel)]="filtre"/>
+	                                    </th>
+		                            </tr>
+	                                <tr>
+	                                    <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+	                                    <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+	                                    <th><mfDefaultSorter by="telephone">Téléphone</mfDefaultSorter></th>
+	                                    <th><mfDefaultSorter by="infovente">Détail</mfDefaultSorter></th>
+	                                    <th><mfDefaultSorter >Action</mfDefaultSorter></th>
+	                                    
+	                               </tr>
+	                        
+	                            </thead>
+	                            <tbody *ngIf="this.prospection">
+	                            <tr *ngFor="let prospection of fprs.data">
+	                                <td>{{prospection.nom}}</td>
+	                                <td>{{prospection.prenom}}</td>
+	                                <td>{{prospection.telephone}}</td>
+	                                <td><button type="button" class="btn btn-primary" popover="retrait d'argent" popoverTitle="Détails" triggers="focus">Détails</button></td>
+	                                <td><button  class="btn btn-primary" (click)="showChildModal('single',prospection.telephone)">SMS</button>
+	                                </td>
+	                            </tr>
+	                            </tbody>
+	                            <tfoot>
+	                                <tr>
+	                                    <td colspan="4">
+	                                        <mfBootstrapPaginator ></mfBootstrapPaginator>
+	                                    </td>
+	                                </tr>
+	                            </tfoot>
 
 					     </table>
 			    </div>
@@ -293,9 +294,13 @@
 					<div class="col-sm-12 col-xs-12">
 
 						<textarea style="margin-bottom: 3rem; " rows="4"  type="text" [(ngModel)]='message' class="form-control input-sm"  placeholder="Entrez le message que vous voulez envoyer ici ..." required cols="20"></textarea>
-						 <a class="btn btn-success" type="button" (click)="envoyersmsPromo()">Envoyer</a>
 
-						  <a type="reset" class="btn btn-danger"  (click)="annuler()">Annuler</a>
+						<div style="text-align: center ;">	
+							 <a *ngIf="this.categMsg=='promogroupe'" class="btn btn-success" type="button" (click)="envoyersmsPromo()">Envoyer</a>
+							 <a *ngIf="this.categMsg=='relancegroupe'" class="btn btn-success" type="button" (click)="envoyersmsRelance()">Envoyer</a>
+							 <a *ngIf="this.categMsg=='single'" class="btn btn-success" type="button" (click)="sms(choosedCustomerPhone)">Envoyer</a>
+							  <a type="reset" class="btn btn-danger"  (click)="hideChildModal()">Annuler</a>
+						</div>	
 					</div>		
 				</div>	
 

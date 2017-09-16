@@ -131,9 +131,12 @@ export class TntServiceWeb {
         parameters['verifinumeroabonnement xmlns="urn:tntwsdl#"'] = params ;
 
         this.soapService.post(method, parameters, 'verifinumeroabonnementResponse').then(response=>{
-          this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
-          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS) ) ;
-          resolve(this.responseJsoFWS) ;
+
+        if (!response['verifinumeroabonnementResponse'].return.$ ) 
+          resolve(new TntResponse()) ;
+
+        this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
+        resolve(this.responseJsoFWS) ;
         }); 
       });      
   }

@@ -302,19 +302,19 @@ export class EcomServiceWeb {
   }
 
 
-  public listerVentes(token : string, typeListe : string) : Promise<Vente[]> {
+  public listerVentes(token : string) : Promise<any[]> {
 
       var method:string = 'listervente'; 
       var parameters:{}[] = []; 
-      var reEspParams = { token:token, typeListe:typeListe } ;
+      var reEspParams = { token:token } ;
       var params:{}[] = [] ; 
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
-        parameters['listercommande xmlns="urn:ecommercewsdl#"'] = params ;
-        this.soapService.post(method, parameters, 'listercommandeResponse').then(response=>{
-          let responseJsoFWS : Commande[] = JSON.parse(response['listercommandeResponse'].return.$);
-          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
+        parameters['listervente xmlns="urn:ecommercewsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'listerventeResponse').then(response=>{
+          let responseJsoFWS = JSON.parse(response['listerventeResponse'].return.$);
+          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS) ) ;
           resolve(responseJsoFWS) ;
         }); 
       });      

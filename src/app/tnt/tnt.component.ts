@@ -41,7 +41,7 @@ export class TntComponent implements OnInit {
   nchipNewClient: string ;
   ncarteNewClient: string ; 
   nbmNewClient: number; 
-  tbouquetNewClient : string ;
+  tbouquetNewClient : string = 'Sans Abonnement';
 
 	formvisible='';
 	noma:string;
@@ -60,6 +60,8 @@ export class TntComponent implements OnInit {
 
   rowsOnPage = 7 ;
   sortBy = "prenom";
+  orderByDate = 'date_abonnement' ;
+  sortDateOrder = "desc";
   sortOrder = "asc";
   filtre = "" ;
   filtreDeco = "" ;
@@ -115,6 +117,7 @@ export class TntComponent implements OnInit {
 
   validnabon(){ 
     this.loading = true ; 
+    this.verifierNumInputValide = true ;
     var typedebouquet : number ;
     if(this.tbouquet == "Maanaa")
       typedebouquet=1;
@@ -177,17 +180,17 @@ export class TntComponent implements OnInit {
     this.loading = true ; 
     var typedebouquet : number ;
     var prix:number ;
-    if(this.tbouquetNewClient == "Maanaa"){
+    if(this.tbouquetNewClient == "Sans Abonnement"){
+      typedebouquet=0;
+      prix = 15000 ;
+    }
+    if(this.tbouquetNewClient == "+ 1 Mois"){
       typedebouquet=1;
-      prix = 3000*this.nbmNewClient ;
+      prix = 19500 ;
     }
-    if(this.tbouquetNewClient == "Boul Khool"){
-      typedebouquet=2;
-      prix = 5000*this.nbmNewClient ;
-    }
-    if(this.tbouquetNewClient == "Maanaa + Boul Khool"){
+    if(this.tbouquetNewClient == "+ 3 Mois"){
       typedebouquet=3;  
-      prix = 8000*this.nbmNewClient ; 
+      prix = 28000 ; 
     }
 
    this.tntCaller.vendreDecodeur(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.nchipNewClient, this.ncarteNewClient, this.nbmNewClient, typedebouquet, prix).then( response =>

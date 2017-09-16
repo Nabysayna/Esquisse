@@ -1,4 +1,4 @@
-<div class="panel-body">
+ <div class="panel-body">
 
 	<div class="row">
 		<div class="col-sm-2">
@@ -158,7 +158,7 @@
 		<div class="row tab-pane col-sm-6 col-xs-12 fade" id="ventes">
 			<div class="panel-body">
 
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeCommande | pipeCommande : filtre" #listCmdsoutgoing="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="designation" [(mfSortOrder)]="asc" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="listeVentes" #listVentes="mfDataTable" [mfRowsOnPage]="10" [(mfSortBy)]="id" [(mfSortOrder)]="asc" style="width: 100%;">
                                 <thead>
  
                                     <tr>
@@ -169,23 +169,23 @@
                                     </tr>
 
                                     <tr>
-                                        <th><mfDefaultSorter by="designation">Désignation</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prixUnitaire">Prix Unitaire</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="quantite">Quantité</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="id">Désignation</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prixUnitaire">Montant</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="quantite">Détails</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="dateCommande">Date Vente</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fullName">Client</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="tel">Téléphone Client</mfDefaultSorter></th>
-                                   </tr>
+                                    </tr>
                             
                                 </thead>
-                                <tbody *ngIf="this.listeCommande" >
-	                                <tr *ngFor="let commande of listCmdsoutgoing.data">
-	                                    <td>{{commande.designation}}</td>
-	                                    <td>{{commande.prixUnitaire}}</td>
-	                                    <td>{{commande.quantite}}</td>
-	                                    <td>{{commande.dateCommande}}</td>
-	                                    <td>{{commande.fullName}}</td>
-	                                    <td>{{commande.tel}}</td>
+                                <tbody *ngIf="this.listVentes" >
+	                                <tr *ngFor="let vente of listVentes.data">
+	                                    <td>VCL{{vente.id}}</td>
+	                                    <td>{{vente.montant}}</td>
+	                                    <td> <button class="btn btn-success">Détails</button><!-- {{vente.infovente}} --></td>
+	                                    <td>{{vente.datevente}}</td>
+	                                    <td> --- </td>
+	                                    <td> --- </td>
 	                                </tr>
                                 </tbody>
                                 <tfoot>

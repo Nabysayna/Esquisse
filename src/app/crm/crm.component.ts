@@ -25,10 +25,13 @@ export class CrmComponent implements OnInit {
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
   message  : string = '' ;
+  categMsg : string ;
+  choosedCustomerPhone : string ;
 
   filtreSuiviCmd ="";
   filtreProspect ="";
   filtrePromo ="";
+  filtreService ="---Choisir un service---";
   filtreRel ="";
   filtrePortFeuil ="";
 
@@ -139,8 +142,9 @@ export class CrmComponent implements OnInit {
 
    sms(telephone){
     let destinataire = '+221'+telephone ; 
-    this.crmServiceWeb.sendSms(this.token, destinataire, 'Natt yonnekaayou bataakhal gui ci CRM bi').then(crmserviceList => {
-      console.log("SMS Sent with status "+crmserviceList) ;
+    this.crmServiceWeb.sendSms(this.token, destinataire, this.message).then(crmserviceList => {
+      this.childModal.hide();
+      //console.log("SMS Sent with status "+crmserviceList) ;
       });
    }
 
@@ -158,7 +162,8 @@ export class CrmComponent implements OnInit {
     }
 
     this.crmServiceWeb.sendSms(this.token, destinataires, this.message).then(crmserviceList => {
-      console.log("SMS Sent") ;
+      this.childModal.hide();
+      //console.log("SMS Sent") ;
       });
 
   }
@@ -170,8 +175,9 @@ export class CrmComponent implements OnInit {
       destinataires = destinataires+'#+221'+this.checkerRelance[i].customer.telephone ;
     }
 
-    this.crmServiceWeb.sendSms(this.token, destinataires, 'Natt yonnekaayou bataakhal gui ci CRM bi').then(crmserviceList => {
-      console.log("SMS Sent WITH STATUS "+crmserviceList) ;
+    this.crmServiceWeb.sendSms(this.token, destinataires, this.message).then(crmserviceList => {
+      this.childModal.hide();
+      //console.log("SMS Sent WITH STATUS "+crmserviceList) ;
       });
   }
 
@@ -183,11 +189,15 @@ export class CrmComponent implements OnInit {
 
   @ViewChild('childModal') public childModal:ModalDirective;
  
-  public showChildModal(typeSuivi):void {
+  public showChildModal(typeSuivi, tel):void {
+    this.categMsg = typeSuivi ;
+    if (typeSuivi=='single')
+      this.choosedCustomerPhone = tel ;
     this.childModal.show();
   }
  
   public hideChildModal():void {
+    this.message = '' ;
     this.childModal.hide();
   }
 

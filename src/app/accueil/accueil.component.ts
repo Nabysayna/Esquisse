@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
@@ -11,9 +12,11 @@ export class AccueilComponent implements OnInit {
   //registredAPIs : string [] = ['POSTECASH', 'TNT BY EXCAF'] ;
   authorisedToUseCRM = false ;
   
-  constructor() {   }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if (!sessionStorage.getItem('currentUser')) 
+       this.router.navigate(['']);   
   }
 
 }
