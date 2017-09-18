@@ -26,6 +26,7 @@ export class CrmComponent implements OnInit {
   loading = false ;
   message  : string = '' ;
   categMsg : string ;
+  filtre = "" ;
   choosedCustomerPhone : string ;
 
   filtreSuiviCmd ="";

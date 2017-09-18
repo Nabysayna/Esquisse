@@ -25,6 +25,7 @@ export class AdmincoursierComponent implements OnInit {
 	loading = false ;
 	listeCommande : Commande[] ;
     mergedTabs = [] ; 
+    souszone = "" ;
 	token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 	filtre="";
 

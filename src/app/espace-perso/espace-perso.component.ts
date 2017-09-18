@@ -58,6 +58,7 @@ export class EspacePersoComponent implements OnInit {
   partenairesParts : number ;
   customerReduct : number = 0 ;
   addtype = '' ;
+  id : any ;
 
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   nomImage : string ;

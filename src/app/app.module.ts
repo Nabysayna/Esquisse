@@ -7,7 +7,9 @@ import { BrowserModule } from '@angular/platform-browser' ;
 import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
-import { NgUploaderModule } from 'ngx-uploader';
+
+/* import { NgUploaderModule } from 'ngx-uploader'; */
+
 import {DataTableModule} from "angular2-datatable";
 import { AlertModule, TabsModule, CollapseModule, ProgressbarModule, PopoverModule, ModalModule, TypeaheadModule, PaginationModule, AccordionModule} from 'ng2-bootstrap';
 
@@ -304,7 +306,7 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgUploaderModule,
+/*    NgUploaderModule, */
     Routing,
     DataTableModule,
     ChartsModule,
