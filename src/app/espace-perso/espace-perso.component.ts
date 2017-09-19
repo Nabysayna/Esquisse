@@ -1,5 +1,7 @@
-import { Component, OnInit, NgZone, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, Input, EventEmitter } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
+import { Http, RequestOptions, RequestMethod, Headers  } from '@angular/http';
+import { Observable }     from 'rxjs/Observable';
 
 import { EcomServiceWeb, Commande } from '../webServiceClients/ecom/ecom.service';
 import * as sha1 from 'js-sha1';
@@ -47,9 +49,16 @@ export class EspacePersoComponent implements OnInit {
   ecomCaller: EcomServiceWeb;
   loading = false ;
   coderecept : string ;
+  listeVentes : any[] ;
   listeCommande : Commande[] ;
   listarticles : Article[] ;
   newImage = "imagevide.jpg" ;
+
+  shownPrice : number ;
+  partenairesParts : number ;
+  customerReduct : number = 0 ;
+  addtype = '' ;
+  id : any ;
 
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   nomImage : string ;
@@ -58,6 +67,14 @@ export class EspacePersoComponent implements OnInit {
   descriptiona: string ;
   prixa:number;
   stocka:number;
+
+  categoriepta : string ;
+  designationpta: string;
+  descriptionpta: string ;
+  prixpta:number;
+  stockpta:number;
+
+
   modif:string="-";
   modifart:string;
   orderedArticles : string ;
@@ -73,9 +90,8 @@ export class EspacePersoComponent implements OnInit {
   designation = "designation" ;
   asc = "asc" ;
 
-  constructor() {
+  constructor(private http: Http) {
       this.ecomCaller = new EcomServiceWeb();
-      this.zone = new NgZone({ enableLongStackTrace: false });
   }
 
   ngOnInit() { 
@@ -152,12 +168,9 @@ export class EspacePersoComponent implements OnInit {
 
   ajouter(){ 
     this.loading = true ;
-
-      let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName, categorie:this.categoriea }
+      let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName, categorie:JSON.stringify({categorie : this.categoriea, type:'ecom'}) }
       this.ecomCaller.ajouterArticle(params).then( response =>
         {
-          console.log("Le serveur a répondu : "+response) ;
-          console.log("L'image généré est : "+this.uploadFile.generatedName) ;
           this.designationa="";
           this.descriptiona="";
           this.prixa=0 ;
@@ -165,7 +178,28 @@ export class EspacePersoComponent implements OnInit {
           this.uploadFile.generatedName = null ;
           this.uploadFile.originalName = null ;
           this.newImage = "imagevide.jpg" ;
+          this.prixa = 0 ;
           this.loading = false ;
+          this.categoriea = "--- Catégorie ---" ;
+        }); 
+  }
+
+  ajouterpta(){ 
+    this.loading = true ;
+
+      let params = { token: this.token , designation: this.designationpta, description:this.descriptionpta, prix: this.prixpta, stock:this.stockpta, img_link: this.uploadFile.generatedName, categorie:JSON.stringify({categorie : this.categoriepta, type:'petiteannonce'}) }
+      this.ecomCaller.ajouterArticle(params).then( response =>
+        {
+          this.designationpta="";
+          this.descriptionpta="";
+          this.prixpta=0 ;
+          this.stockpta=0;
+          this.uploadFile.generatedName = null ;
+          this.uploadFile.originalName = null ;
+          this.newImage = "imagevide.jpg" ;
+          this.prixpta = 0 ;
+          this.loading = false ;
+          this.categoriepta = "--- Catégorie ---" ;
         }); 
   }
 
@@ -183,11 +217,17 @@ export class EspacePersoComponent implements OnInit {
           this.listeCommande =  JSON.parse(response) ;
         this.loading = false ;
       });    
-
   }
 
   chargerVentes(){
-   }
+    this.loading = true ;
+    this.ecomCaller.listerVentes(this.token).then( response =>
+      {
+        this.listeVentes = [] ;
+        this.listeVentes =  response ;
+        this.loading = false ;
+      });    
+  }
 
 
   receptionner(idCommande : number){
@@ -280,35 +320,7 @@ export class EspacePersoComponent implements OnInit {
 
 
  uploadFile: any;
-  hasBaseDropZoneOver: boolean = true;
 
-  options: Object = {
-    url: 'http://localhost/EsquisseBackEnd/server-backend-upload/index.php'
-  };
-
-  sizeLimit = 2000000;
-
-  handleUpload(data): void {
-      console.log("Post upload Image name "+this.newImage) ;
-
-      if (data.response) {
-      data = JSON.parse(data.response);
-      this.uploadFile = data;
-      this.newImage = this.uploadFile.generatedName ;
-    }
-  }
-
-  fileOverBase(e:any):void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  beforeUpload(uploadingFile): void {
-    if (uploadingFile.size > this.sizeLimit) {
-      uploadingFile.setAbort();
-      alert('Le fichier est trop lourd!');
-    }
-      console.log("Pre Upload Image name "+this.newImage) ;
-  }
 
   @ViewChild('childModal') public childModal:ModalDirective;
  
@@ -325,7 +337,120 @@ export class EspacePersoComponent implements OnInit {
     this.childModal.hide();
   }
 
-  annuler(){
+  /*-----------------------------------------------------------*/
+
+  @ViewChild('addChildModal') public addChildModal:ModalDirective;
+ 
+  public showAddChildModal():void {
+    this.addChildModal.show();
   }
+ 
+  public hideAddChildModal():void {
+    this.addChildModal.hide();
+    this.categoriea = "--- Catégorie ---" ;
+    this.addtype = '' ;
+    this.prixa = 0 ;
+  }
+
+
+  annuler(){
+    this.hideAddChildModal() ;
+    this.newImage = "imagevide.jpg" ;
+    this.categoriea = "--- Catégorie ---" ;
+  }
+
+  apiEndPoint = 'http://51.254.200.129/backendprod/EsquisseBackEnd/server-backend-upload/index.php' ;
+
+  fileChange(event) {
+      let fileList: FileList = event.target.files;
+      if(fileList.length > 0) {
+          let file: File = fileList[0];
+          let formData:FormData = new FormData();
+          formData.append('file', file, file.name);
+          let headers = new Headers();
+
+          /** No need to include Content-Type in Angular 4 */
+          //Applying content-type in the current case leads to an impossible upload
+
+          // headers.append('Content-Type', 'multipart/form-data'); 
+
+          headers.append('Accept', 'application/json');
+          let options = new RequestOptions({
+                              headers: headers
+                            });
+
+          this.http.post(`${this.apiEndPoint}`, formData, options)
+              .map(res => res.json())
+              .catch(error => Observable.throw(error))
+              .subscribe(
+                  data => { console.log("Retour uploader "+data.generatedName) ;
+                           let newData = data;
+                           this.uploadFile = newData;
+                           this.newImage = this.uploadFile.generatedName ;
+                        },
+                  error => console.log(error)
+              )
+      }
+  }
+
+  tauxreduc(basicPrice){
+    if (basicPrice<=10000){
+      return 0.1 ;
+    }
+    if (basicPrice>10000 && basicPrice<=50000){
+      return 0.085 ;
+    }
+    if (basicPrice>50000 && basicPrice<=100000){
+      return 0.095 ;
+    }
+    if (basicPrice>100000 && basicPrice<=250000){
+      return 0.09 ;
+    }
+    if (basicPrice>250000 && basicPrice<=500000){
+      return 0.07 ;
+    }
+    if (basicPrice>500000 && basicPrice<=750000){
+      return 0.05 ;
+    }
+    if (basicPrice>750000 && basicPrice<=1000000){
+      return 0.04 ;
+    }
+    else{
+      return 0.035 ;
+    }
+  }
+
+  reduirePrix(basicPrice){
+    if (basicPrice<=10000){
+      this.customerReduct = Math.round((basicPrice*0.1)*0.5) ;
+    }
+    if (basicPrice>10000 && basicPrice<=50000){
+      this.customerReduct = Math.round((basicPrice*0.085)*0.5) ;
+    }
+    if (basicPrice>50000 && basicPrice<=100000){
+      this.customerReduct = Math.round((basicPrice*0.095)*0.5) ;
+    }
+    if (basicPrice>100000 && basicPrice<=250000){
+      this.customerReduct = Math.round((basicPrice*0.09)*0.5) ;
+    }
+    if (basicPrice>250000 && basicPrice<=500000){
+      this.customerReduct = Math.round((basicPrice*0.07)*0.5) ;
+    }
+    if (basicPrice>500000 && basicPrice<=750000){
+      this.customerReduct = Math.round((basicPrice*0.05)*0.5) ;
+    }
+    if (basicPrice>750000 && basicPrice<=1000000){
+      this.customerReduct = Math.round((basicPrice*0.04)*0.5) ;
+    }
+    else{
+      this.customerReduct = Math.round((basicPrice*0.035)*0.5) ;
+    }
+
+  }
+
+  roundedValueOf(decimal){
+    return Math.round(decimal) ;
+  }
+
 
 }

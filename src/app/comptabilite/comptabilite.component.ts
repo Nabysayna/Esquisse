@@ -57,6 +57,7 @@ class Exploitation{
 class Designation{
   name:string;
   stock:number;
+  prixAchat:number;
   prixunitaire:number;
 }
 
@@ -88,6 +89,8 @@ export class ComptabiliteComponent implements OnInit {
   estselectionss:number;
   montreautredesignation:number;
   estselectionmods:number = -1;
+
+  onPostUpdate = false ;
 
   estclickeJour = true;
   estclickeAnnee = false;
@@ -323,29 +326,39 @@ export class ComptabiliteComponent implements OnInit {
   }
 
   effacerunedesignation(i){
-    this.estselectionne = i ;
-    this.estselectionss = i;
     this.designationsService = this.designationsService.filter(item => item !==this.designationsService[i]);
   }
   
   validerajouterservice(pdv:any){
     this.loading = true ;
     this.comptabiliteServiceWeb.ajoutservice(this.service, pdv.idpdv, ""+JSON.stringify(this.designationsService)).then(adminmultipdvServiceWeb => {
-      this.loading = false ;
+      this.comptabiliteServiceWeb.listeservice(pdv.idpdv).then(adminmultipdvServiceWeb => {
+        this.supservice = adminmultipdvServiceWeb.response; 
+        this.loading = false ;
+      });
     });
+
+
   }
 
   validermodifierservice(pdv:any){
     this.loading = true ;
     this.comptabiliteServiceWeb.modifierservice(this.service, ""+JSON.stringify(this.designationsService), this.serviceamodifier().idservice).then(adminmultipdvServiceWeb => {
-      this.loading = false ;
+      this.comptabiliteServiceWeb.listeservice(pdv.idpdv).then(adminmultipdvServiceWeb => {
+        this.supservice = adminmultipdvServiceWeb.response; 
+        this.estselectionmods = -1 ;
+        this.loading = false ;
+      });
     });
   }
  
-  deleteservice(supservice:Supservice) {      
+  deleteservice(supservice:Supservice, pdv) {      
     this.loading = true ;
     this.comptabiliteServiceWeb.supprimerservice(supservice.idservice).then(adminmultipdvServiceWeb => {
-      this.loading = false ;
+      this.comptabiliteServiceWeb.listeservice(pdv.idpdv).then(adminmultipdvServiceWeb => {
+        this.supservice = adminmultipdvServiceWeb.response; 
+        this.loading = false ;
+      });
     });
   }
 

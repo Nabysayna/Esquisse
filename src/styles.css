@@ -8,7 +8,9 @@ input{
 }
 
 .bg
-{
-    background:  url(assets/bga.png)   ;
+{ 
+    /* background:  url(assets/bga.png)   ; */
+/*    background:  url(assets/fonttest.png)   ;*/
+	background-color: white;
 }
 

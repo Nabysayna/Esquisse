@@ -38,7 +38,7 @@ export class CatalogueComponent implements OnInit {
 
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
-
+  p : any ;
   listarticles : any[] ;
   
   public asyncSelected: string;

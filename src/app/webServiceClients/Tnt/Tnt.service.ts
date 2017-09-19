@@ -29,9 +29,11 @@ export class TntResponse{
 @Injectable()
 export class TntServiceWeb {
 
-  private servicePort:string = 'http://localhost:8888' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl' ;
-private targetNamespace:string = 'urn:tntwsdl' ;
+
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/tnt?wsdl' ;
+
+  private targetNamespace:string = 'urn:tntwsdl' ;
 
   public responseJso : any ;
   public resp : string ;
@@ -127,9 +129,12 @@ private targetNamespace:string = 'urn:tntwsdl' ;
         parameters['verifinumeroabonnement xmlns="urn:tntwsdl#"'] = params ;
 
         this.soapService.post(method, parameters, 'verifinumeroabonnementResponse').then(response=>{
-          this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
-          console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS) ) ;
-          resolve(this.responseJsoFWS) ;
+
+        if (!response['verifinumeroabonnementResponse'].return.$ ) 
+          resolve(new TntResponse()) ;
+
+        this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
+        resolve(this.responseJsoFWS) ;
         }); 
       });      
   }

@@ -38,9 +38,9 @@
                         </form>
                     </div>
 
-                    <div class="row" *ngIf="this.verifierNumValide" >
+                    <div class="row" *ngIf="!this.verifierNumInputValide" >
                         <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
-                            <h4>FORMULAIRE NOUVEL ABONNEMENT</h4>
+                            <h4>NOUVEL ABONNEMENT</h4>
                         </fieldset>
                         <form (ngSubmit)="validnabon()" #nabon="ngForm" autocomplete="on">
 
@@ -65,10 +65,14 @@
 
 
                             <label for="tbouquet">Type de bouquet</label>
-                            <input type="text" [(ngModel)]="this.tbouquet"   name="tbouquet" id="tbouquet" class="form-control" placeholder="type de bouquet" required>
+                            <select class="form-control" [(ngModel)]="this.tbouquet" style="margin-bottom: 2rem;margin-left: 1rem;" required>
+                                <option>Maanaa</option>
+                                <option>Boul khool</option>
+                                <option>Maanaa + Boul khool</option>
+                            </select>
 
                             <button type="submit" class="btn btn-success" [disabled]="!nabon.form.valid">Abonner</button>
-                            <button type="reset" class="btn btn-danger" [disabled]="!nabon.form.valid" >Annuler</button>
+                            <button type="reset" class="btn btn-danger" (click)="this.verifierNumInputValide=true" >Annuler</button>
 
                         </form>
                   
@@ -76,7 +80,7 @@
                 </div>
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
 
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | datafilter : filtre" #mfabo="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder" style="width: 100%;">
+                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | datafilter : filtre" #mfabo="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="orderByDate" [(mfSortOrder)]="sortDateOrder" style="width: 100%;">
                                 <thead>
  
                                     <tr>
@@ -95,8 +99,6 @@
                                         <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="etat">Activation</mfDefaultSorter></th>
-                                       <th><mfDefaultSorter by="date_activation">Date Activation</mfDefaultSorter></th>
                                    </tr>
                             
                                 </thead>
@@ -109,10 +111,12 @@
                                     <td>{{abonnement.n_carte}}</td>
                                     <td>{{abonnement.date_abonnement}}</td>
                                     <td>{{abonnement.duree}}</td>
-                                    <td>{{abonnement.id_typeabonnement}}</td>
+
+                                    <td *ngIf="abonnement.id_typeabonnement==1">Maanaa</td>
+                                    <td *ngIf="abonnement.id_typeabonnement==2">Boul Khool</td>
+                                    <td *ngIf="abonnement.id_typeabonnement==3">Maanaa + Boul Khool</td>
+
                                     <td>{{abonnement.montant}}</td>
-                                    <td>{{abonnement.etat}}</td>
-                                    <td>{{abonnement.date_activation}}</td>
 
                                 </tr>
                                 </tbody>
@@ -150,9 +154,13 @@
 
                         <input type="text" name="ncarteNewClient" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
                  
-                        <input type="number" name="nbmNewClient" [(ngModel)]="this.nbmNewClient" class="form-control" placeholder="Nombre de mois" required>
+<!--                         <input type="number" name="nbmNewClient" [(ngModel)]="this.nbmNewClient" class="form-control" placeholder="Nombre de mois" required> -->
 
-                        <input type="text" name="tbouquetNewClient" [(ngModel)]="this.tbouquetNewClient" class="form-control" placeholder="type de bouquet" required>
+                        <select type="text" name="tbouquetNewClient" [(ngModel)]="this.tbouquetNewClient" class="form-control" style="margin-bottom: 3rem ; margin-left: 1rem ;" required>
+                            <option>Sans Abonnement</option>
+                            <option>+ 1 Mois</option>
+                            <option>+ 3 Mois</option>
+                        </select>
 
 
                         <button type="submit" class="btn btn-success" (click)="vendreDecodeur()">Valider</button>
@@ -197,8 +205,9 @@
                                         <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="numerochip">N_Chip</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="numerocarte">N_Carte</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="prix">Montant</mfDefaultSorter></th> 
                                         <th><mfDefaultSorter by="typedebouquet">Type Bouquet</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="prix">Montant</mfDefaultSorter></th>                                   
+                                   
                                     </tr>
                                 </thead>    
                                 <tbody *ngIf="this.retourTntWS">
@@ -208,12 +217,8 @@
                                         <td>{{decodeur.tel}}</td>
                                         <td>{{decodeur.numerochip}}</td>
                                         <td>{{decodeur.numerocarte}}</td>
-
-                                        <td *ngIf="decodeur.typedebouquet==1">Maanaa</td>
-                                        <td *ngIf="decodeur.typedebouquet==2">Boul Khool</td>
-                                        <td *ngIf="decodeur.typedebouquet==3">Maanaa + Boul Khool</td>
-
                                         <td>{{decodeur.prix}}</td>
+                                        <td>{{decodeur.typedebouquet}}</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>

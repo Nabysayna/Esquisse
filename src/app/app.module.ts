@@ -7,12 +7,16 @@ import { BrowserModule } from '@angular/platform-browser' ;
 import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
-import { Ng2UploaderModule } from 'ng2-uploader';
+
+/* import { NgUploaderModule } from 'ngx-uploader'; */
+
 import {DataTableModule} from "angular2-datatable";
 import { AlertModule, TabsModule, CollapseModule, ProgressbarModule, PopoverModule, ModalModule, TypeaheadModule, PaginationModule, AccordionModule} from 'ng2-bootstrap';
 
 import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
+
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 /*-----------------*/
@@ -302,7 +306,7 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2UploaderModule,
+/*    NgUploaderModule, */
     Routing,
     DataTableModule,
     ChartsModule,
@@ -318,7 +322,8 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     AlertModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC-2WxSYvBmnQ0HgUYU7fWxCyY_itypwn8'
-    })
+    }),
+    NgxPaginationModule
   ],
   providers: [  
       SoapService,

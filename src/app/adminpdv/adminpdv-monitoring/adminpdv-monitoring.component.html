@@ -22,6 +22,27 @@
                     </div>
                 </div>
             </div>
+            <div class="panel panel-primary  table-responsive" style="margin-top: 5rem;">
+                <div class="panel-heading">
+                    <h3>Retrait IBAN</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <button class="btn btn-success" (click)="clickeddemanderetrait()">Demander un retrait</button>
+                        </div>
+                        <div class="col-sm-4" *ngIf="selectdemanretrait">
+                            <input name="montant" text placeholder="Entrez le montant à retirer" />
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-success" (click)="validerdmde()" >Valider</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

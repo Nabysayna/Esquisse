@@ -77,7 +77,7 @@
                                             <div class="col-sm-3 col-xs-12"><input type="number" [(ngModel)]="montantCharge"   name="montant" id="montant" class="form-control" placeholder="Montant de la dépense" required></div>
                                            <div class="col-sm-3 col-xs-12">
                                             <select class="form-control input-sm" [(ngModel)]="service" style="margin-top: 1rem;" >
-                                            <option>---Choisir le service concerné---</option>
+                                            <option>--Choisir le service concerné--</option>
                                             <option  *ngFor="let service of servicepoint">{{service.nom}}</option>
                                             </select>
                                             </div>
@@ -112,15 +112,16 @@
                                 </div>
                         </div>
                         <div class="col-sm-12 col-xs-12" *ngIf="servicevente.toLowerCase()=='assurance'" style="margin-top: 1rem">
-                                           <div class="col-sm-3 col-xs-12" style="margin-left: -1rem;"><label style="margin-left: 2rem;">Date début assurance </label><input type="date" [(ngModel)]="datedebut"   name="datedebut" id="datedebut" class="form-control"  placeholder="date début assurance" required>
+                                           <div class="col-sm-3 col-xs-12" style="margin-left: -1rem;">
+                                            <label style="margin-left: 2rem;"></label><input type="text" [(ngModel)]="prenoma"   name="prenoma" id="prenoma" class="form-control" placeholder="Prénom du client ..." required>
                                             <div><label style="margin-left: 2rem;">Date fin assurance </label><input type="date" [(ngModel)]="datefin"   name="datefin" id="datefin" class="form-control" placeholder="date fin assurance" required></div></div>
                                            <div class="col-sm-3 col-xs-12"><label style="margin-left: 2rem;">
-                                               Nom client
-                                           </label><input type="text" [(ngModel)]="noma"   name="noma" id="noma" class="form-control" required>
-                                           <div><label style="margin-left: 2rem;">Prenom client</label><input type="text" [(ngModel)]="prenoma"   name="prenoma" id="prenoma" class="form-control" required></div></div>
+                                           </label><input type="text" [(ngModel)]="noma"   name="noma" id="noma" class="form-control" placeholder="Nom du client ..." required>
+                                           <div>
+                                           <label style="margin-left: 2rem;">Date début assurance </label><input type="date" [(ngModel)]="datedebut"   name="datedebut" id="datedebut" class="form-control"  placeholder="date début assurance" required>                                            
+                                           </div></div>
                                             <div class="col-sm-3 col-xs-12"><label style="margin-left: 2rem;">
-                                                Téléphone client
-                                            </label><input type="string" [(ngModel)]="telephonea"   name="telephonea" id="telephonea" class="form-control" required>
+                                            </label><input type="string" [(ngModel)]="telephonea"   name="telephonea" id="telephonea" class="form-control" placeholder="Téléphone du client ..." required>
                                             <div><button style="margin-top: 4.5rem; margin-left: 1rem;" (click)="validvente()" id="enregistrerassurance" class="btn btn-primary btn-block" >Enregistrer</button></div></div>
                     
                     </div>
@@ -129,15 +130,11 @@
                       
                 <div class="tab-pane fade" id="reclamation">
                     <div class="panel">
-                        <div id="hop3" class="panel-heading">
-                            <h4>Faire une Réclamation</h4>
-                        </div>
-
                         <div class="col-sm-12 col-xs-12" >
-                                           <div class="col-sm-3 col-xs-12" style="margin-left: -2rem;"><input type="text" [(ngModel)]="sujet"   name="sujet" id="sujet" class="form-control"  placeholder="sujet réclamation" required></div> 
+                                           <div class="col-sm-3 col-xs-12" style="margin-left: -2rem;"><input type="text" [(ngModel)]="sujet"   name="sujet" id="sujet" class="form-control"  placeholder="Motif réclamation" required></div> 
                                            <div class="col-sm-3 col-xs-12">
                                             <select class="form-control input-sm" [(ngModel)]="nomservice" style="margin-top: 1rem;" >
-                                            <option>---Choisir le service concerné---</option>
+                                            <option>--Choisir le service concerné--</option>
                                             <option  *ngFor="let nomservice of servicepoint">{{nomservice.nom}}</option>
 
                                             </select>

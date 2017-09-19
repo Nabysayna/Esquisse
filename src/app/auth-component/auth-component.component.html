@@ -1,12 +1,29 @@
 <div id="authcomponent">
 
+    <div class="row" style="text-align: center ; padding-top: 4rem ; ">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+           <h1 style="font-family:sans-serif; ;font-weight: bolder;font-style: italic;">BIENVENUE DANS LE FUTUR</h1>
+        </div>
+    </div>
+
+    <div class="row" style="text-align: center ; ">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <img src="assets/Logo-officiel-Sentool.png">
+        </div>
+    </div>
+
+
     <div class="row">
 
-        <div class="col-sm-6 col-md-4 col-md-offset-4" id="over-account-wall">
+    <div class="col-sm-3 col-md-4" >
+    </div>
+        <div class="col-sm-6 col-md-4 col-xs-12" id="over-account-wall" style="height: 0rem !important;" >
 
-
-
-            <div class="account-wall" *ngIf="phase1">
+            <div class="account-wall" *ngIf="phase1" >
 
                 <form class="form-signin" (ngSubmit)="authentificate()" #heroForm="ngForm">
                     <div [hidden]="this.fakevalues" class="alert alert-danger">Login ou Mot de pass invalide !</div>
@@ -24,24 +41,22 @@
 
             <div class="account-wall" *ngIf="!phase1">
 
-                <div style="text-align: center;" class="figcontainer" >
+<!--                 <div style="text-align: center;" class="figcontainer" >
                     <figure class="circle"> <a class="figureatag" (click)="saisietoken='1'" class="btn"><b>{{l1}}</b></a> </figure>    
                     <figure class="circle"> <a class="figureatag" (click)="saisietoken='2'" class="btn"><b>{{l2}}</b></a> </figure>
                     <figure class="circle"> <a class="figureatag" (click)="saisietoken='3'" class="btn"><b>{{l3}}</b></a> </figure>
                     <figure class="circle"> <a class="figureatag" (click)="saisietoken='4'" class="btn"><b>{{l4}}</b></a> </figure>
-                </div>
-                <div style="text-align: center;" class="figcontainer" *ngIf="saisietoken" id="tokencolmn">
+                </div> -->
+<!--                 <div style="text-align: center;" class="figcontainer" *ngIf="saisietoken" id="tokencolmn">
                     <figure class="circlesub" *ngIf="saisietoken=='1'"> <a class="figureatag" href="#"><b>{{c1}}</b></a> </figure>    
                     <figure class="circlesub" *ngIf="saisietoken=='2'"> <a class="figureatag" href="#"><b>{{c2}}</b></a> </figure>
                     <figure class="circlesub" *ngIf="saisietoken=='3'"> <a class="figureatag" href="#"><b>{{c3}}</b></a> </figure>
                     <figure class="circlesub" *ngIf="saisietoken=='4'"> <a class="figureatag" href="#"><b>{{c4}}</b></a> </figure>
                 </div>
-
+ -->
                 <form class="form-signin" (ngSubmit)="authentificateBySMS()" #heroNextForm="ngForm">
                     <div [hidden]="this.phase2fakevalues" class="alert alert-danger">Le code que vous avez saisi est incorrect !</div>
 
-<!--                     <div >{{backstring}}</div>
- -->
                     <input type="text" [(ngModel)]="this.fromSMS" name="fromSMS" id="fromSMS"  class="form-control" placeholder="SMS code" required autofocus>
 
                     <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!heroNextForm.form.valid" >Se Connecter</button>
@@ -50,15 +65,14 @@
                 </form>
 
             </div>
-
-
-
         </div>
-
     </div>
-
 </div>
 
+<!-- <div class="row" style="text-align: center ; padding-top: 4rem ; ">
+       <h1 style="font-family:sans-serif; ;font-weight: bolder;font-style: italic;">Ici commence le progès!</h1>
+</div>
+ -->
 <div *ngIf="this.loading">
     <app-loader></app-loader>    
 </div>
