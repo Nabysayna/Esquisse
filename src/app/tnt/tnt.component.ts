@@ -32,15 +32,15 @@ export class TntComponent implements OnInit {
   loading = false ;
 
 
-  prenomNewClient : string ; 
+  prenomNewClient : string ;
   nomNewClient: string ;
   telNewClient: string ;
   adresseNewClient: string ;
-  regionNewClient: string ; 
-  ncniNewClient: string ; 
+  regionNewClient: string ;
+  ncniNewClient: string ;
   nchipNewClient: string ;
-  ncarteNewClient: string ; 
-  nbmNewClient: number; 
+  ncarteNewClient: string ;
+  nbmNewClient: number;
   tbouquetNewClient : string = 'Sans Abonnement';
 
 	formvisible='';
@@ -67,6 +67,8 @@ export class TntComponent implements OnInit {
   filtreDeco = "" ;
   filtreCarte = "" ;
 
+  dataImpression:any;
+
   constructor(
   	     private eFinancierService:EFinancierService,
   	     private lAbonnementService: LAbonnementService,
@@ -78,22 +80,22 @@ export class TntComponent implements OnInit {
   ngOnInit():void {
 
     this.tntCaller = new TntServiceWeb();
-    this.route.params.subscribe( (params : Params) => { 
+    this.route.params.subscribe( (params : Params) => {
       this.nAbonnement = this.nAbonnementService.getNAbonnement(5);
     });
-      this.route.params.subscribe( (params : Params) => { 
+      this.route.params.subscribe( (params : Params) => {
       this.lAbonnement = this.lAbonnementService.getLAbonnement(5);
     });
-      this.route.params.subscribe( (params : Params) => { 
+      this.route.params.subscribe( (params : Params) => {
       this.eFinancier = this.eFinancierService.getEFinancier(5);
     });
 
   }
 
-  validVerifierNum(){  
+  validVerifierNum(){
         this.loading = true ;
     this.tntCaller.checkNumber(this.token, this.verifierNumInput).then( response =>
-        { 
+        {
         this.singleTntWS = response ;
         this.noma = this.singleTntWS.nom ;
         this.prenoma = this.singleTntWS.prenom ;
@@ -107,16 +109,17 @@ export class TntComponent implements OnInit {
           this.tbouquet = "Boul Khool";
         if (this.singleTntWS.id_typeabonnement=="3")
           this.tbouquet = "Maanaa + Boul Khool";
-  
+
         this.verifierNumValide = true;
         this.verifierNumInputValide = false;
 
         this.loading = false ;
-    }); 
+    });
+    sessionStorage.removeItem('dataImpression');
   }
 
-  validnabon(){ 
-    this.loading = true ; 
+  validnabon(){
+    this.loading = true ;
     this.verifierNumInputValide = true ;
     var typedebouquet : number ;
     if(this.tbouquet == "Maanaa")
@@ -124,20 +127,48 @@ export class TntComponent implements OnInit {
     if(this.tbouquet == "Boul Khool")
       typedebouquet=2;
     if(this.tbouquet == "Maanaa + Boul Khool")
-      typedebouquet=3;   
+      typedebouquet=3;
 
     if(this.singleTntWS.ncni==null)
-      this.singleTntWS.ncni = "-" ;        
+      this.singleTntWS.ncni = "-" ;
 
-   this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela, this.singleTntWS.adresse, this.singleTntWS.region, this.singleTntWS.city, this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
+    this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela, this.singleTntWS.adresse, this.singleTntWS.region, this.singleTntWS.city, this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
       {
         if(response=="ok"){
          this.verifierNumValide = false ;
          this.verifierNumInputValide = true;
-         this.loading = false ; 
+         this.loading = false ;
+
+          let montant:number = 0;
+          if(typedebouquet == 1){
+            montant = 5000 * this.nbm;
+          }
+          if(typedebouquet == 2){
+            montant = 3000 * this.nbm;
+          }
+          if(typedebouquet == 3){
+            montant = 8000 * this.nbm;
+          }
+
+          this.dataImpression = {
+            apiservice:'tnt',
+            service:'abonnement',
+            infotransaction:{
+              client:{
+                prenom:this.prenoma,
+                nom:this.noma,
+                telephone:this.tela,
+                chip:this.nchip,
+                montant: montant
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+         this.router.navigate(['accueil/impression']);
         }
 
-      });      
+      });
   }
 
 
@@ -149,7 +180,7 @@ export class TntComponent implements OnInit {
           this.retourTntWS = response ;
           this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
-        }) ;  
+        }) ;
   }
 
   listerVenteDeco(){
@@ -160,7 +191,7 @@ export class TntComponent implements OnInit {
           this.retourTntWS = response ;
           this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
-        }) ;  
+        }) ;
   }
 
   listerVenteCarte(){
@@ -171,13 +202,13 @@ export class TntComponent implements OnInit {
           this.retourTntWS = response ;
           this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
-        }) ;  
+        }) ;
   }
 
 
 
-  vendreDecodeur(){ 
-    this.loading = true ; 
+  vendreDecodeur(){
+    this.loading = true ;
     var typedebouquet : number ;
     var prix:number ;
     if(this.tbouquetNewClient == "Sans Abonnement"){
@@ -189,47 +220,103 @@ export class TntComponent implements OnInit {
       prix = 19500 ;
     }
     if(this.tbouquetNewClient == "+ 3 Mois"){
-      typedebouquet=3;  
-      prix = 28000 ; 
+      typedebouquet=3;
+      prix = 28000 ;
     }
 
-   this.tntCaller.vendreDecodeur(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.nchipNewClient, this.ncarteNewClient, this.nbmNewClient, typedebouquet, prix).then( response =>
+    console.log(this.nbmNewClient);
+    this.dataImpression = {
+      apiservice:'tnt',
+      service:'ventedecodeur',
+      infotransaction:{
+        client:{
+          prenom:this.prenomNewClient,
+          nom:this.nomNewClient,
+          telephone:this.telNewClient,
+          chip:this.nchipNewClient,
+          carte:this.ncarteNewClient,
+          montant:prix,
+        },
+
+      },
+    }
+
+    this.tntCaller.vendreDecodeur(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.nchipNewClient, this.ncarteNewClient, this.nbmNewClient, typedebouquet, prix).then( response =>
       {
         if(response=="ok"){
           this.reinitialiserVariables() ;
-          this.loading = false ; 
+          this.loading = false ;
+
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
 
-      });      
+      });
   }
 
-  vendreCarte(){ 
-     this.loading = true ; 
+  vendreCarte(){
+     this.loading = true ;
+    this.dataImpression = {
+      apiservice:'tnt',
+      service:'ventecarte',
+      infotransaction:{
+        client:{
+          prenom:this.prenomNewClient,
+          nom:this.nomNewClient,
+          telephone:this.telNewClient,
+          carte:this.ncarteNewClient,
+          montant:5000,
+        },
 
-     this.tntCaller.vendreCarte(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.ncarteNewClient, 5000).then( response =>
+      },
+    }
+
+    this.tntCaller.vendreCarte(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.ncarteNewClient, 5000).then( response =>
         {
           if(response=="ok"){
             this.reinitialiserVariables() ;
-            this.loading = false ; 
+            this.loading = false ;
+            sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+            this.router.navigate(['accueil/impression']);
           }
 
-        });      
+        });
   }
 
 
 
   reinitialiserVariables(){
       this.verifierNumValide = false ;
-      this.prenomNewClient ="" ; 
+      this.prenomNewClient ="" ;
       this.nomNewClient="" ;
       this.telNewClient="" ;
       this.adresseNewClient="" ;
-      this.regionNewClient="" ; 
-      this.ncniNewClient="" ; 
+      this.regionNewClient="" ;
+      this.ncniNewClient="" ;
       this.nchipNewClient="" ;
-      this.ncarteNewClient="" ; 
-      this.nbmNewClient=0; 
+      this.ncarteNewClient="" ;
+      this.nbmNewClient=0;
       this.tbouquetNewClient="" ;
+  }
+
+  print(idrecuimpression:string): void {
+    let printContents, popupWin;
+    printContents = document.getElementById(idrecuimpression).innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+          <html>
+              <head>
+                  <title>BBS INVEST - SENTOOL</title>
+                  <style>
+                      //........Customized style.......
+                  </style>
+              </head>
+              <body onload="window.print();window.close()">${printContents}
+              </body>
+          </html>`
+    );
+    popupWin.document.close();
   }
 
 

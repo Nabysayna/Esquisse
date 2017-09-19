@@ -89,6 +89,7 @@
                     </tr>
                 </table>
             </div>
+          <input type="button" value="Imprimer cette page" onClick="window.print()">
         </div>
     </div>
     <div [hidden]="this.formvisible!='rgs'"  class="panel-heading"><img src="../assets/tnt.png" class="img-rounded"   height="100"/>
@@ -149,5 +150,8 @@
 
 
 </div>
+<script language="javascript">
+  window.print();
+</script>
 </body>
 </html>

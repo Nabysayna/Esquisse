@@ -19,7 +19,7 @@ import { AdminmultipdvUpdateCautionComponent } from './admin-multi-pdv/admin-mul
 
 import { ManagerComponent } from './manager/manager.component';
 import { AuthComponentComponent } from './auth-component/auth-component.component';
-import { AccueilComponent } from './accueil/accueil.component'; 
+import { AccueilComponent } from './accueil/accueil.component';
 import { AccueiladminpdvComponent } from './accueiladminpdv/accueiladminpdv.component';
 import { AccueilcoursierComponent } from './accueilcoursier/accueilcoursier.component';
 import { AccueilcommercialComponent } from './accueilcommercial/accueilcommercial.component';
@@ -46,7 +46,7 @@ import { TntComponent } from './tnt/tnt.component';
 import { SoapserverComponent } from './soapserver/soapserver.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { EspacePersoComponent } from './espace-perso/espace-perso.component';
-import { CoursierComponent } from './coursier/coursier.component';  
+import { CoursierComponent } from './coursier/coursier.component';
 import { AdmincoursierComponent } from './admincoursier/admincoursier.component';
 import { CommercialComponent } from './commercial/commercial.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
@@ -54,34 +54,34 @@ import { ConsulterpretComponent } from './consulterpret/consulterpret.component'
 
 
 import { AdminpdvparametrecompteComponent } from './adminpdv/adminpdv-parametre-compte/adminpdv-parametre-compte.component';
+import {ImpressionComponent} from "./impression/impression.component";
 
   //
 
 const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
-    { path: 'accueil', component: AccueilComponent,  
+    { path: 'accueil', component: AccueilComponent,
            children:[
                 {path: '', component: ECommerceComponent},
                 {path: 'MONEYGRAM', component: SoapserverComponent},
-    			{path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
-    			{path: 'POSTECASH', component: PostcashComponent},
-    			{path: 'TIGO CASH', component: TigoCashComponentComponent},
-    			{path: 'ADMINCOURSIER', component: AdmincoursierComponent},
+    			      {path: 'ORANGE MONEY', component: OrangeMoneyComponentComponent},
+                {path: 'POSTECASH', component: PostcashComponent},
+                {path: 'TIGO CASH', component: TigoCashComponentComponent},
+                {path: 'ADMINCOURSIER', component: AdmincoursierComponent},
                 {path: 'CRM', component: CrmComponent},
                 {path: 'DASHBOARD', component: DashboardComponent},
                 {path: 'E-COMMERCE', component: ECommerceComponent},
                 {path: 'JONI JONI', component: JoniJoniComponentComponent},
-               {path: 'DEMANDEPRET', component: DemandepretComponent},
-               {path: 'GESTIONREPORTING', component: GestionreportingComponent},
+                {path: 'DEMANDEPRET', component: DemandepretComponent},
+                {path: 'GESTIONREPORTING', component: GestionreportingComponent},
                 {path: 'EXPRESSO', component: ExpressoComponent},
-                 {path: 'TNT BY EXCAF', component: TntComponent},
-                 {path: 'SOLDE DU COMPTE', component: SoldecompteComponent},
-               {path: 'RECUS/:id', component: RecusComponent}
-
-
-    		] 
+                {path: 'TNT BY EXCAF', component: TntComponent},
+                {path: 'SOLDE DU COMPTE', component: SoldecompteComponent},
+                {path: 'RECUS/:id', component: RecusComponent},
+                {path: 'impression', component: ImpressionComponent},
+    		]
     },
-    { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent, canActivate: [AuthGuard], 
+    { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent, canActivate: [AuthGuard],
         children: [
             {
                 path: '',
@@ -174,7 +174,7 @@ const appRoutes: Routes = [
             }
         ]
     },
-    
+
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

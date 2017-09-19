@@ -3,7 +3,7 @@
 /*-----------------*/
 
 import { NgModule }      from '@angular/core' ;
-import { BrowserModule } from '@angular/platform-browser' ; 
+import { BrowserModule } from '@angular/platform-browser' ;
 import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
 import { LoadersCssModule } from 'angular2-loaders-css';
@@ -119,7 +119,8 @@ import { JoniJoniComponentComponent } from './joni-joni-component/joni-joni-comp
 import { DemandepretComponent } from './demandepret/demandepret.component';
 import { GestionreportingComponent } from './gestionreporting/gestionreporting.component';
 import { SoldecompteComponent } from './soldecompte/soldecompte.component';
-import { RecusComponent } from './recus/recus.component'; 
+import { RecusComponent } from './recus/recus.component';
+import { ImpressionComponent } from './impression/impression.component';
 import { PostcashComponent } from './postcash/postcash.component';
 import { LoaderComponent } from './loader/loader.component';
 
@@ -218,6 +219,7 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     GestionreportingComponent,
     SoldecompteComponent,
     RecusComponent,
+    ImpressionComponent,
     PostcashComponent,
 
     AdminmultipdvDashboardComponent,
@@ -225,14 +227,14 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     AdminmultipdvMonitoringComponent,
     AdminmultipdvStatusPdvComponent,
     AdminmultipdvStatusReclamationComponent,
-    AdminmultipdvUpdateCautionComponent,    
+    AdminmultipdvUpdateCautionComponent,
 
     AdminpdvAidedecisionComponent,
     AdminpdvDashboardComponent,
     AdminpdvMonitoringComponent,
     AdminpdvStatusReclamationComponent,
     AdminpdvparametrecompteComponent,
-    
+
     GeomapComponentComponent,
     LoaderComponent,
     NavbarTopComponent,
@@ -273,7 +275,7 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     AdminmultipdvStatusReclamationPipe,
     AdminmultipdvUpdateCautionPipe,
     AdminmultipdvDemandeRetraitPipe,
-    
+
     AdminpdvparametrecomptePipe,
     AdminpdvStatusReclamationPipe,
 
@@ -325,7 +327,7 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     }),
     NgxPaginationModule
   ],
-  providers: [  
+  providers: [
       SoapService,
       EFinancierService,
       LAbonnementService,
@@ -346,8 +348,8 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
       EnvoicashService,
       PaiecashService,
       AuthGuard,
-      UserPdvService, 
-      PostCashService, 
+      UserPdvService,
+      PostCashService,
       AdminpdvDashboardService,
       AdminpdvMonitoringService,
       AuthentificationServiceWeb,

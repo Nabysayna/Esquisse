@@ -1,0 +1,246 @@
+<div id="wrapper">
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='tnt' && dataImpression.service=='abonnement'">
+    <div class="panel panel-default"  id="tntrecuimpressionabonnement">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Abonnement<br>
+        <table>
+          <tr class="text-uppercase">
+            <td>
+              Nom Client: {{dataImpression.infotransaction.client.nom}}<br>
+              Prénom Client: {{dataImpression.infotransaction.client.prenom}}<br>
+              Téléphone Client: {{dataImpression.infotransaction.client.telephone}}<br>
+            </td>
+            <td >&nbsp;</td>
+            <td >
+            Date début: {{today | date:'dd/mm/yyyy'}}<br>
+            Date fin: {{today | date:'dd/mm/yyyy'}}<br>
+            Numéro Chip: {{dataImpression.infotransaction.client.chip}}<br>
+            Montant: {{dataImpression.infotransaction.client.montant}}<br>
+          </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='tnt' && dataImpression.service=='ventedecodeur'">
+    <div class="panel panel-default"  id="tntrecuimpressionventedecodeur">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Vente decodeur<br>
+        <table>
+          <tr class="text-uppercase">
+            <td width="200px">
+              Nom Client: {{dataImpression.infotransaction.client.nom}}<br>
+              Prénom Client: {{dataImpression.infotransaction.client.prenom}}<br>
+              Téléphone Client: {{dataImpression.infotransaction.client.telephone}}<br>
+            </td>
+            <td>
+              Numéro Chip: {{dataImpression.infotransaction.client.chip}}<br>
+              Numéro de Carte: {{dataImpression.infotransaction.client.carte}}<br>
+              Montant: {{dataImpression.infotransaction.client.montant}}<br>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='tnt' && dataImpression.service=='ventecarte'">
+    <div class="panel panel-default"  id="tntrecuimpressionventecarte">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Vente de carte<br>
+        <table>
+          <tr class="text-uppercase">
+            <td width="200px">
+              Nom Client: {{dataImpression.infotransaction.client.nom}}<br>
+              Prénom Client: {{dataImpression.infotransaction.client.prenom}}<br>
+              Téléphone Client: {{dataImpression.infotransaction.client.telephone}}<br>
+            </td>
+            <td>
+              Numéro de Carte: {{dataImpression.infotransaction.client.carte}}<br>
+              Montant: {{dataImpression.infotransaction.client.montant}}<br>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='postecash' && dataImpression.service=='envoicash'">
+    <div class="panel panel-default"  id="postecashrecuimpressionenvoicash">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Envoi cash<br>
+        <table>
+          <tr class="text-uppercase">
+            <td width="200px">
+              Prénom Expéditeur: <br>
+              Nom Expéditeur: <br>
+              Téléphone Expéditeur: <br>
+
+            </td>
+
+            <td>
+            <td>
+              Prénom Destinataire: <br>
+              Nom Destinataire: <br>
+              Téléphone Destinataire: <br>
+              Montant Envoyé : <br>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='postecash' && dataImpression.service=='payementcash'">
+    <div class="panel panel-default"  id="postecashrecuimpressionpayementcash">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Paiement cash<br>
+        <table>
+          <tr class="text-uppercase">
+            <td width="200px">
+              Référence: <br>
+              Service: ... <br>
+              Montant: <br>
+
+            </td>
+            <td>
+              Nom et Prénom: <br>
+              Téléphone: <br>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='postecash' && dataImpression.service=='achatjula'">
+    <div class="panel panel-default"  id="postecashrecuimpressionachatjula">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Achat jula<br>
+        <table>
+          <tr class="text-uppercase">
+            <td width="200px">
+              Nom Acheteur: <br>
+              Prénom Acheteur: <br>
+              Téléphone Acheteur: <br>
+
+            </td>
+            <td>
+              Type de Carte: <br>
+              Nombre de Carte: <br>
+              Montant: <br>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='postecash' && dataImpression.service=='reglementsenelec'">
+    <div class="panel panel-default"  id="postecashrecuimpressionreglementsenelec">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Reglement senelec<br>
+        <table>
+          <tr class="text-uppercase">
+          <tr class="text-uppercase">
+            <td width="200px">
+              Nom Client: <br>
+              Prénom Client: <br>
+              Téléphone Client: <br>
+
+            </td>
+            <td>
+              Référence Facture: <br>
+              Montant Payé: <br>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel-heading" *ngIf="dataImpression.apiservice=='postecash' && dataImpression.service=='achatcodewayafal'">
+    <div class="panel panel-default"  id="postecashrecuimpressionachatcodewayafal">
+      <img src="../../assets/tnt.png" class="img-rounded"   height="100"/>
+      <div class="panel-heading">
+        <p align="right" >
+          Prénom Opérateur:  {{ operateur.prenom }}<br>
+          Nom Opérateur:     {{ operateur.nom }}<br>
+          Numéro Opérateur : {{ operateur.telephone }}<br>
+        </p>
+      </div>
+      <div class="panel-body">
+        Numéro Transaction: ...Achat code wayafal<br>
+        <table>
+          <tr class="text-uppercase">
+            <td width="200px">
+              Nom Client: <br>
+              Prénom Client: <br>
+              Téléphone Client: <br>
+
+            </td>
+            <td>
+              Code Woyofal:... <br>
+              Montant Payé: <br>
+              Compteur: <br>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row container" style="text-align: center" *ngIf="dataImpression">
+      <button type="button" class="btn btn-primary" (click)="print()">Imprimer</button>
+      <button type="button" class="btn btn-secondary" (click)="backClicked()">Retour</button>
+    </div>
+</div>

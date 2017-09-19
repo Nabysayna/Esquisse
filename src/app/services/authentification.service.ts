@@ -11,6 +11,9 @@ export class AuthenticationService {
     authentiService: AuthentificationServiceWeb;
     public baseToken: string;
     public email: string;
+    public prenom: string;
+    public nom: string;
+    public telephone: string;
     public accessLevel: number;
     public authorizedApis: string;
 
@@ -22,7 +25,7 @@ export class AuthenticationService {
 
     login(email: string, password: string): Promise<string> {
       return new Promise( (resolve, reject)=> {
-            this.authentiService.authentifier(email, password).then( response => { 
+            this.authentiService.authentifier(email, password).then( response => {
                 console.log("Reponse du serveur : "+response) ;
                 if( response != 'false' ){
                     console.log("Has been granted by the server") ;
@@ -35,18 +38,21 @@ export class AuthenticationService {
         });
     }
 
-   
+
     loginPhase2(smsCode): Promise<number> {
       return new Promise( (resolve, reject)=> {
-            this.authentiService.authentifierParCodeSMS(smsCode).then( response => { 
+            this.authentiService.authentifierParCodeSMS(smsCode).then( response => {
                 var resp:AuthResponse=response ;
                 if( resp.reponse.toString()== "true" ){
                     this.baseToken = sha1(resp.baseToken+sha1("bay3k00_f1_n10un") );
                     this.email = resp.prenom;
+                    this.prenom = resp.prenom;
+                    this.nom = resp.nom;
+                    this.telephone = resp.telephone;
                     this.accessLevel = resp.accessLevel;
                     this.authorizedApis = resp.authorizedApis;
 
-                    sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, baseToken: this.baseToken, authorizedApis:this.authorizedApis, accessLevel:this.accessLevel}));
+                    sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, baseToken: this.baseToken, authorizedApis:this.authorizedApis, accessLevel:this.accessLevel, prenom:this.prenom, nom:this.nom, telephone:this.telephone}));
                     resolve(this.accessLevel);
                 } else {
                     resolve(0);

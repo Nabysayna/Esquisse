@@ -6,13 +6,13 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class MapsServiceWeb {
 
-/*
-  private servicePort:string = 'http://51.254.200.129' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/maps?wsdl' ;
-*/
 
-  private servicePort:string = 'http://localhost' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/maps?wsdl' ;
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/maps?wsdl' ;
+
+
+  // private servicePort:string = 'http://localhost' ; 
+  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/maps?wsdl' ;
 
  private targetNamespace:string = 'urn:mapswsdl' ;
 

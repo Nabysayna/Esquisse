@@ -39,27 +39,27 @@ export class RecusComponent implements OnInit {
   	 private route:ActivatedRoute) {}
 
   ngOnInit():void {
-    this.route.params.subscribe( (params : Params) => { 
+    this.route.params.subscribe( (params : Params) => {
       this.envoiCash = this.envoicashService.getEnvoicash(1);
     });
 
 
-    this.route.params.subscribe( (params : Params) => { 
+    this.route.params.subscribe( (params : Params) => {
       this.paieCash = this.paiecashService.getPaieCash(2);
     });
 
 
-    this.route.params.subscribe( (params : Params) => { 
+    this.route.params.subscribe( (params : Params) => {
       this.achatJula = this.achatJulaService.getAchatJula(3);
     });
 
 
-    this.route.params.subscribe( (params : Params) => { 
+    this.route.params.subscribe( (params : Params) => {
       this.reglSenelec = this.reglSenelecService.getReglSenelec(4);
     });
 
 
-    this.route.params.subscribe( (params : Params) => { 
+    this.route.params.subscribe( (params : Params) => {
       this.achatCodeWoyofal = this.achatCodeoyofalService.getAchatCodeWoyofal(5);
     });
 

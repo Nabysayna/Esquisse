@@ -4,6 +4,8 @@ import {SoapService} from "../../soap.service";
 
 export class AuthResponse{
   public prenom: string;
+  public nom: string;
+  public telephone: string;
   public reponse: boolean ;
   public accessLevel: number ;
   public authorizedApis: string ;
@@ -13,28 +15,28 @@ export class AuthResponse{
 @Injectable()
 export class AuthentificationServiceWeb {
 
-/*
-  private servicePort:string = 'http://51.254.200.129' ;  
-  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/logging?wsdl' ;
-*/
-  private servicePort:string = 'http://localhost' ;  
-  private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
+
+  private servicePort:string = 'http://51.254.200.129' ;
+  private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/logging?wsdl' ;
+
+  // private servicePort:string = 'http://localhost' ;
+  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl' ;
 
   private targetNamespace:string = 'urn:authwsdl' ;
 
   public responseJso : any ;
-  public resp : string ;  
-   
-   
+  public resp : string ;
+
+
   private soapService:SoapService;
-  
+
   constructor() {
         this.soapService = new SoapService();
 
         this.soapService.setServicePort(this.servicePort) ;
         this.soapService.setServicePath(this.servicePath);
         this.soapService.setServiceUrl(this.servicePort+this.servicePath);
-        this.soapService.setTargetNamespace(this.targetNamespace);  
+        this.soapService.setTargetNamespace(this.targetNamespace);
 
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso =response ; };
@@ -51,7 +53,7 @@ export class AuthentificationServiceWeb {
         parameters['authentification xmlns="urn:authwsdl#"'] = this.setParameters(tryLogin, tryPwd) ;
         this.soapService.post(method, parameters, 'authentificationResponse').then(response=>
         resolve(response["authentificationResponse"]["return"].$) ) ;
-      });      
+      });
   }
 
   public authentifierParCodeSMS(smsCode) : Promise<AuthResponse>  {
@@ -66,14 +68,21 @@ export class AuthentificationServiceWeb {
         parameters['authentificationPhaseTwo xmlns="urn:authwsdl#"'] = parame ;
         this.soapService.post(method, parameters, 'authentificationPhaseTwoResponse').then(response=>{
         var authResponse:AuthResponse = {
-        prenom:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).prenom, baseToken:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).baseToken, reponse:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).reponse, accessLevel:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).accessLevel, authorizedApis:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).authorizedApis} ;
+          prenom:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).prenom,
+          nom:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).nom,
+          telephone:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).tel,
+          baseToken:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).baseToken,
+          reponse:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).reponse,
+          accessLevel:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).accessLevel,
+          authorizedApis:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).authorizedApis
+        };
         resolve(authResponse)
         }) ;
-      });      
+      });
   }
 
 
-  
+
   public deconnecter(token : string) : Promise<number>  {
       var method:string = 'deconnexion';
       var parameters:{}[] = [];
@@ -85,9 +94,9 @@ export class AuthentificationServiceWeb {
         parameters['deconnexion xmlns="urn:authwsdl#"'] = parame ;
         this.soapService.post(method, parameters, 'deconnexionResponse').then(response=>{
         resolve(JSON.parse(response["deconnexionResponse"]["return"].$)) ;
-        }) ; 
+        }) ;
       });
-      
+
   }
 
   public setParameters( tryLogin: string, tryPwd: string):{}[] {
