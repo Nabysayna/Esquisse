@@ -1,35 +1,30 @@
 
 import {Injectable} from '@angular/core';
 import {SoapService} from "../../soap.service";
- 
+
 
 @Injectable()
 export class MapsServiceWeb {
 
 
-  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePort:string = 'http://51.254.200.129' ;
   private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/maps?wsdl' ;
-
-
-  // private servicePort:string = 'http://localhost' ; 
-  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/maps?wsdl' ;
-
  private targetNamespace:string = 'urn:mapswsdl' ;
 
   public responseJso : any;
-  public resp : string  ;  
+  public resp : string  ;
   private soapService:SoapService;
 
   private token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
 
-  
+
   constructor() {
     this.soapService = new SoapService();
-    
+
     this.soapService.setServicePort(this.servicePort) ;
     this.soapService.setServicePath(this.servicePath);
     this.soapService.setServiceUrl(this.servicePort+this.servicePath);
-    this.soapService.setTargetNamespace(this.targetNamespace);  
+    this.soapService.setTargetNamespace(this.targetNamespace);
 
     this.soapService.envelopeBuilder = this.envelopeBuilder;
     this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
@@ -41,18 +36,18 @@ export class MapsServiceWeb {
     var parameters:{}[] = [];
 
     var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     parameters['listmaps xmlns="urn:mapswsdl#"'] = params;
-    
+
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'listmapsResponse').then(response=>{
         var reponse = JSON.parse(response['listmapsResponse'].return.$);
         resolve(reponse) ;
-      }); 
-    });   
-      
+      });
+    });
+
   }
 
   public listmapsdepart(type : string): Promise<any>  {
@@ -60,18 +55,18 @@ export class MapsServiceWeb {
     var parameters:{}[] = [];
 
     var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     parameters['listmapsdepart xmlns="urn:mapswsdl#"'] = params;
-    
+
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'listmapsdepartResponse').then(response=>{
         var reponse = JSON.parse(response['listmapsdepartResponse'].return.$);
         resolve(reponse) ;
-      }); 
-    });   
-      
+      });
+    });
+
   }
 
   public listmapspardepart(type : string): Promise<any>  {
@@ -79,18 +74,18 @@ export class MapsServiceWeb {
     var parameters:{}[] = [];
 
     var reEspParams = {token: this.token, type: type} ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     parameters['listmapspardepart xmlns="urn:mapswsdl#"'] = params;
-    
+
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'listmapspardepartResponse').then(response=>{
         var reponse = JSON.parse(response['listmapspardepartResponse'].return.$);
         resolve(reponse) ;
-      }); 
-    });   
-      
+      });
+    });
+
   }
 
   private envelopeBuilder(requestBody:string):string {

@@ -9,7 +9,7 @@ export class Portefeuille{
                           nombre_operation:number;
                           fidelite:number;
                           date_ajout:any;
-                        } 
+                        }
 
 export class Relance{
                       iduser : number ;
@@ -18,23 +18,23 @@ export class Relance{
                       telephone:string ;
                       infosoperation:string;
                       echeance:any;
-                   } 
+                   }
 
 
-export class Promotion{  
+export class Promotion{
                         nom:string;
                         prenom:string;
                         telephone:string;
                         nombre_operation:number;
                         fidelite:number;
                         date_ajout:any;
-                       } 
+                       }
 
 export class Prospection{
                           nom:string;
                           prenom:string;
                           telephone:string;
-                        } 
+                        }
 
 export class Suivicommande{
                           nomclient:string;
@@ -44,31 +44,27 @@ export class Suivicommande{
                           etat:string;
                          }
 
-                         
+
 
 export class Servicepoint{
                           nom:string;
-                          designations:string;  
-                        } 
+                          designations:string;
+                        }
 
 
 
 @Injectable()
 export class CrmServiceWeb {
 
-
-  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePort:string = 'http://51.254.200.129' ;
   private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/crm?wsdl' ;
-
-  // private servicePort:string = 'http://localhost' ; 
-  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/crm?wsdl' ;
   private targetNamespace:string = 'urn:crmwsdl' ;
 
   public responseJso : any ;
   public resp : string ;
   public filtre : string ;
   private soapService:SoapService;
-  
+
   constructor() {
 
         this.soapService = new SoapService();
@@ -76,7 +72,7 @@ export class CrmServiceWeb {
         this.soapService.setServicePort(this.servicePort) ;
         this.soapService.setServicePath(this.servicePath);
         this.soapService.setServiceUrl(this.servicePort+this.servicePath);
-        this.soapService.setTargetNamespace(this.targetNamespace);  
+        this.soapService.setTargetNamespace(this.targetNamespace);
 
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
@@ -91,15 +87,15 @@ export class CrmServiceWeb {
             var reEspParams = {token:token} ;
 
             parameters['portefeuille xmlns="urn:crmwsdl#"'] = reEspParams;
-                
 
-            
+
+
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'portefeuilleResponse').then(response=>{
                 var reponse:Portefeuille[] = JSON.parse(response['portefeuilleResponse'].return.$);
                 resolve(reponse) ;
-              }); 
-            });     
+              });
+            });
   }
 
   public relance(token:string) : Promise<Relance[]> {
@@ -109,13 +105,13 @@ export class CrmServiceWeb {
             var reEspParams = {token:token} ;
 
             parameters['relance xmlns="urn:crmwsdl#"'] = reEspParams;
-            
+
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'relanceResponse').then(response=>{
                 var reponse:any[] = JSON.parse(response['relanceResponse'].return.$);
                 resolve(reponse) ;
-              }); 
-            });     
+              });
+            });
   }
 
     public promotion(token:string) : Promise<Promotion[]> {
@@ -130,8 +126,8 @@ export class CrmServiceWeb {
               this.soapService.post(method, parameters, 'promotionResponse').then(response=>{
                 var reponse:Promotion[] = JSON.parse(response['promotionResponse'].return.$);
                 resolve(reponse) ;
-              }); 
-            });     
+              });
+            });
   }
 
     public sendSms(token, destinataire, message) : Promise<string> {
@@ -146,8 +142,8 @@ export class CrmServiceWeb {
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'sendSmsResponse').then(response=>{
                 resolve(response['sendSmsResponse'].return.$) ;
-              }); 
-            });     
+              });
+            });
   }
 
   public prospection(token:string) : Promise<Prospection[]> {
@@ -157,16 +153,16 @@ export class CrmServiceWeb {
             var reEspParams = {token:token} ;
 
             parameters['prospection xmlns="urn:crmwsdl#"'] = reEspParams;
-                
 
-            
+
+
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'prospectionResponse').then(response=>{
                 var reponse:Prospection[] = JSON.parse(response['prospectionResponse'].return.$);
                 console.log("ddd "+response['prospectionResponse'].return.$);
                 resolve(reponse) ;
-              }); 
-            });     
+              });
+            });
   }
 
    public suivicommande(token:string) : Promise<Suivicommande[]> {
@@ -176,13 +172,13 @@ export class CrmServiceWeb {
             var reEspParams = {token:token} ;
 
             parameters['suivicommande xmlns="urn:crmwsdl#"'] = reEspParams;
- 
+
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'suivicommandeResponse').then(response=>{
                 var reponse:Suivicommande[] = JSON.parse(response['suivicommandeResponse'].return.$);
                 resolve(reponse) ;
-              }); 
-            });     
+              });
+            });
   }
 
 
@@ -193,15 +189,15 @@ export class CrmServiceWeb {
             var reEspParams = {token:token} ;
 
             parameters['servicepoint xmlns="urn:servicepointwsdl#"'] = reEspParams;
-                
 
-            
+
+
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'servicepointResponse').then(response=>{
                 var reponse:Servicepoint[] = JSON.parse(response['servicepointResponse'].return.$);
                 resolve(reponse) ;
-              }); 
-            });     
+              });
+            });
   }
 
 

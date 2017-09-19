@@ -4,7 +4,7 @@ import {SoapService} from "../../soap.service";
 
 export class Consulterpret{
                               montantdemande:number;
-                        } 
+                        }
 
 
 
@@ -12,19 +12,15 @@ export class Consulterpret{
 export class ConsulterpretServiceWeb {
 
 
-
-  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePort:string = 'http://51.254.200.129' ;
   private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/consulterpret?wsdl' ;
-
-  // private servicePort:string = 'http://localhost' ; 
-  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/consulterpret?wsdl' ;
   private targetNamespace:string = 'urn:consulterpretwsdl' ;
 
   public responseJso : any ;
   public resp : string ;
   public filtre : string ;
   private soapService:SoapService;
-  
+
   constructor() {
 
         this.soapService = new SoapService();
@@ -32,7 +28,7 @@ export class ConsulterpretServiceWeb {
         this.soapService.setServicePort(this.servicePort) ;
         this.soapService.setServicePath(this.servicePath);
         this.soapService.setServiceUrl(this.servicePort+this.servicePath);
-        this.soapService.setTargetNamespace(this.targetNamespace);  
+        this.soapService.setTargetNamespace(this.targetNamespace);
 
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
@@ -47,15 +43,15 @@ export class ConsulterpretServiceWeb {
             var reEspParams = {token:token} ;
 
             parameters['consulterpret xmlns="urn:consulterpretwsdl#"'] = reEspParams;
-                
 
-            
+
+
             return new Promise( (resolve, reject) => {
               this.soapService.post(method, parameters, 'consulterpretResponse').then(response=>{
                 var reponse:Consulterpret[] = JSON.parse(response['consulterpretResponse'].return.$);
                 resolve(reponse) ;
-              }); 
-            });     
+              });
+            });
   }
 
 

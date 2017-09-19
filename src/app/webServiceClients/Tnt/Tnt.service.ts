@@ -30,26 +30,23 @@ export class TntResponse{
 export class TntServiceWeb {
 
 
-  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePort:string = 'http://51.254.200.129' ;
   private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/tnt?wsdl' ;
-
-  // private servicePort:string = 'http://localhost' ; 
-  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl' ;
   private targetNamespace:string = 'urn:tntwsdl' ;
 
   public responseJso : any ;
   public resp : string ;
-  public responseJsoFWS : TntResponse[] ;  
+  public responseJsoFWS : TntResponse[] ;
 
   private soapService:SoapService;
-  
+
   constructor() {
         this.soapService = new SoapService();
 
         this.soapService.setServicePort(this.servicePort) ;
         this.soapService.setServicePath(this.servicePath);
         this.soapService.setServiceUrl(this.servicePort+this.servicePath);
-        this.soapService.setTargetNamespace(this.targetNamespace);  
+        this.soapService.setTargetNamespace(this.targetNamespace);
 
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
@@ -58,11 +55,11 @@ export class TntServiceWeb {
 
   public listAbonnement(token : string) : Promise<TntResponse[]> {
 
-      var method:string = 'listabonnement'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listabonnement';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -72,18 +69,18 @@ export class TntServiceWeb {
           this.responseJsoFWS = JSON.parse(response['listabonnementResponse'].return.$);
           console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
   public listeVenteDecods(token : string) : Promise<{}[]> {
 
-      var method:string = 'listdecodeur'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listdecodeur';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -93,17 +90,17 @@ export class TntServiceWeb {
           this.responseJsoFWS = JSON.parse(response['listdecodeurResponse'].return.$);
           console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
   public listerVenteCartes(token : string) : Promise<{}[]> {
 
-      var method:string = 'listcarte'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listcarte';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -113,18 +110,18 @@ export class TntServiceWeb {
           this.responseJsoFWS = JSON.parse(response['listcarteResponse'].return.$);
           console.log("reponse brute from class attribute "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
   public checkNumber(token : string, chipOrCardNum: string) : Promise<TntResponse> {
 
-      var method:string = 'verifinumeroabonnement'; 
-      var parameters:{}[] = []; 
+      var method:string = 'verifinumeroabonnement';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token, numeroCarteChip:chipOrCardNum} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -132,20 +129,20 @@ export class TntServiceWeb {
 
         this.soapService.post(method, parameters, 'verifinumeroabonnementResponse').then(response=>{
 
-        if (!response['verifinumeroabonnementResponse'].return.$ ) 
+        if (!response['verifinumeroabonnementResponse'].return.$ )
           resolve(new TntResponse()) ;
 
         this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
         resolve(this.responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
   public abonner(token:string, prenom:string, nom:string, tel:string, adresse:string, region:string, city:string, cni:string, numerochip:string, numerocarte:string, duree:number, typedebouquet:number) : Promise<string> {
 
-      var method:string = 'ajoutabonnement'; 
-      var parameters:{}[] = []; 
+      var method:string = 'ajoutabonnement';
+      var parameters:{}[] = [];
       var montant : number = 0 ;
 
       if(typedebouquet==1)
@@ -158,7 +155,7 @@ export class TntServiceWeb {
       montant = duree*montant ;
 
       var reEspParams = {token:token, prenom:prenom, nom:nom, tel:tel, adresse:adresse, region:region, city:city, cni:cni, numerochip:numerochip, numerocarte:numerocarte, duree:duree, typedebouquet:typedebouquet, montant:montant} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       console.log("Parameters : "+JSON.stringify(params["params"])) ;
@@ -168,18 +165,18 @@ export class TntServiceWeb {
           var reponse : string = JSON.parse(response['ajoutabonnementResponse'].return.$).response;
           //console.log("reponse brute  "+reponse ) ;
           resolve(reponse) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
   public vendreDecodeur(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, ncniNewClient, nchipNewClient, ncarteNewClient, nbmNewClient, typedebouquet, prix) : Promise<string> {
 
-      var method:string = 'ventedecodeur'; 
-      var parameters:{}[] = []; 
+      var method:string = 'ventedecodeur';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:ncniNewClient, numerochip:nchipNewClient, numerocarte:ncarteNewClient, typedebouquet:typedebouquet, prix:prix} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       console.log("Parameters de la vente : "+JSON.stringify(params["params"])) ;
@@ -189,18 +186,18 @@ export class TntServiceWeb {
           var reponse : string = response['ventedecodeurResponse'].return.$;
           //console.log("reponse brute  "+reponse ) ;
           resolve(reponse) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
   public vendreCarte(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, ncniNewClient, ncarteNewClient, prix) : Promise<string> {
 
-      var method:string = 'ventecarte'; 
-      var parameters:{}[] = []; 
+      var method:string = 'ventecarte';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:ncniNewClient, numerocarte:ncarteNewClient, prix:prix} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       console.log("Parameters de la vente : "+JSON.stringify(params["params"])) ;
@@ -210,8 +207,8 @@ export class TntServiceWeb {
           var reponse : string = response['ventecarteResponse'].return.$;
           //console.log("reponse brute  "+reponse ) ;
           resolve(reponse) ;
-        }); 
-      });      
+        });
+      });
   }
 
 

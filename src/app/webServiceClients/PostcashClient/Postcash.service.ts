@@ -17,26 +17,22 @@ export class PostCashResponse{
 export class PostCashServiceWeb {
 
 
-  private servicePort:string = 'http://51.254.200.129' ;   
+  private servicePort:string = 'http://51.254.200.129' ;
   private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/postcash?wsdl' ;
-
-
-  // private servicePort:string = 'http://localhost' ;   
-  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl' ;
   private targetNamespace:string = 'urn:postcashwsdl' ;
 
   public responseJso : any ;
-  public resp : string ;  
+  public resp : string ;
 
   private soapService:SoapService;
-  
+
   constructor() {
         this.soapService = new SoapService();
 
         this.soapService.setServicePort(this.servicePort) ;
         this.soapService.setServicePath(this.servicePath);
         this.soapService.setServiceUrl(this.servicePort+this.servicePath);
-        this.soapService.setTargetNamespace(this.targetNamespace);  
+        this.soapService.setTargetNamespace(this.targetNamespace);
 
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso =response ; };
@@ -45,8 +41,8 @@ export class PostCashServiceWeb {
 
   public rechargerEspece(api : number, token : string, tel_destinataire : number, montant : string) : Promise<PostCashResponse> {
 
-      var method:string = 'rechargementespece'; 
-      var parameters:{}[] = []; 
+      var method:string = 'rechargementespece';
+      var parameters:{}[] = [];
 
       var reEspParams = {api:api, token:token, tel_destinataire:tel_destinataire, montant:montant} ;
       var params:{}[] = [] ; params["params"] = reEspParams ;
@@ -69,13 +65,13 @@ export class PostCashServiceWeb {
         console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
         resolve(postCashResponse) ;
         }) ;
-      });      
+      });
   }
 
   public retraitespece(api : number, token : string, code_validation : number, tel_destinataire : number, montant : string) : Promise<PostCashResponse> {
-  
-      var method:string = 'retraitespece'; 
-      var parameters:{}[] = []; 
+
+      var method:string = 'retraitespece';
+      var parameters:{}[] = [];
       var reEspParams = {api:api, token:token, code_validation:code_validation, tel_destinataire:tel_destinataire , montant:montant} ;
       var params:{}[] = [] ; params["params"] = reEspParams ;
 
@@ -97,13 +93,13 @@ export class PostCashServiceWeb {
         console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
         resolve(postCashResponse) ;
         }) ;
-      });      
+      });
   }
 
   public achatcodewoyofal(api : number, token : string, montant : number, compteur : string) : Promise<PostCashResponse> {
-  
-      var method:string = 'achatcodewoyofal'; 
-      var parameters:{}[] = []; 
+
+      var method:string = 'achatcodewoyofal';
+      var parameters:{}[] = [];
       var reEspParams = {api:api, token:token, montant:montant, compteur:compteur} ;
       var params:{}[] = [] ; params["params"] = reEspParams ;
 
@@ -125,13 +121,13 @@ export class PostCashServiceWeb {
         console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
         resolve(postCashResponse) ;
         }) ;
-      });     
+      });
   }
 
   public reglementsenelec(api : number, token : string, police : string, num_facture : string) : Promise<PostCashResponse> {
-  
-      var method:string = 'reglementsenelec'; 
-      var parameters:{}[] = []; 
+
+      var method:string = 'reglementsenelec';
+      var parameters:{}[] = [];
       var reEspParams = {api:api, token:token, police:police, num_facture:num_facture} ;
       var params:{}[] = [] ; params["params"] = reEspParams ;
 
@@ -153,13 +149,13 @@ export class PostCashServiceWeb {
         console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
         resolve(postCashResponse) ;
         }) ;
-      });     
+      });
   }
 
   public achatjula(api : number, token : string, mt_carte : string, nb_carte : string) : Promise<PostCashResponse> {
-  
-      var method:string = 'achatjula'; 
-      var parameters:{}[] = []; 
+
+      var method:string = 'achatjula';
+      var parameters:{}[] = [];
       var reEspParams = {api:api, token:token, mt_carte:mt_carte, nb_carte:nb_carte} ;
       var params:{}[] = [] ; params["params"] = reEspParams ;
 
@@ -181,12 +177,12 @@ export class PostCashServiceWeb {
         console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
         resolve(postCashResponse) ;
         }) ;
-      });     
+      });
   }
 
-  public achatcredittelephonique(api : number, token : string, numero_a_recharger : string, montant : string) : Promise<PostCashResponse> {  
-      var method:string = 'achatcredittelephonique'; 
-      var parameters:{}[] = []; 
+  public achatcredittelephonique(api : number, token : string, numero_a_recharger : string, montant : string) : Promise<PostCashResponse> {
+      var method:string = 'achatcredittelephonique';
+      var parameters:{}[] = [];
       var reEspParams = { api:api, token:token, numero_a_recharger:numero_a_recharger, montant:montant } ;
       var params:{}[] = [] ; params["params"] = reEspParams ;
 
@@ -208,12 +204,12 @@ export class PostCashServiceWeb {
         console.log("Postcash a répondu : "+JSON.stringify(postCashResponse) );
         resolve(postCashResponse) ;
         }) ;
-      });      
+      });
   }
 
 
   public setParameters( api : number, token : string, tel_destinataire : number, montant : string ):{}[] {
-      var parameters:{}[] = [] ; 
+      var parameters:{}[] = [] ;
       var reEspParams = {api:api, token:token, tel_destinataire:tel_destinataire, montant:montant} ;
       console.log("Recharge infos "+reEspParams.tel_destinataire+" Mot de pass "+reEspParams.montant);
       parameters["params"] = reEspParams ;

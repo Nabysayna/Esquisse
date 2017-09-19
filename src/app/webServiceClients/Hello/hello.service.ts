@@ -5,6 +5,7 @@ import {SoapService} from "../../soap.service";
 @Injectable()
 export class HelloService {
 
+
   private servicePort:string = 'http://51.254.200.129' ; 
   private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/helloService?wsdl' ;
   private targetNamespace:string = 'urn:helloservicewsdl' ;

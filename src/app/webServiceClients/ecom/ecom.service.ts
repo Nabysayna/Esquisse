@@ -16,7 +16,7 @@ export class Commande {
   public orderedArticles:string;
   public montant:number ;
   public tel:number;
-  public pointderecuperation : string ; 
+  public pointderecuperation : string ;
   public fullName:string;
   public dateCommande:string;
 }
@@ -31,7 +31,7 @@ export class Vente {
   public dateVente:string;
 }
 
-export class Coursier{  
+export class Coursier{
   public id:number;
   public prenom:string;
   public nom:string;
@@ -42,28 +42,26 @@ export class Coursier{
 export class EcomServiceWeb {
 
 
-  private servicePort:string = 'http://51.254.200.129' ;
+    private servicePort:string = 'http://51.254.200.129' ;
     private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/ecommerce?wsdl' ;
 
 
-  // private servicePort:string = 'http://localhost' ;
-  // private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/ecommerce?wsdl' ;
   private targetNamespace:string = 'urn:ecommercewsdl' ;
 
   public responseJso : any ;
   public resp : string ;
   public filtre : string ;
-  public responseJsoFWS : Article[] ;  
+  public responseJsoFWS : Article[] ;
 
   private soapService:SoapService;
-  
+
   constructor() {
         this.soapService = new SoapService();
 
         this.soapService.setServicePort(this.servicePort) ;
         this.soapService.setServicePath(this.servicePath);
         this.soapService.setServiceUrl(this.servicePort+this.servicePath);
-        this.soapService.setTargetNamespace(this.targetNamespace);  
+        this.soapService.setTargetNamespace(this.targetNamespace);
 
         this.soapService.envelopeBuilder = this.envelopeBuilder;
         this.soapService.jsoResponseHandler = (response:{}) => { this.responseJso = response ; };
@@ -73,11 +71,11 @@ export class EcomServiceWeb {
 
   public ajouterArticle(requestedValue:{}) : Promise<string> {
 
-      var method:string = 'ajoutarticle'; 
-      var parameters:{}[] = []; 
+      var method:string = 'ajoutarticle';
+      var parameters:{}[] = [];
       console.log('Parametres envoyés '+JSON.stringify(requestedValue) ) ;
       var reEspParams = requestedValue ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -87,15 +85,15 @@ export class EcomServiceWeb {
           let wSresponse = response['ajoutarticleResponse'].return.$ ;
           console.log("reponse brute from articles Web Service "+wSresponse ) ;
           resolve(wSresponse) ;
-        }); 
-      });      
+        });
+      });
   }
 
   public commander(requestedValue:{}) : Promise<string> {
-    var method:string = 'ajoutcommande'; 
-    var parameters:{}[] = []; 
+    var method:string = 'ajoutcommande';
+    var parameters:{}[] = [];
     var reEspParams = requestedValue ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     return new Promise( (resolve, reject) => {
@@ -105,15 +103,15 @@ export class EcomServiceWeb {
         let wSresponse = response['ajoutcommandeResponse'].return.$ ;
         console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
-      }); 
-    });      
+      });
+    });
   }
 
   public receptionnerCommandes(requestParams:{}) : Promise<string> {
-    var method:string = 'receptionnerCommandes'; 
-    var parameters:{}[] = []; 
+    var method:string = 'receptionnerCommandes';
+    var parameters:{}[] = [];
     var reEspParams = requestParams ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     return new Promise( (resolve, reject) => {
@@ -123,16 +121,16 @@ export class EcomServiceWeb {
         let wSresponse = response['receptionnerCommandesResponse'].return.$ ;
         console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
-      }); 
-    });      
+      });
+    });
   }
- 
+
 
   public supprimerArticle(requestParams:{}) : Promise<string> {
-    var method:string = 'supprimerArticle'; 
-    var parameters:{}[] = []; 
+    var method:string = 'supprimerArticle';
+    var parameters:{}[] = [];
     var reEspParams = requestParams ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     return new Promise( (resolve, reject) => {
@@ -142,15 +140,15 @@ export class EcomServiceWeb {
         let wSresponse = response['supprimerArticleResponse'].return.$ ;
         console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
-      }); 
-    });      
+      });
+    });
   }
 
   public modifierArticle(requestParams:{}) : Promise<string> {
-    var method:string = 'modifierArticle'; 
-    var parameters:{}[] = []; 
+    var method:string = 'modifierArticle';
+    var parameters:{}[] = [];
     var reEspParams = requestParams ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     return new Promise( (resolve, reject) => {
@@ -160,16 +158,16 @@ export class EcomServiceWeb {
         let wSresponse = response['modifierArticleResponse'].return.$ ;
         console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
-      }); 
-    });      
+      });
+    });
   }
 
 
   public assignerCourse(requestedValue:{}) : Promise<string> {
-    var method:string = 'assignerCourse'; 
-    var parameters:{}[] = []; 
+    var method:string = 'assignerCourse';
+    var parameters:{}[] = [];
     var reEspParams = requestedValue ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     return new Promise( (resolve, reject) => {
@@ -179,16 +177,16 @@ export class EcomServiceWeb {
         let wSresponse = response['assignerCourseResponse'].return.$ ;
         console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
-      }); 
-    });      
+      });
+    });
   }
 
 
   public prendreCommande(requestParams:{}) : Promise<string> {
-    var method:string = 'prendreCommande'; 
-    var parameters:{}[] = []; 
+    var method:string = 'prendreCommande';
+    var parameters:{}[] = [];
     var reEspParams = requestParams ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     return new Promise( (resolve, reject) => {
@@ -198,16 +196,16 @@ export class EcomServiceWeb {
         let wSresponse = response['prendreCommandeResponse'].return.$ ;
         console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
-      }); 
-    });      
+      });
+    });
   }
 
 
   public fournirCommandes(requestParams:{}) : Promise<string> {
-    var method:string = 'fournirCommandes'; 
-    var parameters:{}[] = []; 
+    var method:string = 'fournirCommandes';
+    var parameters:{}[] = [];
     var reEspParams = requestParams ;
-    var params:{}[] = [] ; 
+    var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
     return new Promise( (resolve, reject) => {
@@ -217,18 +215,18 @@ export class EcomServiceWeb {
         let wSresponse = response['fournirCommandesResponse'].return.$ ;
         console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
-      }); 
-    });      
+      });
+    });
   }
 
 
   public listeArticles(token : string, type:string) : Promise<Article[]> {
 
-      var method:string = 'listerarticle'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listerarticle';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token, type:type} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -238,17 +236,17 @@ export class EcomServiceWeb {
           this.responseJsoFWS = JSON.parse(response['listerarticleResponse'].return.$);
           console.log("reponse brute from articles Web Service "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
   public listerCategorie(token : string) : Promise<string[]> {
 
-      var method:string = 'listerCategorie'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listerCategorie';
+      var parameters:{}[] = [];
 
       var reEspParams = {token:token} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -258,19 +256,19 @@ export class EcomServiceWeb {
           this.responseJsoFWS = JSON.parse(response['listerCategorieResponse'].return.$);
           console.log("reponse brute from articles Web Service "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
 
-  
+
   public listerCommandes(token : string, typeListe : string) : Promise<any> {
 
-      var method:string = 'listercommande'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listercommande';
+      var parameters:{}[] = [];
       var reEspParams = { token:token, typeListe:typeListe } ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -279,16 +277,16 @@ export class EcomServiceWeb {
           let responseJsoFWS = response['listercommandeResponse'].return.$;
           console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
           resolve(responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
   public listerCoursier(token : string) : Promise<Coursier[]> {
 
-      var method:string = 'listerCoursier'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listerCoursier';
+      var parameters:{}[] = [];
       var reEspParams = { token:token} ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -297,17 +295,17 @@ export class EcomServiceWeb {
           let responseJsoFWS : Coursier[] = JSON.parse(response['listerCoursierResponse'].return.$);
           console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
           resolve(responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
   public listerVentes(token : string) : Promise<any[]> {
 
-      var method:string = 'listervente'; 
-      var parameters:{}[] = []; 
+      var method:string = 'listervente';
+      var parameters:{}[] = [];
       var reEspParams = { token:token } ;
-      var params:{}[] = [] ; 
+      var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {
@@ -316,8 +314,8 @@ export class EcomServiceWeb {
           let responseJsoFWS = JSON.parse(response['listerventeResponse'].return.$);
           console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS) ) ;
           resolve(responseJsoFWS) ;
-        }); 
-      });      
+        });
+      });
   }
 
 
