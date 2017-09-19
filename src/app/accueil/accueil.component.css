@@ -92,7 +92,7 @@ body {
 }
 
 #leftsidemenu{
-    margin-top: 0 ;
+    margin-top: 5rem;
     height: 70rem;
 /*    background:  url(/assets/bga.png)   ; */
     background-color: #337ab7 !important; 

@@ -11,12 +11,15 @@ export class Demandepret{
 @Injectable()
 export class DemandepretServiceWeb {
 
-/*
+
   private servicePort:string = 'http://51.254.200.129' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/demandepret?wsdl' ;
-*/
+  private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/demandepret?wsdl' ;
+
+/*
   private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/demandepret?wsdl' ;
+*/
+
  private targetNamespace:string = 'urn:demandepretwsdl' ;
 
   public responseJso : any ;

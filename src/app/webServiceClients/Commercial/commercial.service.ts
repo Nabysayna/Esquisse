@@ -33,12 +33,14 @@ export class Commerciaux{
 @Injectable()
 export class CommercialServiceWeb {
 
-/*  private servicePort:string = 'http://51.254.200.129' ; 
-  private servicePath:string = '/EsquisseBackEnd/web/app.php/invest/commercial?wsdl' ;
-*/
+  private servicePort:string = 'http://51.254.200.129' ; 
+  private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/commercial?wsdl' ;
+/*
   private servicePort:string = 'http://localhost' ; 
   private servicePath:string = '/EsquisseBackEnd/web/app_dev.php/invest/commercial?wsdl' ;
- private targetNamespace:string = 'urn:commercialwsdl' ;
+*/
+  
+   private targetNamespace:string = 'urn:commercialwsdl' ;
 
   public responseJso : any ;
   public resp : string ;
