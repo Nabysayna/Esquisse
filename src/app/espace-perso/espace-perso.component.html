@@ -38,12 +38,12 @@
 		        <td *ngFor="let article of ligneArticle">
 		        <div class="card" >
 
+
 				  <img class="card-img-top" src="http://localhost:8888/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}"  alt="Card image cap" width="200" height="200">
 				  <input type="file" *ngIf="this.modif==article.nomImg" ngFileSelect
 				       [options]="this.options"
 				       (onUpload)="handleUpload($event)" 
 				       (beforeUpload)="beforeUpload($event)" src="http://localhost:8888/EsquisseBackEnd/server-backend-upload/uploads/{{article.nomImg}}" alt="Card image cap" width="200" height="200">
-
 
 			   <div class="card-block" style="text-align: center ;">
 				    <h4 class="card-title">{{article.designation}}</h4>
@@ -210,6 +210,7 @@
 			<div class="col-sm-4 col-xs-12">
 			   <img class="card-img-top" src="http://localhost:8888/EsquisseBackEnd/server-backend-upload/uploads/{{newImage}}"  alt="Card image cap" width="200" height="200">
 
+
 			   <input type="file"
 		       ngFileSelect
 		       [options]="options"
@@ -243,9 +244,9 @@
 
 	            <input type="number" [(ngModel)]="this.stocka"   name="stocka" id="stocka" class="form-control" placeholder="Quantité en stock" required>
 
-				 <button class="btn btn-success" type="button"(click)="ajouter()">Ajouter</button>
+				 <button class="btn btn-success" type="button" (click)="ajouter()">Ajouter</button>
 
-				  <button type="reset" class="btn btn-danger">Annuler</button>
+				  <a type="reset" class="btn btn-danger"  (click)="annuler()">Annuler</a>
 			</div>			
 
 </div>			

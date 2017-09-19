@@ -24,6 +24,7 @@ export class AdminpdvStatusReclamationComponent implements OnInit {
     this.adminpdvServiceWeb.historiquereclamation('azrrtt').then(adminmultipdvServiceWebList => {
       console.log(adminmultipdvServiceWebList.response); 
       this.adminmultipdvReclamation = adminmultipdvServiceWebList.response; 
+      this.loading = false ;
     });
   }
 

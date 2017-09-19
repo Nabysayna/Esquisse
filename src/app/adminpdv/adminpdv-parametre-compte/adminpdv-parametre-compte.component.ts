@@ -1,4 +1,5 @@
 import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
+import * as _ from "lodash";
 
 import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
@@ -70,9 +71,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   }
 
   public deconnectionsession(pdv):void {
-    console.log(pdv);
     this.adminpdvServiceWeb.deconnectpdv(pdv.idpdv).then(adminpdvServiceWebList => {
-      console.log(adminpdvServiceWebList);
     });
   }
 

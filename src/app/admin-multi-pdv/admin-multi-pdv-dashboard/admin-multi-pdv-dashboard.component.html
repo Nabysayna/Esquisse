@@ -158,7 +158,7 @@
 </div>
  
 <div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog" style="width:95%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Détail</h4>
@@ -167,51 +167,82 @@
                 </button>
             </div>
             <div class="modal-body"  style="background-color: white">
-                <div class="row"  style="background-color: white">
-                    <div class="col-xs-6">
-                        <label class="label-control">Recherche:</label>
-                        <input class="form-control" [(ngModel)]="filterQuery"/>
+                <div class="row table-responsive">
+                    <div class="col-xs-12 col-sm-5">
+                        <div class="row"  style="background-color: white">
+                            <div class="col-xs-12  col-sm-8">
+                                <label class="label-control">Recherche:</label>
+                                <input class="form-control" [(ngModel)]="filterQuery"/>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <label class="label-control">Nombre de ligne</label>
+                                <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
+                                    <option [ngValue]="5">5</option>
+                                    <option [ngValue]="10">10</option>
+                                    <option [ngValue]="25">25</option>
+                                    <option [ngValue]="50">50</option>
+                                    <option [ngValue]="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="panel panel-default"  style="background-color: white">
+                            <table class="table table-striped" [mfData]="performancesadminclasserbylotbydate | datafilterAdminmultperformance : filterQuery" #mf="mfDataTable"
+                                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th><mfDefaultSorter by="fullname">Admin pdv</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
+                                    <th><mfDefaultSorter by="montanttotal">Recette</mfDefaultSorter></th>
+                                    <th>Option</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of mf.data; let i = index ">
+                                    <td>{{ i + 1  }}</td>
+                                    <td>{{item.fullname}}</td>
+                                    <td>{{item.telephone}}</td>
+                                    <td>{{item.montanttotal}}</td>
+                                    <td><button (click)="detailperformancesadminclasserbydate(item)">Détail</button></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
-                    <div class="col-xs-2">
-                        <label class="label-control">Nombre de ligne</label>
-                        <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
-                            <option [ngValue]="5">5</option>
-                            <option [ngValue]="10">10</option>
-                            <option [ngValue]="25">25</option>
-                            <option [ngValue]="50">50</option>
-                            <option [ngValue]="100">100</option>
-                        </select>
+                    <div class="col-xs-12 col-sm-7" *ngIf="performanceadminpdv && detailperformancepdv">
+                        <h3>{{performanceadminpdv.fullname}}</h3>
+                        <div class="panel panel-default">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Gérant</th>
+                                        <th>Telephone</th>
+                                        <th>Operateur</th>
+                                        <th>Traitement</th>
+                                        <th>Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pdv of detailperformancepdv; let i = index ">
+                                        <td>{{i + 1}}</td>
+                                        <th>{{pdv.fullname}}</th>
+                                        <th>{{pdv.telephone}}</th>
+                                        <td>{{pdv.operateur}}</td>
+                                        <td>{{pdv.traitement}}</td>
+                                        <td>{{pdv.montant}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="panel panel-default table-responsive"  style="background-color: white">
-                    <table class="table table-striped" [mfData]="performancesadminclasserbylotbydate | datafilterAdminmultperformance : filterQuery" #mf="mfDataTable"
-                           [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th><mfDefaultSorter by="fullname">Admin pdv</mfDefaultSorter></th>
-                            <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
-                            <th><mfDefaultSorter by="montanttotal">Recette</mfDefaultSorter></th>
-                            <th>Option</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr *ngFor="let item of mf.data; let i = index ">
-                            <td>{{ i + 1  }}</td>
-                            <td>{{item.fullname}}</td>
-                            <td>{{item.telephone}}</td>
-                            <td>{{item.montanttotal}}</td>
-                            <td><button (click)="detailperformancesadminclasserbydate(item.idadminpdv)">Détail</button></td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="5">
-                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100]"></mfBootstrapPaginator>
-                            </td>
-                        </tr>
-                        </tfoot>
-                    </table>
                 </div>
             </div>
         </div>

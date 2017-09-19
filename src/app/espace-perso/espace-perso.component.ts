@@ -283,7 +283,7 @@ export class EspacePersoComponent implements OnInit {
   hasBaseDropZoneOver: boolean = true;
 
   options: Object = {
-    url: 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/index.php'
+    url: 'http://localhost/EsquisseBackEnd/server-backend-upload/index.php'
   };
 
   sizeLimit = 2000000;
@@ -325,6 +325,7 @@ export class EspacePersoComponent implements OnInit {
     this.childModal.hide();
   }
 
-
+  annuler(){
+  }
 
 }

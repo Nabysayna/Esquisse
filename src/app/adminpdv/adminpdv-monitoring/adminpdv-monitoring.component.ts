@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { AdminpdvServiceWeb } from '../../webServiceClients/Adminpdv/adminpdv.service';
 
 
-
 @Component({
   selector: 'app-adminpdv-monitoring',
   templateUrl: './adminpdv-monitoring.component.html',
