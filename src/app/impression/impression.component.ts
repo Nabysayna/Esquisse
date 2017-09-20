@@ -16,13 +16,12 @@ export class ImpressionComponent implements OnInit {
   today: number = Date.now();
 
   constructor(private _location: Location) {
+
   }
 
   ngOnInit():void {
     this.dataImpression = JSON.parse(sessionStorage.getItem('dataImpression'));
     this.operateur = JSON.parse(sessionStorage.getItem('currentUser'));
-    console.log('---------');
-    console.log(this.dataImpression)
   }
 
   print(): void {

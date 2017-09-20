@@ -159,7 +159,8 @@ export class TntComponent implements OnInit {
                 nom:this.noma,
                 telephone:this.tela,
                 chip:this.nchip,
-                montant: montant
+                montant: montant,
+                duree:this.nbm
               },
 
             },

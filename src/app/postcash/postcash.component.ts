@@ -52,8 +52,10 @@ export class PostcashComponent implements OnInit {
     incoming_source: string;
     adresse_dest: string;
 
+    dataImpression:any;
 
-    constructor( 
+
+    constructor(
      private route:ActivatedRoute,
      private router: Router,
      private postcashwebservice: PostCashWebService
@@ -64,111 +66,242 @@ export class PostcashComponent implements OnInit {
 
     validrechargementespece(){
       console.log(this.telephone+'-'+this.montant);
-      this.postcashwebservice.rechargementespece(this.telephone+'',''+this.montant).then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+      this.postcashwebservice.rechargementespece('00221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'rechargementespece',
+            infotransaction:{
+              client:{
+                telephone:'00221'+this.telephone,
+                montant:this.montant,
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response);
+        console.log(postcashwebserviceList);
       });
     }
 
     validateretraitespece(){
       console.log(this.codevalidation+'-'+this.telephone+'-'+this.montant);
-      this.postcashwebservice.retraitespece(this.codevalidation+'',this.telephone+'',''+this.montant).then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+      this.postcashwebservice.retraitespece(this.codevalidation+'','+221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'retraitespece',
+            infotransaction:{
+              client:{
+                telephone:'+221'+this.telephone,
+                montant:this.montant,              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response);
+        console.log(postcashwebserviceList);
       });
+
     }
 
     validateachatcodewoyofal(){
       console.log(this.montant+'-'+this.compteur);
       this.postcashwebservice.achatcodewoyofal(this.montant+'',this.compteur+'').then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'achatcodewayafal',
+            infotransaction:{
+              client:{
+                transactionPostCash: postcashwebserviceList.transactionId,
+                transactionBBS: 'Id BBS',
+                codewoyafal: postcashwebserviceList.code,
+                montant: this.montant,
+                compteur: this.compteur,
+              },
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response);
+        console.log(postcashwebserviceList);
       });
     }
 
     validatereglementsenelec(){
       console.log(this.police+'-'+this.num_facture);
       this.postcashwebservice.reglementsenelec(this.police+'',this.num_facture).then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'reglementsenelec',
+            infotransaction:{
+              client:{
+                police: this.police,
+                facture: this.num_facture,
+                montant: 'test montant',
+
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response);
+        console.log(postcashwebserviceList);
       });
+
     }
 
     validateachatjula(){
       console.log(this.mt_carte+'-'+this.nb_carte);
       this.postcashwebservice.achatjula(this.mt_carte+'',this.nb_carte+'').then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'achatjula',
+            infotransaction:{
+              client:{
+                prenom:'test',
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response);
+        console.log(postcashwebserviceList);
       });
     }
 
     validachatcredittelephonique(){
       console.log(this.telephone+'-'+this.montant);
       this.postcashwebservice.achatcredittelephonique(this.telephone+'',this.montant+'').then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'achatcredittelephonique',
+            infotransaction:{
+              client:{
+                prenom:'test',
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response); 
+        console.log(postcashwebserviceList);
       });
     }
 
     validateachatneo(){
       console.log(this.produit+'-'+this.montant+'-'+this.type);
       this.postcashwebservice.achatneo(this.produit+'',this.montant+'',this.type+'').then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'achatneo',
+            infotransaction:{
+              client:{
+                prenom:'test',
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response); 
+        console.log(postcashwebserviceList);
       });
     }
 
     validatecashtocashsend(){
       console.log(this.tel_exp+'-'+this.nom_exp+'-'+this.prenom_exp+'-'+this.cni_exp+'-'+this.type_piece_exp+'-'+this.pays_exp+'-'+this.tel_rec+'-'+this.prenom_rec+'-'+this.nom_rec+'-'+this.montant);
       this.postcashwebservice.cashtocashsend(this.tel_exp+'',this.nom_exp,this.prenom_exp,this.cni_exp,this.type_piece_exp,this.pays_exp,this.tel_rec+'',this.prenom_rec,this.nom_rec,this.montant+'').then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'cashtocashsend',
+            infotransaction:{
+              client:{
+                prenom:'test',
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response); 
+        console.log(postcashwebserviceList);
       });
     }
 
     validatecashtocashreceive(){
       console.log(this.tel_rec+'-'+this.cni_rec+'-'+this.type_piece_rec+'-'+this.pays_rec+'-'+this.code+'-'+this.montant);
       this.postcashwebservice.cashtocashreceive(this.tel_rec+'',this.cni_rec,this.type_piece_rec,this.pays_rec+'',this.code,this.montant+'').then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'cashtocashreceive',
+            infotransaction:{
+              client:{
+                prenom:'test',
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response); 
+        console.log(postcashwebserviceList);
       });
     }
 
     validatetransfertverstamtam(){
       console.log(this.tel+'-'+this.montant+'-'+this.frais+'-'+this.nom+'-'+this.prenom+'-'+this.telephone_benef+'-'+this.code+'-'+this.pays+'-'+this.rcv_address+'-'+this.transaction_reason+'-'+this.incoming_source);
       this.postcashwebservice.transfertverstamtam(this.tel+'',this.montant+'',this.frais,this.nom,this.prenom,this.telephone_benef+'',this.code,this.pays,this.rcv_address,this.transaction_reason,this.incoming_source).then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'transfertverstamtam',
+            infotransaction:{
+              client:{
+                prenom:'test',
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response); 
+        console.log(postcashwebserviceList);
       });
+
     }
 
     validatetransfertverstamtamviaapay(){
       console.log(this.prenom_exp+'-'+this.nom_exp+'-'+this.typecni_exp+'-'+this.cni_exp+'-'+this.tel_exp+'-'+this.montant+'-'+this.frais+'-'+this.nom_dest+'-'+this.prenom_dest+'-'+this.tel_dest+'-'+this.pays_dest+'-'+this.adresse_dest);
       this.postcashwebservice.transfertverstamtamviaapay(this.prenom_exp+'',this.nom_exp+'',this.typecni_exp,this.cni_exp,this.tel_exp+'',this.montant+'',this.frais,this.nom_dest,this.prenom_dest,this.tel_dest+'',this.pays_dest,this.adresse_dest).then(postcashwebserviceList => {
-        if(JSON.parse(postcashwebserviceList).response == "ok"){
-          this.router.navigate(['accueil/RECUS','aj']);
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+          this.dataImpression = {
+            apiservice:'postecash',
+            service:'transfertverstamtamviaapay',
+            infotransaction:{
+              client:{
+                prenom:'test',
+              },
+
+            },
+          }
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
         }
-        console.log(JSON.parse(postcashwebserviceList).response); 
+        console.log(postcashwebserviceList);
       });
     }
 

@@ -30,7 +30,7 @@
                 <li><a href="#transfertverstamtam-pills" data-toggle="tab">Transfert de Carte à Cash</a>
                 </li>
 <!--                 <li><a href="#transfertverstamtamviaapay-pills" data-toggle="tab">Transfert de APAY vers TamTam</a>
-                </li> -->            
+                </li> -->
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -40,11 +40,11 @@
                     </fieldset>
                     <form (ngSubmit)="validrechargementespece()" #rechargementespece="ngForm" autocomplete="on">
 
-                        <label for="telephone">Téléphone client</label>
-                        <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephone" class="form-control" placeholder="téléphone client" required>
+                        <label for="telephonerechargementespece">Téléphone client</label>
+                        <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephonerechargementespece" class="form-control" placeholder="téléphone client" required>
 
-                        <label for="montant">Montant à recharger</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant à recharger" required>
+                        <label for="montantrechargementespece">Montant à recharger</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantrechargementespece" class="form-control" placeholder="montant à recharger" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!rechargementespece.form.valid">Achêter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!rechargementespece.form.valid" >Annuler</button>
@@ -59,12 +59,12 @@
 
                         <label for="codevalidation">Code de validation</label>
                         <input type="text" [(ngModel)]="this.codevalidation"   name="codevalidation" id="codevalidation" class="form-control" placeholder="code validation" required>
-                        
-                        <label for="telephone">Téléphone client</label>
-                        <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephone" class="form-control" placeholder="téléphone client" required>
 
-                        <label for="montant">Montant</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant à retirer" required>
+                        <label for="telephoneretraitespece">Téléphone client</label>
+                        <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephoneretraitespece" class="form-control" placeholder="téléphone client" required>
+
+                        <label for="montantretraitespece">Montant</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantretraitespece" class="form-control" placeholder="montant à retirer" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!retraitespece.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!retraitespece.form.valid" >Annuler</button>
@@ -116,8 +116,8 @@
                     </fieldset>
                     <form (ngSubmit)="validateachatcodewoyofal()" #achatcodewoyofal="ngForm" autocomplete="on">
 
-                        <label for="montant">Montant d'achat</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant d'achat" required>
+                        <label for="montantachatcodewoyofal">Montant d'achat</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantachatcodewoyofal" class="form-control" placeholder="montant d'achat" required>
 
                         <label for="compteur">Numéro du compteur</label>
                         <input type="text" [(ngModel)]="this.compteur"   name="compteur" id="compteur" class="form-control" placeholder="numéro du compteur" required>
@@ -134,11 +134,11 @@
                     </fieldset>
                     <form (ngSubmit)="validachatcredittelephonique()" #achatcredittelephoniq="ngForm" autocomplete="on">
 
-                        <label for="Password">Nouveau mot de passe</label>
-                        <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephone" class="form-control" placeholder="numéro de téléphone" required>
+                        <label for="telephoneachatcredittelephone">Numéro téléphone</label>
+                        <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephoneachatcredittelephone" class="form-control" placeholder="numéro de téléphone" required>
 
-                        <label for="telephone">Montant d'achat</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant d'achat" required>
+                        <label for="montantachatcredittelephone">Montant d'achat</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantachatcredittelephone" class="form-control" placeholder="montant d'achat" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!achatcredittelephoniq.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatcredittelephoniq.form.valid" >Annuler</button>
@@ -152,11 +152,11 @@
                     </fieldset>
                     <form (ngSubmit)="validateachatneo()" #achatneo="ngForm" autocomplete="on">
 
-                        <label for="produit">Produit</label>
-                        <input type="text" [(ngModel)]="this.produit"   name="produit" id="produit" class="form-control" placeholder="produit" required>
+                        <label for="produitachatneo">Produit</label>
+                        <input type="text" [(ngModel)]="this.produit"   name="produit" id="produitachatneo" class="form-control" placeholder="produit" required>
 
-                        <label for="montant">Montant</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
+                        <label for="montantachatneo">Montant</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantachatneo" class="form-control" placeholder="montant" required>
 
                         <label for="type">Type</label>
                         <input type="text" [(ngModel)]="this.type"   name="type" id="type" class="form-control" placeholder="type" required>
@@ -173,17 +173,17 @@
                     </fieldset>
                     <form (ngSubmit)="validatecashtocashsend()" #cashtocashsend="ngForm" autocomplete="on">
 
-                        <label for="tel_exp">Téléphone expéditeur</label>
-                        <input type="number" [(ngModel)]="this.tel_exp"   name="tel_exp" id="tel_exp" class="form-control" placeholder="telephone expediteur" required>
+                        <label for="tel_expcashtocashsend">Téléphone expéditeur</label>
+                        <input type="number" [(ngModel)]="this.tel_exp"   name="tel_exp" id="tel_expcashtocashsend" class="form-control" placeholder="telephone expediteur" required>
 
-                        <label for="nom_exp">Nom expéditeur</label>
-                        <input type="text" [(ngModel)]="this.nom_exp"   name="nom_exp" id="nom_exp" class="form-control" placeholder="nom expediteur" required>
+                        <label for="nom_expcashtocashsend">Nom expéditeur</label>
+                        <input type="text" [(ngModel)]="this.nom_exp"   name="nom_exp" id="nom_expcashtocashsend" class="form-control" placeholder="nom expediteur" required>
 
-                        <label for="prenom_exp">Prenom expéditeur</label>
-                        <input type="text" [(ngModel)]="this.prenom_exp"   name="prenom_exp" id="prenom_exp" class="form-control" placeholder="prenom expediteur" required>
+                        <label for="prenom_expcashtocashsend">Prenom expéditeur</label>
+                        <input type="text" [(ngModel)]="this.prenom_exp"   name="prenom_exp" id="prenom_expcashtocashsend" class="form-control" placeholder="prenom expediteur" required>
 
-                        <label for="cni_exp">Numéro cni</label>
-                        <input type="text" [(ngModel)]="this.cni_exp"   name="cni_exp" id="cni_exp" class="form-control" placeholder="numéro cni" required>
+                        <label for="cni_expcashtocashsend">Numéro cni</label>
+                        <input type="text" [(ngModel)]="this.cni_exp"   name="cni_exp" id="cni_expcashtocashsend" class="form-control" placeholder="numéro cni" required>
 
                         <label for="type_piece_exp">Type de la pieèce de l'expéditeur</label>
                         <input type="text" [(ngModel)]="this.type_piece_exp"   name="type_piece_exp" id="type_piece_exp" class="form-control" placeholder="type de la pieèce de l'expéditeur" required>
@@ -191,8 +191,8 @@
                         <label for="pays_exp">Pays de l'expéditeur</label>
                         <input type="text" [(ngModel)]="this.pays_exp"   name="pays_exp" id="pays_exp" class="form-control" placeholder="pays de l'expéditeur" required>
 
-                        <label for="tel_rec">Téléphone récepteur</label>
-                        <input type="number" [(ngModel)]="this.tel_rec"   name="tel_rec" id="tel_rec" class="form-control" placeholder="téléphone récepteur" required>
+                        <label for="tel_reccashtocashsend">Téléphone récepteur</label>
+                        <input type="number" [(ngModel)]="this.tel_rec"   name="tel_rec" id="tel_reccashtocashsend" class="form-control" placeholder="téléphone récepteur" required>
 
                         <label for="prenom_rec">Prénom récepteur</label>
                         <input type="text" [(ngModel)]="this.prenom_rec"   name="prenom_rec" id="prenom_rec" class="form-control" placeholder="prenom récepteur" required>
@@ -200,8 +200,8 @@
                         <label for="nom_rec">Nom récepteur</label>
                         <input type="text" [(ngModel)]="this.nom_rec"   name="nom_rec" id="nom_rec" class="form-control" placeholder="nom récepteur" required>
 
-                        <label for="montant">Montant</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
+                        <label for="montantcashtocashsend">Montant</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantcashtocashsend" class="form-control" placeholder="montant" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!cashtocashsend.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!cashtocashsend.form.valid" >Annuler</button>
@@ -225,11 +225,11 @@
                         <label for="pays_rec">Pays récepteur</label>
                         <input type="text" [(ngModel)]="this.pays_rec"   name="pays_rec" id="pays_rec" class="form-control" placeholder="pays récepteur" required>
 
-                        <label for="code">Code</label>
-                        <input type="text" [(ngModel)]="this.code"   name="code" id="code" class="form-control" placeholder="code" required>
+                        <label for="codecashtocashreceive">Code</label>
+                        <input type="text" [(ngModel)]="this.code"   name="code" id="codecashtocashreceive" class="form-control" placeholder="code" required>
 
-                        <label for="montant">Montant</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
+                        <label for="montantcashtocashreceive">Montant</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantcashtocashreceive" class="form-control" placeholder="montant" required>
 
                         <button type="submit" class="btn btn-success" [disabled]="!cashtocashreceive.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!cashtocashreceive.form.valid" >Annuler</button>
@@ -244,11 +244,11 @@
                         <label for="tel">Téléphone</label>
                         <input type="number" [(ngModel)]="this.tel"   name="tel" id="tel" class="form-control" placeholder="téléphone" required>
 
-                        <label for="montant">Montant</label>
-                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montant" class="form-control" placeholder="montant" required>
+                        <label for="montanttransfertverstamtam">Montant</label>
+                        <input type="number" [(ngModel)]="this.montant"   name="montant" id="montanttransfertverstamtam" class="form-control" placeholder="montant" required>
 
-                        <label for="frais">Frais</label>
-                        <input type="number" [(ngModel)]="this.frais"   name="frais" id="frais" class="form-control" placeholder="frais" required>
+                        <label for="fraistransfertverstamtam">Frais</label>
+                        <input type="number" [(ngModel)]="this.frais"   name="frais" id="fraistransfertverstamtam" class="form-control" placeholder="frais" required>
 
                         <label for="nom">Nom</label>
                         <input type="text" [(ngModel)]="this.nom"   name="nom" id="nom" class="form-control" placeholder="nom" required>
