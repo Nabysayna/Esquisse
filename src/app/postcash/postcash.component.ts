@@ -175,9 +175,9 @@ export class PostcashComponent implements OnInit {
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
         }
-        if(postcashwebserviceList.errorCode == "1004" && postcashwebserviceList.errorMessage=="Facture deja payee."){
-          this.facture_deja_paye = true;
-        }
+        //if(postcashwebserviceList.errorCode == "1004" && postcashwebserviceList.errorMessage=="Facture deja payee."){
+          //this.facture_deja_paye = true;
+        //}
         console.log(postcashwebserviceList);
       });
       this.closeModalPostSenec();
