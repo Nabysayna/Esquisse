@@ -99,7 +99,7 @@
         </p>
       </div>
       <div class="panel-body">
-        Numéro Transaction: ...rechargementespece<br>
+        Numéro Transaction: {{dataImpression.infotransaction.client.transactionPostCash}}/{{dataImpression.infotransaction.client.transactionBBS}}...rechargementespece<br>
         <table>
           <tr class="text-uppercase">
             <td>
@@ -122,7 +122,7 @@
         </p>
       </div>
       <div class="panel-body">
-        Numéro Transaction: ...retraitespece<br>
+        Numéro Transaction: {{dataImpression.infotransaction.client.transactionPostCash}}/{{dataImpression.infotransaction.client.transactionBBS}}...retraitespece<br>
         <table>
           <tr class="text-uppercase">
             <td>
@@ -145,7 +145,7 @@
         </p>
       </div>
       <div class="panel-body">
-        Numéro Transaction: ...Achat code wayafal<br>
+        Numéro Transaction: {{dataImpression.infotransaction.client.transactionPostCash}}/{{dataImpression.infotransaction.client.transactionBBS}}...Achat code wayafal<br>
         <table>
           <tr class="text-uppercase">
             <td>
@@ -169,20 +169,14 @@
         </p>
       </div>
       <div class="panel-body">
-        Numéro Transaction: ...Reglement senelec<br>
+        Numéro Transaction: {{dataImpression.infotransaction.client.transactionPostCash}}/{{dataImpression.infotransaction.client.transactionBBS}}...Reglement senelec<br>
         <table>
           <tr class="text-uppercase">
           <tr class="text-uppercase">
-            <td width="200px">
-              Nom Client: <br>
-              Prénom Client: <br>
-              Téléphone Client: <br>
-
-            </td>
             <td>
-              Référence Police: <br>
-              Référence Facture: <br>
-              Montant Payé: <br>
+              Référence Police: {{dataImpression.infotransaction.client.police}}<br>
+              Référence Facture: {{dataImpression.infotransaction.client.facture}}<br>
+              Montant Payé: {{dataImpression.infotransaction.client.montant}}<br>
             </td>
           </tr>
         </table>

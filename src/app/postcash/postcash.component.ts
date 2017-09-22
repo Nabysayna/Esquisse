@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { PostCashWebService } from '../webServiceClients/Postcash/postcash.service';
 
@@ -11,7 +11,6 @@ import { PostCashWebService } from '../webServiceClients/Postcash/postcash.servi
 })
 export class PostcashComponent implements OnInit {
     formvisible='';
-
     telephone:number;
     tel:number;
     telephone_benef:number;
@@ -54,8 +53,12 @@ export class PostcashComponent implements OnInit {
 
     dataImpression:any;
 
+    facture_deja_paye:boolean = false;
 
-    constructor(
+  @ViewChild('closeBtnModalPostSenec') closeBtnModalPostSenec: ElementRef;
+  detailfacturepostcash:any;
+
+  constructor(
      private route:ActivatedRoute,
      private router: Router,
      private postcashwebservice: PostCashWebService
@@ -64,7 +67,12 @@ export class PostcashComponent implements OnInit {
     ngOnInit():void {
     }
 
-    validrechargementespece(){
+  private closeModalPostSenec(): void {
+    this.closeBtnModalPostSenec.nativeElement.click();
+  }
+
+
+  validrechargementespece(){
       console.log(this.telephone+'-'+this.montant);
       this.postcashwebservice.rechargementespece('00221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
         if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
@@ -73,6 +81,8 @@ export class PostcashComponent implements OnInit {
             service:'rechargementespece',
             infotransaction:{
               client:{
+                transactionPostCash: postcashwebserviceList.transactionId,
+                transactionBBS: 'Id BBS',
                 telephone:'00221'+this.telephone,
                 montant:this.montant,
               },
@@ -95,6 +105,8 @@ export class PostcashComponent implements OnInit {
             service:'retraitespece',
             infotransaction:{
               client:{
+                transactionPostCash: postcashwebserviceList.transactionId,
+                transactionBBS: 'Id BBS',
                 telephone:'+221'+this.telephone,
                 montant:this.montant,              },
 
@@ -132,6 +144,15 @@ export class PostcashComponent implements OnInit {
       });
     }
 
+    validatedetailfacturesenelec(){
+      this.detailfacturepostcash = null;
+      console.log(this.police+'-'+this.num_facture);
+      this.postcashwebservice.detailfacturesenelec(this.police+'',this.num_facture).then(postcashwebserviceList => {
+        this.detailfacturepostcash = postcashwebserviceList;
+        console.log(postcashwebserviceList);
+      });
+    }
+
     validatereglementsenelec(){
       console.log(this.police+'-'+this.num_facture);
       this.postcashwebservice.reglementsenelec(this.police+'',this.num_facture).then(postcashwebserviceList => {
@@ -141,9 +162,11 @@ export class PostcashComponent implements OnInit {
             service:'reglementsenelec',
             infotransaction:{
               client:{
+                transactionPostCash: postcashwebserviceList.transactionId,
+                transactionBBS: 'Id BBS',
                 police: this.police,
                 facture: this.num_facture,
-                montant: 'test montant',
+                montant: postcashwebserviceList.montant_reel,
 
               },
 
@@ -152,8 +175,12 @@ export class PostcashComponent implements OnInit {
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
         }
+        if(postcashwebserviceList.errorCode == "1004" && postcashwebserviceList.errorMessage=="Facture deja payee."){
+          this.facture_deja_paye = true;
+        }
         console.log(postcashwebserviceList);
       });
+      this.closeModalPostSenec();
 
     }
 

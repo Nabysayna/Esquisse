@@ -1,11 +1,7 @@
 <div class="col-sm-12">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            POSTE-CASH
-        </div>
-        <!-- /.panel-heading -->
+        <div class="panel-heading">POSTE-CASH</div>
         <div class="panel-body">
-            <!-- Nav tabs -->
             <ul class="nav nav-pills">
                 <li class="active"><a href="#rechargementespece-pills" data-toggle="tab">Rechargement Espece</a>
                 </li>
@@ -51,6 +47,7 @@
 
                     </form>
                     </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="retraitespece-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4> RETRAIT ESPECE</h4>
@@ -91,25 +88,26 @@
 
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="reglementsenelec-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4>REGLEMENT SENELEC</h4>
                     </fieldset>
-                    <form (ngSubmit)="validatereglementsenelec()" #reglementsenelec="ngForm" autocomplete="on">
+                    <form (ngSubmit)="validatedetailfacturesenelec()" #reglementsenelec="ngForm" autocomplete="on">
 
                         <label for="police">Numéro de police</label>
-                        <input type="number" [(ngModel)]="this.police"   name="police" id="police" class="form-control" placeholder="numéro de police " required>
+                        <input type="text" [(ngModel)]="this.police"   name="police" id="police" class="form-control" placeholder="numéro de police " required>
 
                         <label for="num_facture">Numéro de facture</label>
                         <input type="number" [(ngModel)]="this.num_facture"   name="num_facture" id="num_facture" class="form-control" placeholder="numéro de facture " required>
 
-                        <br><button class="btn btn-success" type="submit" [disabled]="!reglementsenelec.form.valid" >
+                        <br><button class="btn btn-success"   data-toggle="modal" data-target="#myModalPostSenec" type="submit" [disabled]="!reglementsenelec.form.valid" >
                         Envoyer</button>
                         <button class="btn btn-danger" [disabled]="!reglementsenelec.form.valid" type="reset">
                             Annuler</button>
-
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="achatcodewoyofal-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4>ACHAT CODE WOYOFAL</h4>
@@ -128,6 +126,7 @@
                             Annuler</button>
 
                     </form></div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="achatcredittelephone-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4>ACHAT CREDIT TELEPHONIQUE</h4>
@@ -146,6 +145,7 @@
 
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="achatneo-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4>ACHAT CARTE NEOSURF</h4>
@@ -167,6 +167,7 @@
 
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="cashtocashsend-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4>ENVOI CASH</h4>
@@ -207,6 +208,7 @@
                         <button type="reset" class="btn btn-danger" [disabled]="!cashtocashsend.form.valid" >Annuler</button>
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="cashtocashreceive-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4> Retrait CASH</h4>
@@ -235,6 +237,7 @@
                         <button type="reset" class="btn btn-danger" [disabled]="!cashtocashreceive.form.valid" >Annuler</button>
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="transfertverstamtam-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4>Carte à CASH</h4>
@@ -278,6 +281,7 @@
                         <button type="reset" class="btn btn-danger" [disabled]="!transfertverstamtam.form.valid" >Annuler</button>
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="transfertverstamtamviaapay-pills">
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4>Transfert de APAY vers TamTam</h4>
@@ -327,4 +331,34 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Les Modal -->
+<div class="modal fade" id="myModalPostSenec" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" *ngIf="detailfacturepostcash">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Détail facture</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="detailfacturepostcash.errorCode && detailfacturepostcash.errorCode!='0'">
+          <p>Erreur de saisie</p>
+          <p>Veuillez-reverifier les données saisie</p>
+        </div>
+        <div *ngIf="!detailfacturepostcash.errorCode">
+          <p><strong>Police: {{detailfacturepostcash.police}}</strong></p>
+          <p><strong>Numéro de facture: {{detailfacturepostcash.numeroFacture}}</strong></p>
+          <p><strong>Client: {{detailfacturepostcash.nom_client}}</strong></p>
+          <p><strong>Montant: {{detailfacturepostcash.montant}}</strong></p>
+          <p><strong>Date Echeance: {{detailfacturepostcash.dateEcheance}}</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="idmodalfermePostSenec" data-dismiss="modal" #closeBtnModalPostSenec>Annuler</button>
+        <button *ngIf="!detailfacturepostcash.errorCode" type="button" class="btn btn-primary" (click)="validatereglementsenelec()">Valider paiement</button>
+      </div>
+    </div>
+  </div>
 </div>

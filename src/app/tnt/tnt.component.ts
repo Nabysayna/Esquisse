@@ -256,7 +256,8 @@ export class TntComponent implements OnInit {
   }
 
   vendreCarte(){
-     this.loading = true ;
+    console.log('vendreCarte');
+    this.loading = true ;
     this.dataImpression = {
       apiservice:'tnt',
       service:'ventecarte',
@@ -270,18 +271,15 @@ export class TntComponent implements OnInit {
         },
 
       },
-    }
-
-    this.tntCaller.vendreCarte(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.ncarteNewClient, 5000).then( response =>
-        {
-          if(response=="ok"){
-            this.reinitialiserVariables() ;
-            this.loading = false ;
-            sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
-            this.router.navigate(['accueil/impression']);
-          }
-
-        });
+    };
+    this.tntCaller.vendreCarte(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.ncarteNewClient, 5000).then( response =>{
+        if(response=="ok"){
+          this.reinitialiserVariables() ;
+          this.loading = false ;
+          sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
+          this.router.navigate(['accueil/impression']);
+        }
+    });
   }
 
 

@@ -79,6 +79,7 @@
 
                     </div>
                 </div>
+
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
 
                  <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | datafilter : filtre" #mfabo="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="orderByDate" [(mfSortOrder)]="sortDateOrder" style="width: 100%;">
@@ -130,9 +131,7 @@
                                 </tfoot>
 
                             </table>
-
                 </div>
-
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-decodeur">
 
@@ -169,25 +168,17 @@
  -->
                     </form>
                 </div>
+
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-carte">
-
-                    <fieldset>
-                        <h4>CARTE</h4>
-                    </fieldset>
-                        <input type="text" name="nomNewClient" [(ngModel)]="this.nomNewClient"  class="form-control" placeholder="nom client" required autofocus>
-
-                        <input type="text" name="prenomNewClient" [(ngModel)]="this.prenomNewClient"  class="form-control" placeholder="prénom client" required >
-
-                        <input type="text" name="telNewClient" [(ngModel)]="this.telNewClient" class="form-control" placeholder="téléphone client" required>
-                        <input type="text" name="adresseNewClient" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required>
-                        <input type="text" name="regionNewClient" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="Région" required>
-
-                        <input type="text" name="ncniNewClient" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CI" required>
-
-                        <input type="text" name="ncarteNewClient" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
-
-
-                        <button type="submit" class="btn btn-success" (click)="vendreCarte()">Valider</button>
+                    <fieldset><h4>CARTE</h4></fieldset>
+                    <input type="text" name="nomNewClient" [(ngModel)]="this.nomNewClient"  class="form-control" placeholder="nom client" required autofocus>
+                    <input type="text" name="prenomNewClient" [(ngModel)]="this.prenomNewClient"  class="form-control" placeholder="prénom client" required >
+                    <input type="text" name="telNewClient" [(ngModel)]="this.telNewClient" class="form-control" placeholder="téléphone client" required>
+                    <input type="text" name="adresseNewClient" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required>
+                    <input type="text" name="regionNewClient" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="Région" required>
+                    <input type="text" name="ncniNewClient" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CI" required>
+                    <input type="text" name="ncarteNewClient" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
+                    <button type="submit" class="btn btn-success" (click)="vendreCarte()">Valider</button>
                 </div>
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-deco-liste">
