@@ -7,10 +7,26 @@ input{
 	margin: 1rem !important;
 }
 
+/*a{
+	color : white !important;
+}
+
+
+a:hover{
+	background-color : white ;
+	color : #337ab7 !important;
+}
+
+td{	
+	background-color : white !important;
+}
+*/
 .bg
 { 
-    /* background:  url(assets/bga.png)   ; */
-/*    background:  url(assets/fonttest.png)   ;*/
 	background-color: white;
 }
 
+/*.panel-body{
+	background-color : #337ab7 !important;
+}
+*/

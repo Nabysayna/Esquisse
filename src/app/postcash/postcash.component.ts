@@ -117,7 +117,6 @@ export class PostcashComponent implements OnInit {
         }
         console.log(postcashwebserviceList);
       });
-
     }
 
     validateachatcodewoyofal(){
@@ -155,7 +154,7 @@ export class PostcashComponent implements OnInit {
 
     validatereglementsenelec(){
       console.log(this.police+'-'+this.num_facture);
-      this.postcashwebservice.reglementsenelec(this.police+'',this.num_facture).then(postcashwebserviceList => {
+      this.postcashwebservice.reglementsenelec(this.police+'', this.num_facture, this.detailfacturepostcash.montant).then(postcashwebserviceList => { 
         if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.dataImpression = {
             apiservice:'postecash',
@@ -193,7 +192,9 @@ export class PostcashComponent implements OnInit {
             service:'achatjula',
             infotransaction:{
               client:{
-                prenom:'test',
+                transactionPostCash: postcashwebserviceList.transactionId,
+                typecarte:this.mt_carte,
+                nbcarte:this.nb_carte
               },
 
             },

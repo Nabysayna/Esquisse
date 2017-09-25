@@ -124,11 +124,11 @@ export class PostCashServiceWeb {
       });
   }
 
-  public reglementsenelec(api : number, token : string, police : string, num_facture : string) : Promise<PostCashResponse> {
+  public reglementsenelec(api : number, token : string, police : string, num_facture : string, montant : number) : Promise<PostCashResponse> {
 
       var method:string = 'reglementsenelec';
       var parameters:{}[] = [];
-      var reEspParams = {api:api, token:token, police:police, num_facture:num_facture} ;
+      var reEspParams = {api:api, token:token, police:police, num_facture:num_facture, montant:montant} ;
       var params:{}[] = [] ; params["params"] = reEspParams ;
 
       return new Promise( (resolve, reject) => {

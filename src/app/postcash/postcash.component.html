@@ -78,9 +78,18 @@
                         <label for="nb_carte">Nombre de carte</label>
                         <input type="number" [(ngModel)]="this.nb_carte"   name="nb_carte" id="nb_carte" class="form-control" placeholder="nombre de carte" required>
 
-                        <label for="mt_carte">Montant à envoyer</label>
-                        <input type="number" [(ngModel)]="this.mt_carte"   name="mt_carte" id="mt_carte" class="form-control" placeholder="montant à envoyer" required>
+                        <label for="mt_carte">Montant Carte</label>
+                        <select class="form-control input-sm" name="mt_carte" id="mt_carte" [(ngModel)]="mt_carte" required style="margin-bottom: 1rem; margin-left: 1rem;">
+                            <option>2000</option>
+                            <option>5000</option>
+                            <option>10000</option>
+                            <option>25000</option>
+<!--                             <option>50000</option>
+                            <option>100000</option>
+ -->                        </select>
 
+<!--                         <input type="number" [(ngModel)]="this.mt_carte"   name="mt_carte" id="mt_carte" class="form-control" placeholder="montant à envoyer" required>
+ -->
                         <button type="submit" class="btn btn-success" [disabled]="!achatjula.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatjula.form.valid" >Annuler</button>
 

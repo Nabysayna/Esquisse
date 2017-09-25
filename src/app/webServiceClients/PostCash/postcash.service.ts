@@ -82,10 +82,10 @@ export class PostCashWebService {
     });
   }
 
-  public reglementsenelec(police : string, num_facture : string): Promise<any>  {
+  public reglementsenelec(police : string, num_facture : string, montant : any): Promise<any>  {
     var method:string = 'reglementsenelec';
     var parameters:{}[] = [];
-    var reEspParams = {token:this.token, police: police, num_facture: num_facture} ;
+    var reEspParams = {token:this.token, police: police, num_facture: num_facture,  montant : montant} ;
     var params:{}[] = [] ;
     params["params"] = reEspParams ;
 
