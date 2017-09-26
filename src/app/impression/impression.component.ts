@@ -32,7 +32,7 @@ export class ImpressionComponent implements OnInit {
     popupWin.document.write(`
           <html>
               <head>
-                  <title>BBS INVEST - SENTOOL</title>
+                  <title>BBS INVEST & SENTOOL</title>
                   <style>
                       //........Customized style.......
                   </style>

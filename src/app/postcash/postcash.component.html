@@ -52,10 +52,7 @@
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4> RETRAIT ESPECE</h4>
                     </fieldset>
-                    <form (ngSubmit)="validateretraitespece()" #retraitespece="ngForm" autocomplete="on">
-
-                        <label for="codevalidation">Code de validation</label>
-                        <input type="text" [(ngModel)]="this.codevalidation"   name="codevalidation" id="codevalidation" class="form-control" placeholder="code validation" required>
+                    <form (ngSubmit)="validatecodevalidation()" #retraitespece="ngForm" autocomplete="on">
 
                         <label for="telephoneretraitespece">Téléphone client</label>
                         <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephoneretraitespece" class="form-control" placeholder="téléphone client" required>
@@ -63,7 +60,7 @@
                         <label for="montantretraitespece">Montant</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantretraitespece" class="form-control" placeholder="montant à retirer" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!retraitespece.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success"  data-toggle="modal" data-target="#myModalCodeValidation" [disabled]="!retraitespece.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!retraitespece.form.valid" >Annuler</button>
 
                     </form>
@@ -366,7 +363,31 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="idmodalfermePostSenec" data-dismiss="modal" #closeBtnModalPostSenec>Annuler</button>
-        <button *ngIf="!detailfacturepostcash.errorCode" type="button" class="btn btn-primary" (click)="validatereglementsenelec()">Valider paiement</button>
+        <button *ngIf="!detailfacturepostcash.errorCode" type="button" class="btn btn-success" (click)="validatereglementsenelec()">Valider paiement</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModalCodeValidation" tabindex="-1" role="dialog" aria-labelledby="myModalLabelCodeValidation" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" *ngIf="detailcodevalidateretraitespece">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabelCodeValidation">Code de validation</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="detailcodevalidateretraitespece.errorCode != '0'">
+          <p>Erreur de saisie</p>
+          <p>Veuillez-reverifier les données saisie</p>
+        </div>
+        <div *ngIf="detailcodevalidateretraitespece.errorCode == '0'">
+            <input type="text" [(ngModel)]="this.codevalidation"   name="codevalidation" id="codevalidation" class="form-control" placeholder="code validation" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="idmodalfermeCodeValidation" data-dismiss="modal" #closeBtnModalCodeValidation>Annuler</button>
+        <button type="button"  class="btn btn-success" [disabled]="!codevalidation" (click)="validateretraitespece()">Valider retrait</button>
       </div>
     </div>
   </div>
