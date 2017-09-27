@@ -158,7 +158,9 @@ export class TntComponent implements OnInit {
                 prenom:this.prenoma,
                 nom:this.noma,
                 telephone:this.tela,
+                carte:this.ncarte,
                 chip:this.nchip,
+                typebouquet:this.tbouquet,
                 montant: montant,
                 duree:this.nbm
               },
@@ -237,6 +239,7 @@ export class TntComponent implements OnInit {
           chip:this.nchipNewClient,
           carte:this.ncarteNewClient,
           montant:prix,
+          typedebouquet:this.tbouquetNewClient
         },
 
       },

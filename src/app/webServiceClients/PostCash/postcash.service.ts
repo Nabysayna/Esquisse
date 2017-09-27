@@ -31,6 +31,23 @@ export class PostCashWebService {
         this.soapService.localNameMode = true;
    }
 
+  public codevalidation(tel_destinataire : string, montant : string): Promise<any>  {
+    var method:string = 'codevalidation';
+    var parameters:{}[] = [];
+    var reEspParams = {token:this.token, tel_destinataire: tel_destinataire, montant: montant} ;
+    var params:{}[] = [] ;
+    params["params"] = reEspParams ;
+
+    parameters['codevalidation xmlns="urn:postcashwsdl#"'] = params;
+
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'codevalidationResponse').then(response=>{
+        var reponse:any = JSON.parse(response['codevalidationResponse'].return.$);
+        resolve(reponse) ;
+      });
+    });
+  }
+
   public rechargementespece(tel_destinataire : string, montant : string): Promise<any>  {
     var method:string = 'rechargementespece';
     var parameters:{}[] = [];
