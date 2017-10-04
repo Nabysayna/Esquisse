@@ -149,11 +149,41 @@
   background: radial-gradient(circle at 1rem 1rem, #0FFFFF, #000);
 }
 
+.navbar-default{
+  background-color: white ;
+  border-bottom: 1px solid #0F70B7 ;
+}
+
+
+
+#form{
+  margin-top: 4rem ;
+}
+
+#inscription div img{
+  margin-top: 12rem ;
+}
+
+
 #over-account-wall{
   height: 70rem !important;
 }
 
 #authcomponent{
 }
+
+#nav img{
+  max-height: 6rem ;
+}
+
+#nav input{
+  padding: 0.7rem;
+}
+
+
+#form select, label{
+  margin-left: 1rem ;
+}
+
 
 

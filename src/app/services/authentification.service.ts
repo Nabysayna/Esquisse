@@ -39,6 +39,11 @@ export class AuthenticationService {
     }
 
 
+    inscrire(paramInscrpt): Promise<string> {
+      return new Promise( (resolve, reject)=> {
+        this.authentiService.inscrire(paramInscrpt).then( response => {resolve(response)} ); }) ; 
+    }
+
     loginPhase2(smsCode): Promise<number> {
       return new Promise( (resolve, reject)=> {
             this.authentiService.authentifierParCodeSMS(smsCode).then( response => {

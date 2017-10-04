@@ -52,62 +52,6 @@ export class AuthComponentComponent implements OnInit {
     this.authenticationService.logout();
   }
     
-  authentificate() {
-    this.loading = true ;
-    this.authenticationService.login(this.userName, this.userPwd).then(access=>
-      {
-        if(access  != "rejected"){
-          this.loading = false ;
-          this.phase1 = false ;
-
-        }else{
-          this.fakevalues = false ;
-          this.userName = ''  ; 
-          this.userPwd  = '' ; 
-          this.loading = false ;
-        }
-      });
-  }
-
-  authentificateBySMS(){
-    this.loading = true ;
-    this.authenticationService.loginPhase2(this.fromSMS).then( access=>
-      { 
-       if ( access === 3 ){
-          this.router.navigate(['/accueil']); 
-        }else 
-          if ( access === 2 ){
-            this.router.navigate(['/accueiladmpdv']);  
-          }else 
-            if ( access === 1 ){
-              this.router.navigate(['/accueiladmmpdv']);              
-            }else 
-            if ( access === 5 ){
-              this.router.navigate(['/accueilcoursier']);              
-            }
-            else 
-            if ( access === 4 ){
-              this.router.navigate(['/accueiladmincoursier']);              
-            }
-            else 
-            if ( access === 6 ){
-              this.router.navigate(['/accueiladmincommercial']);              
-            }
-             else 
-            if ( access === 7 ){
-              this.router.navigate(['/accueilcommercial']);              
-            }
-             else
-                if ( access === 4 ){
-                  this.router.navigate(['/ADMINCOURSIER']);              
-                }else{
-                  this.phase2fakevalues = false ;
-                  this.fromSMS = ''  ; 
-              }  
-
-        this.loading = false ; 
-      });
-  }
 
   public regions=[
       {'name':'--choisissez votre region--','id':'0'},

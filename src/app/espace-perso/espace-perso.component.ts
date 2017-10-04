@@ -104,11 +104,9 @@ export class EspacePersoComponent implements OnInit {
           this.loading = false ;
         });  
 
-        console.log("lllllllll") ;
       this.ecomCaller.listerCategorie(this.token).then( response =>
         {
           this.categories = response;
-          console.log("Categories "+JSON.stringify(this.categories) ) ;
         });  
   }
 
@@ -123,7 +121,6 @@ export class EspacePersoComponent implements OnInit {
               let params = { article: artcle ,token: this.token } ;
               this.ecomCaller.supprimerArticle(params).then( response =>
                 {
-                  console.log("Le serveur a répondu : "+response) ;
                   ligne.splice(i,1);
                   this.loading = false ;
                 });              
@@ -236,7 +233,6 @@ export class EspacePersoComponent implements OnInit {
     this.ecomCaller.receptionnerCommandes(params).then( response =>
       {
         if(response=="ok")
-          console.log("Le serveur a répondu : "+response) ;
           this.receivedArticles = this.receivedArticles + "-"+idCommande.toString()+"-" ;
           this.loading = false ;
       });  
@@ -248,7 +244,6 @@ export class EspacePersoComponent implements OnInit {
     this.ecomCaller.fournirCommandes(params).then( response =>
       {
         if(response=="ok")
-          console.log("Le serveur a répondu : "+response) ;
           this.articlesFournis = this.articlesFournis + "-"+idCommande.toString()+"-" ;
           this.loading = false ;
       });  
@@ -281,14 +276,12 @@ export class EspacePersoComponent implements OnInit {
         if (ligne[i].nomImg==article.nomImg)
         {
           if(!(this.uploadFile === undefined)){
-            console.log("Nom image générée : "+this.uploadFile.generatedName) ;
             ligne[i].nomImg = this.uploadFile.generatedName ;
           }
         let artcle = JSON.stringify(ligne[i]) ;
         let params = { article: artcle ,token: this.token } ;
         this.ecomCaller.modifierArticle(params).then( response =>
           {
-            console.log("Le serveur a répondu : "+response) ;
             this.loading = false ;
           });              
           break;
@@ -383,12 +376,12 @@ export class EspacePersoComponent implements OnInit {
               .map(res => res.json())
               .catch(error => Observable.throw(error))
               .subscribe(
-                  data => { console.log("Retour uploader "+data.generatedName) ;
+                  data => { 
                            let newData = data;
                            this.uploadFile = newData;
                            this.newImage = this.uploadFile.generatedName ;
                         },
-                  error => console.log(error)
+                  error => {}
               )
       }
   }

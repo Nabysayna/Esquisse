@@ -162,7 +162,6 @@ export class CatalogueComponent implements OnInit {
   }
 
   public commander():void {
-    console.log(""+JSON.stringify(this.orderedarticles) +" "+ this.montant +" "+ this.prenom);
     let params = { 
       token: this.token , 
       orderedarticles:""+JSON.stringify(this.orderedarticles), 

@@ -8,7 +8,7 @@ import { Router, CanActivate } from '@angular/router';
 })
 export class AccueilComponent implements OnInit {
 	
-  registredAPIs : string [] = ['POSTECASH','JONI JONI', 'ORANGE MONEY', 'TIGO CASH', 'TNT BY EXCAF'] ;
+  registredAPIs : string [] = ['POSTECASH', 'ORANGE MONEY', 'TIGO CASH', 'TNT BY EXCAF'] ;
   //registredAPIs : string [] = ['POSTECASH', 'TNT BY EXCAF'] ;
   authorisedToUseCRM = false ;
   

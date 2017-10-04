@@ -6,6 +6,8 @@ import { NgModule }      from '@angular/core' ;
 import { BrowserModule } from '@angular/platform-browser' ;
 import  { FormsModule} from '@angular/forms' ;
 import { HttpModule }    from '@angular/http';
+
+
 import { LoadersCssModule } from 'angular2-loaders-css';
 
 /* import { NgUploaderModule } from 'ngx-uploader'; */
@@ -63,6 +65,8 @@ import { ComptabiliteServiceWeb } from './webServiceClients/Comptabilite/comptab
 import {GestionreportingServiceWeb} from './webServiceClients/Gestionreporting/gestionreporting.service';
 import {DemandepretServiceWeb} from './webServiceClients/Demandepret/demandepret.service';
 import {CrmServiceWeb} from './webServiceClients/Crm/crm.service';
+
+import {OrangeMoneyService} from './webServiceClients/Orangemoney/orangemoney.service';
 
 
 /*-----------------*/
@@ -336,6 +340,7 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
       AgentTopUpService,
       CashOutService,
       CashInService,
+      OrangeMoneyService,
       SoldeService,
       RetraitEspeceService,
       AchatCreditTelService,

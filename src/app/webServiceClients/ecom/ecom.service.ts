@@ -73,7 +73,6 @@ export class EcomServiceWeb {
 
       var method:string = 'ajoutarticle';
       var parameters:{}[] = [];
-      console.log('Parametres envoyés '+JSON.stringify(requestedValue) ) ;
       var reEspParams = requestedValue ;
       var params:{}[] = [] ;
       params["params"] = reEspParams ;
@@ -83,7 +82,6 @@ export class EcomServiceWeb {
 
         this.soapService.post(method, parameters, 'ajoutarticleResponse').then(response=>{
           let wSresponse = response['ajoutarticleResponse'].return.$ ;
-          console.log("reponse brute from articles Web Service "+wSresponse ) ;
           resolve(wSresponse) ;
         });
       });
@@ -101,7 +99,6 @@ export class EcomServiceWeb {
 
       this.soapService.post(method, parameters, 'ajoutcommandeResponse').then(response=>{
         let wSresponse = response['ajoutcommandeResponse'].return.$ ;
-        console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
       });
     });
@@ -119,7 +116,6 @@ export class EcomServiceWeb {
 
       this.soapService.post(method, parameters, 'receptionnerCommandesResponse').then(response=>{
         let wSresponse = response['receptionnerCommandesResponse'].return.$ ;
-        console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
       });
     });
@@ -138,7 +134,6 @@ export class EcomServiceWeb {
 
       this.soapService.post(method, parameters, 'supprimerArticleResponse').then(response=>{
         let wSresponse = response['supprimerArticleResponse'].return.$ ;
-        console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
       });
     });
@@ -156,7 +151,6 @@ export class EcomServiceWeb {
 
       this.soapService.post(method, parameters, 'modifierArticleResponse').then(response=>{
         let wSresponse = response['modifierArticleResponse'].return.$ ;
-        console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
       });
     });
@@ -175,7 +169,6 @@ export class EcomServiceWeb {
 
       this.soapService.post(method, parameters, 'assignerCourseResponse').then(response=>{
         let wSresponse = response['assignerCourseResponse'].return.$ ;
-        console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
       });
     });
@@ -194,7 +187,6 @@ export class EcomServiceWeb {
 
       this.soapService.post(method, parameters, 'prendreCommandeResponse').then(response=>{
         let wSresponse = response['prendreCommandeResponse'].return.$ ;
-        console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
       });
     });
@@ -213,7 +205,6 @@ export class EcomServiceWeb {
 
       this.soapService.post(method, parameters, 'fournirCommandesResponse').then(response=>{
         let wSresponse = response['fournirCommandesResponse'].return.$ ;
-        console.log("reponse brute from articles Web Service "+wSresponse ) ;
         resolve(wSresponse) ;
       });
     });
@@ -234,7 +225,6 @@ export class EcomServiceWeb {
 
         this.soapService.post(method, parameters, 'listerarticleResponse').then(response=>{
           this.responseJsoFWS = JSON.parse(response['listerarticleResponse'].return.$);
-          console.log("reponse brute from articles Web Service "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
         });
       });
@@ -254,7 +244,6 @@ export class EcomServiceWeb {
 
         this.soapService.post(method, parameters, 'listerCategorieResponse').then(response=>{
           this.responseJsoFWS = JSON.parse(response['listerCategorieResponse'].return.$);
-          console.log("reponse brute from articles Web Service "+JSON.stringify(this.responseJsoFWS[0]) ) ;
           resolve(this.responseJsoFWS) ;
         });
       });
@@ -275,7 +264,6 @@ export class EcomServiceWeb {
         parameters['listercommande xmlns="urn:ecommercewsdl#"'] = params ;
         this.soapService.post(method, parameters, 'listercommandeResponse').then(response=>{
           let responseJsoFWS = response['listercommandeResponse'].return.$;
-          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
           resolve(responseJsoFWS) ;
         });
       });
@@ -293,7 +281,6 @@ export class EcomServiceWeb {
         parameters['listerCoursier xmlns="urn:ecommercewsdl#"'] = params ;
         this.soapService.post(method, parameters, 'listerCoursierResponse').then(response=>{
           let responseJsoFWS : Coursier[] = JSON.parse(response['listerCoursierResponse'].return.$);
-          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS[0]) ) ;
           resolve(responseJsoFWS) ;
         });
       });
@@ -312,7 +299,6 @@ export class EcomServiceWeb {
         parameters['listervente xmlns="urn:ecommercewsdl#"'] = params ;
         this.soapService.post(method, parameters, 'listerventeResponse').then(response=>{
           let responseJsoFWS = JSON.parse(response['listerventeResponse'].return.$);
-          console.log("reponse brute from articles Web Service "+JSON.stringify(responseJsoFWS) ) ;
           resolve(responseJsoFWS) ;
         });
       });

@@ -1,17 +1,93 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Orange Money
+
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-pills" id="om-options">
+                <li class="active" ><a href="#depot" data-toggle="tab">Depôt </a>
+                </li>
+                <li ><a href="#retrait" data-toggle="tab">Retrait </a>
+                </li>
+                <li ><a href="#transnat" data-toggle="tab">Transfert National</a>
+                </li>
+                <li ><a href="#transint" data-toggle="tab">Transfert International</a>
+                </li>
+                <li ><a href="#achatcred" data-toggle="tab">Vente crédit</a>
+                </li>
+                <li ><a href="#achatcred" data-toggle="tab">Inscription Client</a>
+                </li>
+
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+                <div class="tab-pane fade col-sm-6 col-xs-12 in active" id="depot">
+                        <h3>Dépôt d'argent</h3>
+                        <form name="transnat" (ngSubmit)="deposer()" #formdepot="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                            <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
+
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formdepot.form.valid">Transférer</button>
+                        </form>
+                </div>
+
+                <div class="tab-pane fade col-sm-6 col-xs-12" id="retrait">
+                        <h3>Retrait d'argent</h3>
+                        <form name="transnat" (ngSubmit)="retirer()" #formretrait="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                            <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
+
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formretrait.form.valid">Transférer</button>
+                        </form>
+                </div>
+
+                <div class="tab-pane fade col-sm-6 col-xs-12" id="transnat">
+                        <h3>Transfert National</h3>
+                        <form name="transnat" (ngSubmit)="transferer('national')" #formtransnat="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                            <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
+
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formtransnat.form.valid">Transférer</button>
+                        </form>
+                </div>
+
+                <div class="tab-pane fade col-sm-6 col-xs-12" id="transint">
+                        <h3>Transfert International</h3>
+                        <form name="transnat" (ngSubmit)="transferer('international')" #formtransint="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                            <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
+
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formtransint.form.valid">Transférer</button>
+                        </form>
+                </div>
+
+
+                <div class="tab-pane fade col-sm-6 col-xs-12" id="achatcred">
+                        <h3>Achat crédit</h3>
+                        <form name="transnat" (ngSubmit)="acheterCredit()" #formachatcred="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                            <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
+
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formachatcred.form.valid">Transférer</button>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
   
-  <div style="position: absolute ; left: 25%; top:25%; min-width: 70% ; min-height: 50% ;text-align: -webkit-center; padding-top: 10%; z-index:1000; opacity: 0.1; ">
-    
-    CETTE PAGE EST EN DEVELOPPEMENT !
-      <div class="loader">
-        <div class="loader-inner ball-pulse-rise">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-
-
-    </div>
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>
