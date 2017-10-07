@@ -25,7 +25,7 @@ export class DataToArray implements PipeTransform{
 })
 
 export class TntComponent implements OnInit {
-  verifierNumInput:string = '';
+  verifierNumInput:number ;
   verifierNumValide:boolean = false;
   verifierNumInputValide:boolean = true;
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
@@ -34,21 +34,22 @@ export class TntComponent implements OnInit {
 
   prenomNewClient : string ;
   nomNewClient: string ;
-  telNewClient: string ;
+  telNewClient: number ;
   adresseNewClient: string ;
   regionNewClient: string ;
   ncniNewClient: string ;
-  nchipNewClient: string ;
-  ncarteNewClient: string ;
+  nchipNewClient: number ;
+  ncarteNewClient: number ;
   nbmNewClient: number;
   tbouquetNewClient : string = 'Sans Abonnement';
 
 	formvisible='';
 	noma:string;
 	prenoma:string;
-	tela:string;
-  nchip:string;
-	ncarte:string;
+	tela:number;
+  ncni : number ;
+  nchip:number;
+	ncarte:number;
 	nbm:number;
 	tbouquet:string;
 	nAbonnement:NAbonnement;
@@ -94,14 +95,15 @@ export class TntComponent implements OnInit {
 
   validVerifierNum(){
         this.loading = true ;
-    this.tntCaller.checkNumber(this.token, this.verifierNumInput).then( response =>
+    this.tntCaller.checkNumber(this.token, this.verifierNumInput.toString()).then( response =>
         {
         this.singleTntWS = response ;
         this.noma = this.singleTntWS.nom ;
         this.prenoma = this.singleTntWS.prenom ;
-        this.tela = this.singleTntWS.tel;
-        this.nchip = this.singleTntWS.n_chip;
-        this.ncarte = this.singleTntWS.n_carte;
+        this.tela = Number(this.singleTntWS.tel);
+        this.nchip = Number(this.singleTntWS.n_chip) ;
+        this.ncarte = Number(this.singleTntWS.n_carte) ;
+        this.ncni = Number(this.singleTntWS.ncni) ;
 
         if (this.singleTntWS.id_typeabonnement=="1")
           this.tbouquet = "Maanaa";
@@ -129,10 +131,14 @@ export class TntComponent implements OnInit {
     if(this.tbouquet == "Maanaa + Boul Khool")
       typedebouquet=3;
 
-    if(this.singleTntWS.ncni==null)
-      this.singleTntWS.ncni = "-" ;
+    this.singleTntWS.tel = this.tela.toString() ;
+    this.singleTntWS.n_chip = this.nchip.toString();
+    this.singleTntWS.n_carte = this.ncarte.toString() ;
+    this.singleTntWS.ncni = this.ncni.toString();
 
-    this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela, this.singleTntWS.adresse, this.singleTntWS.region, this.singleTntWS.city, this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
+    this.singleTntWS.ncni = this.ncni.toString() ;
+
+    this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela.toString(), this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
       {
         if(response=="ok"){
          this.verifierNumValide = false ;
@@ -191,7 +197,7 @@ export class TntComponent implements OnInit {
 
       this.tntCaller.listeVenteDecods(this.token).then( response =>
         {
-          this.retourTntWS = response ;
+          this.retourTntWS = response.reverse() ;
           this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
         }) ;
@@ -202,7 +208,7 @@ export class TntComponent implements OnInit {
 
       this.tntCaller.listerVenteCartes(this.token).then( response =>
         {
-          this.retourTntWS = response ;
+          this.retourTntWS = response.reverse() ;
           this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
         }) ;
@@ -289,16 +295,16 @@ export class TntComponent implements OnInit {
 
   reinitialiserVariables(){
       this.verifierNumValide = false ;
-      this.prenomNewClient ="" ;
-      this.nomNewClient="" ;
-      this.telNewClient="" ;
-      this.adresseNewClient="" ;
-      this.regionNewClient="" ;
-      this.ncniNewClient="" ;
-      this.nchipNewClient="" ;
-      this.ncarteNewClient="" ;
-      this.nbmNewClient=0;
-      this.tbouquetNewClient="" ;
+      this.prenomNewClient =undefined ;
+      this.nomNewClient=undefined ;
+      this.telNewClient=undefined ;
+      this.adresseNewClient=undefined ;
+      this.regionNewClient=undefined ;
+      this.ncniNewClient=undefined ;
+      this.nchipNewClient=undefined ;
+      this.ncarteNewClient=undefined ;
+      this.nbmNewClient=undefined;
+      this.tbouquetNewClient=undefined ;
   }
 
   print(idrecuimpression:string): void {

@@ -11,7 +11,7 @@
             <form class="form form-inline pull-right" (ngSubmit)="authentificateBySMS()" #loginNextForm="ngForm" *ngIf="!phase1">
                 <div class="form-group" style="color: red" *ngIf="!this.phase2fakevalues">Le code que vous avez saisi est incorrect! Veuillez reprendre la saisie.</div>
 
-                <input type="number" [(ngModel)]="this.fromSMS" name="fromSMS" id="fromSMS"  class="form-group form-control" placeholder="SMS code" required autofocus>
+                <input type="text" [(ngModel)]="this.fromSMS" name="fromSMS" id="fromSMS"  class="form-group form-control" placeholder="SMS code" required autofocus>
 
                 <input class="btn btn-success" value="Se connecter" type="button" type="submit" [disabled]="!loginNextForm.form.valid"  />
             </form>

@@ -15,6 +15,7 @@ export class AdminpdvMonitoringComponent implements OnInit {
   loading = false ;
   selectdemanretrait=false;
   montant:number;
+  ibanExcessif = false ;
 
   constructor(private adminpdvServiceWeb: AdminpdvServiceWeb) { }
 
@@ -22,18 +23,20 @@ export class AdminpdvMonitoringComponent implements OnInit {
     this.adminpdvServiceWeb.bilandeposit('azrrtt').then(adminpdvServiceWebList => {
       this.monitoringAdminpdvDeposit = adminpdvServiceWebList.response; 
     });
-
-
-
   }
 
     validerdmde(){
       this.selectdemanretrait = false;
-      // this.loading = true ;
-      // this.adminpdvServiceWeb.montant(this.token).then(adminpdvserviceList => {
-      //   this.montant = adminpdvserviceList;
-      //   this.loading = false ;
-      // });
+      if (this.monitoringAdminpdvDeposit.etatdeposit < this.montant){
+        this.ibanExcessif = true ;
+        return 1 ;
+      }
+
+      this.loading = true ;
+      this.adminpdvServiceWeb.demandeRetrait(this.montant.toString()).then(adminpdvserviceList => {
+        this.loading = false ;
+        this.montant = undefined ;
+      });
 
     }
 

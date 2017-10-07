@@ -77,7 +77,10 @@ export class AuthComponentComponent implements OnInit {
           this.router.navigate(['/accueil']); 
         }else 
           if ( access === 2 ){
-            this.router.navigate(['/accueiladmpdv']);  
+            if (JSON.parse(sessionStorage.getItem('currentUser')).firstuse==1)
+              this.router.navigate(['/soppipwdbifi']); 
+            else 
+              this.router.navigate(['/accueiladmpdv']);  
           }else 
             if ( access === 1 ){
               this.router.navigate(['/accueiladmmpdv']);              
@@ -443,10 +446,12 @@ export class AuthComponentComponent implements OnInit {
  }
 
  inscrire(){
-    let paramInscrpt = {'token':'234576TVG5@u_45RRFT', 'prenom':this.prenom, 'nom':this.nom, 'email':this.email, 'telephone':this.telephone, 'nometps':this.nometps, 'nomshop':this.nomshop, adresse : JSON.stringify({'region':this.getRegionName(this.region), 'zone':this.getZoneName(this.zone), 'souszone':this.souszone, 'address':this.adresse}) } ;
+
+/*    let paramInscrpt = {'token':'234576TVG5@u_45RRFT', 'prenom':this.prenom, 'nom':this.nom, 'email':this.email, 'telephone':this.telephone, 'nometps':this.nometps, 'nomshop':this.nomshop, adresse : JSON.stringify({'region':this.getRegionName(this.region), 'zone':this.getZoneName(this.zone), 'souszone':this.souszone, 'address':this.adresse}) } ;
 
     console.log("Nouvel Inscrit : "+JSON.stringify(paramInscrpt) ) ;
-     this.authenticationService.inscrire(paramInscrpt).then( retourserveur => {} )
+     this.authenticationService.inscrire(paramInscrpt).then( retourserveur => {} ) */
+     
  }
 
  getRegionName(region){

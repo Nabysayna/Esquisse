@@ -9,6 +9,7 @@ export class AuthResponse{
   public reponse: boolean ;
   public accessLevel: number ;
   public authorizedApis: string ;
+  public firstuse: number ;
   public baseToken: string ;
 }
 
@@ -74,10 +75,23 @@ export class AuthentificationServiceWeb {
           baseToken:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).baseToken,
           reponse:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).reponse,
           accessLevel:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).accessLevel,
-          authorizedApis:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).authorizedApis
+          authorizedApis:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).authorizedApis,
+          firstuse:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).firstuse
         };
         resolve(authResponse)
         }) ;
+      });
+  }
+
+  public creerProfilCaissier(paramInscritpion) : Promise<string>  {
+      var method:string = 'creerProfilCaissier';
+      var parameters:{}[] = [];
+      let params:{}[] = [] ;
+      params["nvelInscrit"] = paramInscritpion ;
+      return new Promise( (resolve, reject) => {
+        parameters['creerProfilCaissier xmlns="urn:authwsdl#"'] = params ;
+        this.soapService.post(method, parameters, 'creerProfilCaissierResponse').then(response=> {
+        resolve(response["creerProfilCaissierResponse"]["return"].$) } ) ;
       });
   }
 
@@ -94,6 +108,20 @@ export class AuthentificationServiceWeb {
   }
 
 
+  public modifierpwdinit(pwdactuel : string, newpwd : string) : Promise<string>{
+      var method:string = 'modifpwdinit';
+      var parameters:{}[] = [];
+      let parame : {}[] = [] ;
+      var user = {token:JSON.parse(sessionStorage.getItem('currentUser')).baseToken, pwdactuel:pwdactuel, newpwd : newpwd} ;
+      
+      parame["user"] = user ;
+
+      return new Promise( (resolve, reject) => {
+        parameters['modifpwdinit xmlns="urn:authwsdl#"'] = parame ;
+        this.soapService.post(method, parameters, 'modifpwdinitResponse').then(response=>
+        resolve(response["modifpwdinitResponse"]["return"].$) ) ;
+      });
+  }
 
   public deconnecter(token : string) : Promise<number>  {
       var method:string = 'deconnexion';

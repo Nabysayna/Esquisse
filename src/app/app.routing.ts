@@ -3,6 +3,8 @@ import { NgModule }  from '@angular/core' ;
 import  { RouterModule, Routes} from '@angular/router' ;
 
 import { AuthGuard } from './_guards/auth.guard';
+import { AuthGuardsup } from './_guards/authsup.guard';
+import { AuthGuardcais } from './_guards/authcais.guard';
 
 import { AdminpdvAidedecisionComponent } from './adminpdv/adminpdv-aidedecision/adminpdv-aidedecision.component';
 import { AdminpdvDashboardComponent } from './adminpdv/adminpdv-dashboard/adminpdv-dashboard.component';
@@ -51,6 +53,7 @@ import { AdmincoursierComponent } from './admincoursier/admincoursier.component'
 import { CommercialComponent } from './commercial/commercial.component';
 import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 import { ConsulterpretComponent } from './consulterpret/consulterpret.component';
+import { FirstlogComponent } from './firstlog/firstlog.component';
 
 
 import { AdminpdvparametrecompteComponent } from './adminpdv/adminpdv-parametre-compte/adminpdv-parametre-compte.component';
@@ -60,7 +63,8 @@ import {ImpressionComponent} from "./impression/impression.component";
 
 const appRoutes: Routes = [
     { path: '', component: AuthComponentComponent },
-    { path: 'accueil', component: AccueilComponent,
+    { path: 'soppipwdbifi', component: FirstlogComponent, canActivate: [AuthGuardsup] },
+    { path: 'accueil', component: AccueilComponent, canActivate: [AuthGuardcais],
            children:[
                 {path: '', component: ECommerceComponent},
                 {path: 'MONEYGRAM', component: SoapserverComponent},
@@ -156,7 +160,7 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard]   },
-    { path: 'accueiladmpdv', component: AccueiladminpdvComponent, canActivate: [AuthGuard],
+    { path: 'accueiladmpdv', component: AccueiladminpdvComponent, canActivate: [AuthGuardsup],
         children: [
             {
                 path: '',

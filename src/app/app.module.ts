@@ -75,6 +75,8 @@ import {OrangeMoneyService} from './webServiceClients/Orangemoney/orangemoney.se
 
 import { Routing }        from './app.routing';
 import { AuthGuard } from './_guards/auth.guard';
+import { AuthGuardcais } from './_guards/authcais.guard';
+import { AuthGuardsup } from './_guards/authsup.guard';
 
 
 
@@ -194,6 +196,7 @@ import { FiltresouszonepdrPipe } from './pipes/filtresouszonepdr.pipe';
 import { FiltresouszonesupplierPipe } from './pipes/filtresouszonesupplier.pipe';
 import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
 import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pipe';
+import { FirstlogComponent } from './firstlog/firstlog.component';
 
 
 
@@ -306,7 +309,8 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
     FiltrezonepdrPipe,
     FiltresouszonepdrPipe,
     FiltresouszonesupplierPipe,
-    FiltrezonesupplierPipe
+    FiltrezonesupplierPipe,
+    FirstlogComponent
   ],
   imports: [
     BrowserModule,
@@ -353,6 +357,8 @@ import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pip
       EnvoicashService,
       PaiecashService,
       AuthGuard,
+      AuthGuardcais,
+      AuthGuardsup,
       UserPdvService,
       PostCashService,
       AdminpdvDashboardService,

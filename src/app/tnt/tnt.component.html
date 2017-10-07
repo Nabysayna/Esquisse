@@ -31,7 +31,7 @@
                         <form name="validVerifierNum" (ngSubmit)="validVerifierNum()" #verifiernum="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
                             <label for="verifiernuminput">Numéro du chip ou de la carte</label>
                             <div class="col-md-8">
-                                <input type="text" [(ngModel)]="this.verifierNumInput" name="verifiernuminput" id="verifiernuminput"  class="form-control" placeholder="Numéro du chip ou de la carte" required autofocus>
+                                <input type="number" [(ngModel)]="this.verifierNumInput" name="verifiernuminput" id="verifiernuminput"  class="form-control" placeholder="Numéro du chip ou de la carte" required autofocus>
                             </div>
                             <div class="col-md-4">
                                 <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!verifiernum.form.valid">Vérifier</button>
@@ -52,13 +52,16 @@
                             <input type="text" [(ngModel)]="this.prenoma" name="prenoma" id="prenoma"  class="form-control" placeholder="prénom client" required >
 
                             <label for="tela">Téléphone client</label>
-                            <input type="text" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
+                            <input type="number" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
+
+                            <label for="tela">Numero CNI client</label>
+                            <input type="number" [(ngModel)]="this.ncni"   name="ncni" id="ncni" class="form-control" placeholder="Numéro carte d'identité client" required>
 
                             <label for="nchip">Numéro chip</label>
-                            <input type="text" [(ngModel)]="this.nchip"   name="nchip" id="nchip" class="form-control" placeholder="numéro chip" required>
+                            <input type="number" [(ngModel)]="this.nchip"   name="nchip" id="nchip" class="form-control" placeholder="numéro chip" required>
 
                             <label for="ncarte">Numéro carte</label>
-                            <input type="text" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte" required>
+                            <input type="number" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte" required>
 
 
                             <label for="nbm">Nombre de mois</label>

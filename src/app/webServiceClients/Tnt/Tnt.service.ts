@@ -139,7 +139,7 @@ export class TntServiceWeb {
   }
 
 
-  public abonner(token:string, prenom:string, nom:string, tel:string, adresse:string, region:string, city:string, cni:string, numerochip:string, numerocarte:string, duree:number, typedebouquet:number) : Promise<string> {
+  public abonner(token:string, prenom:string, nom:string, tel:string, cni:string, numerochip:string, numerocarte:string, duree:number, typedebouquet:number) : Promise<string> {
 
       var method:string = 'ajoutabonnement';
       var parameters:{}[] = [];
@@ -154,7 +154,7 @@ export class TntServiceWeb {
 
       montant = duree*montant ;
 
-      var reEspParams = {token:token, prenom:prenom, nom:nom, tel:tel, adresse:adresse, region:region, city:city, cni:cni, numerochip:numerochip, numerocarte:numerocarte, duree:duree, typedebouquet:typedebouquet, montant:montant} ;
+      var reEspParams = {token:token, prenom:prenom, nom:nom, tel:tel, adresse:'', region:'', city:'', cni:cni, numerochip:numerochip, numerocarte:numerocarte, duree:duree, typedebouquet:typedebouquet, montant:montant} ;
       var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
@@ -204,8 +204,8 @@ export class TntServiceWeb {
       return new Promise( (resolve, reject) => {
         parameters['ventecarte xmlns="urn:tntwsdl#"'] = params ;
         this.soapService.post(method, parameters, 'ventecarteResponse').then(response=>{
+          console.log("reponse brute  "+reponse ) ;
           var reponse : string = response['ventecarteResponse'].return.$;
-          //console.log("reponse brute  "+reponse ) ;
           resolve(reponse) ;
         });
       });

@@ -67,8 +67,8 @@ export class AdminpdvServiceWeb {
         resolve(reponse) ;
       });
     });
-
   }
+
 
   public historiquereclamation(type : string): Promise<any>  {
     var method:string = 'historiquereclamation';
@@ -86,8 +86,8 @@ export class AdminpdvServiceWeb {
         resolve(reponse) ;
       });
     });
-
   }
+
 
   public listuserpdv(type : string): Promise<any>  {
     var method:string = 'listuserpdv';
@@ -105,8 +105,9 @@ export class AdminpdvServiceWeb {
         resolve(reponse) ;
       });
     });
-
   }
+
+
   public modifypdv( idpdv: number, modifydata: string): Promise<any>  {
     var method:string = 'modifypdv';
     var parameters:{}[] = [];
@@ -142,8 +143,8 @@ export class AdminpdvServiceWeb {
         resolve(reponse) ;
       });
     });
-
   }
+
 
   public nombredereclamationpdvvente(type : string): Promise<any>  {
     var method:string = 'nombredereclamationpdvvente';
@@ -182,6 +183,29 @@ export class AdminpdvServiceWeb {
     });
 
   }
+
+  public demandeRetrait(montant : string): Promise<any>  {
+    var method:string = 'demandeRetrait';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, montant: montant} ;
+    var params:{}[] = [] ;
+    params["token"] = this.token ;
+    params["montant"] = montant ;
+//    params["params"] = reEspParams ;
+
+    parameters['demandeRetrait xmlns="urn:adminpdvwsdl#"'] = params;
+
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'demandeRetraitResponse').then(response=>{
+        var reponse = JSON.parse(response['demandeRetraitResponse'].return.$);
+        resolve(reponse) ;
+      });
+    });
+
+  }
+
+
 
   public notifications(type : string): Promise<any>  {
     var method:string = 'notifications';

@@ -13,11 +13,12 @@
                 </li>
                 <li><a href="#achatcodewoyofal-pills" data-toggle="tab">Achat Code Woyofal</a>
                 </li>
-                <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Téléphonique</a>
+
+<!--                <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Téléphonique</a>
                 </li>
 
-<!--                 <li><a href="#achatneo-pills" data-toggle="tab">Achat de Carte neosurf</a>
-                </li> -->
+                 <li><a href="#achatneo-pills" data-toggle="tab">Achat de Carte neosurf</a>
+                </li> 
 
                 <li><a href="#cashtocashsend-pills" data-toggle="tab">Envoi Cash</a>
                 </li>
@@ -25,7 +26,7 @@
                 </li>
                 <li><a href="#transfertverstamtam-pills" data-toggle="tab">Transfert de Carte à Cash</a>
                 </li>
-<!--                 <li><a href="#transfertverstamtamviaapay-pills" data-toggle="tab">Transfert de APAY vers TamTam</a>
+                 <li><a href="#transfertverstamtamviaapay-pills" data-toggle="tab">Transfert de APAY vers TamTam</a>
                 </li> -->
             </ul>
             <!-- Tab panes -->
@@ -339,6 +340,9 @@
     </div>
 </div>
 
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>
 
 <!-- Les Modal -->
 <div class="modal fade" id="myModalPostSenec" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -349,7 +353,7 @@
         <h4 class="modal-title" id="myModalLabel">Détail facture</h4>
       </div>
       <div class="modal-body">
-        <div *ngIf="detailfacturepostcash.errorCode && detailfacturepostcash.errorCode!='0'">
+        <div *ngIf="detailfacturepostcash.errorCode!='0'">
           <p>Erreur de saisie</p>
           <p>Veuillez-reverifier les données saisie</p>
         </div>
@@ -412,3 +416,5 @@
     </div>
   </div>
 </div>
+
+
