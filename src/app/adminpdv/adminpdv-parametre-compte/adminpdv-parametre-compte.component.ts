@@ -72,7 +72,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
 
   public modif(item):void {
     this.modifuserpdv = item;
-    console.log(this.modifuserpdv);
+     console.log(this.modifuserpdv);
   }
 
   public validermodif():void {
@@ -428,10 +428,24 @@ export class AdminpdvparametrecompteComponent implements OnInit {
     let paramInscrpt = {'token': JSON.parse(sessionStorage.getItem("currentUser")).baseToken, 'prenom':this.prenom, 'nom':this.nom, 'email':this.email, 'telephone':this.telephone, 'nometps':this.nometps, 'nomshop':this.nomshop, adresse : JSON.stringify({'region':this.getRegionName(this.region), 'zone':this.getZoneName(this.zone), 'souszone':this.souszone, 'address':this.adresse}) } ;
     this.loading = true ;
     console.log( "Nouvel Inscrit : "+JSON.stringify(paramInscrpt) ) ;
-     this.authenticationService.creerProfilCaissier(paramInscrpt).then( retourserveur => {
+    this.authenticationService.creerProfilCaissier(paramInscrpt).then( retourserveur => {
       this.loading = false ;
+      this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
+        this.monitoringAdminpdvUserpdv = adminpdvServiceWebList.response;
+      });
+
+      this.prenom=undefined ;
+      this.nom=undefined ;
+      this.email=undefined ;
+      this.telephone=undefined ;
+      this.nometps=undefined ;
+      this.nomshop=undefined ;
+      this.region=undefined ;
+      this.zone=undefined ;
+      this.souszone=undefined ;
+      this.adresse=undefined ;
       this.closeModal();
-     } ) 
+     }) ; 
      
  }
 
@@ -446,9 +460,14 @@ export class AdminpdvparametrecompteComponent implements OnInit {
       return this.departements[i].name ;
  }
 
-  public deconnectionsession(pdv):void {
-    this.adminpdvServiceWeb.deconnectpdv(pdv.idpdv).then(adminpdvServiceWebList => {
-    });
+  public deconnexionsession(pdv,i):void {
+    this.loading = true ;
+    this.adminpdvServiceWeb.deconnectpdv(pdv.idpdv).then(reponseServeur => {
+      this.loading = false ;
+      if (reponseServeur.errorCode==1){
+        pdv.isconnect = !pdv.isconnect ;
+      }
+    }); 
   }
 
 }

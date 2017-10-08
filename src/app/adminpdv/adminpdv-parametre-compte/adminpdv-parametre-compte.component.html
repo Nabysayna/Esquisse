@@ -34,18 +34,15 @@
 	                    	<button type="button" class="btn btn-outline btn-warning" (click)="modif(item)" data-toggle="modal" data-target="#myModalModifUser">Modifier</button>
 	                    </td>
 	                    <td>
-	                    	{{item.isconnect?'Connecté':'Déconnecté'}}
+	                    	{{item.isconnect?'Connecté':'Deconnecté'}}
 	                    </td>
 	                    <td>
-	                    	<button type="button" *ngIf="item.isconnect" class="btn btn-outline btn-danger" (click)="deconnectionsession(item)">Déconnecter</button>
+	                    	<button type="button" *ngIf="item.isconnect" class="btn btn-outline btn-danger" (click)="deconnexionsession(item,i)">Deconnecter</button>
 	                    </td>
 	                </tr>
 	                </tbody>
 	                <tfoot>
 	                <tr>
-	                    <td colspan="5">
-	                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50]"></mfBootstrapPaginator>
-	                    </td>
 	                </tr>
 	                </tfoot>
 	            </table>
@@ -136,5 +133,13 @@
             </div>
         </div>
     </div>
+
+	<div *ngIf="this.loading">
+	    <app-loader></app-loader>    
+	</div>
+
 </div>
 
+<div *ngIf="this.loading">
+    <app-loader></app-loader>    
+</div>

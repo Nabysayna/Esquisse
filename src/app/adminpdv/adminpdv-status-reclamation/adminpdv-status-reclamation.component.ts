@@ -36,4 +36,8 @@ export class AdminpdvStatusReclamationComponent implements OnInit {
     return a.etatreclamation.length;
   }
 
+  getAdress(adresse){
+    return JSON.parse(adresse).address ;
+  }
+
 }

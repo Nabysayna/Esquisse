@@ -168,15 +168,15 @@ export class EspacePersoComponent implements OnInit {
       let params = { token: this.token , designation: this.designationa, description:this.descriptiona, prix: this.prixa, stock:this.stocka, img_link: this.uploadFile.generatedName, categorie:JSON.stringify({categorie : this.categoriea, type:'ecom'}) }
       this.ecomCaller.ajouterArticle(params).then( response =>
         {
-          this.designationa="";
-          this.descriptiona="";
-          this.prixa=0 ;
-          this.stocka=0;
+          this.loading = false ;
+          this.designationa=undefined;
+          this.descriptiona=undefined;
+          this.prixa=undefined ;
+          this.stocka=undefined;
           this.uploadFile.generatedName = null ;
           this.uploadFile.originalName = null ;
           this.newImage = "imagevide.jpg" ;
-          this.prixa = 0 ;
-          this.loading = false ;
+          this.prixa = undefined ;
           this.categoriea = "--- Catégorie ---" ;
         }); 
   }
@@ -187,14 +187,14 @@ export class EspacePersoComponent implements OnInit {
       let params = { token: this.token , designation: this.designationpta, description:this.descriptionpta, prix: this.prixpta, stock:this.stockpta, img_link: this.uploadFile.generatedName, categorie:JSON.stringify({categorie : this.categoriepta, type:'petiteannonce'}) }
       this.ecomCaller.ajouterArticle(params).then( response =>
         {
-          this.designationpta="";
-          this.descriptionpta="";
-          this.prixpta=0 ;
-          this.stockpta=0;
+          this.designationpta=undefined;
+          this.descriptionpta=undefined;
+          this.prixpta=undefined ;
+          this.stockpta=undefined;
           this.uploadFile.generatedName = null ;
           this.uploadFile.originalName = null ;
           this.newImage = "imagevide.jpg" ;
-          this.prixpta = 0 ;
+          this.prixpta = undefined ;
           this.loading = false ;
           this.categoriepta = "--- Catégorie ---" ;
         }); 

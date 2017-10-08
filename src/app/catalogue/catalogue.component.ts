@@ -64,6 +64,14 @@ export class CatalogueComponent implements OnInit {
       .mergeMap((token: string) => this.getStatesAsObservable(token));
   }
 
+  ngOnInit() {
+    this.loading = true ;
+    this.ecomCaller.listeArticles(this.token, 'catalogue').then( response => {
+      this.listarticles = response.reverse();
+      this.loading = false ;
+    }); 
+  }
+
   public getStatesAsObservable(token: string): Observable<any> {
     let query = new RegExp(token, 'ig');
  
@@ -87,13 +95,6 @@ export class CatalogueComponent implements OnInit {
     this.filterQuery = e.value;
   }
 
-  ngOnInit() {
-    this.loading = true ;
-    this.ecomCaller.listeArticles(this.token, 'catalogue').then( response => {
-      this.listarticles = response;
-      this.loading = false ;
-    }); 
-  }
 
   selectionnerarticle(article: Article){
     let existe = this.orderedarticles.find(function(item){
