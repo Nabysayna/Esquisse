@@ -62,7 +62,8 @@ export class OrangeMoneyComponentComponent implements OnInit {
     this.loading = true ;
     this.omService.requerirControllerOM(requete).then( resp => {
       if (resp.status==200){
-        if (resp._body=='1'){
+        console.log("We just say : "+resp._body) ;
+        if (resp._body.trim()=='alhamdoulilah'){
           this.loading = false ;
           this.numclient = undefined ;
           this.mnt = undefined; 
