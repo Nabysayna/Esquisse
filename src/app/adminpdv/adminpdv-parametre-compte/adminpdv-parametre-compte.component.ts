@@ -44,11 +44,9 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   constructor(private adminpdvServiceWeb: AdminpdvServiceWeb, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.loading = true ;
 
     this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
       this.monitoringAdminpdvUserpdv = adminpdvServiceWebList.response;
-      this.loading = false ;
     });
 
   }
