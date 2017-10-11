@@ -68,11 +68,11 @@ export class GestionreportingComponent implements OnInit {
   getDesignations(){
     if(this.servicevente){
       let designationsNames = [] ;
-      let currentService = this.getCurrentService() ; 
-      let allDesignations = JSON.parse(currentService.designations) ; 
+      let currentService = this.getCurrentService() ;
+      let allDesignations = JSON.parse(currentService.designations) ;
       for (var i = allDesignations.length - 1; i >= 0; i--) {
            designationsNames.push(allDesignations[i].name);
-        }  
+        }
       return designationsNames;
     }else return [] ;
   }
@@ -97,32 +97,32 @@ export class GestionreportingComponent implements OnInit {
         console.log(this.gestionreporting);
         this.loading = false ;
       });
-      
+
       }
 
       validCharge(){
-       this.loading = true ;  
+       this.loading = true ;
        this.gestionreportingServiceWeb.ajoutdepense(this.token,this.libelleCharge, this.service, this.montantCharge).then(gestionreportingServiceWeb => {
-       // console.log(gestionreportingServiceWeb); 
+       // console.log(gestionreportingServiceWeb);
         this.loading = false ;
 
        });
-        
+
         this.libelleCharge = "" ;
         this.service = "" ;
         this.montantCharge = 0 ;
-        
+
       }
 
       validreclamation(){
 
-        this.loading = true ;  
+        this.loading = true ;
        this.gestionreportingServiceWeb.reclamation(this.token,this.sujet, this.nomservice, this.message).then(gestionreportingServiceWeb => {
-       // console.log(gestionreportingServiceWeb); 
+       // console.log(gestionreportingServiceWeb);
         this.loading = false ;
 
        });
-        
+
         this.sujet = "" ;
         this.nomservice = "" ;
         this.message = "" ;
@@ -130,22 +130,22 @@ export class GestionreportingComponent implements OnInit {
       }
 
       validvente(){
-         this.loading = true ;  
+         this.loading = true ;
          if(this.servicevente.toLowerCase()=='assurance'.toLowerCase())
          {
             let tempdesignation=this.designation;
             this.designation=JSON.stringify({desig:tempdesignation, nom:this.noma, prenom:this.prenoma, telephone:this.telephonea, datedebut:this.datedebut.toString(), datefin:this.datefin.toString()})
-            console.log("Obj designé "+this.designation); 
+            console.log("Obj designé "+this.designation);
          }
 
-        console.log("Paramètres : "+this.token+" "+this.designation+" "+this.servicevente+" "+this.quantite.toString() ); 
+        console.log("Paramètres : "+this.token+" "+this.designation+" "+this.servicevente+" "+this.quantite.toString() );
 
        this.gestionreportingServiceWeb.vente(this.token,this.designation, this.servicevente, this.quantite).then(gestionreportingServiceWeb => {
-       // console.log(gestionreportingServiceWeb); 
+       // console.log(gestionreportingServiceWeb);
         this.loading = false ;
 
        });
-        
+
         this.designation = "" ;
         this.servicevente = "" ;
         this.quantite=0;
@@ -160,16 +160,17 @@ export class GestionreportingComponent implements OnInit {
 
 
   etatcaisse(){
-    
+
     this.comptabiliteServiceWeb.etatcaisse().then(adminmultipdvServiceWeb => {
       this.caisseEtat = adminmultipdvServiceWeb.response;
-      // console.log(adminmultipdvServiceWeb.response); 
+      // console.log(adminmultipdvServiceWeb.response);
     });
   }
 
   validerapprovision(idcaisse){
     this.comptabiliteServiceWeb.validerapprovisionn(idcaisse).then(adminmultipdvServiceWeb => {
-      // console.log(adminmultipdvServiceWeb.response); 
+      // console.log(adminmultipdvServiceWeb.response);
+      this.caisseEtat.etat =1;
     });
   }
 

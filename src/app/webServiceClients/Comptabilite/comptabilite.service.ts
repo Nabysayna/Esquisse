@@ -70,6 +70,25 @@ export class ComptabiliteServiceWeb {
 
   }
 
+  public exploitationaveccommission(idpdv: number, type:string, infotype:string): Promise<any>  {
+    var method:string = 'exploitationaveccommission';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, idpdv: idpdv, type: type, infotype: infotype} ;
+    var params:{}[] = [] ;
+    params["params"] = reEspParams;
+
+    parameters['exploitationaveccommission xmlns="urn:comptapdvwsdl#"'] = params;
+
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'exploitationaveccommissionResponse').then(response=>{
+        var reponse  = JSON.parse(response['exploitationaveccommissionResponse'].return.$);
+        resolve(reponse) ;
+      });
+    });
+
+  }
+
   public listevente(idpdv: number): Promise<any>  {
     var method:string = 'listevente';
     var parameters:{}[] = [];
@@ -291,6 +310,25 @@ export class ComptabiliteServiceWeb {
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'listerevenuResponse').then(response=>{
         var reponse  = JSON.parse(response['listerevenuResponse'].return.$);
+        resolve(reponse) ;
+      });
+    });
+
+  }
+
+  public listerevenutransfert(idpdv: number): Promise<any>  {
+    var method:string = 'listerevenutransfert';
+    var parameters:{}[] = [];
+
+    var reEspParams = {token: this.token, idpdv: idpdv} ;
+    var params:{}[] = [] ;
+    params["params"] = reEspParams ;
+
+    parameters['listerevenutransfert xmlns="urn:comptapdvwsdl#"'] = params;
+
+    return new Promise( (resolve, reject) => {
+      this.soapService.post(method, parameters, 'listerevenutransfertResponse').then(response=>{
+        var reponse  = JSON.parse(response['listerevenutransfertResponse'].return.$);
         resolve(reponse) ;
       });
     });
