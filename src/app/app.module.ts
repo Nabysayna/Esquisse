@@ -197,6 +197,7 @@ import { FiltresouszonesupplierPipe } from './pipes/filtresouszonesupplier.pipe'
 import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
 import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pipe';
 import { FirstlogComponent } from './firstlog/firstlog.component';
+import {FiltreexploitationaveccommissionPipe} from "./pipes/filtreexploitationaveccommission.pipe";
 
 
 
@@ -296,6 +297,7 @@ import { FirstlogComponent } from './firstlog/firstlog.component';
     FiltrechargesPipe,
     FiltrerevenusPipe,
     FiltreexploitationPipe,
+    FiltreexploitationaveccommissionPipe,
     FiltresupservicePipe,
     FiltreportefeuillePipe,
     FiltrerelancePipe,
