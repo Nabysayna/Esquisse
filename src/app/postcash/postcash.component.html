@@ -5,13 +5,13 @@
             <ul class="nav nav-pills">
                 <li class="active"><a href="#rechargementespece-pills" data-toggle="tab">Rechargement Espece</a>
                 </li>
-                <li><a href="#retraitespece-pills" data-toggle="tab">Retrait Espece</a>
+                <li><a href="#retraitespece-pills" (click)="reinitialiser()" data-toggle="tab">Retrait Espece</a>
                 </li>
-                <li><a href="#achatjula-pills" data-toggle="tab">Achat Jula</a>
+                <li><a href="#achatjula-pills" (click)="reinitialiser()" data-toggle="tab">Achat Jula</a>
                 </li>
-                <li><a href="#reglementsenelec-pills" data-toggle="tab">Réglement Senelec</a>
+                <li><a href="#reglementsenelec-pills" (click)="reinitialiser()" data-toggle="tab">Réglement Senelec</a>
                 </li>
-                <li><a href="#achatcodewoyofal-pills" data-toggle="tab">Achat Code Woyofal</a>
+                <li><a href="#achatcodewoyofal-pills" (click)="reinitialiser()" data-toggle="tab">Achat Code Woyofal</a>
                 </li>
 
 <!--                <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Téléphonique</a>
@@ -43,7 +43,7 @@
                         <label for="montantrechargementespece">Montant à recharger</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantrechargementespece" class="form-control" placeholder="montant à recharger" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!rechargementespece.form.valid">Achêter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!rechargementespece.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!rechargementespece.form.valid" >Annuler</button>
 
                     </form>
@@ -61,7 +61,7 @@
                         <label for="montantretraitespece">Montant</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantretraitespece" class="form-control" placeholder="montant à retirer" required>
 
-                        <button type="submit" class="btn btn-success"  data-toggle="modal" data-target="#myModalCodeValidation" [disabled]="!retraitespece.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success"  data-toggle="modal" data-target="#myModalCodeValidation" [disabled]="!retraitespece.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!retraitespece.form.valid" >Annuler</button>
 
                     </form>
@@ -88,7 +88,7 @@
 
 <!--                         <input type="number" [(ngModel)]="this.mt_carte"   name="mt_carte" id="mt_carte" class="form-control" placeholder="montant à envoyer" required>
  -->
-                        <button type="submit" class="btn btn-success" [disabled]="!achatjula.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!achatjula.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatjula.form.valid" >Annuler</button>
 
 
@@ -128,7 +128,7 @@
                         <input type="text" [(ngModel)]="this.compteur"   name="compteur" id="compteur" class="form-control" placeholder="numéro du compteur" required>
 
                         <br><button class="btn btn-success" type="submit" [disabled]="!achatcodewoyofal.form.valid" >
-                        Acheter</button>
+                        Valider</button>
                         <button class="btn btn-danger" [disabled]="!achatcodewoyofal.form.valid" type="reset">
                             Annuler</button>
 
@@ -146,7 +146,7 @@
                         <label for="montantachatcredittelephone">Montant d'achat</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantachatcredittelephone" class="form-control" placeholder="montant d'achat" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!achatcredittelephoniq.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!achatcredittelephoniq.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatcredittelephoniq.form.valid" >Annuler</button>
 
 
@@ -168,7 +168,7 @@
                         <label for="type">Type</label>
                         <input type="text" [(ngModel)]="this.type"   name="type" id="type" class="form-control" placeholder="type" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!achatneo.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!achatneo.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!achatneo.form.valid" >Annuler</button>
 
 
@@ -211,7 +211,7 @@
                         <label for="montantcashtocashsend">Montant</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantcashtocashsend" class="form-control" placeholder="montant" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!cashtocashsend.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!cashtocashsend.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!cashtocashsend.form.valid" >Annuler</button>
                     </form>
                 </div>
@@ -240,7 +240,7 @@
                         <label for="montantcashtocashreceive">Montant</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantcashtocashreceive" class="form-control" placeholder="montant" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!cashtocashreceive.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!cashtocashreceive.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!cashtocashreceive.form.valid" >Annuler</button>
                     </form>
                 </div>
@@ -284,7 +284,7 @@
                         <label for="incoming_source">Incoming source</label>
                         <input type="text" [(ngModel)]="this.incoming_source"   name="incoming_source" id="incoming_source" class="form-control" placeholder="incoming source" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!transfertverstamtam.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!transfertverstamtam.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!transfertverstamtam.form.valid" >Annuler</button>
                     </form>
                 </div>
@@ -331,10 +331,14 @@
                         <label for="adresse_dest">Adresse destinataire</label>
                         <input type="text" [(ngModel)]="this.adresse_dest"   name="adresse_dest" id="adresse_dest" class="form-control" placeholder="adresse destinataire" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!transfertverstamtamviaapay.form.valid">Acheter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!transfertverstamtamviaapay.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!transfertverstamtamviaapay.form.valid" >Annuler</button>
                     </form>
                 </div>
+                <div class="col-sm-6 col-xs-12" *ngIf="erreur" style="padding-top: 7rem ; color: #337ab7">
+                    <h5>Votre requête n'a pas pu être traitée.</h5> <h5 style="color : red">{{errorMessage}}</h5>
+                </div>
+
             </div>
         </div>
     </div>
@@ -353,7 +357,7 @@
         <h4 class="modal-title" id="myModalLabel">Détail facture</h4>
       </div>
       <div class="modal-body">
-        <div *ngIf="detailfacturepostcash.errorCode!='0'">
+        <div *ngIf="detailfacturepostcash.errorCode=='0'">
           <p>Erreur de saisie</p>
           <p>Veuillez-reverifier les données saisie</p>
         </div>

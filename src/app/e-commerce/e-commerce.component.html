@@ -5,7 +5,7 @@
 
   <div class="col-sm-4 extremite">
   	<a class="btn ecomBtn" href="#ecomcatalogue" (click)="initialize()" data-toggle="tab">Catalogue</a>
-  </div> 
+  </div>
 
   <div class="col-sm-4" >
     <a class="btn ecomBtn" href="#prisecom" (click)="initialize()" data-toggle="tab">Prendre une commande</a>
@@ -25,7 +25,7 @@
         	<app-espace-perso></app-espace-perso>
 	    </div>
 
-      <div class="row tab-pane fade col-sm-offset-2 col-sm-8 col-xs-12" style="margin-top: 3rem ; background-color:#f8f8f8;" id="prisecom">
+      <div class="row tab-pane fade col-sm-offset-1 col-sm-10 col-xs-12" style="margin-top: 3rem ; background-color:#f8f8f8;" id="prisecom">
 
           <div class="row" *ngIf="!inforecvd&&!postcmd">
             <div class="col-sm-3 col-xs-12" style="text-align: right; padding-top : 1.5rem ;">
@@ -80,14 +80,14 @@
             <h4 class="modal-title" id="myModalLabel">Détails de la commande.</h4>
         </div>
         <div class="modal-body">
-            
+
         </div>
 
 
-      </div>      
-     </div>     
-</div>  
+      </div>
+     </div>
+</div>
 
 <div *ngIf="this.loading">
-    <app-loader></app-loader>    
+    <app-loader></app-loader>
 </div>

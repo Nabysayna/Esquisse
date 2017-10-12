@@ -143,27 +143,56 @@
                     </fieldset>
                     <form autocomplete="on">
 
-                        <input type="text" name="nomNewClient" [(ngModel)]="this.nomNewClient"  class="form-control" placeholder="nom client" required autofocus>
+                      <div class="form-row">
+                        <div class="form-group col-sm-6">
+                          <label for="nomNewClientDeco" class="col-form-label">Nom du client</label>
+                          <input type="text" name="nomNewClientDeco" id="nomNewClientDeco" [(ngModel)]="this.nomNewClient"  class="form-control" placeholder="nom client" required autofocus>
+                        </div>
+                        <div class="form-group col-sm-6">
+                          <label for="prenomNewClientDeco" class="col-form-label">Prénom du client</label>
+                          <input type="text" name="prenomNewClientDeco" id="prenomNewClientDeco" [(ngModel)]="this.prenomNewClient"  class="form-control" placeholder="prénom client" required >
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-sm-6">
+                          <label for="telNewClientDeco" class="col-form-label">Téléphone du client</label>
+                          <input type="number" name="telNewClient" id="telNewClientDeco" [(ngModel)]="this.telNewClient" class="form-control" placeholder="téléphone client" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                          <label for="regionNewClientDeco" class="col-form-label">Région du client</label>
+                          <input type="text" name="regionNewClient" id="regionNewClientDeco" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="Région du client" required>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <label for="adresseNewClientDeco" class="col-sm-2 col-form-label">Adresse du client</label>
+                        <div class="col-sm-10">
+                          <textarea name="adresseNewClientDeco" style="margin-bottom: 2rem" id="adresseNewClientDeco" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-sm-4">
+                          <label for="ncniNewClientDeco" class="col-form-label">Numéro CNI du client</label>
+                          <input type="text" name="ncniNewClientDeco" id="ncniNewClientDeco" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CNI" required>
+                        </div>
+                        <div class="form-group col-sm-4">
+                          <label for="nchipNewClientDeco" class="col-form-label">Numéro Chip du client</label>
+                          <input type="text" name="nchipNewClientDeco" id="nchipNewClientDeco" [(ngModel)]="this.nchipNewClient" class="form-control" placeholder="Numèro carte" required>
+                        </div>
+                        <div class="form-group col-sm-4">
+                          <label for="ncarteNewClientDeco" class="col-form-label">Numéro Carte du client</label>
+                          <input type="text" name="ncarteNewClientDeco" id="ncarteNewClientDeco" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
+                        </div>
+                      </div>
 
-                        <input type="text" name="prenomNewClient" [(ngModel)]="this.prenomNewClient"  class="form-control" placeholder="prénom client" required >
-
-                        <input type="text" name="telNewClient" [(ngModel)]="this.telNewClient" class="form-control" placeholder="téléphone client" required>
-                        <input type="text" name="adresseNewClient" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required>
-                        <input type="text" name="regionNewClient" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="Région" required>
-
-                        <input type="text" name="ncniNewClient" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CI" required>
-
-                        <input type="text" name="nchipNewClient" [(ngModel)]="this.nchipNewClient" class="form-control" placeholder="Numèro chip" required>
-
-                        <input type="text" name="ncarteNewClient" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
-
-<!--                         <input type="number" name="nbmNewClient" [(ngModel)]="this.nbmNewClient" class="form-control" placeholder="Nombre de mois" required> -->
-
+                      <div class="form-row">
+                        <label for="ncarteNewClientDeco" class="col-form-label">Type</label>
                         <select type="text" name="tbouquetNewClient" [(ngModel)]="this.tbouquetNewClient" class="form-control" style="margin-bottom: 3rem ; margin-left: 1rem ;" required>
-                            <option>Sans Abonnement</option>
-                            <option>+ 1 Mois</option>
-                            <option>+ 3 Mois</option>
+                          <option>Sans Abonnement</option>
+                          <option>+ 1 Mois</option>
+                          <option>+ 3 Mois</option>
                         </select>
+                      </div>
+
 
 
                         <button type="submit" class="btn btn-success" (click)="vendreDecodeur()">Valider</button>
@@ -175,37 +204,37 @@
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-carte">
                   <fieldset><h4>CARTE</h4></fieldset>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6">
                       <label for="nomNewClient" class="col-form-label">Nom du client</label>
                       <input type="text" name="nomNewClient" id="nomNewClient" [(ngModel)]="this.nomNewClient"  class="form-control" placeholder="nom client" required autofocus>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6">
                       <label for="prenomNewClient" class="col-form-label">Prénom du client</label>
                       <input type="text" name="prenomNewClient" id="prenomNewClient" [(ngModel)]="this.prenomNewClient"  class="form-control" placeholder="prénom client" required >
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6">
                       <label for="telNewClient" class="col-form-label">Téléphone du client</label>
                       <input type="number" name="telNewClient" id="telNewClient" [(ngModel)]="this.telNewClient" class="form-control" placeholder="téléphone client" required>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6">
                       <label for="regionNewClient" class="col-form-label">Région du client</label>
-                      <input type="text" name="regionNewClient" id="regionNewClient" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="téléphone client" required>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <label for="adresseNewClient" class="col-sm-2 col-form-label">Adresse du client</label>
-                    <div class="col-sm-10">
-                      <textarea name="adresseNewClient" style="margin-bottom: 2rem" id="adresseNewClient" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required rows="2"></textarea>
+                      <input type="text" name="regionNewClient" id="regionNewClient" [(ngModel)]="this.regionNewClient" class="form-control" placeholder="Région client" required>
                     </div>
                   </div>
                   <div class="form-row"  style="margin-top: 2rem">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-12">
+                      <label for="adresseNewClient" class="col-form-label">Adresse du client</label>
+                      <input type="text" name="adresseNewClient" id="adresseNewClient" [(ngModel)]="this.adresseNewClient" class="form-control" placeholder="Adresse client" required>
+                    </div>
+                  </div>
+                  <div class="form-row"  style="margin-top: 2rem">
+                    <div class="form-group col-sm-6">
                       <label for="ncniNewClient" class="col-form-label">Numéro CNI du client</label>
                       <input type="text" name="ncniNewClient" id="ncniNewClient" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CNI" required>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-sm-6">
                       <label for="ncarteNewClient" class="col-form-label">Numéro Carte du client</label>
                       <input type="text" name="ncarteNewClient" id="ncarteNewClient" [(ngModel)]="this.ncarteNewClient" class="form-control" placeholder="Numèro carte" required>
                     </div>

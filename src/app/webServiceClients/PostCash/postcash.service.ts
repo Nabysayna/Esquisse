@@ -93,6 +93,7 @@ export class PostCashWebService {
 
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'achatcodewoyofalResponse').then(response=>{
+        console.log(response) ;
         var reponse:any = JSON.parse(response['achatcodewoyofalResponse'].return.$);
         resolve(reponse) ;
       });

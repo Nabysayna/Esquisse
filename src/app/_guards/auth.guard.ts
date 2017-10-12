@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
          if ( JSON.parse(sessionStorage.getItem('currentUser')).accessLevel==1 ) {
             return true;
          }
-
+         sessionStorage.removeItem('currentUser') ;
          this.router.navigate(['']);
          return false;
     }
