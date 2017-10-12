@@ -50,6 +50,8 @@ export class PostcashComponent implements OnInit {
     transaction_reason: string;
     incoming_source: string;
     adresse_dest: string;
+    erreur = false ;
+    errorMessage : string ;
     loading = false ;
 
   dataImpression:any;
@@ -69,6 +71,12 @@ export class PostcashComponent implements OnInit {
     ) { }
 
     ngOnInit():void {
+    }
+
+    reinitialiser(){
+      this.telephone = undefined ;
+      this.montant = undefined ;
+      this.erreur = false ;
     }
 
   private closeModalPostSenec(): void { this.closeBtnModalPostSenec.nativeElement.click(); }
@@ -106,8 +114,10 @@ export class PostcashComponent implements OnInit {
         }
         sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
         this.router.navigate(['accueil/impression']);
+      }else{
+        this.erreur = true ;
+        this.errorMessage = postcashwebserviceList.errorMessage;
       }
-      //console.log(postcashwebserviceList);
     });
   }
 
@@ -130,6 +140,7 @@ export class PostcashComponent implements OnInit {
       }
       this.closeModalCodeValidation();
       this.postcashwebservice.retraitespece(this.codevalidation+'','00221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
+          this.loading = false ;
         if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.dataImpression = {
             apiservice:'postecash',
@@ -147,8 +158,10 @@ export class PostcashComponent implements OnInit {
 
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
+        }else{
+          this.erreur = true ;
+          this.errorMessage = postcashwebserviceList.errorMessage;
         }
-        console.log(postcashwebserviceList);
       });
     }
 
@@ -156,8 +169,8 @@ export class PostcashComponent implements OnInit {
       //console.log(this.montant+'-'+this.compteur);
       this.loading = true ;
       this.postcashwebservice.achatcodewoyofal(this.montant+'',this.compteur+'').then(postcashwebserviceList => {
-        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.loading = false ;
+        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.dataImpression = {
             apiservice:'postecash',
             service:'achatcodewayafal',
@@ -173,8 +186,11 @@ export class PostcashComponent implements OnInit {
           }
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
+        }else{
+          this.erreur = true ;
+          this.errorMessage = postcashwebserviceList.errorMessage;
         }
-        console.log(postcashwebserviceList);
+
       });
     }
 
@@ -193,6 +209,7 @@ export class PostcashComponent implements OnInit {
       //console.log(this.police+'-'+this.num_facture);
       this.loading = true ;
       this.postcashwebservice.reglementsenelec(this.police+'', this.num_facture, this.detailfacturepostcash.montant).then(postcashwebserviceList => {
+          this.loading = false ;
         if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.loading = false ;
           this.dataImpression = {
@@ -212,8 +229,11 @@ export class PostcashComponent implements OnInit {
           }
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
+        }else{
+          this.erreur = true ;
+          this.errorMessage = postcashwebserviceList.errorMessage;
         }
-        console.log(postcashwebserviceList);
+
       });
       this.closeModalPostSenec();
     }
@@ -222,6 +242,7 @@ export class PostcashComponent implements OnInit {
       //console.log(this.mt_carte+'-'+this.nb_carte);
       this.loading = true ;
       this.postcashwebservice.achatjula(this.mt_carte+'',this.nb_carte+'').then(postcashwebserviceList => {
+          this.loading = false ;
         if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.loading = false ;
           this.dataImpression = {
@@ -240,14 +261,17 @@ export class PostcashComponent implements OnInit {
           }
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
+        }else{
+          this.erreur = true ;
+          this.errorMessage = postcashwebserviceList.errorMessage;
         }
-        console.log(postcashwebserviceList);
       });
     }
 
     validachatcredittelephonique(){
       console.log(this.telephone+'-'+this.montant);
       this.postcashwebservice.achatcredittelephonique(this.telephone+'',this.montant+'').then(postcashwebserviceList => {
+          this.loading = false ;
         if(postcashwebserviceList.error_code == "0" && postcashwebserviceList.errorMessage == ""){
           this.dataImpression = {
             apiservice:'postecash',
@@ -263,8 +287,11 @@ export class PostcashComponent implements OnInit {
           }
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
+        }else{
+          this.erreur = true ;
+          this.errorMessage = postcashwebserviceList.errorMessage;
         }
-        console.log(postcashwebserviceList);
+
       });
     }
 

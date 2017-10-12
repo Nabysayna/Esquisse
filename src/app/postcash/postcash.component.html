@@ -5,13 +5,13 @@
             <ul class="nav nav-pills">
                 <li class="active"><a href="#rechargementespece-pills" data-toggle="tab">Rechargement Espece</a>
                 </li>
-                <li><a href="#retraitespece-pills" data-toggle="tab">Retrait Espece</a>
+                <li><a href="#retraitespece-pills" (click)="reinitialiser()" data-toggle="tab">Retrait Espece</a>
                 </li>
-                <li><a href="#achatjula-pills" data-toggle="tab">Achat Jula</a>
+                <li><a href="#achatjula-pills" (click)="reinitialiser()" data-toggle="tab">Achat Jula</a>
                 </li>
-                <li><a href="#reglementsenelec-pills" data-toggle="tab">Réglement Senelec</a>
+                <li><a href="#reglementsenelec-pills" (click)="reinitialiser()" data-toggle="tab">Réglement Senelec</a>
                 </li>
-                <li><a href="#achatcodewoyofal-pills" data-toggle="tab">Achat Code Woyofal</a>
+                <li><a href="#achatcodewoyofal-pills" (click)="reinitialiser()" data-toggle="tab">Achat Code Woyofal</a>
                 </li>
 
 <!--                <li><a href="#achatcredittelephone-pills" data-toggle="tab">Achat Credit Téléphonique</a>
@@ -43,7 +43,7 @@
                         <label for="montantrechargementespece">Montant à recharger</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantrechargementespece" class="form-control" placeholder="montant à recharger" required>
 
-                        <button type="submit" class="btn btn-success" [disabled]="!rechargementespece.form.valid">Achêter</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!rechargementespece.form.valid">Acheter</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!rechargementespece.form.valid" >Annuler</button>
 
                     </form>
@@ -335,6 +335,10 @@
                         <button type="reset" class="btn btn-danger" [disabled]="!transfertverstamtamviaapay.form.valid" >Annuler</button>
                     </form>
                 </div>
+                <div class="col-sm-6 col-xs-12" *ngIf="erreur" style="padding-top: 7rem ; color: #337ab7">
+                    <h5>Votre requête n'a pas pu être traitée.</h5> <h5 style="color : red">{{errorMessage}}</h5>
+                </div>
+
             </div>
         </div>
     </div>

@@ -33,6 +33,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   nomshop : any ;
   adresse : any ;
 
+  existLogin = false ;
 
   public monitoringAdminpdvUserpdv: any;
   public modifuserpdv: any;
@@ -52,6 +53,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   }
 
   private closeModal(): void {
+    this.errorConfirm = false;
     this.closeBtn.nativeElement.click();
   }
   
@@ -74,11 +76,11 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   }
 
   public validermodif():void {
-    console.log(this.password +" "+ this.confirmPassword);
     if(this.password == this.confirmPassword) {
       this.adminpdvServiceWeb.modifypdv(this.modifuserpdv.idpdv, this.password).then(adminpdvServiceWebList => {
-        console.log(adminpdvServiceWebList);
       });
+
+      this.errorConfirm = false;
       this.password= null;
       this.confirmPassword = null;
       this.closeBtn.nativeElement.click();  
@@ -428,21 +430,26 @@ export class AdminpdvparametrecompteComponent implements OnInit {
     console.log( "Nouvel Inscrit : "+JSON.stringify(paramInscrpt) ) ;
     this.authenticationService.creerProfilCaissier(paramInscrpt).then( retourserveur => {
       this.loading = false ;
-      this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
-        this.monitoringAdminpdvUserpdv = adminpdvServiceWebList.response;
-      });
+      if(retourserveur!="bad"){
+        this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
+          this.monitoringAdminpdvUserpdv = adminpdvServiceWebList.response;
+        });
 
-      this.prenom=undefined ;
-      this.nom=undefined ;
-      this.email=undefined ;
-      this.telephone=undefined ;
-      this.nometps=undefined ;
-      this.nomshop=undefined ;
-      this.region=undefined ;
-      this.zone=undefined ;
-      this.souszone=undefined ;
-      this.adresse=undefined ;
-      this.closeModal();
+        this.prenom=undefined ;
+        this.nom=undefined ;
+        this.email=undefined ;
+        this.telephone=undefined ;
+        this.nometps=undefined ;
+        this.nomshop=undefined ;
+        this.region=undefined ;
+        this.zone=undefined ;
+        this.souszone=undefined ;
+        this.adresse=undefined ;
+        this.existLogin = false ;
+        this.closeModal();
+      }else
+        this.existLogin = true ;
+
      }) ; 
      
  }
