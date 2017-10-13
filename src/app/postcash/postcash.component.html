@@ -53,7 +53,7 @@
                     <fieldset style="margin-top: 2rem;margin-bottom: 2rem;">
                         <h4> RETRAIT ESPECE</h4>
                     </fieldset>
-                    <form (ngSubmit)="validatecodevalidation()" #retraitespece="ngForm" autocomplete="on">
+                    <form (ngSubmit)="validateretraitespece()" #retraitespece="ngForm" autocomplete="on">
 
                         <label for="telephoneretraitespece">Téléphone client</label>
                         <input type="number" [(ngModel)]="this.telephone"   name="telephone" id="telephoneretraitespece" class="form-control" placeholder="téléphone client" required>
@@ -61,7 +61,10 @@
                         <label for="montantretraitespece">Montant</label>
                         <input type="number" [(ngModel)]="this.montant"   name="montant" id="montantretraitespece" class="form-control" placeholder="montant à retirer" required>
 
-                        <button type="submit" class="btn btn-success"  data-toggle="modal" data-target="#myModalCodeValidation" [disabled]="!retraitespece.form.valid">Valider</button>
+                        <label for="codevalidation">Code de validation</label>
+                        <input type="number" [(ngModel)]="this.codevalidation"   name="codevalidation" id="codevalidation" class="form-control" placeholder="Code de validation" required>
+
+                        <button type="submit" class="btn btn-success" [disabled]="!retraitespece.form.valid">Valider</button>
                         <button type="reset" class="btn btn-danger" [disabled]="!retraitespece.form.valid" >Annuler</button>
 
                     </form>

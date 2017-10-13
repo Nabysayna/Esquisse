@@ -138,7 +138,7 @@ export class PostcashComponent implements OnInit {
 
         },
       }
-      this.closeModalCodeValidation();
+      //this.closeModalCodeValidation();
       this.postcashwebservice.retraitespece(this.codevalidation+'','00221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
           this.loading = false ;
         if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
@@ -154,11 +154,17 @@ export class PostcashComponent implements OnInit {
 
             },
           }
+
           this.loading = false ;
 
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
           this.router.navigate(['accueil/impression']);
         }else{
+          console.log(postcashwebserviceList) ;
+          
+          this.codevalidation = undefined ;
+          this.telephone = undefined ;
+          this.montant  = undefined ;  
           this.erreur = true ;
           this.errorMessage = postcashwebserviceList.errorMessage;
         }
