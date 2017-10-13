@@ -32,24 +32,24 @@
             <div class="tab-content">
 
                 <div class="tab-pane fade col-sm-6 col-xs-12 in active" id="depot">
-                        <h3>Dépôt d'argent</h3>
+                        <h3>Dépôt</h3>
                         <form name="transnat" (ngSubmit)="deposer()" #formdepot="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
                             <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
 
                             <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
 
-                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formdepot.form.valid">Transférer</button>
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formdepot.form.valid">Valider</button>
                         </form>
                 </div>
 
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="retrait">
-                        <h3>Retrait d'argent</h3>
+                        <h3>Retrait sur compte principal</h3>
                         <form name="transnat" (ngSubmit)="retirer()" #formretrait="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
                             <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
 
                             <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
 
-                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formretrait.form.valid">Transférer</button>
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formretrait.form.valid">Valider</button>
                         </form>
                 </div>
 
@@ -60,7 +60,7 @@
 
                             <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
 
-                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formtransnat.form.valid">Transférer</button>
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formtransnat.form.valid">Valider</button>
                         </form>
                 </div>
 
@@ -71,7 +71,7 @@
 
                             <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
 
-                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formtransint.form.valid">Transférer</button>
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formtransint.form.valid">Valider</button>
                         </form>
                 </div>
 
@@ -83,28 +83,37 @@
 
                             <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
 
-                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formachatcred.form.valid">Transférer</button>
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formachatcred.form.valid">Valider</button>
                         </form>
                 </div>
 
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="retraitinter">
-                        <h3>Retrait </h3>
-                        <form name="transnat" (ngSubmit)="acheterCredit()" #formachatcred="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                        <h3>Retrait sur compte de Reception</h3>
+                        <form name="transnat" (ngSubmit)="retraitCpteRecep()" #formachatcred="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
                             <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
 
                             <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
 
-                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formachatcred.form.valid">Transférer</button>
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formachatcred.form.valid">Valider</button>
                         </form>
                 </div>
                 <div class="tab-pane fade col-sm-6 col-xs-12" id="retraitcode">
-                        <h3>Achat crédit</h3>
-                        <form name="transnat" (ngSubmit)="acheterCredit()" #formachatcred="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;">
+                        <h3>Retrait avec code</h3>
+                        <form name="transnat" (ngSubmit)="retraitAvecCode()" #formachatcred="ngForm" autocomplete="on" style="margin-top: 2rem;margin-bottom: 2rem;" class="form-inline">
+
                             <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
 
                             <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
 
-                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formachatcred.form.valid">Transférer</button>
+                            <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.numclient" name="verifiernuminput" id="numclient"  class="form-control" placeholder="Numéro du client" required autofocus>
+
+                            <input type="number" [(ngModel)]="this.mnt" name="verifiernuminput" id="mnttrans"  class="form-control" placeholder="Montant du transfert" required autofocus>
+
+                            <button style="margin-top: 1rem;" type="submit" class="btn btn-success" [disabled]="!formachatcred.form.valid">Valider</button>
                         </form>
                 </div>
 

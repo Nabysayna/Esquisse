@@ -58,7 +58,7 @@ export class OrangeMoneyComponentComponent implements OnInit {
 
 /********************************************************/
   deposer(){
-    let requete = "1/"+this.numclient+"/"+this.mnt ;
+    let requete = "1/"+this.mnt+"/"+this.numclient ;
     this.loading = true ;
     this.omService.requerirControllerOM(requete).then( resp => {
       if (resp.status==200){
@@ -91,6 +91,45 @@ export class OrangeMoneyComponentComponent implements OnInit {
         console.log("error") ; 
     }) ;
   }
+
+
+/***********************************************************/
+
+  retraitAvecCode(){
+    let requete = "2/"+this.numclient+"/"+this.mnt ;
+    this.loading = true ;
+    this.omService.requerirControllerOM(requete).then( resp => {
+      if (resp.status==200){
+        if (resp._body=='1'){
+          this.loading = false ;
+          this.numclient = undefined ;
+          this.mnt = undefined; 
+        }
+      }
+      else
+        console.log("error") ; 
+    }) ;
+  }
+
+
+/***********************************************************/
+
+  retraitCpteRecep(){
+    let requete = "2/"+this.numclient+"/"+this.mnt ;
+    this.loading = true ;
+    this.omService.requerirControllerOM(requete).then( resp => {
+      if (resp.status==200){
+        if (resp._body=='1'){
+          this.loading = false ;
+          this.numclient = undefined ;
+          this.mnt = undefined; 
+        }
+      }
+      else
+        console.log("error") ; 
+    }) ;
+  }
+
 
 /*********************************************************/
 
