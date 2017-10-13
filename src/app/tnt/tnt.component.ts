@@ -59,6 +59,26 @@ export class TntComponent implements OnInit {
   public retourTntWS: {}[] ;
   private singleTntWS: TntResponse ;
 
+  listeregion:string[] = [
+    'Bargny',
+    'Diourbel',
+    'Dakar',
+    'Fatick',
+    'Kaffrine',
+    'Kaolack',
+    'Kedougou',
+    'Kolda',
+    'Louga',
+    'Matam',
+    'Rufisque',
+    'Saint-Louis',
+    'Sebikhotane',
+    'Sedhiou',
+    'Tambacounda',
+    'Thies',
+    'Ziguinchor',
+    'Autre',
+  ];
   rowsOnPage = 7 ;
   sortBy = "prenom";
   orderByDate = 'date_abonnement' ;

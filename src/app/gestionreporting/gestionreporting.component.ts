@@ -171,6 +171,7 @@ export class GestionreportingComponent implements OnInit {
     this.comptabiliteServiceWeb.validerapprovisionn(idcaisse).then(adminmultipdvServiceWeb => {
       // console.log(adminmultipdvServiceWeb.response);
       this.caisseEtat.etat =1;
+      this.caisseEtat.soldeFermet = this.caisseEtat.soldeOuvert;
     });
   }
 
