@@ -162,8 +162,8 @@ export class TntServiceWeb {
       return new Promise( (resolve, reject) => {
         parameters['ajoutabonnement xmlns="urn:tntwsdl#"'] = params ;
         this.soapService.post(method, parameters, 'ajoutabonnementResponse').then(response=>{
+          console.log(reponse ) ;
           var reponse : string = JSON.parse(response['ajoutabonnementResponse'].return.$).response;
-          //console.log("reponse brute  "+reponse ) ;
           resolve(reponse) ;
         });
       });

@@ -106,7 +106,7 @@
                                 <option  *ngFor="let designation of getDesignations()">{{ designation }}</option>
                                 </select>
                              </div>
-                               <div class="col-sm-3 col-xs-12"> <input type="number" [(ngModel)]="quantite"   name="qte" id="qte" class="form-control" placeholder="quantité" required></div>
+                               <div class="col-sm-3 col-xs-12" style="margin-top: -2rem;"> <label>Quantité</label><input type="number" [(ngModel)]="quantite"   name="qte" id="qte" class="form-control" placeholder="quantité" required></div>
 
                                 <div class="col-sm-3 col-xs-12" style="margin-top: 1rem;" *ngIf="servicevente.toLowerCase()!='assurance'"><button id="validcharge" class="btn  btn-primary btn-block" type="submit" (click)="validvente()">Valider</button>
                                 </div>
