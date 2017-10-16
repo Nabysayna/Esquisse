@@ -27,23 +27,35 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true ;
+    this.listmajcautions();
+  }
+
+  listmajcautions(){
     this.adminmultipdvServiceWeb.listmajcautions('azrrtt').then(adminmultipdvServiceWebList => {
-      console.log(adminmultipdvServiceWebList);
       if(adminmultipdvServiceWebList.errorCode == 1){
-        this.adminmultipdvMajcaution = adminmultipdvServiceWebList.response; 
+        this.adminmultipdvMajcaution = adminmultipdvServiceWebList.response.map(function (elt) {
+          return {
+            adminpdv:elt.adminpdv,
+            adresse: JSON.parse(elt.adresse).address,
+            cautioninitiale:elt.cautioninitiale,
+            idcaution:elt.idcaution,
+            montantconsomme:elt.montantconsomme,
+            telephone:elt.telephone
+          }
+        })
+        //console.log(this.adminmultipdvMajcaution);
       }
       else{
-       this.adminmultipdvMajcaution = []; 
+        this.adminmultipdvMajcaution = [];
       }
       this.loading = false ;
     });
-
   }
 
   private closeModal(): void {
     this.closeBtn.nativeElement.click();
   }
-  
+
   public toInt(num: string) {
     return +num;
   }
@@ -60,9 +72,10 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
   public validermaj(item):void {
     this.loading = true ;
     this.adminmultipdvServiceWeb.modifymajcaution('azrrtt', this.majcaution.idcaution, this.inputCaution).then(adminmultipdvServiceWebList => {
-      console.log(adminmultipdvServiceWebList); 
+      console.log(adminmultipdvServiceWebList);
       this.closeModal();
       this.loading = false ;
+      this.listmajcautions();
     });
   }
 

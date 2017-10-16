@@ -24,7 +24,18 @@ export class AdminmultipdvDemandeRetraitComponent implements OnInit {
   ngOnInit() {
     this.loading = true ;
     this.adminmultipdvServiceWeb.demanderetraitfond('azrrtt').then(adminmultipdvServiceWebList => {
-      this.adminmultipdvDemanderetrait = adminmultipdvServiceWebList; 
+      this.adminmultipdvDemanderetrait = adminmultipdvServiceWebList.map(function (elt) {
+        return {
+          adresse:JSON.parse(elt.adresse).address,
+          agent:elt.agent,
+          datedemanderetrait:elt.datedemanderetrait,
+          etatdemande:elt.etatdemande,
+          iddemanderetrait:elt.iddemanderetrait,
+          montantdemande:elt.montantdemande,
+          telephone:elt.telephone,
+        }
+      });
+      console.log(this.adminmultipdvDemanderetrait);
     });
 
   }
@@ -40,7 +51,7 @@ export class AdminmultipdvDemandeRetraitComponent implements OnInit {
     validretrait(iddemanderetrait:number){
       this.loading = true ;
       this.adminmultipdvServiceWeb.validerretrait('azrrtt', iddemanderetrait).then(adminmultipdvServiceWebList => {
-        console.log(adminmultipdvServiceWebList); 
+        console.log(adminmultipdvServiceWebList);
         this.loading = false ;
       });
     }
