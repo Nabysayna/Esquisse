@@ -31,6 +31,9 @@ export class TntComponent implements OnInit {
   token : string = JSON.parse(sessionStorage.getItem('currentUser')).baseToken ;
   loading = false ;
 
+  erreur = false ;
+  errorMessage : string ;
+
 
   prenomNewClient : string ;
   nomNewClient: string ;
@@ -115,6 +118,7 @@ export class TntComponent implements OnInit {
 
   validVerifierNum(){
         this.loading = true ;
+        this.erreur = false ;
     this.tntCaller.checkNumber(this.token, this.verifierNumInput.toString()).then( response =>
         {
         this.singleTntWS = response ;
@@ -141,14 +145,15 @@ export class TntComponent implements OnInit {
   }
 
   validnabon(){
+    this.erreur = false ;
     this.loading = true ;
     this.verifierNumInputValide = true ;
     var typedebouquet : number ;
     if(this.tbouquet == "Maanaa")
       typedebouquet=1;
-    if(this.tbouquet == "Boul Khool")
+    if(this.tbouquet == "Boul khool")
       typedebouquet=2;
-    if(this.tbouquet == "Maanaa + Boul Khool")
+    if(this.tbouquet == "Maanaa + Boul khool")
       typedebouquet=3;
 
     this.singleTntWS.tel = this.tela.toString() ;
@@ -160,7 +165,7 @@ export class TntComponent implements OnInit {
 
     this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela.toString(), this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
       {
-        if(response=="ok"){
+        if(response.response=="ok"){
          this.verifierNumValide = false ;
          this.verifierNumInputValide = true;
          this.loading = false ;
@@ -195,7 +200,11 @@ export class TntComponent implements OnInit {
           }
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
          this.router.navigate(['accueil/impression']);
-        }
+        }else{
+         this.loading = false ;
+        this.erreur = true ;
+        this.errorMessage = response.errorMessage;
+      }
 
       });
   }
@@ -203,6 +212,7 @@ export class TntComponent implements OnInit {
 
   listerAbonnements(){
       this.loading = true ;
+      this.erreur = false ;
 
       this.tntCaller.listAbonnement(this.token).then( response =>
         {
@@ -214,6 +224,7 @@ export class TntComponent implements OnInit {
 
   listerVenteDeco(){
       this.loading = true ;
+      this.erreur = false ;
 
       this.tntCaller.listeVenteDecods(this.token).then( response =>
         {
@@ -225,6 +236,7 @@ export class TntComponent implements OnInit {
 
   listerVenteCarte(){
       this.loading = true ;
+      this.erreur = false ;
 
       this.tntCaller.listerVenteCartes(this.token).then( response =>
         {
@@ -238,6 +250,8 @@ export class TntComponent implements OnInit {
 
   vendreDecodeur(){
     this.loading = true ;
+    this.erreur = false ;
+
     var typedebouquet : number ;
     var prix:number ;
     if(this.tbouquetNewClient == "Sans Abonnement"){
@@ -286,6 +300,7 @@ export class TntComponent implements OnInit {
 
   vendreCarte(){
     console.log('vendreCarte');
+    this.erreur = false ;
     this.loading = true ;
     this.dataImpression = {
       apiservice:'tnt',
@@ -314,6 +329,7 @@ export class TntComponent implements OnInit {
 
 
   reinitialiserVariables(){
+      this.erreur = false ;
       this.verifierNumValide = false ;
       this.prenomNewClient =undefined ;
       this.nomNewClient=undefined ;

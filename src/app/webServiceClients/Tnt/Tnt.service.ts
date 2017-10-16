@@ -29,7 +29,6 @@ export class TntResponse{
 @Injectable()
 export class TntServiceWeb {
 
-
   private servicePort:string = 'http://51.254.200.129' ;
   private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/tnt?wsdl' ;
   private targetNamespace:string = 'urn:tntwsdl' ;
@@ -139,7 +138,7 @@ export class TntServiceWeb {
   }
 
 
-  public abonner(token:string, prenom:string, nom:string, tel:string, cni:string, numerochip:string, numerocarte:string, duree:number, typedebouquet:number) : Promise<string> {
+  public abonner(token:string, prenom:string, nom:string, tel:string, cni:string, numerochip:string, numerocarte:string, duree:number, typedebouquet:number) : Promise<any> {
 
       var method:string = 'ajoutabonnement';
       var parameters:{}[] = [];
@@ -163,7 +162,7 @@ export class TntServiceWeb {
         parameters['ajoutabonnement xmlns="urn:tntwsdl#"'] = params ;
         this.soapService.post(method, parameters, 'ajoutabonnementResponse').then(response=>{
           console.log(reponse ) ;
-          var reponse : string = JSON.parse(response['ajoutabonnementResponse'].return.$).response;
+          var reponse : string = JSON.parse(response['ajoutabonnementResponse'].return.$);
           resolve(reponse) ;
         });
       });

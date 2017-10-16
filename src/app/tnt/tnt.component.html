@@ -323,6 +323,10 @@
                      </table>
                 </div>
 
+                <div class="col-sm-6 col-xs-12" *ngIf="erreur" style="padding-top: 7rem ; color: #337ab7">
+                    <h5>Votre requête n'a pas pu être traitée.</h5> <h5 style="color : red">{{errorMessage}}</h5>
+                </div>
+
             </div>
         </div>
 

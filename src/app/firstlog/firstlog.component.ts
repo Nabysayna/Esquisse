@@ -10,7 +10,8 @@ import * as sha1 from 'js-sha1';
   styleUrls: ['./firstlog.component.css']
 })
 export class FirstlogComponent implements OnInit {
-  fakevalues = true ;
+  notMatching = false ;
+  wrongCurrrentPwd = false ;
   pwdactuel : string ;
   newpwd : string ;
   confirmpdw : string ;
@@ -26,15 +27,28 @@ export class FirstlogComponent implements OnInit {
   }
 
   modifierPwd(){
-  	if (this.confirmpdw!=this.newpwd)
-
-  	this.loading = true ;
-    this.authentiService.modifierpwdinit(this.pwdactuel, this.newpwd).then( resp=>
-      {
-        this.router.navigate(['']); 
-	  	this.loading = false ;
-      }); 
-
+  	if (this.confirmpdw==this.newpwd){
+    	this.loading = true ;
+      this.authentiService.modifierpwdinit( sha1(this.pwdactuel), sha1(this.newpwd) ).then( resp=>
+        {
+          this.loading = false ;
+          if(resp!='badpwd'){
+            this.router.navigate(['']); 
+          }else{
+            this.notMatching=false ;
+            this.wrongCurrrentPwd=true ;
+            this.pwdactuel = undefined ;
+            this.newpwd = undefined ;
+            this.confirmpdw = undefined ;
+          }
+        }); 
+    }else{
+      this.wrongCurrrentPwd=false ;
+      this.notMatching=true ;
+      this.pwdactuel = undefined ;
+      this.newpwd = undefined ;
+      this.confirmpdw = undefined ;
+    }
   }
 
 }

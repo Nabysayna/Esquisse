@@ -17,6 +17,8 @@
         <div class="col-sm-8 col-md-8 col-xs-12" id="over-account-wall" style="height: 0rem !important;" >
 
             <div class="account-wall" >
+                <h4 *ngIf="notMatching==true" style="margin-left: 3rem ;" class="badge">Les valeurs que vous avez saisies pour le nouveau mot de pass ne correspondent pas. Veuillez reprendre la saisie.</h4>
+                <h4 *ngIf="wrongCurrrentPwd==true" style="margin-left: 6rem ;" class="badge"> La valeur saisie pour le mot de pass actuel n'est pas correcte.</h4>
 
                 <form class="form-signin" (ngSubmit)="modifierPwd()" #heroForm="ngForm">
 

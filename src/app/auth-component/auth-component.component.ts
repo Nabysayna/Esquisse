@@ -71,7 +71,7 @@ export class AuthComponentComponent implements OnInit {
 
   authentificateBySMS(){
     this.loading = true ;
-    this.authenticationService.loginPhase2(this.fromSMS).then( access=>
+    this.authenticationService.loginPhase2(this.fromSMS+"#"+sessionStorage.getItem('headToken') ).then( access=>
       { 
        if ( access === 3 ){
           this.router.navigate(['/accueil']); 

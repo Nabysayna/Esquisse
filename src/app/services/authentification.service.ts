@@ -8,14 +8,14 @@ import * as sha1 from 'js-sha1';
 
 @Injectable()
 export class AuthenticationService {
-    authentiService: AuthentificationServiceWeb;
-    public baseToken: string;
-    public email: string;
-    public prenom: string;
-    public nom: string;
-    public telephone: string;
-    public accessLevel: number;
-    public authorizedApis: string;
+    authentiService: AuthentificationServiceWeb ;
+    public baseToken: string ;
+    public email: string ;
+    public prenom: string ;
+    public nom: string ;
+    public telephone: string ;
+    public accessLevel: number ;
+    public authorizedApis: string ;
 
     constructor() {
         var currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -25,10 +25,11 @@ export class AuthenticationService {
 
     login(email: string, password: string): Promise<string> {
       return new Promise( (resolve, reject)=> {
-            this.authentiService.authentifier(email, password).then( response => {
+            this.authentiService.authentifier(email, sha1(password)).then( response => {
                 console.log("Reponse du serveur : "+response) ;
                 if( response != 'false' ){
                     console.log("Has been granted by the server") ;
+                    sessionStorage.setItem('headToken', response.split("#")[1] );
                     resolve(response);
                 } else {
                     resolve("rejected");
@@ -55,7 +56,7 @@ export class AuthenticationService {
                 var resp:AuthResponse=response ;
 
                 if( resp.reponse.toString()== "true" ){
-                    this.baseToken = sha1(resp.baseToken+sha1("bay3k00_f1_n10un") );
+                    this.baseToken = sessionStorage.getItem('headToken')+sha1(resp.baseToken+sha1("bay3k00_f1_n10un") );
                     this.email = resp.prenom;
                     this.prenom = resp.prenom;
                     this.nom = resp.nom;

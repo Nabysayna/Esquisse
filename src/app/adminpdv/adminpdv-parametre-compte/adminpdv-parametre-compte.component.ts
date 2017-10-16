@@ -1,5 +1,6 @@
 import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
 import * as _ from "lodash";
+import * as sha1 from 'js-sha1';
 
 import { AuthenticationService } from '../../services/authentification.service';
 
@@ -77,7 +78,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
 
   public validermodif():void {
     if(this.password == this.confirmPassword) {
-      this.adminpdvServiceWeb.modifypdv(this.modifuserpdv.idpdv, this.password).then(adminpdvServiceWebList => {
+      this.adminpdvServiceWeb.modifypdv(this.modifuserpdv.idpdv, sha1(this.password) ).then(adminpdvServiceWebList => {
       });
 
       this.errorConfirm = false;
