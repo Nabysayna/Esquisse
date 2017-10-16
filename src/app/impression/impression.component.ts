@@ -27,7 +27,7 @@ export class ImpressionComponent implements OnInit {
   print(): void {
     let printContents, popupWin;
     printContents = document.getElementById(this.dataImpression.apiservice+'recuimpression'+this.dataImpression.service).innerHTML;
-    popupWin = window.open('', '_blank', 'left=0,top=0,height=auto,width=100');
+    popupWin = window.open('', '_blank', 'left=0,top=0,height=800,width=800,innerheight=800,innerwidth=1000');
     popupWin.document.open();
     popupWin.document.write(`
           <html>

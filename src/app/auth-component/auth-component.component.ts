@@ -49,6 +49,7 @@ export class AuthComponentComponent implements OnInit {
   }
 
   ngOnInit() {
+    sessionStorage.clear() ;
     this.authenticationService.logout();
   }
     
@@ -59,7 +60,6 @@ export class AuthComponentComponent implements OnInit {
         if(access  != "rejected"){
           this.loading = false ;
           this.phase1 = false ;
-
         }else{
           this.fakevalues = false ;
           this.userName = ''  ; 
@@ -446,11 +446,6 @@ export class AuthComponentComponent implements OnInit {
  }
 
  inscrire(){
-
-/*    let paramInscrpt = {'token':'234576TVG5@u_45RRFT', 'prenom':this.prenom, 'nom':this.nom, 'email':this.email, 'telephone':this.telephone, 'nometps':this.nometps, 'nomshop':this.nomshop, adresse : JSON.stringify({'region':this.getRegionName(this.region), 'zone':this.getZoneName(this.zone), 'souszone':this.souszone, 'address':this.adresse}) } ;
-
-    console.log("Nouvel Inscrit : "+JSON.stringify(paramInscrpt) ) ;
-     this.authenticationService.inscrire(paramInscrpt).then( retourserveur => {} ) */
      
  }
 
