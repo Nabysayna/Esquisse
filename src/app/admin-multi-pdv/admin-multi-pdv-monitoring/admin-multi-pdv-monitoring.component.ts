@@ -22,7 +22,7 @@ export class AdminmultipdvMonitoringComponent implements OnInit {
   public showWarning: boolean;
   public dynamic: number;
   public type: string;
-  
+
 
   // Bar
   public barChartOptions:any = {
@@ -42,28 +42,29 @@ export class AdminmultipdvMonitoringComponent implements OnInit {
     this.loading = true ;
     this.adminmultipdvServiceWeb.bilandeposit('azrrtt').then(adminmultipdvServiceWebList => {
       console.log(adminmultipdvServiceWebList.response);
-      this.monitoringAdminmultipdvDeposit = adminmultipdvServiceWebList.response; 
+      this.monitoringAdminmultipdvDeposit = adminmultipdvServiceWebList.response;
       this.max = this.monitoringAdminmultipdvDeposit.depositInitial;
       this.dynamic = this.monitoringAdminmultipdvDeposit.depositConsomme;
-      if ( this.dynamic <= (this.max*0.5) ){ this.type = 'success'; }
-      else if ( (this.dynamic > (this.max*0.5)) && (this.dynamic <= (this.max*0.75)) ){ this.type = 'warning'; }
-      else if ( this.dynamic > (this.max*0.75) ){ this.type = 'danger'; }
+      if ( this.dynamic <= (this.max*0.3) ){ this.type = 'danger'; }
+      else if ( (this.dynamic > (this.max*0.3)) && (this.dynamic <= (this.max*0.5)) ){ this.type = 'warning'; }
+      else if ( (this.dynamic > (this.max*0.5)) && (this.dynamic <= (this.max*1)) ){ this.type = 'info'; }
+      else if ( this.dynamic > (this.max*1) ){ this.type = 'success'; }
       this.loading = false ;
     });
 
     this.adminmultipdvServiceWeb.depositinitialconsommeparservice('azrrtt').then(adminmultipdvServiceWebList => {
-      this.monitoringAdminmultipdvDepositParService = adminmultipdvServiceWebList.response; 
+      this.monitoringAdminmultipdvDepositParService = adminmultipdvServiceWebList.response;
       this.barChartLabels = this.monitoringAdminmultipdvDepositParService.services;
       this.barChartData = [
       {data: this.monitoringAdminmultipdvDepositParService.depositinitial, label: 'Déposit initial'},
-      {data: this.monitoringAdminmultipdvDepositParService.depositconsomme, label: 'Déposit consommé'}
+      {data: this.monitoringAdminmultipdvDepositParService.depositconsomme, label: 'Etat Déposit'}
       ]
     });
 
-    
+
 
   }
 
-  
-  
+
+
 }

@@ -16,15 +16,14 @@
                             <p><strong>Déposit initial</strong></p>
                             <p><strong>{{max}}</strong>FCFA</p>
                         </div>
-                        <div class="col-sm-4">       
-                            <p><strong>Consommé {{ dynamic }}FCFA</strong></p>
+                        <div class="col-sm-4">
                             <progressbar class="progress-striped active" [max]="max" [value]="dynamic" [type]="type">
                                 <i>{{ ( (dynamic * 100) / max ) | number:'1.0-2' }}%</i>
                             </progressbar>
                         </div>
                         <div class="col-sm-4">
-                            <p><strong>Déposit restant</strong></p>
-                            <p><strong>{{monitoringAdminmultipdvDeposit.depositRestant}}</strong>FCFA</p>
+                            <p><strong>Etat Déposit </strong></p>
+                            <p><strong>{{ dynamic }}</strong>FCFA</p>
                         </div>
                     </div>
                 </div>
@@ -45,11 +44,11 @@
             </div>
 		</div>
     </div>
-    
+
 </div>
 
 <div *ngIf="this.loading">
-    <app-loader></app-loader>    
+    <app-loader></app-loader>
 </div>
 
 

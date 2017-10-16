@@ -19,7 +19,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   public lineChartOptions:any = { responsive: true };
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
-  
+
   adminmultpdvperformancesservices: any;
   loading = false ;
   adminmultipdvActiviteservices: any;
@@ -31,7 +31,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   detailperformancepdv:any;
   performanceadminpdv:any;
 
-  
+
   @ViewChild('childModal') public childModal:ModalDirective;
   public showChildModal():void {
     this.childModal.show();
@@ -47,7 +47,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
   public sortBy = "fullname";
   public sortOrder = "desc";
   public performancesadminclasserbylotbydate:any
-  
+
 
   constructor(private adminmultipdvServiceWeb: AdminmultipdvServiceWeb) {}
 
@@ -56,22 +56,27 @@ export class AdminmultipdvDashboardComponent implements OnInit {
     this.activiteservice("Nombre d'opérations par mois");
     this.estcheckPerformance('journee');
   }
-  
+
   public colorsEmptyObject: Array<Color> = [{}];
   public datasets: any[];
-  public chartClicked(e:any):void { 
+
+  public chartClickedps(e:any):void {
+//    console.log(e);
+  }
+
+  public chartClicked(e:any):void {
     if (e.active[0]){
       this.estdetailPerformance(e.active[0]._model.label);
       this.showChildModal();
     }
-  } 
+  }
 
   public nombredereclamationagentpdvvente():void {
-    this.adminmultipdvServiceWeb.nombredereclamationagentpdvvente('azrrtt').then(adminpdvServiceWebList => 
+    this.adminmultipdvServiceWeb.nombredereclamationagentpdvvente('azrrtt').then(adminpdvServiceWebList =>
       this.AdminmultipdvNombredereclamationagentpdvvente = adminpdvServiceWebList.response
     );
   }
-  
+
   public performancesadminclasserbydate(type:string):void {
     console.log(type);
     this.adminmultipdvServiceWeb.performancesadminclasserbydate(type).then(adminmultipdvServiceWebList => {
@@ -82,16 +87,16 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       }];
     });
   }
- 
+
   public activiteservice(lineTitle):void {
     this.adminmultipdvServiceWeb.activiteservices(lineTitle).then(adminpdvServiceWebList =>{
       this.adminmultipdvActiviteservices = adminpdvServiceWebList.response;
       this.lineChartData = this.adminmultipdvActiviteservices.datas;
-      this.lineChartLabels = this.adminmultipdvActiviteservices.dateactivite;     
-      this.lineTilte = this.adminmultipdvActiviteservices.typeactivite;     
+      this.lineChartLabels = this.adminmultipdvActiviteservices.dateactivite;
+      this.lineTilte = this.adminmultipdvActiviteservices.typeactivite;
     });
   }
-  
+
 
   estcheckPerformance(type: string){
     if(type == 'journee'){
@@ -117,7 +122,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       this.checkPerformance.semaine = false;
       this.checkPerformance.mois = true;
       this.typeperformance = "dans le mois";
-      
+
       this.detailperformancepdv = null;
       this.performanceadminpdv = null;
     }
@@ -136,23 +141,23 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       type = "mois";
     }
     console.log(type+' '+lot);
-    
+
     this.loading = true ;
     this.adminmultipdvServiceWeb.performancesadminclasserbylotbydate(lot, type).then(adminmultipdvServiceWebList => {
       console.log('performancesadminclasserbylotbydate');
       console.log(adminmultipdvServiceWebList);
       if(adminmultipdvServiceWebList.errorCode == 1){
-        this.performancesadminclasserbylotbydate = adminmultipdvServiceWebList.response; 
+        this.performancesadminclasserbylotbydate = adminmultipdvServiceWebList.response;
       }
       else{
-       this.performancesadminclasserbylotbydate = []; 
+       this.performancesadminclasserbylotbydate = [];
       }
       this.loading = false ;
     });
 
   }
-  
-  
+
+
   public detailperformancesadminclasserbydate(adminpdv: any){
     this.performanceadminpdv = adminpdv;
     let type:string="";
@@ -167,25 +172,25 @@ export class AdminmultipdvDashboardComponent implements OnInit {
     }
     this.adminmultipdvServiceWeb.detailperformancesadminclasserbydate(adminpdv.idadminpdv, type).then(adminmultipdvServiceWebList => {
       if(adminmultipdvServiceWebList.errorCode == 1){
-        console.log(this.detailperformancepdv); 
+        console.log(this.detailperformancepdv);
         this.detailperformancepdv = adminmultipdvServiceWebList.response;
       }
       else{
-       this.detailperformancepdv = null; 
+       this.detailperformancepdv = null;
       }
     });
   }
-   
+
   public activiteserviceparno():void {
     this.activiteservice("Nombre d'opérations par mois");
   }
-  
+
   public activiteserviceparmp():void {
     this.activiteservice("Montant perçus par mois");
   }
-  
+
   public activiteserviceparmd():void {
     this.activiteservice("Montant donnés par mois");
   }
-   
+
 }

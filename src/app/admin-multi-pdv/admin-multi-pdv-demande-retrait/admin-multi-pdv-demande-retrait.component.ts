@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AdminmultipdvDemanderetrait }    from '../../models/adminmultipdv-demanderetrait';
 import { AdminmultipdvServiceWeb } from '../../webServiceClients/Adminmultipdv/adminmultipdv.service';
+import {log} from "util";
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AdminmultipdvDemandeRetraitComponent implements OnInit {
     this.loading = true ;
     this.adminmultipdvServiceWeb.demanderetraitfond('azrrtt').then(adminmultipdvServiceWebList => {
       this.adminmultipdvDemanderetrait = adminmultipdvServiceWebList.map(function (elt) {
+        console.log(elt);
         return {
           adresse:JSON.parse(elt.adresse).address,
           agent:elt.agent,
@@ -35,7 +37,6 @@ export class AdminmultipdvDemandeRetraitComponent implements OnInit {
           telephone:elt.telephone,
         }
       });
-      console.log(this.adminmultipdvDemanderetrait);
     });
 
   }

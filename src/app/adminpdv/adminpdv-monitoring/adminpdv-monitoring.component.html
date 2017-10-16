@@ -12,9 +12,9 @@
                             <p><strong>Deposit de base</strong></p>
                             <p><strong>{{ monitoringAdminpdvDeposit.depositinitial }}</strong>FCFA</p>
                         </div>
-                        <div class="col-sm-4">       
+                        <div class="col-sm-4">
                             <p><strong>Etat Déposit</strong></p>
-                            <p><strong>{{ monitoringAdminpdvDeposit.etatdeposit }}</strong>FCFA</p>
+                            <p><strong>{{ monitoringAdminpdvDeposit.etatdeposit - monitoringAdminpdvDeposit.commission}}</strong>FCFA</p>
                         </div>
                         <div class="col-sm-2">
                             <p><strong>Commission</strong></p>
@@ -52,7 +52,7 @@
 </div>
 
 <div *ngIf="this.loading">
-    <app-loader></app-loader>    
+    <app-loader></app-loader>
 </div>
 
 
