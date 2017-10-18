@@ -9,18 +9,14 @@
         <div class="panel-body">
             <!-- Nav tabs -->
             <ul class="nav nav-pills" id="tnt-options">
-                <li class="active"><a href="#home-pills" data-toggle="tab">Nouvel Abonnement</a>
-                </li>
-                <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="listerAbonnements()">Suivis Abonnements </a>
-                </li>
-                <li><a href="#vente-decodeur" id="vdec" data-toggle="tab">Vente Décodeur</a>
-                </li>
-                <li><a href="#vente-carte" id="vcart" data-toggle="tab">Vente Carte</a>
-                </li>
-                <li><a href="#vente-deco-liste" id="vdecolist" data-toggle="tab" (click)="listerVenteDeco()">Suivi Vente Décodeur</a>
-                </li>
-                <li><a href="#vente-carte-liste" id="vcartlist" data-toggle="tab" (click)="listerVenteCarte()">Suivi Vente Carte</a>
-                </li>
+              <li class="active"><a href="#home-pills" data-toggle="tab" (click)="verifierNumInputValide = true">Nouvel Abonnement</a></li>
+              <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="listerAbonnements()">Suivis Abonnements </a></li>
+
+              <li><a href="#vente-decodeur" id="vdec" data-toggle="tab">Vente Décodeur</a></li>
+              <li><a href="#vente-deco-liste" id="vdecolist" data-toggle="tab" (click)="listerVenteDeco()">Suivi Vente Décodeur</a></li>
+
+              <li><a href="#vente-carte" id="vcart" data-toggle="tab">Vente Carte</a></li>
+              <li><a href="#vente-carte-liste" id="vcartlist" data-toggle="tab" (click)="listerVenteCarte()">Suivi Vente Carte</a></li>
 
             </ul>
 
@@ -54,14 +50,14 @@
                             <label for="tela">Téléphone client</label>
                             <input type="number" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
 
-                            <label for="tela">Numero CNI client</label>
-                            <input type="number" [(ngModel)]="this.ncni"   name="ncni" id="ncni" class="form-control" placeholder="Numéro carte d'identité client" required>
+                            <label for="cni">Numero CNI client</label>
+                            <input type="text" [(ngModel)]="this.cni"   name="cni" id="cni" class="form-control" placeholder="Numéro carte d'identité client" required>
 
                             <label for="nchip">Numéro chip</label>
                             <input type="number" [(ngModel)]="this.nchip"   name="nchip" id="nchip" class="form-control" placeholder="numéro chip" required>
 
                             <label for="ncarte">Numéro carte</label>
-                            <input type="number" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte" required>
+                            <input type="text" [(ngModel)]="this.ncarte"   name="ncarte" id="ncarte" class="form-control" placeholder="numéro carte" required>
 
 
                             <label for="nbm">Nombre de mois</label>
@@ -89,45 +85,45 @@
                                 <thead>
 
                                     <tr>
-                                        <th colspan="3" style="padding-right: 3rem ;">
+                                        <th colspan="5" style="padding-right: 3rem ;">
                                             Rechercher :
                                             <input class="form-control" [(ngModel)]="filtre"/>
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="n_chip">N_Chip</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="n_carte">N_Carte</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="date_abonnement">Date Abonnement</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="date_abonnement">Date Abonnement</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="n_chip">N_Chip</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="n_carte">N_Carte</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
                                    </tr>
 
                                 </thead>
                                 <tbody *ngIf="this.retourTntWS" >
                                 <tr *ngFor="let abonnement of mfabo.data">
-                                    <td>{{abonnement.prenom}}</td>
-                                    <td>{{abonnement.nom}}</td>
-                                    <td>{{abonnement.tel}}</td>
-                                    <td>{{abonnement.n_chip}}</td>
-                                    <td>{{abonnement.n_carte}}</td>
-                                    <td>{{abonnement.date_abonnement}}</td>
-                                    <td>{{abonnement.duree}}</td>
+                                  <td>{{abonnement.date_abonnement}}</td>
+                                  <td>{{abonnement.prenom}}</td>
+                                  <td>{{abonnement.nom}}</td>
+                                  <td>{{abonnement.tel}}</td>
+                                  <td>{{abonnement.n_chip}}</td>
+                                  <td>{{abonnement.n_carte}}</td>
+                                  <td>{{abonnement.duree}}</td>
 
-                                    <td *ngIf="abonnement.id_typeabonnement==1">Maanaa</td>
-                                    <td *ngIf="abonnement.id_typeabonnement==2">Boul Khool</td>
-                                    <td *ngIf="abonnement.id_typeabonnement==3">Maanaa + Boul Khool</td>
+                                  <td *ngIf="abonnement.id_typeabonnement==1">Maanaa</td>
+                                  <td *ngIf="abonnement.id_typeabonnement==2">Boul Khool</td>
+                                  <td *ngIf="abonnement.id_typeabonnement==3">Maanaa + Boul Khool</td>
 
-                                    <td>{{abonnement.montant}}</td>
+                                  <td>{{abonnement.montant}}</td>
 
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <mfBootstrapPaginator ></mfBootstrapPaginator>
                                         </td>
                                     </tr>
@@ -171,8 +167,8 @@
                       </div>
                       <div class="form-row">
                         <div class="form-group col-sm-4">
-                          <label for="ncniNewClientDeco" class="col-form-label">Numéro CNI du client</label>
-                          <input type="text" name="ncniNewClientDeco" id="ncniNewClientDeco" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CNI" required>
+                          <label for="cniNewClientDeco" class="col-form-label">Numéro CNI du client</label>
+                          <input type="text" name="cniNewClientDeco" id="cniNewClientDeco" [(ngModel)]="this.cniNewClient" class="form-control" placeholder="Numéro CNI" required>
                         </div>
                         <div class="form-group col-sm-4">
                           <label for="nchipNewClientDeco" class="col-form-label">Numéro Chip du client</label>
@@ -231,8 +227,8 @@
                   </div>
                   <div class="form-row"  style="margin-top: 2rem">
                     <div class="form-group col-sm-6">
-                      <label for="ncniNewClient" class="col-form-label">Numéro CNI du client</label>
-                      <input type="text" name="ncniNewClient" id="ncniNewClient" [(ngModel)]="this.ncniNewClient" class="form-control" placeholder="Numéro CNI" required>
+                      <label for="cniNewClient" class="col-form-label">Numéro CNI du client</label>
+                      <input type="text" name="cniNewClient" id="cniNewClient" [(ngModel)]="this.cniNewClient" class="form-control" placeholder="Numéro CNI" required>
                     </div>
                     <div class="form-group col-sm-6">
                       <label for="ncarteNewClient" class="col-form-label">Numéro Carte du client</label>

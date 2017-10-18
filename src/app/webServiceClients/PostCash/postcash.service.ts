@@ -134,23 +134,6 @@ export class PostCashWebService {
     });
   }
 
-  public achatneo(produit : string, montant : string, type : string): Promise<any>  {
-    var method:string = 'achatneo';
-    var parameters:{}[] = [];
-    var reEspParams = {token:this.token, produit: produit, montant: montant, type: type} ;
-    var params:{}[] = [] ;
-    params["params"] = reEspParams ;
-
-    parameters['achatneo xmlns="urn:postcashwsdl#"'] = params;
-
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'achatneoResponse').then(response=>{
-        var reponse:any = JSON.parse(response['achatneoResponse'].return.$);
-        resolve(reponse) ;
-      });
-    });
-  }
-
   public achatjula(mt_carte : string, nb_carte : string): Promise<any>  {
     var method:string = 'achatjula';
     var parameters:{}[] = [];
@@ -180,109 +163,6 @@ export class PostCashWebService {
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'achatcredittelephoniqueResponse').then(response=>{
         var reponse:any = JSON.parse(response['achatcredittelephoniqueResponse'].return.$);
-        resolve(reponse) ;
-      });
-    });
-  }
-
-  public cashtocashsend(tel_exp: string, nom_exp : string, prenom_exp : string,
-    cni_exp : string, type_piece_exp : string, pays_exp : string, tel_rec : string,
-    prenom_rec : string, nom_rec : string, montant : string): Promise<any>  {
-    var method:string = 'cashtocashsend';
-    var parameters:{}[] = [];
-    var reEspParams = {token:this.token, tel_exp: tel_exp, nom_exp: nom_exp,
-      prenom_exp: prenom_exp, cni_exp: cni_exp, type_piece_exp: type_piece_exp,
-      pays_exp: pays_exp, tel_rec: tel_rec, prenom_rec: prenom_rec, nom_rec: nom_rec,
-      montant: montant} ;
-    var params:{}[] = [] ;
-    params["params"] = reEspParams ;
-
-    parameters['cashtocashsend xmlns="urn:postcashwsdl#"'] = params;
-
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'cashtocashsendResponse').then(response=>{
-        var reponse:any = JSON.parse(response['cashtocashsendResponse'].return.$);
-        resolve(reponse) ;
-      });
-    });
-  }
-
-  public cashtocashreceive(tel_rec: string, cni_rec : string, type_piece_rec : string,
-    pays_rec : string, code : string, montant : string): Promise<any>  {
-    var method:string = 'cashtocashreceive';
-    var parameters:{}[] = [];
-    var reEspParams = {token:this.token, tel_rec: tel_rec, cni_rec: cni_rec,
-      type_piece_rec: type_piece_rec, pays_rec: pays_rec, code: code,
-      montant: montant} ;
-    var params:{}[] = [] ;
-    params["params"] = reEspParams ;
-
-    parameters['cashtocashreceive xmlns="urn:postcashwsdl#"'] = params;
-
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'cashtocashreceiveResponse').then(response=>{
-        var reponse:any = JSON.parse(response['cashtocashreceiveResponse'].return.$);
-        resolve(reponse) ;
-      });
-    });
-  }
-
-  public transfertverstamtam(tel: string, montant : string, frais : string,
-    nom : string, prenom : string, telephone_benef : string, code : string,
-    pays : string, rcv_address : string, transaction_reason : string, incoming_source : string): Promise<any>  {
-    var method:string = 'transfertverstamtam';
-    var parameters:{}[] = [];
-    var reEspParams = {token:this.token, tel: tel, montant: montant,
-      frais: frais, nom: nom, prenom: prenom, telephone_benef: telephone_benef,
-      code: code, pays: pays, rcv_address: rcv_address, transaction_reason: transaction_reason,
-      incoming_source: incoming_source } ;
-    var params:{}[] = [] ;
-    params["params"] = reEspParams ;
-
-    parameters['transfertverstamtam xmlns="urn:postcashwsdl#"'] = params;
-
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'transfertverstamtamResponse').then(response=>{
-        var reponse:any = JSON.parse(response['transfertverstamtamResponse'].return.$);
-        resolve(reponse) ;
-      });
-    });
-  }
-
-  public transfertverstamtamviaapay(prenom_exp: string, nom_exp : string, typecni_exp : string,
-    cni_exp : string, tel_exp : string, montant : string, frais : string, nom_dest : string,
-    prenom_dest : string, tel_dest : string, pays_dest : string, adresse_dest : string): Promise<any>  {
-    var method:string = 'transfertverstamtamviaapay';
-    var parameters:{}[] = [];
-    var reEspParams = {token:this.token, prenom_exp: prenom_exp, nom_exp: nom_exp,
-      typecni_exp: typecni_exp, cni_exp: cni_exp, tel_exp: tel_exp, montant: montant,
-      frais: frais, nom_dest: nom_dest, prenom_dest: prenom_dest, tel_dest: tel_dest,
-      pays_dest: pays_dest, adresse_dest: adresse_dest } ;
-    var params:{}[] = [] ;
-    params["params"] = reEspParams ;
-
-    parameters['transfertverstamtamviaapay xmlns="urn:postcashwsdl#"'] = params;
-
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'transfertverstamtamviaapayResponse').then(response=>{
-        var reponse:any = JSON.parse(response['transfertverstamtamviaapayResponse'].return.$);
-        resolve(reponse) ;
-      });
-    });
-  }
-
-  public fraistamtamviaapay(montant: string, pays: string): Promise<any>  {
-    var method:string = 'fraistamtamviaapay';
-    var parameters:{}[] = [];
-    var reEspParams = {token:this.token, montant: montant, pays: pays } ;
-    var params:{}[] = [] ;
-    params["params"] = reEspParams ;
-
-    parameters['fraistamtamviaapay xmlns="urn:postcashwsdl#"'] = params;
-
-    return new Promise( (resolve, reject) => {
-      this.soapService.post(method, parameters, 'fraistamtamviaapayResponse').then(response=>{
-        var reponse:any = JSON.parse(response['fraistamtamviaapayResponse'].return.$);
         resolve(reponse) ;
       });
     });

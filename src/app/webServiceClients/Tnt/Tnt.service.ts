@@ -10,7 +10,7 @@ export class TntResponse{
   adresse: string ;
   region: string ;
   city: string ;
-  ncni: string ;
+  cni: string ;
   n_chip : string ;
   n_carte : string ;
   date_abonnement: string ;
@@ -130,7 +130,6 @@ export class TntServiceWeb {
 
         if (!response['verifinumeroabonnementResponse'].return.$ )
           resolve(new TntResponse()) ;
-
         this.responseJsoFWS = JSON.parse(response['verifinumeroabonnementResponse'].return.$);
         resolve(this.responseJsoFWS) ;
         });
@@ -169,12 +168,12 @@ export class TntServiceWeb {
   }
 
 
-  public vendreDecodeur(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, ncniNewClient, nchipNewClient, ncarteNewClient, nbmNewClient, typedebouquet, prix) : Promise<string> {
+  public vendreDecodeur(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, cniNewClient, nchipNewClient, ncarteNewClient, nbmNewClient, typedebouquet, prix) : Promise<string> {
 
       var method:string = 'ventedecodeur';
       var parameters:{}[] = [];
 
-      var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:ncniNewClient, numerochip:nchipNewClient, numerocarte:ncarteNewClient, typedebouquet:typedebouquet, prix:prix} ;
+      var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:cniNewClient, numerochip:nchipNewClient, numerocarte:ncarteNewClient, typedebouquet:typedebouquet, prix:prix} ;
       var params:{}[] = [] ;
       params["params"] = reEspParams ;
 
@@ -190,12 +189,12 @@ export class TntServiceWeb {
   }
 
 
-  public vendreCarte(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, ncniNewClient, ncarteNewClient, prix) : Promise<string> {
+  public vendreCarte(token, prenomNewClient, nomNewClient, telNewClient, adresseNewClient, regionNewClient, cniNewClient, ncarteNewClient, prix) : Promise<string> {
 
       var method:string = 'ventecarte';
       var parameters:{}[] = [];
 
-      var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:ncniNewClient, numerocarte:ncarteNewClient, prix:prix} ;
+      var reEspParams = {token:token, prenom:prenomNewClient, nom:nomNewClient, tel:telNewClient, adresse:adresseNewClient, region:regionNewClient, cni:cniNewClient, numerocarte:ncarteNewClient, prix:prix} ;
       var params:{}[] = [] ;
       params["params"] = reEspParams ;
 

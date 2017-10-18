@@ -40,7 +40,7 @@ export class TntComponent implements OnInit {
   telNewClient: number ;
   adresseNewClient: string ;
   regionNewClient: string ;
-  ncniNewClient: string ;
+  cniNewClient: string ;
   nchipNewClient: number ;
   ncarteNewClient: number ;
   nbmNewClient: number;
@@ -50,9 +50,9 @@ export class TntComponent implements OnInit {
 	noma:string;
 	prenoma:string;
 	tela:number;
-  ncni : number ;
+  cni : any ;
   nchip:number;
-	ncarte:number;
+	ncarte:any;
 	nbm:number;
 	tbouquet:string;
 	nAbonnement:NAbonnement;
@@ -117,17 +117,17 @@ export class TntComponent implements OnInit {
   }
 
   validVerifierNum(){
-        this.loading = true ;
-        this.erreur = false ;
-    this.tntCaller.checkNumber(this.token, this.verifierNumInput.toString()).then( response =>
-        {
+    this.loading = true ;
+    this.erreur = false ;
+    this.tntCaller.checkNumber(this.token, this.verifierNumInput.toString()).then( response => {
         this.singleTntWS = response ;
+        console.log(this.singleTntWS);
         this.noma = this.singleTntWS.nom ;
         this.prenoma = this.singleTntWS.prenom ;
         this.tela = Number(this.singleTntWS.tel);
         this.nchip = Number(this.singleTntWS.n_chip) ;
-        this.ncarte = Number(this.singleTntWS.n_carte) ;
-        this.ncni = Number(this.singleTntWS.ncni) ;
+        this.ncarte = this.singleTntWS.n_carte;
+        this.cni = this.singleTntWS.cni;
 
         if (this.singleTntWS.id_typeabonnement=="1")
           this.tbouquet = "Maanaa";
@@ -159,11 +159,11 @@ export class TntComponent implements OnInit {
     this.singleTntWS.tel = this.tela.toString() ;
     this.singleTntWS.n_chip = this.nchip.toString();
     this.singleTntWS.n_carte = this.ncarte.toString() ;
-    this.singleTntWS.ncni = this.ncni.toString();
+    this.singleTntWS.cni = this.cni.toString();
 
-    this.singleTntWS.ncni = this.ncni.toString() ;
+    this.singleTntWS.cni = this.cni.toString() ;
 
-    this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela.toString(), this.singleTntWS.ncni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
+    this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela.toString(), this.singleTntWS.cni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
       {
         if(response.response=="ok"){
          this.verifierNumValide = false ;
@@ -285,7 +285,7 @@ export class TntComponent implements OnInit {
       },
     }
 
-    this.tntCaller.vendreDecodeur(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.nchipNewClient, this.ncarteNewClient, this.nbmNewClient, typedebouquet, prix).then( response =>
+    this.tntCaller.vendreDecodeur(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.cniNewClient, this.nchipNewClient, this.ncarteNewClient, this.nbmNewClient, typedebouquet, prix).then( response =>
       {
         if(response=="ok"){
           this.reinitialiserVariables() ;
@@ -316,7 +316,7 @@ export class TntComponent implements OnInit {
 
       },
     };
-    this.tntCaller.vendreCarte(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.ncniNewClient, this.ncarteNewClient, 5000).then( response =>{
+    this.tntCaller.vendreCarte(this.token, this.prenomNewClient, this.nomNewClient, this.telNewClient, this.adresseNewClient, this.regionNewClient, this.cniNewClient, this.ncarteNewClient, 5000).then( response =>{
         if(response=="ok"){
           this.reinitialiserVariables() ;
           this.loading = false ;
@@ -336,7 +336,7 @@ export class TntComponent implements OnInit {
       this.telNewClient=undefined ;
       this.adresseNewClient=undefined ;
       this.regionNewClient=undefined ;
-      this.ncniNewClient=undefined ;
+      this.cniNewClient=undefined ;
       this.nchipNewClient=undefined ;
       this.ncarteNewClient=undefined ;
       this.nbmNewClient=undefined;
