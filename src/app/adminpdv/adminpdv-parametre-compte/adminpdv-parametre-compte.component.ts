@@ -19,7 +19,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
 	public filterQuery = "";
   public rowsOnPage = 10;
   public sortBy = "pdv";
-  public sortOrder = "desc";
+  public sortOrder = "asc";
 
   region : any ;
   zone : any ;
@@ -50,6 +50,8 @@ export class AdminpdvparametrecompteComponent implements OnInit {
     this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
       this.monitoringAdminpdvUserpdv = adminpdvServiceWebList.response;
       console.log(this.monitoringAdminpdvUserpdv);
+      console.log('---------------------');
+
     });
 
   }
