@@ -49,6 +49,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
 
     this.adminpdvServiceWeb.listuserpdv('azrrtt').then(adminpdvServiceWebList => {
       this.monitoringAdminpdvUserpdv = adminpdvServiceWebList.response;
+      console.log(this.monitoringAdminpdvUserpdv);
     });
 
   }
@@ -57,7 +58,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
     this.errorConfirm = false;
     this.closeBtn.nativeElement.click();
   }
-  
+
   public toInt(num: string) {
     return +num;
   }
@@ -84,12 +85,12 @@ export class AdminpdvparametrecompteComponent implements OnInit {
       this.errorConfirm = false;
       this.password= null;
       this.confirmPassword = null;
-      this.closeBtn.nativeElement.click();  
+      this.closeBtn.nativeElement.click();
     }
     else{
       this.errorConfirm = true;
     }
-    
+
   }
 
   public regions=[
@@ -118,7 +119,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
      this.departements=[
             {'name':'choisissez votre departement','id':'0'},
             {'name':'Grand-Dakar','id':'1'},
-            {'name':'Niayes','id':'2'}, 
+            {'name':'Niayes','id':'2'},
             {'name':'Pikine','id':'4'},
             {'name':'Guediawaye','id':'5'},
             {'name':'Dakar Plateau','id':'6'},
@@ -196,7 +197,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
             {'name':'Oussouye','id':'35'},
             {'name':'Bignona','id':'36'}
             ];
-           
+
      break;
         }
      case '9':{
@@ -254,7 +255,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
        break;
           }
       default :{
-        
+
       }
     }
    }
@@ -451,8 +452,8 @@ export class AdminpdvparametrecompteComponent implements OnInit {
       }else
         this.existLogin = true ;
 
-     }) ; 
-     
+     }) ;
+
  }
 
  getRegionName(region){
@@ -473,7 +474,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
       if (reponseServeur.errorCode==1){
         pdv.isconnect = !pdv.isconnect ;
       }
-    }); 
+    });
   }
 
 }

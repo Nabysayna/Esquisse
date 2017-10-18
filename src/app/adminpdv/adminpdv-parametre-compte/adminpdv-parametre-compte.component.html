@@ -12,33 +12,50 @@
            <button class="btn btn-primary" data-toggle="modal" data-target="#modalNewCaissier" style="background-color: #ea8f43; margin-bottom: 2rem; margin-top: 1rem; text-align: center;">Créer un compte Caissier</button>
          </div>
 
-	        <div class="panel panel-default table-responsive">
-	            <table class="table table-striped" [mfData]="monitoringAdminpdvUserpdv | dataFilterAdminpdvparametrecompte : filterQuery" #mf="mfDataTable"
-	                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
-	                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th><mfDefaultSorter by="pdv">pdv</mfDefaultSorter></th>
-                        <th><mfDefaultSorter by="adresse">Adresse</mfDefaultSorter></th>
-                        <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
-                        <th><mfDefaultSorter [by]="sortByWordLength">Option</mfDefaultSorter></th>
-                        <th><mfDefaultSorter [by]="sortByWordLength">Status</mfDefaultSorter></th>
-                        <th><mfDefaultSorter>Action</mfDefaultSorter></th>
-                    </tr>
-	                </thead>
-	                <tbody *ngIf="monitoringAdminpdvUserpdv">
-	                <tr *ngFor="let item of mf.data; let i = index ">
-	                    <td>{{ i + 1  }}</td>
-	                    <td>{{item.pdv}}</td>
-	                    <td>{{getAdress(item.adresse)}}</td>
-	                    <td>{{item.telephone}}</td>
-	                    <td><button type="button" class="btn btn-outline btn-warning" (click)="modif(item)" data-toggle="modal" data-target="#myModalModifUser">Modifier</button></td>
-	                    <td>{{item.isconnect?'Connecté':'Deconnecté'}}</td>
-	                    <td><button type="button" *ngIf="item.isconnect" class="btn btn-outline btn-danger" (click)="deconnexionsession(item,i)">Deconnecter</button></td>
-	                </tr>
-	                </tbody>
-	            </table>
-	        </div>
+        <div class="panel panel-default table-responsive">
+          <table class="table table-striped" [mfData]="monitoringAdminpdvUserpdv | dataFilterAdminpdvparametrecompte : filterQuery" #mf="mfDataTable"
+                 [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+            <thead>
+            <tr>
+              <th colspan="4">
+                <div class="form-group row">
+                  <label for="inputlistecompte" class="col-sm-2 col-form-label">Recherche:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputlistecompte" name="inputlistecompte" placeholder="Recherche caissier" [(ngModel)]="filterQuery"/>
+                  </div>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th>#</th>
+              <th><mfDefaultSorter by="pdv">pdv</mfDefaultSorter></th>
+              <th><mfDefaultSorter by="adresse">Adresse</mfDefaultSorter></th>
+              <th><mfDefaultSorter by="telephone">Telephone</mfDefaultSorter></th>
+              <th>Option</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="monitoringAdminpdvUserpdv">
+              <tr *ngFor="let item of mf.data; let i = index ">
+                <td>{{ i + 1  }}</td>
+                <td>{{item.pdv}}</td>
+                <td>{{getAdress(item.adresse)}}</td>
+                <td>{{item.telephone}}</td>
+                <td><button type="button" class="btn btn-outline btn-warning" (click)="modif(item)" data-toggle="modal" data-target="#myModalModifUser">Modifier</button></td>
+                <td>{{item.isconnect?'Connecté':'Deconnecté'}}</td>
+                <td><button type="button" *ngIf="item.isconnect" class="btn btn-outline btn-danger" (click)="deconnexionsession(item,i)">Deconnecter</button></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50]"></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
 	    </div>
 	</div>
 

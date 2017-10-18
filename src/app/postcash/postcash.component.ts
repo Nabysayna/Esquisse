@@ -46,6 +46,7 @@ export class PostcashComponent implements OnInit {
     ) { }
 
     ngOnInit():void {
+      this.voirhistotransactmarchand('2017/10/17','2017/10/19');
     }
 
     reinitialiser(){
@@ -63,6 +64,12 @@ export class PostcashComponent implements OnInit {
 
   private closeModalPostSenec(): void { this.closeBtnModalPostSenec.nativeElement.click(); }
   private closeModalCodeValidation(): void { this.closeBtnModalCodeValidation.nativeElement.click(); }
+
+  voirhistotransactmarchand(date_debut: string, date_fin: string){
+    this.postcashwebservice.histotransactmarchand(date_debut,date_fin).then(postcashwebserviceList => {
+      console.log(postcashwebserviceList)
+    });
+  }
 
   validrechargementespece(){
     //console.log(this.telephone+'-'+this.montant);
