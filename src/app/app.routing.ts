@@ -58,6 +58,8 @@ import { FirstlogComponent } from './firstlog/firstlog.component';
 
 import { AdminpdvparametrecompteComponent } from './adminpdv/adminpdv-parametre-compte/adminpdv-parametre-compte.component';
 import {ImpressionComponent} from "./impression/impression.component";
+import {GuideUserCaisseComponent} from "./guideusercaisse/guideusercaisse.component";
+import {GuideUserSuperviseurComponent} from "./guideusersuperviseur/guideusersuperviseur.component";
 
   //
 
@@ -82,7 +84,8 @@ const appRoutes: Routes = [
                 {path: 'TNT BY EXCAF', component: TntComponent},
                 {path: 'SOLDE DU COMPTE', component: SoldecompteComponent},
                 {path: 'RECUS/:id', component: RecusComponent},
-                {path: 'impression', component: ImpressionComponent},
+             {path: 'impression', component: ImpressionComponent},
+             {path: 'Guide_utilisation', component: GuideUserCaisseComponent},
     		]
     },
     { path: 'accueiladmmpdv', component: AccueilAdminMultiPdvComponent, canActivate: [AuthGuard],
@@ -173,7 +176,9 @@ const appRoutes: Routes = [
                     { path: 'comptabilite', component: ComptabiliteComponent },
                     { path: 'CRM', component: CrmComponent },
                     { path: 'consulterpret', component: ConsulterpretComponent },
-                    { path: '', component: AdminpdvDashboardComponent }
+                    { path: '', component: AdminpdvDashboardComponent },
+                    {path: 'Guide_utilisation', component: GuideUserSuperviseurComponent},
+
                 ]
             }
         ]

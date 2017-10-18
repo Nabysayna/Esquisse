@@ -4,17 +4,16 @@
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #337ab7 !important;" role="navigation">
 
         <div  id="navbHead">
-                <app-navbar-top></app-navbar-top> 
-        </div>        
+                <app-navbar-top></app-navbar-top>
+        </div>
         <div class="navbar-inverse sidebar" role="navigation" id="leftsidemenu">
             <div class="sidebar-nav navbar-collapse">
                 <ul id="gauche" class="nav in" id="side-menu">
-                    <li *ngFor="let api of registredAPIs" >
-                        <a [routerLink]="['/accueil', api]">{{api}}</a>
-                    </li>
-                     <li role="presentation"  ><a [routerLink]="['/accueil', 'GESTIONREPORTING']" >GESTION REPORTING</a></li>
-                    <li id="med" role="presentation"  ><a [routerLink]="['/accueil', 'DEMANDEPRET']" >DEMANDE DE PRET</a></li>
-                    <li role="presentation"  ><a [routerLink]="['/accueil', 'E-COMMERCE']" >E-COMMERCE</a></li>
+                  <li *ngFor="let api of registredAPIs" ><a [routerLink]="['/accueil', api]">{{api}}</a></li>
+                  <li role="presentation"><a [routerLink]="['/accueil', 'GESTIONREPORTING']" >GESTION REPORTING</a></li>
+                  <li id="med" role="presentation"><a [routerLink]="['/accueil', 'DEMANDEPRET']" >DEMANDE DE PRET</a></li>
+                  <li role="presentation"><a [routerLink]="['/accueil', 'E-COMMERCE']" >E-COMMERCE</a></li>
+                  <li role="presentation"><a [routerLink]="['/accueil', 'Guide_utilisation']" >Guide d'utilisation</a></li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

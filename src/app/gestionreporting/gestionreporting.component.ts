@@ -57,12 +57,12 @@ export class GestionreportingComponent implements OnInit {
 
   ngOnInit() {
 
-        this.loading = true ;
-        this.gestionreportingServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
+     this.loading = true ;
+     this.gestionreportingServiceWeb.servicepoint(this.token).then(serviceptserviceList => {
         this.servicepoint = serviceptserviceList;
-        // console.log(JSON.parse(this.servicepoint[0].designations)[0].name);
+        console.log(this.servicepoint);
         this.loading = false ;
-      });
+     });
   }
 
   getDesignations(){

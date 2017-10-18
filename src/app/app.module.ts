@@ -198,6 +198,8 @@ import { FiltrezonesupplierPipe } from './pipes/filtrezonesupplier.pipe';
 import { FiltrecataloguecommandePipe } from './pipes/filtrecataloguecommande.pipe';
 import { FirstlogComponent } from './firstlog/firstlog.component';
 import {FiltreexploitationaveccommissionPipe} from "./pipes/filtreexploitationaveccommission.pipe";
+import {GuideUserCaisseComponent} from "./guideusercaisse/guideusercaisse.component";
+import {GuideUserSuperviseurComponent} from "./guideusersuperviseur/guideusersuperviseur.component";
 
 
 
@@ -312,7 +314,10 @@ import {FiltreexploitationaveccommissionPipe} from "./pipes/filtreexploitationav
     FiltresouszonepdrPipe,
     FiltresouszonesupplierPipe,
     FiltrezonesupplierPipe,
-    FirstlogComponent
+    FirstlogComponent,
+
+    GuideUserCaisseComponent,
+    GuideUserSuperviseurComponent,
   ],
   imports: [
     BrowserModule,
