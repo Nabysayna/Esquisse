@@ -46,7 +46,7 @@ export class PostcashComponent implements OnInit {
     ) { }
 
     ngOnInit():void {
-      this.voirhistotransactmarchand('2017/10/17','2017/10/19');
+     // this.voirhistotransactmarchand('2017/10/17','2017/10/19');
     }
 
     reinitialiser(){
@@ -76,7 +76,7 @@ export class PostcashComponent implements OnInit {
     this.loading = true ;
     this.postcashwebservice.rechargementespece('00221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
       this.loading = false ;
-      if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+      if( (typeof postcashwebserviceList.errorCode != "undefined") && postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
         this.dataImpression = {
           apiservice:'postecash',
           service:'rechargementespece',
@@ -104,7 +104,7 @@ export class PostcashComponent implements OnInit {
       this.loading = true ;
       this.postcashwebservice.achatcodewoyofal(this.montant+'',this.compteur+'').then(postcashwebserviceList => {
           this.loading = false ;
-        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+        if( (typeof postcashwebserviceList.errorCode != "undefined") && postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.dataImpression = {
             apiservice:'postecash',
             service:'achatcodewayafal',
@@ -144,7 +144,7 @@ export class PostcashComponent implements OnInit {
       this.loading = true ;
       this.postcashwebservice.reglementsenelec(this.police+'', this.num_facture, this.detailfacturepostcash.montant).then(postcashwebserviceList => {
           this.loading = false ;
-        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+        if( (typeof postcashwebserviceList.errorCode != "undefined") && postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.loading = false ;
           this.dataImpression = {
             apiservice:'postecash',
@@ -180,7 +180,7 @@ export class PostcashComponent implements OnInit {
       this.loading = true ;
       this.postcashwebservice.achatjula(this.mt_carte+'',this.nb_carte+'').then(postcashwebserviceList => {
           this.loading = false ;
-        if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+        if( (typeof postcashwebserviceList.errorCode != "undefined") && postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
           this.loading = false ;
           this.dataImpression = {
             apiservice:'postecash',
@@ -208,7 +208,7 @@ export class PostcashComponent implements OnInit {
   validachatcredittelephonique(){
     console.log(this.telephone+'-'+this.montant);
     this.postcashwebservice.achatcredittelephonique(this.telephone+'',this.montant+'').then(postcashwebserviceList => {
-      if(postcashwebserviceList.error_code == "0" && postcashwebserviceList.errorMessage == ""){
+      if( (typeof postcashwebserviceList.errorCode != "undefined") && postcashwebserviceList.error_code == "0" && postcashwebserviceList.errorMessage == ""){
         this.dataImpression = {
           apiservice:'postecash',
           service:'achatcredittelephonique',
@@ -249,7 +249,7 @@ export class PostcashComponent implements OnInit {
     this.loading = true ;
     this.postcashwebservice.retraitespece(this.codevalidation+'','00221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
       this.loading = false ;
-      if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+      if( (typeof postcashwebserviceList.errorCode != "undefined") && postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
         this.dataImpression = {
           apiservice:'postecash',
           service:'retraitespece',
@@ -300,7 +300,7 @@ export class PostcashComponent implements OnInit {
     //this.closeModalCodeValidation();
     this.postcashwebservice.retraitespece(this.codevalidation+'','00221'+this.telephone+'',''+this.montant).then(postcashwebserviceList => {
       this.loading = false ;
-      if(postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
+      if( (typeof postcashwebserviceList.errorCode != "undefined") && postcashwebserviceList.errorCode == "0" && postcashwebserviceList.errorMessage == ""){
         this.dataImpression = {
           apiservice:'postecash',
           service:'retraitespece',

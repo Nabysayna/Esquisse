@@ -93,7 +93,11 @@ export class PostCashWebService {
 
     return new Promise( (resolve, reject) => {
       this.soapService.post(method, parameters, 'achatcodewoyofalResponse').then(response=>{
-        console.log(response) ;
+
+        if (typeof response['achatcodewoyofalResponse'].return.$ == "undefined"  || response['achatcodewoyofalResponse'].return.$ == null){
+          resolve(JSON.stringify({errorCode:"12",errorMessage:"Erreur de connexion au serveur"}) ) ;
+        }
+
         var reponse:any = JSON.parse(response['achatcodewoyofalResponse'].return.$);
         resolve(reponse) ;
       });

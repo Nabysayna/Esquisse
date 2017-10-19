@@ -13,6 +13,8 @@ export class AuthGuardsup implements CanActivate {
          }
 
          sessionStorage.removeItem('currentUser') ;
+         sessionStorage.clear();
+
          // not logged in so redirect to login page
          this.router.navigate(['']);
          return false;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Compiler } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentification.service';
 
@@ -43,8 +43,9 @@ export class AuthComponentComponent implements OnInit {
   backstring : string = "" ;
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService) 
+    private authenticationService: AuthenticationService, private _compiler: Compiler) 
   { 
+    this._compiler.clearCache();
   	this.fakevalues = true ;
   }
 
