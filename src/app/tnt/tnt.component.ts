@@ -50,7 +50,7 @@ export class TntComponent implements OnInit {
 	noma:string;
 	prenoma:string;
 	tela:number;
-  cni : any ;
+  cni : any  = '';
   nchip:number;
 	ncarte:any;
 	nbm:number;
