@@ -70,7 +70,7 @@ export class AdminpdvparametrecompteComponent implements OnInit {
   }
 
   getAdress(adresse){
-    return JSON.parse(adresse).address ;
+    return JSON.parse(adresse).address+" / "+JSON.parse(adresse).zone ;
   }
 
 
