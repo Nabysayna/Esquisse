@@ -60,6 +60,7 @@ export class OrangeMoneyComponentComponent implements OnInit {
   deposer(){
     let requete = "1/"+this.mnt+"/"+this.numclient ;
     this.loading = true ;
+    console.log("We just say : "+requete) ;
     this.omService.requerirControllerOM(requete).then( resp => {
       if (resp.status==200){
         console.log("We just say : "+resp._body) ;

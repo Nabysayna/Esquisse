@@ -29,8 +29,12 @@ export class TntResponse{
 @Injectable()
 export class TntServiceWeb {
 
-  private servicePort:string = 'http://51.254.200.129' ;
-  private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/tnt?wsdl' ;
+//  private servicePort:string = 'http://51.254.200.129' ;
+//  private servicePath:string = '/backendprod/EsquisseBackEnd/web/app.php/invest/tnt?wsdl' ;
+
+  private servicePort:string = 'http://localhost' ;
+  private servicePath:string = '/EsquisseBackEnd/web/invest/tnt?wsdl' ;
+
   private targetNamespace:string = 'urn:tntwsdl' ;
 
   public responseJso : any ;
