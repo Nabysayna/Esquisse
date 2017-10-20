@@ -9,13 +9,13 @@
         <div class="panel-body">
             <!-- Nav tabs -->
             <ul class="nav nav-pills" id="tnt-options">
-              <li class="active"><a href="#home-pills" data-toggle="tab" (click)="verifierNumInputValide = true">Nouvel Abonnement</a></li>
+              <li class="active"><a href="#home-pills" data-toggle="tab" (click)="reinitialiserVariables();verifierNumInputValide = true">Nouvel Abonnement</a></li>
               <li><a id="elec" href="#profile-pills" data-toggle="tab" (click)="listerAbonnements()">Suivis Abonnements </a></li>
 
-              <li><a href="#vente-decodeur" id="vdec" data-toggle="tab">Vente Décodeur</a></li>
+              <li><a href="#vente-decodeur" id="vdec" data-toggle="tab" (click)="reinitialiserVariables()">Vente Décodeur</a></li>
               <li><a href="#vente-deco-liste" id="vdecolist" data-toggle="tab" (click)="listerVenteDeco()">Suivi Vente Décodeur</a></li>
 
-              <li><a href="#vente-carte" id="vcart" data-toggle="tab">Vente Carte</a></li>
+              <li><a href="#vente-carte" id="vcart" data-toggle="tab" (click)="reinitialiserVariables()">Vente Carte</a></li>
               <li><a href="#vente-carte-liste" id="vcartlist" data-toggle="tab" (click)="listerVenteCarte()">Suivi Vente Carte</a></li>
 
             </ul>
@@ -50,8 +50,10 @@
                             <label for="tela">Téléphone client</label>
                             <input type="number" [(ngModel)]="this.tela"   name="tela" id="tela" class="form-control" placeholder="téléphone client" required>
 
+<!--
                             <label for="cni">Numero CNI client</label>
                             <input type="text" [(ngModel)]="this.cni"   name="cni" id="cni" class="form-control" placeholder="Numéro carte d'identité client" required>
+-->
 
                             <label for="nchip">Numéro chip</label>
                             <input type="number" [(ngModel)]="this.nchip"   name="nchip" id="nchip" class="form-control" placeholder="numéro chip" required>
