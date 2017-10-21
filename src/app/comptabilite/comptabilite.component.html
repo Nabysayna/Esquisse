@@ -23,7 +23,7 @@
                           <button style="background-color: transparent; border : none ;"  href="#vide" data-toggle="tab"> <label>{{pdv.prenom+" "+pdv.nom}} </label> </button>
                       </div>
                       <div class="col-sm-3 col-xs-12">
-                              <label>Fond de caisse : {{pdv.caisse}}</label>
+                              <label>Fond de caisse : {{currencyFormat(pdv.caisse)}}</label>
                       </div>
                       <div class="col-sm-3 col-xs-12" *ngIf="!isActif(pdv.nom)">
                               <button class="btn btn-success" (click)="approvisionnement=approvisionnement+'-'+pdv.nom+'-'">Approvisionner</button>
@@ -88,7 +88,7 @@
                                 <tr *ngFor="let charges of fopad.data">
                                     <td>{{charges.dateajout.date | date}}</td>
                                     <td>{{charges.libelle}}</td>
-                                    <td>{{charges.montant}}</td>
+                                    <td>{{currencyFormat(charges.montant)}}</td>
                                     <td>{{charges.service}}</td>
                                 </tr>
                                 </tbody>
@@ -141,7 +141,7 @@
                                                   <tr *ngFor="let revenus of fopa.data">
                                                       <td>{{revenus.date.date | date}}</td>
                                                       <td>{{revenus.libelle}}</td>
-                                                      <td>{{revenus.montant}}</td>
+                                                      <td>{{currencyFormat(revenus.montant)}}</td>
                                                       <td>{{revenus.service}}</td>
                                                   </tr>
                                                 </tbody>
@@ -170,9 +170,9 @@
                                               <tr *ngFor="let revenus of fopa.data">
                                                 <td>{{revenus.date.date}}</td>
                                                 <td>{{revenus.libelle}}</td>
-                                                <td>{{revenus.montant}}</td>
-                                                <td>{{revenus.frais}}</td>
-                                                <td>{{revenus.commission}}</td>
+                                                <td>{{currencyFormat(revenus.montant)}}</td>
+                                                <td>{{currencyFormat(revenus.frais)}}</td>
+                                                <td>{{currencyFormat(revenus.commission)}}</td>
                                                 <td>{{revenus.service}}</td>
                                               </tr>
                                               </tbody>
@@ -261,9 +261,9 @@
                                       <tr *ngFor="let exploitation of fopdac.data">
                                         <td>{{exploitation.dateajout.date | date }}</td>
                                         <td>{{exploitation.designation}}</td>
-                                        <td>{{exploitation.mnt}}</td>
-                                        <td>{{exploitation.frais}}</td>
-                                        <td>{{exploitation.commission}}</td>
+                                        <td>{{currencyFormat(exploitation.mnt)}}</td>
+                                        <td>{{currencyFormat(exploitation.frais)}}</td>
+                                        <td>{{currencyFormat(exploitation.commission)}}</td>
                                       </tr>
                                       </tbody>
                                       <tfoot>
@@ -342,7 +342,7 @@
                                                           <td>{{exploitation.stocki}}</td>
                                                           <td>{{exploitation.vente}}</td>
                                                           <td>{{exploitation.stockf}}</td>
-                                                          <td>{{exploitation.mnt}}</td>
+                                                          <td>{{currencyFormat(exploitation.mnt)}}</td>
                                                       </tr>
                                                       </tbody>
                                                       <tfoot>

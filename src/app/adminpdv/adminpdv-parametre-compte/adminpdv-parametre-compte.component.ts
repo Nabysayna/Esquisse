@@ -469,6 +469,10 @@ export class AdminpdvparametrecompteComponent implements OnInit {
       return this.departements[i].name ;
  }
 
+  currencyFormat(somme) : String{
+    return Number(somme).toLocaleString() ;
+  }
+
   public deconnexionsession(pdv,i):void {
     this.loading = true ;
     this.adminpdvServiceWeb.deconnectpdv(pdv.idpdv).then(reponseServeur => {

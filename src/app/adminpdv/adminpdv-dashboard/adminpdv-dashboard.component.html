@@ -104,7 +104,7 @@
                                             <td>{{i + 1}}</td>
                                             <td>{{item.fullname}}</td>
                                             <td>{{item.telephone}}</td>
-                                            <td>{{item.montanttotal}}</td>
+                                            <td>{{currencyFormat(item.montanttotal)}}</td>
                                             <td class="text-center"><button type="button"  (click)="estdetailPerformance(item)" class="btn btn-danger">Détail</button></td>
                                         </tr>
                                     </tbody>
@@ -128,7 +128,7 @@
                                             <td>{{i + 1}}</td>
                                             <td>{{item.operateur}}</td>
                                             <td>{{item.traitement}}</td>
-                                            <td>{{item.montant}}</td>
+                                            <td>{{currencyFormat(item.montant)}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

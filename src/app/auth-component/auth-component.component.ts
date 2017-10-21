@@ -70,6 +70,10 @@ export class AuthComponentComponent implements OnInit {
       });
   }
 
+  diagnostiquer(){
+      location.reload(true) ;
+  }
+
   authentificateBySMS(){
     this.loading = true ;
     this.authenticationService.loginPhase2(this.fromSMS+"#"+sessionStorage.getItem('headToken') ).then( access=>
