@@ -165,6 +165,7 @@ export class TntComponent implements OnInit {
 
     this.tntCaller.abonner(this.token, this.prenoma, this.noma, this.tela.toString(), this.singleTntWS.cni, this.singleTntWS.n_chip, this.singleTntWS.n_carte, this.nbm, typedebouquet).then( response =>
       {
+        console.log(response);
         if(response.response=="ok"){
          this.verifierNumValide = false ;
          this.verifierNumInputValide = true;
@@ -181,11 +182,12 @@ export class TntComponent implements OnInit {
             montant = 8000 * this.nbm;
           }
 
-          this.dataImpression = {
+          /*this.dataImpression = {
             apiservice:'tnt',
             service:'abonnement',
             infotransaction:{
               client:{
+                transactionBBS: 'Id BBS',
                 prenom:this.prenoma,
                 nom:this.noma,
                 telephone:this.tela,
@@ -199,7 +201,7 @@ export class TntComponent implements OnInit {
             },
           }
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
-         this.router.navigate(['accueil/impression']);
+         this.router.navigate(['accueil/impression']);*/
         }else{
          this.loading = false ;
         this.erreur = true ;
@@ -273,6 +275,7 @@ export class TntComponent implements OnInit {
       service:'ventedecodeur',
       infotransaction:{
         client:{
+          transactionBBS: 'Id BBS',
           prenom:this.prenomNewClient,
           nom:this.nomNewClient,
           telephone:this.telNewClient,
@@ -307,6 +310,7 @@ export class TntComponent implements OnInit {
       service:'ventecarte',
       infotransaction:{
         client:{
+          transactionBBS: 'Id BBS',
           prenom:this.prenomNewClient,
           nom:this.nomNewClient,
           telephone:this.telNewClient,
