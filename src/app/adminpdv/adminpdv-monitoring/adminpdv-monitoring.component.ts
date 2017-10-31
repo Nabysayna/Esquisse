@@ -40,6 +40,10 @@ export class AdminpdvMonitoringComponent implements OnInit {
 
     }
 
+  currencyFormat(somme) : String{
+    return Number(somme).toLocaleString() ;
+  }
+
     clickeddemanderetrait(){
       this.selectdemanretrait = true;
     }

@@ -73,6 +73,11 @@ export class AdminpdvDashboardComponent implements OnInit {
     }
   }
 
+  currencyFormat(somme) : String{
+    return Number(somme).toLocaleString() ;
+  }
+
+
   estdetailPerformance(pdv:any){
     this.performancepdv = pdv; 
     let type:string="";

@@ -23,6 +23,7 @@ export class NavbarTopComponent implements OnInit {
   	this.authentiService.deconnecter(this.token).then( response => {
   	 if (response==1){
   			sessionStorage.removeItem('currentUser');
+        sessionStorage.clear();
         this.router.navigate(['']);
   	 } else
   	 	console.log("Echec deconnexion!") ;

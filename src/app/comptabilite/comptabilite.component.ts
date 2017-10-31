@@ -482,5 +482,9 @@ export class ComptabiliteComponent implements OnInit {
     this.montreautredesignation=i;
   }
 
+  currencyFormat(somme) : String{
+    return Number(somme).toLocaleString() ;
+  }
+
 
 }

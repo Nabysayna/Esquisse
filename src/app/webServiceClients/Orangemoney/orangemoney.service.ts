@@ -15,10 +15,9 @@ export class OrangeMoneyService {
 
    requerirControllerOM(requete:any): Promise<any>{
         let url = this.link;
-        let headers = new Headers({ 'Content-Type': 'application/json'});
+        let headers = new Headers({ 'Content-Type': 'application/json', requestParameters: requete});
         let options = new RequestOptions({ headers: headers });
         return this._http.post( url, JSON.stringify({requestParameters: requete}), options).toPromise().then( res => {return res} ).catch(error => {return 'bad' });
-
     }
 
 }

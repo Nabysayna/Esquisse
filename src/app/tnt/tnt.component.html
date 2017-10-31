@@ -102,6 +102,7 @@
                                       <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
                                       <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
                                       <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+<!--                                       <th><mfDefaultSorter by="etat">Etat</mfDefaultSorter></th> -->
                                    </tr>
 
                                 </thead>
@@ -120,6 +121,8 @@
                                   <td *ngIf="abonnement.id_typeabonnement==3">Maanaa + Boul Khool</td>
 
                                   <td>{{abonnement.montant}}</td>
+
+<!--                                   <td><p *ngIf="abonnement.etat==1">En cours...</p> <p *ngIf="abonnement.etat==0">Activé!</p> </td> -->
 
                                 </tr>
                                 </tbody>

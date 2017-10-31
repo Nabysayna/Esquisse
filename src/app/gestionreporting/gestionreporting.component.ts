@@ -158,6 +158,9 @@ export class GestionreportingComponent implements OnInit {
 
       }
 
+  currencyFormat(somme) : String{
+    return Number(somme).toLocaleString() ;
+  }
 
   etatcaisse(){
 
