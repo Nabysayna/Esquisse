@@ -6,10 +6,13 @@ export class UtilService {
 
 
   private link = "http://abonnement.bbstvnet.com/crmbbs/backend-SB-Admin-BS4-Angular-4/index.php";
+  //private link = "http://localhost/backup-sb-admin/backend-SB-Admin-BS4-Angular-4/index.php";
   private headers = new Headers();
+  private basetoken:any;
 
   constructor(private _http: Http){
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    this.basetoken = JSON.parse(sessionStorage.getItem('currentUser')).baseToken;
   }
 
   getZones(){
@@ -51,6 +54,14 @@ export class UtilService {
   getRegion(){
     let url = this.link+"/util/region";
     return this._http.get(url)
+      .map(res => res.json());
+  }
+
+  testInitDeposit(){
+    let url = this.link+"/apifromsentool/initajoutdeposit";
+    let datas = JSON.stringify({token:this.basetoken});
+    let params = 'params='+datas;
+    return this._http.post(url, params, {headers:this.headers})
       .map(res => res.json());
   }
 

@@ -71,7 +71,19 @@ export class AdminpdvparametrecompteComponent implements OnInit {
           this.regions = data;
         },
         error => alert(error),
-        () => console.log(this.regions)
+        () => {
+          console.log('test init sentool')
+          this._utilService.testInitDeposit()
+            .subscribe(
+              data => {
+                console.log(data);
+              },
+              error => alert(error),
+              () => {
+                console.log('est testé init sentool')
+              }
+            );
+        }
       );
   }
   selectRegionNewCaissier(){
