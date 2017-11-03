@@ -67,7 +67,7 @@
 	                </tr>
 	                </thead>
 	                <tbody>
-	                <tr *ngFor="let item of mf.data">
+	                <tr *ngFor="let item of mf.data" [ngStyle]="{'color': 'white', 'background-color': item.etatreclamation==0?'orange':'green'}">
 	                    <td>{{item.datereclamation}}</td>
 	                    <td>{{item.adminpdv}}</td>
 	                    <td>{{item.pdv}}</td>
@@ -79,7 +79,7 @@
 							  	voir
 							</button>
 	                    </td>
-	                    <td>{{item.etatreclamation==0?'Régle':'En cours'}}</td>
+	                    <td>{{item.etatreclamation==1?'Réglé':'En cours'}}</td>
 	                </tr>
 	                </tbody>
 	                <tfoot>

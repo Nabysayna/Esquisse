@@ -64,7 +64,7 @@
 	                </tr>
 	                </thead>
 	                <tbody>
-	                <tr *ngFor="let item of mf.data; let i = index ">
+	                <tr *ngFor="let item of mf.data; let i = index " [ngStyle]="{'color': 'white', 'background-color': item.cautioninitiale==0?'blue':((item.montantconsomme*100)/item.cautioninitiale)<25?'red':((item.montantconsomme*100)/item.cautioninitiale)>=25 && ((item.montantconsomme*100)/item.cautioninitiale)<50?'yellow':'green'}">
 	                    <td>{{ i + 1  }}</td>
 	                    <td>{{item.adminpdv}}</td>
 	                    <td>{{item.telephone}}</td>
@@ -72,7 +72,7 @@
 	                    <td>{{item.cautioninitiale}}</td>
 	                    <td>{{item.montantconsomme}}</td>
 	                    <td class="text-center">
-	                    	<button type="button" class="btn btn-danger" (click)="maj(item)" data-toggle="modal" data-target="#myModal">Mettre à jour</button>
+	                    	<button type="button" class="btn btn-warning btn-sm" (click)="maj(item)" data-toggle="modal" data-target="#myModal">Mettre à jour</button>
 	                    </td>
 	                </tr>
 	                </tbody>
@@ -100,7 +100,7 @@
             </div>
             <div class="modal-body">
             	<label for="inputCaution">Nouvelle caution</label>
-          		<input id="inputCaution" name="inputCaution" type="number" placeholder="Nouvelle caution" class="form-control" required [(ngModel)]="inputCaution" #Caution="ngModel">
+          		<input id="inputCaution" name="inputCaution" type="number" min="0" placeholder="Nouvelle caution" class="form-control" required [(ngModel)]="inputCaution" #Caution="ngModel">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="idmodalferme" data-dismiss="modal" #closeBtn>Annuler</button>

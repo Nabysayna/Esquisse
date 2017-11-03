@@ -66,6 +66,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
 
   public chartClicked(e:any):void {
     if (e.active[0]){
+      console.log(e.active[0]._model.label);
       this.estdetailPerformance(e.active[0]._model.label);
       this.showChildModal();
     }
@@ -83,7 +84,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       this.adminmultpdvperformancesservices = adminmultipdvServiceWebList.response ;
       this.datasets = [{
         data: this.adminmultpdvperformancesservices.montanttotal,
-        backgroundColor: ["green", "orange", "yellow", "red"]
+        backgroundColor: ["red", "yellow", "orange", "green"]
       }];
     });
   }
@@ -96,7 +97,6 @@ export class AdminmultipdvDashboardComponent implements OnInit {
       this.lineTilte = this.adminmultipdvActiviteservices.typeactivite;
     });
   }
-
 
   estcheckPerformance(type: string){
     if(type == 'journee'){
@@ -144,7 +144,6 @@ export class AdminmultipdvDashboardComponent implements OnInit {
 
     this.loading = true ;
     this.adminmultipdvServiceWeb.performancesadminclasserbylotbydate(lot, type).then(adminmultipdvServiceWebList => {
-      console.log('performancesadminclasserbylotbydate');
       console.log(adminmultipdvServiceWebList);
       if(adminmultipdvServiceWebList.errorCode == 1){
         this.performancesadminclasserbylotbydate = adminmultipdvServiceWebList.response;
@@ -156,7 +155,6 @@ export class AdminmultipdvDashboardComponent implements OnInit {
     });
 
   }
-
 
   public detailperformancesadminclasserbydate(adminpdv: any){
     this.performanceadminpdv = adminpdv;

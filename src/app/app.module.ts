@@ -200,6 +200,7 @@ import { FirstlogComponent } from './firstlog/firstlog.component';
 import {FiltreexploitationaveccommissionPipe} from "./pipes/filtreexploitationaveccommission.pipe";
 import {GuideUserCaisseComponent} from "./guideusercaisse/guideusercaisse.component";
 import {GuideUserSuperviseurComponent} from "./guideusersuperviseur/guideusersuperviseur.component";
+import {UtilService} from "./services/util.service";
 
 
 
@@ -385,7 +386,9 @@ import {GuideUserSuperviseurComponent} from "./guideusersuperviseur/guideusersup
       GestionreportingServiceWeb,
       AuthenticationService,
       CrmServiceWeb,
-      DemandepretServiceWeb
+      DemandepretServiceWeb,
+
+      UtilService
   ],
   bootstrap: [AppComponent]
 })

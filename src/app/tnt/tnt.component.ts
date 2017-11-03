@@ -182,12 +182,12 @@ export class TntComponent implements OnInit {
             montant = 8000 * this.nbm;
           }
 
-          /*this.dataImpression = {
+          this.dataImpression = {
             apiservice:'tnt',
             service:'abonnement',
             infotransaction:{
               client:{
-                transactionBBS: 'Id BBS',
+                transactionBBS: response.idtransactionbbs,
                 prenom:this.prenoma,
                 nom:this.noma,
                 telephone:this.tela,
@@ -201,7 +201,7 @@ export class TntComponent implements OnInit {
             },
           }
           sessionStorage.setItem('dataImpression', JSON.stringify(this.dataImpression));
-         this.router.navigate(['accueil/impression']);*/
+         this.router.navigate(['accueil/impression']);
         }else{
          this.loading = false ;
         this.erreur = true ;
