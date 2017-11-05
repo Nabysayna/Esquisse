@@ -22,6 +22,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
 
   adminmultpdvperformancesservices: any;
   loading = false ;
+  nbreOp : number = undefined;
   adminmultipdvActiviteservices: any;
   AdminmultipdvNombredereclamationagentpdvvente: AdminmultipdvNombredeReclamationAgentPdvVente;
   detailAdminPerformance:any;
@@ -82,6 +83,7 @@ export class AdminmultipdvDashboardComponent implements OnInit {
     console.log(type);
     this.adminmultipdvServiceWeb.performancesadminclasserbydate(type).then(adminmultipdvServiceWebList => {
       this.adminmultpdvperformancesservices = adminmultipdvServiceWebList.response ;
+      this.nbreOp = adminmultipdvServiceWebList.nbreop ;
       this.datasets = [{
         data: this.adminmultpdvperformancesservices.montanttotal,
         backgroundColor: ["red", "yellow", "orange", "green"]
