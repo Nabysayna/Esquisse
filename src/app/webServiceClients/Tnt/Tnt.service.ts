@@ -23,6 +23,7 @@ export class TntResponse{
   date_activation: string;
   etat_reclamation : string;
   datefinactivation : string ;
+  etatactivation: number;
 }
 
 

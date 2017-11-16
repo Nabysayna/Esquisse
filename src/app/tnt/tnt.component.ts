@@ -82,7 +82,7 @@ export class TntComponent implements OnInit {
     'Ziguinchor',
     'Autre',
   ];
-  rowsOnPage = 7 ;
+  rowsOnPage = 10 ;
   sortBy = "prenom";
   orderByDate = 'date_abonnement' ;
   sortDateOrder = "desc";
@@ -218,7 +218,8 @@ export class TntComponent implements OnInit {
 
       this.tntCaller.listAbonnement(this.token).then( response =>
         {
-          this.retourTntWS = response ;
+          this.retourTntWS = response;
+
           this.loading = false ;
           //console.log("response "+this.retourTntWS) ;
         }) ;

@@ -83,58 +83,63 @@
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="profile-pills">
 
-                 <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | datafilter : filtre" #mfabo="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="orderByDate" [(mfSortOrder)]="sortDateOrder" style="width: 100%;">
-                                <thead>
+                  <div class="row">
 
-                                    <tr>
-                                        <th colspan="5" style="padding-right: 3rem ;">
-                                            Rechercher :
-                                            <input class="form-control" [(ngModel)]="filtre"/>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                      <th><mfDefaultSorter by="date_abonnement">Date Abonnement</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="n_chip">N_Chip</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="n_carte">N_Carte</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
-                                      <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
-<!--                                       <th><mfDefaultSorter by="etat">Etat</mfDefaultSorter></th> -->
-                                   </tr>
+                    <table width="100%" class="table table-responsive table-bordered table-striped" [mfData]="retourTntWS | datafilter : filtre" #mfabo="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="orderByDate" [(mfSortOrder)]="sortDateOrder" style="width: 100%;">
+                      <thead>
 
-                                </thead>
-                                <tbody *ngIf="this.retourTntWS" >
-                                <tr *ngFor="let abonnement of mfabo.data">
-                                  <td>{{abonnement.date_abonnement}}</td>
-                                  <td>{{abonnement.prenom}}</td>
-                                  <td>{{abonnement.nom}}</td>
-                                  <td>{{abonnement.tel}}</td>
-                                  <td>{{abonnement.n_chip}}</td>
-                                  <td>{{abonnement.n_carte}}</td>
-                                  <td>{{abonnement.duree}}</td>
+                      <tr>
+                        <th colspan="5" style="padding-right: 3rem ;">
+                          Rechercher :
+                          <input class="form-control" [(ngModel)]="filtre"/>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th><mfDefaultSorter by="date_abonnement">Date Abonnement</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="prenom">Prénom</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="nom">Nom</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="tel">Téléphone</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="n_chip">N_Chip</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="n_carte">N_Carte</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="duree">Durée</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="id_typeabonnement">Type Bouquet</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="montant">Montant</mfDefaultSorter></th>
+                        <th>Etat</th>
+                      </tr>
 
-                                  <td *ngIf="abonnement.id_typeabonnement==1">Maanaa</td>
-                                  <td *ngIf="abonnement.id_typeabonnement==2">Boul Khool</td>
-                                  <td *ngIf="abonnement.id_typeabonnement==3">Maanaa + Boul Khool</td>
+                      </thead>
+                      <tbody *ngIf="this.retourTntWS" >
+                      <tr *ngFor="let abonnement of mfabo.data" [ngStyle]="{'color': 'white', 'background-color': abonnement.etatactivation?'green':'red'}">
+                        <td>{{abonnement.date_abonnement}}</td>
+                        <td>{{abonnement.prenom}}</td>
+                        <td>{{abonnement.nom}}</td>
+                        <td>{{abonnement.tel}}</td>
+                        <td>{{abonnement.n_chip}}</td>
+                        <td>{{abonnement.n_carte}}</td>
+                        <td>{{abonnement.duree}}</td>
 
-                                  <td>{{abonnement.montant}}</td>
+                        <td *ngIf="abonnement.id_typeabonnement==1">Maanaa</td>
+                        <td *ngIf="abonnement.id_typeabonnement==2">Boul Khool</td>
+                        <td *ngIf="abonnement.id_typeabonnement==3">Maanaa + Boul Khool</td>
 
-<!--                                   <td><p *ngIf="abonnement.etat==1">En cours...</p> <p *ngIf="abonnement.etat==0">Activé!</p> </td> -->
+                        <td>{{abonnement.montant}}</td>
+                        <td>{{abonnement.etatactivation?'Activé':'En cours'}}</td>
 
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="5">
-                                            <mfBootstrapPaginator ></mfBootstrapPaginator>
-                                        </td>
-                                    </tr>
-                                </tfoot>
+                        <!--                                   <td><p *ngIf="abonnement.etat==1">En cours...</p> <p *ngIf="abonnement.etat==0">Activé!</p> </td> -->
 
-                            </table>
+                      </tr>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                        <td colspan="5">
+                          <mfBootstrapPaginator ></mfBootstrapPaginator>
+                        </td>
+                      </tr>
+                      </tfoot>
+
+                    </table>
+                  </div>
+
                 </div>
 
                 <div class="tab-pane fade col-sm-12 col-xs-12" id="vente-decodeur">
