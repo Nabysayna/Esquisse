@@ -136,8 +136,18 @@
                   <label class="btn btn-danger" (click)="estcheckPerformance('mois')" >Le mois</label>
                   <label class="btn btn-danger" (click)="estcheckPerformance('annee')" >L'année</label>
                   <label class="btn btn-danger" (click)="estcheckPerformance('tous')" >Tous</label>
+                    <h3>Nombre d'opèrations {{ typeperformance }} : {{nbreOp}}.</h3>
                     <h3>Performances des superviseurs par lot {{ typeperformance }}.</h3>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-3 legends"><div style="width : 2rem ; height: 1rem ; background-color : red"></div> recette infèrieure à 25 000</div>
+                    <div class="col-sm-3 legends"><div style="width : 2rem ; height: 1rem ; background-color : yellow"></div> recette entre 25 000 et 50 000</div>
+                    <div class="col-sm-3 legends"><div style="width : 2rem ; height: 1rem ; background-color : green"></div> recette entre 50 000 et 100 000</div>
+                    <div class="col-sm-3 legends"><div style="width : 2rem ; height: 1rem ; background-color : orange"></div> recette supérieure 100 000</div>
+                </div>
+
+
                 <div class="panel-body">
                     <div style="display: block" *ngIf="datasets">
                         <canvas baseChart

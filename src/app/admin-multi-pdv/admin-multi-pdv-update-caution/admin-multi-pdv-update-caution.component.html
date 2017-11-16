@@ -5,6 +5,14 @@
         </div>
     </div>
 
+
+    <div class="row">
+		<div class="col-sm-2 legends"><div style="width : 4rem ; height: 2rem ; background-color : blue"></div> Caution initiale nulle</div>
+		<div class="col-sm-5 legends"><div style="width : 4rem ; height: 2rem ; background-color : red"></div> Caution inferieure à 25% de la caution initialle </div>
+		<div class="col-sm-5 legends"><div style="width : 4rem ; height: 2rem ; background-color : green"></div> Caution entre 25 et 50% de la caution initialle</div>
+    </div>
+
+
     <div class="row">
 	    <div class="col-xs-12 col-md-12 col-lg-12">
 	        <div class="row">
@@ -49,6 +57,7 @@
 	                </div>
 	            </div>
 	        </div>
+
 	        <div class="panel panel-default table-responsive">
 	            <table class="table table-striped" [mfData]="adminmultipdvMajcaution | dataFilterAdminmultipdvUpdateCaution : filterQuery" #mf="mfDataTable"
 	                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
