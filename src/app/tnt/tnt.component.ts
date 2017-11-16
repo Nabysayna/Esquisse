@@ -82,7 +82,7 @@ export class TntComponent implements OnInit {
     'Ziguinchor',
     'Autre',
   ];
-  rowsOnPage = 10 ;
+  rowsOnPage = 7 ;
   sortBy = "prenom";
   orderByDate = 'date_abonnement' ;
   sortDateOrder = "desc";
