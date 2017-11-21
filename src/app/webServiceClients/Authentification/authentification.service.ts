@@ -5,6 +5,7 @@ import {SoapService} from "../../soap.service";
 export class AuthResponse{
   public prenom: string;
   public nom: string;
+  public nometps: string;
   public telephone: string;
   public reponse: boolean ;
   public accessLevel: number ;
@@ -71,6 +72,7 @@ export class AuthentificationServiceWeb {
         var authResponse:AuthResponse = {
           prenom:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).prenom,
           nom:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).nom,
+          nometps:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).nometps,
           telephone:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).tel,
           baseToken:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).baseToken,
           reponse:JSON.parse(response["authentificationPhaseTwoResponse"]["return"].$).reponse,
@@ -113,7 +115,7 @@ export class AuthentificationServiceWeb {
       var parameters:{}[] = [];
       let parame : {}[] = [] ;
       var user = {token:JSON.parse(sessionStorage.getItem('currentUser')).baseToken, pwdactuel:pwdactuel, newpwd : newpwd} ;
-      
+
       parame["user"] = user ;
 
       return new Promise( (resolve, reject) => {

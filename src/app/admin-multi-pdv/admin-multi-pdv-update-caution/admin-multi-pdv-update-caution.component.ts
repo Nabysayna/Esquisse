@@ -38,12 +38,13 @@ export class AdminmultipdvUpdateCautionComponent implements OnInit {
             adminpdv:elt.adminpdv,
             adresse: JSON.parse(elt.adresse).address,
             cautioninitiale:elt.cautioninitiale,
+            date_last_deposit:elt.date_last_deposit.date.split('.')[0],
             idcaution:elt.idcaution,
             montantconsomme:elt.montantconsomme,
             telephone:elt.telephone
           }
         })
-        //console.log(this.adminmultipdvMajcaution);
+        console.log(this.adminmultipdvMajcaution);
       }
       else{
         this.adminmultipdvMajcaution = [];

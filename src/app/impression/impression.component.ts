@@ -22,6 +22,7 @@ export class ImpressionComponent implements OnInit {
   ngOnInit():void {
     this.dataImpression = JSON.parse(sessionStorage.getItem('dataImpression'));
     this.operateur = JSON.parse(sessionStorage.getItem('currentUser'));
+    console.log(this.operateur);
   }
 
   print(): void {
@@ -32,12 +33,12 @@ export class ImpressionComponent implements OnInit {
     popupWin.document.write(`
           <html>
               <head>
-                  <title>BBS INVEST & SENTOOL</title>
                   <style>
                       //........Customized style.......
+                      
                   </style>
               </head>
-              <body onload="window.print();window.close()">${printContents}</body>
+              <body onload="window.print();window.close()">${printContents}<br/><h4 style="text-align: center"><u>Le guichetier</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Le client</u></h4><br/><br/><br/><br/><br/><hr/><br/><p>${(new Date()).toLocaleDateString("fr-FR")}</p>${printContents}<br/><h4 style="text-align: center"><u>Le guichetier</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Le client</u></h4></body>
           </html>`
     );
     popupWin.document.close();

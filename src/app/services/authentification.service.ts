@@ -13,6 +13,7 @@ export class AuthenticationService {
     public email: string ;
     public prenom: string ;
     public nom: string ;
+    public nometps: string ;
     public telephone: string ;
     public accessLevel: number ;
     public authorizedApis: string ;
@@ -41,12 +42,12 @@ export class AuthenticationService {
 
     inscrire(paramInscrpt): Promise<string> {
       return new Promise( (resolve, reject)=> {
-        this.authentiService.inscrire(paramInscrpt).then( response => {resolve(response)} ); }) ; 
+        this.authentiService.inscrire(paramInscrpt).then( response => {resolve(response)} ); }) ;
     }
 
     creerProfilCaissier(paramInscrpt): Promise<string> {
       return new Promise( (resolve, reject)=> {
-        this.authentiService.creerProfilCaissier(paramInscrpt).then( response => {resolve(response)} ); }) ; 
+        this.authentiService.creerProfilCaissier(paramInscrpt).then( response => {resolve(response)} ); }) ;
     }
 
 
@@ -60,12 +61,13 @@ export class AuthenticationService {
                     this.email = resp.prenom;
                     this.prenom = resp.prenom;
                     this.nom = resp.nom;
+                    this.nometps = resp.nometps;
                     this.telephone = resp.telephone;
                     this.accessLevel = resp.accessLevel;
                     this.authorizedApis = resp.authorizedApis;
 
-                    sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, baseToken: this.baseToken, authorizedApis:this.authorizedApis, accessLevel:this.accessLevel, prenom:this.prenom, nom:this.nom, telephone:this.telephone, firstuse:resp.firstuse}));
-                    
+                    sessionStorage.setItem('currentUser', JSON.stringify({ username: this.email, baseToken: this.baseToken, authorizedApis:this.authorizedApis, accessLevel:this.accessLevel, prenom:this.prenom, nom:this.nom, nometps:this.nometps, telephone:this.telephone, firstuse:resp.firstuse}));
+
                     resolve(this.accessLevel);
                 } else {
                     resolve(0);
